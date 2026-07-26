@@ -15,6 +15,7 @@
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
   <a class="skip-link" href="#main">本文へ移動</a>
 
@@ -22,7 +23,10 @@
     <div class="header-inner">
       <a class="brand" href="#top" aria-label="DPRO SHOP トップへ">
         <span class="brand-mark" aria-hidden="true">D</span>
-        <span class="brand-copy"><strong>DPRO SHOP</strong><small>LINE BUSINESS DESIGN</small></span>
+        <span class="brand-copy">
+          <strong>DPRO SHOP</strong>
+          <small>LINE BUSINESS DESIGN</small>
+        </span>
       </a>
 
       <button class="menu-button" type="button" aria-expanded="false" aria-controls="global-nav" aria-label="メニューを開く">
@@ -31,10 +35,11 @@
 
       <nav class="global-nav" id="global-nav" aria-label="メインナビゲーション">
         <a href="#services">サービス</a>
+        <a href="#strengths">選ばれる理由</a>
+        <a href="#examples">活用例</a>
         <a href="#pricing">料金</a>
         <a href="#flow">導入の流れ</a>
-        <a href="#faq">よくある質問</a>
-        <a href="https://dpromstk2000-lab.github.io/dpro-line-systems-site/" target="_blank" rel="noopener">DPROシステム</a>
+        <a href="https://dpromstk2000-lab.github.io/dpro-line-systems-site/" target="_blank" rel="noopener">製品サイト</a>
         <a class="nav-cta" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで無料相談</a>
       </nav>
     </div>
@@ -42,234 +47,443 @@
 
   <main id="main">
     <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-grid"></div>
-      <div class="hero-orb hero-orb-a"></div>
-      <div class="hero-orb hero-orb-b"></div>
+      <div class="hero-grid" aria-hidden="true"></div>
+      <div class="hero-glow hero-glow-a" aria-hidden="true"></div>
+      <div class="hero-glow hero-glow-b" aria-hidden="true"></div>
 
       <div class="hero-inner">
         <div class="hero-copy reveal">
-          <p class="eyebrow"><span></span> LINE OFFICIAL ACCOUNT × DPRO SYSTEM</p>
+          <p class="eyebrow eyebrow-light"><span></span>LINE OFFICIAL ACCOUNT × DPRO SYSTEM</p>
           <h1 id="hero-title">
             <span>LINEを、</span>
             <span class="gradient-text">店舗の仕組みに。</span>
           </h1>
-          <p class="hero-lead">LINE公式アカウントを作るだけで終わらせない。<br>集客・予約・受付・顧客管理まで、店舗に合った運用を一緒につくります。</p>
+          <p class="hero-lead">
+            LINE公式アカウントを作るだけで終わらせない。<br>
+            集客・予約・受付・顧客管理まで、店舗に合った運用を一緒につくります。
+          </p>
 
           <div class="hero-actions">
-            <a class="button button-primary" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">
-              <span>LINEで無料相談</span><b aria-hidden="true">→</b>
+            <a class="button button-line" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">
+              <span class="line-badge">LINE</span>
+              <span>無料で相談する</span>
+              <b aria-hidden="true">→</b>
             </a>
-            <a class="button button-secondary" href="#services">サービスを見る</a>
+            <a class="button button-ghost" href="#live-products">実際の画面を見る</a>
           </div>
 
-          <div class="hero-proof" aria-label="DPRO SHOPの特徴">
-            <span><i>01</i> LINE構築</span>
-            <span><i>02</i> 月額運用</span>
-            <span><i>03</i> 業種別システム</span>
+          <div class="hero-metrics" aria-label="DPRO SHOPの特徴">
+            <div><strong>38<span>+</span></strong><small>業種別システム</small></div>
+            <div><strong>3</strong><small>LINE・PC・iPad</small></div>
+            <div><strong>LIVE</strong><small>実画面デモ公開</small></div>
           </div>
         </div>
 
-        <div class="hero-visual reveal" aria-label="DPROシステム実画面イメージ">
-          <div class="visual-glow"></div>
+        <div class="hero-stage reveal" aria-label="実際に動いているDPRO画面">
+          <div class="stage-caption"><i></i><strong>REAL DPRO SCREEN</strong><span>実際の公開画面を表示中</span></div>
 
-          <div class="browser-window">
-            <div class="browser-bar">
+          <div class="monitor-device">
+            <div class="device-browser-bar">
               <span class="browser-dots"><i></i><i></i><i></i></span>
-              <span class="browser-url">DPRO OWNER DASHBOARD</span>
+              <span>DPRO VET / 受付PC</span>
               <b>LIVE</b>
             </div>
-            <div class="browser-content">
-              <div class="dashboard-top">
-                <div><small>TODAY</small><strong>店舗運営を、ひとつに。</strong></div>
-                <span class="status-chip">稼働中</span>
-              </div>
-              <div class="metric-grid">
-                <article><small>本日の予約</small><strong>12</strong><span>件</span></article>
-                <article><small>対応待ち</small><strong>03</strong><span>件</span></article>
-                <article><small>登録顧客</small><strong>248</strong><span>名</span></article>
-              </div>
-              <div class="schedule-card">
-                <div class="schedule-head"><strong>本日の予約</strong><span>すべて見る</span></div>
-                <div class="schedule-row"><time>10:00</time><i></i><div><b>山田 様</b><small>予約受付・確認済み</small></div><span>来店予定</span></div>
-                <div class="schedule-row"><time>11:30</time><i></i><div><b>佐藤 様</b><small>LINEから受付</small></div><span>準備中</span></div>
-                <div class="schedule-row"><time>13:00</time><i></i><div><b>田中 様</b><small>次回案内あり</small></div><span>確認待ち</span></div>
-              </div>
+            <div class="monitor-viewport">
+              <iframe
+                title="DPRO動物病院 受付PC実画面"
+                loading="eager"
+                tabindex="-1"
+                src="https://dpromstk2000-lab.github.io/DPRO-VET-QR/scan-pc.html?v=dpro-shop-web2">
+              </iframe>
             </div>
           </div>
 
-          <div class="phone-window">
-            <div class="phone-notch"></div>
-            <div class="phone-screen">
-              <div class="phone-brand"><span>D</span><strong>DPRO</strong></div>
-              <small>WELCOME</small>
-              <h2>かんたん予約</h2>
-              <p>LINEから24時間受付</p>
-              <div class="phone-menu">
-                <span>予約する <b>→</b></span>
-                <span>予約を確認 <b>→</b></span>
-                <span>会員情報 <b>→</b></span>
-              </div>
-              <div class="phone-bottom"><i></i><i></i><i></i></div>
+          <div class="phone-device">
+            <div class="phone-speaker"></div>
+            <div class="phone-viewport">
+              <iframe
+                title="DPROペットサロン 会員実画面"
+                loading="eager"
+                tabindex="-1"
+                src="https://dpromstk2000-lab.github.io/dpro-pet-salon-liff/member.html?phone=08000002004&amp;v=dpro-shop-web2">
+              </iframe>
             </div>
           </div>
 
-          <div class="floating-card floating-card-a"><i></i><div><strong>LINEから受付</strong><small>予約情報を自動反映</small></div></div>
-          <div class="floating-card floating-card-b"><strong>38+</strong><span>業種別デモ</span></div>
+          <div class="stage-chip stage-chip-a">
+            <i></i>
+            <div><strong>LINEから予約</strong><small>店舗画面へ自動反映</small></div>
+          </div>
+          <div class="stage-chip stage-chip-b">
+            <strong>自社開発</strong>
+            <small>設計・改善まで一貫対応</small>
+          </div>
         </div>
       </div>
 
-      <a class="scroll-cue" href="#statement"><span>SCROLL</span><i></i></a>
+      <a class="scroll-cue" href="#mission" aria-label="次のセクションへ">
+        <span>SCROLL</span><i></i>
+      </a>
     </section>
 
-    <section class="statement section" id="statement">
-      <div class="section-inner statement-inner reveal">
-        <p class="eyebrow dark"><span></span> OUR MISSION</p>
-        <h2>難しい仕組みを、<br><em>店舗で使える形</em>にする。</h2>
-        <p>DPRO SHOPは、LINE公式アカウントの見た目を整えるだけではありません。お客様が迷わず使え、店舗側が無理なく続けられる導線と運用を設計します。</p>
+    <section class="proof-strip" aria-label="提供サービス">
+      <div class="proof-strip-inner">
+        <span>LINE公式アカウント構築</span>
+        <i></i>
+        <span>LINE運用サポート</span>
+        <i></i>
+        <span>業種別DPROシステム</span>
+        <i></i>
+        <span>公開後の継続改善</span>
       </div>
     </section>
 
-    <section class="services section" id="services">
+    <section class="mission section" id="mission">
+      <div class="section-inner mission-inner reveal">
+        <p class="eyebrow eyebrow-dark"><span></span>OUR MISSION</p>
+        <h2>難しい仕組みを、<br><em>店舗で使える形</em>にする。</h2>
+        <p class="mission-lead">
+          DPRO SHOPは、LINEの見た目を整えるだけの制作サービスではありません。
+          お客様が迷わず使え、店舗側が無理なく続けられる導線と運用を設計します。
+        </p>
+        <div class="mission-points">
+          <span><b>01</b>分かりやすい</span>
+          <span><b>02</b>実際に使える</span>
+          <span><b>03</b>続けられる</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="services section section-soft" id="services">
       <div class="section-inner">
         <div class="section-heading reveal">
           <div>
-            <p class="eyebrow dark"><span></span> SERVICES</p>
+            <p class="eyebrow eyebrow-dark"><span></span>SERVICES</p>
             <h2>必要なものを、<br>必要な形で。</h2>
           </div>
-          <p>LINEの初期構築から日々の運用、業種専用システムまで。店舗の現在地に合わせて組み合わせられます。</p>
+          <p>
+            LINEの初期構築から日々の運用、業種専用システムまで。
+            店舗の現在地に合わせて、必要なサービスを組み合わせられます。
+          </p>
         </div>
 
         <div class="service-grid">
-          <article class="service-card service-card-featured reveal">
-            <div class="service-number">01</div>
-            <div class="service-icon"><span></span><span></span><span></span></div>
-            <p class="service-en">LINE OFFICIAL ACCOUNT</p>
+          <article class="service-card service-card-dark reveal">
+            <div class="service-top">
+              <span class="service-number">01</span>
+              <div class="service-icon icon-line"><i></i><i></i><i></i></div>
+            </div>
+            <p class="service-label">LINE OFFICIAL ACCOUNT</p>
             <h3>LINE公式アカウント構築</h3>
-            <p>プロフィール、あいさつメッセージ、リッチメニュー、クーポン、ショップカードなどを店舗に合わせて設計します。</p>
-            <ul>
-              <li>初期設定・プロフィール設計</li>
-              <li>リッチメニュー制作</li>
-              <li>予約・問い合わせ導線</li>
-              <li>公開前の動作確認</li>
-            </ul>
-            <div class="service-price"><small>初期費用</small><strong>77,000<em>円</em></strong><span>税込</span></div>
+            <p class="service-summary">
+              アカウントの初期設定から、リッチメニュー、クーポン、ショップカード、問い合わせ導線までまとめて設計します。
+            </p>
+            <div class="service-keywords">
+              <span>初期設定</span><span>リッチメニュー</span><span>クーポン</span><span>公開前検査</span>
+            </div>
+            <div class="service-bottom">
+              <div class="service-price"><small>初期費用</small><strong>77,000<em>円</em></strong><span>税込</span></div>
+              <a href="#pricing">料金を見る <b>→</b></a>
+            </div>
           </article>
 
           <article class="service-card reveal">
-            <div class="service-number">02</div>
-            <div class="service-icon icon-pulse"><i></i></div>
-            <p class="service-en">MONTHLY OPERATION</p>
+            <div class="service-top">
+              <span class="service-number">02</span>
+              <div class="service-icon icon-support"><i></i></div>
+            </div>
+            <p class="service-label">MONTHLY OPERATION</p>
             <h3>LINE運用サポート</h3>
-            <p>作って終わりにせず、配信文章や営業カレンダー、クーポンなど、毎月の活用を継続して支援します。</p>
-            <ul>
-              <li>配信内容の相談・文章作成</li>
-              <li>クーポン・ショップカード運用</li>
-              <li>リッチメニューの軽微な変更</li>
-              <li>LINE活用の継続提案</li>
-            </ul>
-            <div class="service-price"><small>月額</small><strong>3,300<em>円</em></strong><span>税込</span></div>
+            <p class="service-summary">
+              作って終わりにせず、配信文章、営業カレンダー、クーポン、ショップカードなど、毎月の活用を継続して支援します。
+            </p>
+            <div class="service-keywords">
+              <span>配信文章</span><span>営業カレンダー</span><span>クーポン</span><span>運用相談</span>
+            </div>
+            <div class="service-bottom">
+              <div class="service-price"><small>月額</small><strong>3,300<em>円</em></strong><span>税込</span></div>
+              <a href="#pricing">料金を見る <b>→</b></a>
+            </div>
           </article>
 
           <article class="service-card reveal">
-            <div class="service-number">03</div>
-            <div class="service-icon icon-system"><span></span><span></span><span></span><span></span></div>
-            <p class="service-en">DPRO BUSINESS SYSTEM</p>
+            <div class="service-top">
+              <span class="service-number">03</span>
+              <div class="service-icon icon-system"><i></i><i></i><i></i><i></i></div>
+            </div>
+            <p class="service-label">DPRO BUSINESS SYSTEM</p>
             <h3>業種別DPROシステム</h3>
-            <p>予約、受付、会員、顧客、カルテ、進捗など、業種ごとに必要な機能をLINEと店舗管理画面につなげます。</p>
-            <ul>
-              <li>お客様用LINE画面</li>
-              <li>店舗用PC・iPad管理画面</li>
-              <li>業種に合わせた専用機能</li>
-              <li>実際に触れるデモを用意</li>
-            </ul>
-            <div class="service-dual-price">
-              <div><small>構築費</small><strong>33,000<em>円</em></strong></div>
-              <div><small>利用・基本保守</small><strong>月額 1,100<em>円</em></strong></div>
+            <p class="service-summary">
+              予約、受付、会員、顧客、カルテ、進捗など、業種ごとに必要な機能をLINEと店舗管理画面につなげます。
+            </p>
+            <div class="service-keywords">
+              <span>LINE画面</span><span>PC管理</span><span>iPad管理</span><span>業種専用機能</span>
+            </div>
+            <div class="service-bottom service-bottom-system">
+              <div class="service-mini-price"><small>構築費</small><strong>33,000円</strong></div>
+              <div class="service-mini-price"><small>月額</small><strong>1,100円</strong></div>
+              <a href="https://dpromstk2000-lab.github.io/dpro-line-systems-site/" target="_blank" rel="noopener">製品を見る <b>→</b></a>
             </div>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="problems section">
+    <section class="strengths section" id="strengths">
       <div class="section-inner">
-        <div class="problem-panel">
-          <div class="problem-copy reveal">
-            <p class="eyebrow light"><span></span> FOR STORE OWNERS</p>
-            <h2>こんなお悩みを、<br>LINEから整理します。</h2>
-            <p>お客様にとって分かりやすく、店舗にとって続けやすい仕組みへ。</p>
-            <a class="text-link" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">まずは相談する <b>→</b></a>
+        <div class="strengths-intro reveal">
+          <p class="eyebrow eyebrow-light"><span></span>WHY DPRO SHOP</p>
+          <h2>見た目だけではなく、<br><em>運用まで設計する。</em></h2>
+          <p>店舗へ導入できる完成度を基準に、画面・導線・運用・検査まで一つずつ整えます。</p>
+        </div>
+
+        <div class="strength-grid">
+          <article class="reveal">
+            <span>01</span>
+            <div class="strength-icon strength-icon-build"><i></i><i></i><i></i></div>
+            <h3>自社で設計・開発</h3>
+            <p>既製品を紹介するだけではなく、DPRO SHOPが画面と仕組みを設計し、改善を続けています。</p>
+          </article>
+          <article class="reveal">
+            <span>02</span>
+            <div class="strength-icon strength-icon-live"><i></i></div>
+            <h3>実画面を公開</h3>
+            <p>説明資料だけで判断させません。スマートフォン・PC・iPadの実際の画面を確認できます。</p>
+          </article>
+          <article class="reveal">
+            <span>03</span>
+            <div class="strength-icon strength-icon-fit"><i></i><i></i><i></i><i></i></div>
+            <h3>業種に合わせて精査</h3>
+            <p>不要な機能を増やさず、店舗の業務に必要な受付・予約・管理機能だけを組み立てます。</p>
+          </article>
+          <article class="reveal">
+            <span>04</span>
+            <div class="strength-icon strength-icon-support"><i></i></div>
+            <h3>公開後も継続支援</h3>
+            <p>運用開始後の配信や改善も相談できます。作成して終わりではなく、使い続けるところまで支援します。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="live-products section section-soft" id="live-products">
+      <div class="section-inner">
+        <div class="section-heading live-heading reveal">
+          <div>
+            <p class="eyebrow eyebrow-dark"><span></span>REAL SCREEN, REAL OPERATION</p>
+            <h2>説明だけではなく、<br><em>実際に動いています。</em></h2>
           </div>
-          <div class="problem-list">
-            <article class="reveal"><span>01</span><div><h3>LINEを作ったが活用できていない</h3><p>何を配信し、どこへ誘導すればよいかを整理します。</p></div></article>
-            <article class="reveal"><span>02</span><div><h3>電話や紙での受付が多い</h3><p>予約・問い合わせ・各種受付をLINEへまとめます。</p></div></article>
-            <article class="reveal"><span>03</span><div><h3>顧客情報が複数の場所に分かれている</h3><p>業種に必要な情報を店舗管理画面で確認できます。</p></div></article>
-            <article class="reveal"><span>04</span><div><h3>自分たちだけでは運用を続けられない</h3><p>毎月の文章作成や改善を継続してサポートします。</p></div></article>
+          <p>
+            DPROの強みは、完成した実物があること。
+            お客様用LINE画面と、店舗用PC・iPad画面を公開しています。
+          </p>
+        </div>
+
+        <div class="live-stage reveal">
+          <div class="live-stage-head">
+            <div class="mini-brand"><span>D</span><div><strong>DPRO LIVE PRODUCT</strong><small>PUBLIC DEMONSTRATION</small></div></div>
+            <div class="live-status"><i></i>現在公開中</div>
+          </div>
+
+          <div class="live-stage-body">
+            <div class="live-copy">
+              <p class="live-product-name">PET SALON × VETERINARY</p>
+              <h3>お客様のLINEと、<br>店舗の管理画面をつなぐ。</h3>
+              <p>
+                予約・受付・顧客情報を、別々の紙や画面に分散させず、
+                LINEを入口に一つの運用へまとめます。
+              </p>
+              <ul>
+                <li>LINEから24時間受付</li>
+                <li>PC・iPadで店舗管理</li>
+                <li>顧客・履歴・進捗を確認</li>
+              </ul>
+              <a class="button button-dark" href="https://dpromstk2000-lab.github.io/dpro-line-systems-site/" target="_blank" rel="noopener">
+                すべての製品を見る <b>→</b>
+              </a>
+            </div>
+
+            <div class="live-devices">
+              <div class="live-monitor">
+                <div class="device-browser-bar light-bar">
+                  <span class="browser-dots"><i></i><i></i><i></i></span>
+                  <span>動物病院・受付PC</span>
+                  <b>LIVE</b>
+                </div>
+                <div class="live-monitor-viewport">
+                  <iframe
+                    title="DPRO動物病院受付PC 公開デモ"
+                    loading="lazy"
+                    src="https://dpromstk2000-lab.github.io/DPRO-VET-QR/scan-pc.html?v=dpro-shop-live-web2">
+                  </iframe>
+                </div>
+              </div>
+
+              <div class="live-tablet">
+                <div class="tablet-camera"></div>
+                <div class="live-tablet-viewport">
+                  <iframe
+                    title="DPROペットサロン iPad管理画面 公開デモ"
+                    loading="lazy"
+                    src="https://dpromstk2000-lab.github.io/dpro-pet-salon-liff/owner-ipad.html?v=dpro-shop-live-web2">
+                  </iframe>
+                </div>
+              </div>
+
+              <div class="live-phone">
+                <div class="phone-speaker"></div>
+                <div class="live-phone-viewport">
+                  <iframe
+                    title="DPROペットサロン 会員画面 公開デモ"
+                    loading="lazy"
+                    src="https://dpromstk2000-lab.github.io/dpro-pet-salon-liff/member.html?phone=08000002004&amp;v=dpro-shop-live-web2">
+                  </iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="category-marquee" aria-label="対応業種カテゴリー">
+          <div>
+            <span>美容・健康</span><i></i>
+            <span>医療・ペット</span><i></i>
+            <span>飲食・小売</span><i></i>
+            <span>買取・リユース</span><i></i>
+            <span>住まい・建築</span><i></i>
+            <span>教育・生活サービス</span><i></i>
+            <span>士業・企業支援</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="system-showcase section" id="systems">
-      <div class="section-inner">
-        <div class="showcase-head reveal">
-          <p class="eyebrow dark"><span></span> REAL PRODUCT</p>
-          <h2>説明だけではなく、<br><em>実際に動いています。</em></h2>
-          <p>美容、医療、ペット、飲食、士業、介護、生活サービスなど、業種ごとの実画面を公開しています。</p>
-        </div>
-
-        <div class="showcase-stage reveal">
-          <div class="showcase-nav">
-            <div class="showcase-brand"><span>D</span><div><strong>DPRO LINE SYSTEMS</strong><small>OFFICIAL PRODUCT SITE</small></div></div>
-            <span>実際の製品サイト</span>
-          </div>
-          <div class="showcase-content">
-            <div class="showcase-copy">
-              <span class="live-label"><i></i> LIVE DEMO</span>
-              <h3>あなたの業種に合う<br>システムを探す。</h3>
-              <p>スマートフォン、PC、iPadの画面を、その場で確認できます。</p>
-              <a class="button button-dark" href="https://dpromstk2000-lab.github.io/dpro-line-systems-site/" target="_blank" rel="noopener">DPRO製品サイトを見る <b>→</b></a>
-            </div>
-            <div class="showcase-categories" aria-label="対応業種カテゴリー">
-              <span>美容・健康</span><span>医療・ペット</span><span>飲食・小売</span><span>買取・リユース</span><span>住まい・建築</span><span>教育・生活サービス</span><span>士業・企業支援</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="pricing section" id="pricing">
+    <section class="examples section" id="examples">
       <div class="section-inner">
         <div class="section-heading reveal">
           <div>
-            <p class="eyebrow dark"><span></span> PRICING</p>
+            <p class="eyebrow eyebrow-dark"><span></span>USE CASES</p>
+            <h2>店舗に合わせた、<br>活用の形。</h2>
+          </div>
+          <p>
+            同じLINEでも、業種によって必要な役割は異なります。
+            店舗の日常業務に合わせて、使い方と仕組みを設計します。
+          </p>
+        </div>
+
+        <div class="example-grid">
+          <article class="example-card example-food reveal">
+            <div class="example-top">
+              <span>01</span><small>FOOD / LINE OPERATION</small>
+            </div>
+            <div class="example-visual calendar-visual">
+              <div class="calendar-head"><b>8月</b><span>営業カレンダー</span></div>
+              <div class="calendar-grid">
+                <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                <i></i><i></i><i></i><i class="holiday"></i><i></i><i></i><i></i>
+                <i></i><i></i><i></i><i class="holiday"></i><i></i><i></i><i></i>
+                <i></i><i></i><i></i><i class="holiday"></i><i></i><i></i><i></i>
+              </div>
+            </div>
+            <h3>飲食店のLINE運用</h3>
+            <p>営業カレンダー、クーポン、ショップカード、リッチメニュー、LINE VOOMへの導線を継続して整えます。</p>
+            <div class="example-tags"><span>営業案内</span><span>再来店促進</span><span>配信文章</span></div>
+          </article>
+
+          <article class="example-card example-pet reveal">
+            <div class="example-top">
+              <span>02</span><small>PET SALON / RESERVATION</small>
+            </div>
+            <div class="example-visual pet-visual">
+              <div class="pet-avatar">PET</div>
+              <div><small>NEXT RESERVATION</small><strong>8月12日 10:00</strong><span>シャンプー・カット</span></div>
+              <i>確認済み</i>
+            </div>
+            <h3>ペットサロンの予約・顧客管理</h3>
+            <p>LINE予約と店舗管理をつなぎ、飼い主様、ペット情報、利用履歴、次回案内を確認しやすくします。</p>
+            <div class="example-tags"><span>予約</span><span>顧客・ペット</span><span>利用履歴</span></div>
+          </article>
+
+          <article class="example-card example-service reveal">
+            <div class="example-top">
+              <span>03</span><small>FIELD SERVICE / WORKFLOW</small>
+            </div>
+            <div class="example-visual workflow-visual">
+              <span><i></i>受付</span><b>→</b><span><i></i>見積</span><b>→</b><span><i></i>作業</span><b>→</b><span><i></i>完了</span>
+            </div>
+            <h3>訪問サービスの受付・進捗管理</h3>
+            <p>写真付きの見積相談、訪問日時、担当者、作業状況をまとめ、店舗とスタッフの確認負担を減らします。</p>
+            <div class="example-tags"><span>写真見積</span><span>訪問管理</span><span>進捗共有</span></div>
+          </article>
+        </div>
+
+        <p class="example-note">※上記はDPRO SHOPで対応できる運用例・導入イメージです。店舗ごとに必要な内容を確認して設計します。</p>
+      </div>
+    </section>
+
+    <section class="pricing section section-soft" id="pricing">
+      <div class="section-inner">
+        <div class="section-heading reveal">
+          <div>
+            <p class="eyebrow eyebrow-dark"><span></span>PRICING</p>
             <h2>分かりやすい、<br>4つの料金。</h2>
           </div>
-          <p>必要なサービスだけでも、LINE構築とDPROシステムを組み合わせても導入できます。</p>
+          <p>
+            必要なサービスだけでも、LINE公式アカウント構築とDPROシステムを組み合わせても導入できます。
+          </p>
         </div>
 
         <div class="pricing-table reveal">
-          <div class="pricing-row pricing-head"><span>サービス</span><span>初期費用</span><span>月額</span></div>
-          <div class="pricing-row"><div><b>LINE公式アカウント構築</b><small>初期設定・導線設計・リッチメニュー等</small></div><strong>77,000円</strong><span>―</span></div>
-          <div class="pricing-row"><div><b>LINE運用サポート</b><small>配信・クーポン・運用支援</small></div><span>―</span><strong>3,300円</strong></div>
-          <div class="pricing-row"><div><b>DPROシステム構築</b><small>業種別システムの初期構築</small></div><strong>33,000円</strong><span>―</span></div>
-          <div class="pricing-row"><div><b>DPRO利用・基本保守</b><small>システム利用・基本保守</small></div><span>―</span><strong>1,100円</strong></div>
+          <div class="pricing-row pricing-head">
+            <span>サービス</span><span>初期費用</span><span>月額</span>
+          </div>
+          <div class="pricing-row">
+            <div><b>LINE公式アカウント構築</b><small>初期設定・導線設計・リッチメニューなど</small></div>
+            <strong>77,000円</strong><span>―</span>
+          </div>
+          <div class="pricing-row">
+            <div><b>LINE運用サポート</b><small>配信・クーポン・ショップカード・運用支援</small></div>
+            <span>―</span><strong>3,300円</strong>
+          </div>
+          <div class="pricing-row">
+            <div><b>DPROシステム構築</b><small>業種別システムの初期構築</small></div>
+            <strong>33,000円</strong><span>―</span>
+          </div>
+          <div class="pricing-row">
+            <div><b>DPRO利用・基本保守</b><small>システム利用・基本保守</small></div>
+            <span>―</span><strong>1,100円</strong>
+          </div>
         </div>
 
         <div class="bundle-card reveal">
-          <div><span>RECOMMENDED</span><h3>LINE構築＋DPROシステム</h3><p>集客の入口から予約・顧客管理まで、一つの流れに。</p></div>
-          <div class="bundle-prices"><p><small>初期費用合計</small><strong>110,000<em>円</em></strong></p><p><small>月額合計</small><strong>4,400<em>円</em></strong></p></div>
-          <a class="button button-primary" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで相談する <b>→</b></a>
+          <div class="bundle-copy">
+            <span>RECOMMENDED</span>
+            <h3>LINE構築＋DPROシステム</h3>
+            <p>集客の入口から予約・顧客管理まで、一つの流れに。</p>
+          </div>
+          <div class="bundle-prices">
+            <p><small>初期費用合計</small><strong>110,000<em>円</em></strong></p>
+            <p><small>月額合計</small><strong>4,400<em>円</em></strong></p>
+          </div>
+          <a class="button button-line" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">
+            <span class="line-badge">LINE</span>
+            <span>料金について相談</span>
+            <b>→</b>
+          </a>
         </div>
-        <p class="price-note">※表示価格はすべて税込です。個別の追加制作や大幅な仕様変更が必要な場合は、事前に内容と費用をご案内します。</p>
+
+        <p class="price-note">
+          ※表示価格はすべて税込です。追加制作や大幅な仕様変更が必要な場合は、事前に内容と費用をご案内します。
+        </p>
       </div>
     </section>
 
     <section class="flow section" id="flow">
       <div class="section-inner">
         <div class="flow-heading reveal">
-          <p class="eyebrow light"><span></span> START GUIDE</p>
+          <p class="eyebrow eyebrow-light"><span></span>START GUIDE</p>
           <h2>相談から公開まで、<br>迷わせません。</h2>
+          <p>専門的な設定や制作はDPRO SHOP側で進め、店舗には必要な確認だけをお願いします。</p>
         </div>
 
         <div class="flow-list">
@@ -286,7 +500,7 @@
     <section class="faq section" id="faq">
       <div class="section-inner faq-layout">
         <div class="faq-heading reveal">
-          <p class="eyebrow dark"><span></span> FAQ</p>
+          <p class="eyebrow eyebrow-dark"><span></span>FAQ</p>
           <h2>よくある質問</h2>
           <p>掲載されていない内容も、LINEからお気軽にご相談ください。</p>
         </div>
@@ -298,11 +512,11 @@
           </details>
           <details>
             <summary><span>Q</span>現在使っているLINE公式アカウントを改善できますか？<i></i></summary>
-            <p>はい。現在の設定やリッチメニュー、配信内容を確認し、必要な部分だけを改善できます。</p>
+            <p>はい。現在の設定、リッチメニュー、配信内容を確認し、必要な部分だけを改善できます。</p>
           </details>
           <details>
             <summary><span>Q</span>DPROシステムだけ導入できますか？<i></i></summary>
-            <p>はい。LINE構築と組み合わせる方法だけでなく、DPROシステムのみの導入にも対応します。</p>
+            <p>はい。LINE公式アカウント構築と組み合わせる方法だけでなく、DPROシステムのみの導入にも対応します。</p>
           </details>
           <details>
             <summary><span>Q</span>パソコンやシステムが苦手でも使えますか？<i></i></summary>
@@ -310,19 +524,43 @@
           </details>
           <details>
             <summary><span>Q</span>相談したら必ず契約しなければなりませんか？<i></i></summary>
-            <p>いいえ。まずは現在のお悩みを確認し、必要な内容と費用をご案内したうえでご判断いただけます。</p>
+            <p>いいえ。現在のお悩みを確認し、必要な内容と費用をご案内したうえでご判断いただけます。</p>
           </details>
         </div>
       </div>
     </section>
 
+    <section class="brand-story section">
+      <div class="section-inner brand-story-inner">
+        <div class="brand-story-mark reveal">D</div>
+        <div class="brand-story-copy reveal">
+          <p class="eyebrow eyebrow-dark"><span></span>ABOUT DPRO SHOP</p>
+          <h2>地域の店舗に、<br>使えるデジタルを。</h2>
+          <p>
+            大きく複雑なシステムではなく、店舗の日常に合う仕組みを。
+            DPRO SHOPは、LINEを入口に、無理なく使い続けられる店舗運営を目指します。
+          </p>
+          <div class="brand-values">
+            <span>分かりやすさ</span><span>現場で使えること</span><span>継続して改善すること</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="final-cta section">
-      <div class="final-cta-grid"></div>
+      <div class="final-grid" aria-hidden="true"></div>
       <div class="section-inner final-cta-inner reveal">
-        <p class="eyebrow light"><span></span> LET'S DESIGN YOUR LINE</p>
+        <p class="eyebrow eyebrow-light"><span></span>LET'S DESIGN YOUR LINE</p>
         <h2>LINEを、<br>お店の力に変えませんか。</h2>
-        <p>何から始めればよいか分からない段階でも大丈夫です。<br>店舗に必要なものを、一緒に整理します。</p>
-        <a class="button button-line" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener"><span class="line-icon">LINE</span>無料で相談する <b>→</b></a>
+        <p>
+          何から始めればよいか分からない段階でも大丈夫です。<br>
+          店舗に必要なものを、一緒に整理します。
+        </p>
+        <a class="button button-line button-line-large" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">
+          <span class="line-badge">LINE</span>
+          <span>無料で相談する</span>
+          <b>→</b>
+        </a>
       </div>
     </section>
   </main>
@@ -336,17 +574,37 @@
         </a>
         <p>LINE公式アカウントの構築・運用と、<br>業種別DPROシステム。</p>
       </div>
+
       <div class="footer-links">
-        <div><strong>SERVICE</strong><a href="#services">サービス</a><a href="#pricing">料金</a><a href="#flow">導入の流れ</a></div>
-        <div><strong>PRODUCT</strong><a href="https://dpromstk2000-lab.github.io/dpro-line-systems-site/" target="_blank" rel="noopener">DPROシステム</a><a href="#faq">よくある質問</a></div>
-        <div><strong>CONTACT</strong><a href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで無料相談</a></div>
+        <div>
+          <strong>SERVICE</strong>
+          <a href="#services">サービス</a>
+          <a href="#strengths">選ばれる理由</a>
+          <a href="#pricing">料金</a>
+        </div>
+        <div>
+          <strong>PRODUCT</strong>
+          <a href="#live-products">実画面</a>
+          <a href="https://dpromstk2000-lab.github.io/dpro-line-systems-site/" target="_blank" rel="noopener">DPRO製品サイト</a>
+          <a href="#examples">活用例</a>
+        </div>
+        <div>
+          <strong>GUIDE</strong>
+          <a href="#flow">導入の流れ</a>
+          <a href="#faq">よくある質問</a>
+          <a href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで無料相談</a>
+        </div>
       </div>
     </div>
-    <div class="footer-bottom"><span>© 2026 DPRO SHOP. All Rights Reserved.</span><a href="#top">PAGE TOP ↑</a></div>
+
+    <div class="footer-bottom">
+      <span>© 2026 DPRO SHOP. All Rights Reserved.</span>
+      <a href="#top">PAGE TOP ↑</a>
+    </div>
   </footer>
 
   <div class="mobile-cta" aria-label="固定お問い合わせボタン">
-    <a href="#services">サービス</a>
+    <a href="#live-products">実画面を見る</a>
     <a href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで無料相談</a>
   </div>
 
