@@ -1,9 +1,9 @@
 {
   "name": "DPRO SHOP",
   "short_name": "DPRO SHOP",
-  "description": "LINE公式アカウントの構築・運用と、契約店舗限定の業種別DPROシステム。",
-  "start_url": "./",
-  "scope": "./",
+  "description": "LINE公式アカウント、ホームページ、契約店舗限定DPROシステムを一体で提供するDPRO SHOP。",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#07111f",
   "theme_color": "#07111f",
