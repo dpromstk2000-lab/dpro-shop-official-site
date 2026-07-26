@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e8eff7"/><stop offset="1" stop-color="#ffffff"/></linearGradient></defs>
+<rect width="1200" height="760" fill="url(#g)"/>
+<rect x="55" y="48" width="1090" height="664" rx="28" fill="#fff" stroke="#dce4e9"/>
+<rect x="55" y="48" width="1090" height="82" rx="28" fill="#fff"/>
+<rect x="90" y="70" width="44" height="44" rx="13" fill="#d6a929"/>
+<text x="105" y="102" font-family="sans-serif" font-size="25" font-weight="900" fill="#fff">D</text>
+<text x="153" y="98" font-family="sans-serif" font-size="23" font-weight="900" fill="#102434">AOI LEGAL OFFICE</text>
+<text x="860" y="98" font-family="sans-serif" font-size="13" font-weight="800" fill="#6d7b8a">SERVICE　PRICE　FAQ　LINE</text>
+<rect x="90" y="155" width="1020" height="320" rx="26" fill="#102434"/>
+<circle cx="900" cy="310" r="118" fill="#d6a929" opacity=".38"/>
+<circle cx="900" cy="310" r="75" fill="#d6a929" opacity=".62"/>
+<text x="128" y="218" font-family="sans-serif" font-size="15" font-weight="900" fill="#d6a929">PROFESSIONAL OFFICE</text>
+<text x="128" y="286" font-family="sans-serif" font-size="48" font-weight="900" fill="#fff">複雑なサービスを、</text>
+<text x="128" y="348" font-family="sans-serif" font-size="48" font-weight="900" fill="#fff">分かりやすい順番に。</text>
+<text x="128" y="394" font-family="sans-serif" font-size="16" fill="#c8d3df">サービス・料金・問い合わせまで、スマートフォンで分かりやすく。</text>
+<rect x="128" y="420" width="190" height="52" rx="26" fill="#d6a929"/>
+<text x="174" y="453" font-family="sans-serif" font-size="15" font-weight="900" fill="#fff">LINEで相談</text>
+<text x="92" y="536" font-family="sans-serif" font-size="14" font-weight="900" fill="#d6a929">SERVICE GUIDE</text>
+<text x="92" y="579" font-family="sans-serif" font-size="31" font-weight="900" fill="#102434">初めての方にも、迷わない構成。</text>
+<rect x="100" y="615" width="290" height="80" rx="18" fill="#fff" opacity=".94"/><text x="126" y="653" font-family="sans-serif" font-size="19" font-weight="900" fill="#102434">専門サービス</text><text x="126" y="678" font-family="sans-serif" font-size="12" fill="#6b7888">内容・料金・LINE導線</text><rect x="430" y="615" width="290" height="80" rx="18" fill="#fff" opacity=".94"/><text x="456" y="653" font-family="sans-serif" font-size="19" font-weight="900" fill="#102434">相談の流れ</text><text x="456" y="678" font-family="sans-serif" font-size="12" fill="#6b7888">内容・料金・LINE導線</text><rect x="760" y="615" width="290" height="80" rx="18" fill="#fff" opacity=".94"/><text x="786" y="653" font-family="sans-serif" font-size="19" font-weight="900" fill="#102434">料金・必要書類</text><text x="786" y="678" font-family="sans-serif" font-size="12" fill="#6b7888">内容・料金・LINE導線</text>
+</svg>
