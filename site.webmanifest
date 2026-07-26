@@ -1,0 +1,25 @@
+{
+  "name": "DPRO SHOP",
+  "short_name": "DPRO SHOP",
+  "description": "LINE公式アカウントの構築・運用と、契約店舗限定の業種別DPROシステム。",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#07111f",
+  "theme_color": "#07111f",
+  "lang": "ja",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
