@@ -8753,3 +8753,175 @@ summary:focus-visible {
     grid-template-columns: 1fr 1fr;
   }
 }
+
+
+/* =========================================================
+   STEP DPRO-WEB-8-R1
+   JAPANESE HEADING + FULL-SCREEN MOBILE MENU
+   ========================================================= */
+
+h1, h2, h3 {
+  text-wrap: balance;
+  word-break: auto-phrase;
+  line-break: strict;
+  overflow-wrap: normal;
+}
+.heading-line { display: block; }
+.phrase { display: inline-block; }
+
+.hero h1 { max-width: 820px; font-size: clamp(48px, 4.7vw, 78px); line-height: 1.08; }
+.build-hero h1 { max-width: 760px; font-size: clamp(42px, 3.8vw, 62px); line-height: 1.12; }
+.operation-hero h1 { max-width: 700px; font-size: clamp(44px, 4.2vw, 66px); line-height: 1.1; }
+.pricing-hero h1 { max-width: 700px; font-size: clamp(42px, 3.8vw, 58px); line-height: 1.12; }
+.about-hero h1, .contact-hero h1 { max-width: 700px; font-size: clamp(40px, 3.5vw, 54px); line-height: 1.15; }
+.legal-hero h1 { max-width: 960px; font-size: clamp(42px, 4.2vw, 66px); line-height: 1.15; }
+
+.section-heading h2,
+.strengths-intro h2,
+.flow-heading h2,
+.faq-heading h2,
+.brand-story-copy h2,
+.operation-problem-heading h2,
+.operation-cycle-heading h2,
+.operation-examples-heading h2,
+.operation-scope-heading h2,
+.operation-process-heading h2,
+.operation-price-copy h2,
+.pricing-plans-heading h2,
+.pricing-scope-heading h2,
+.contract-check-heading h2,
+.dpro-limited-heading h2,
+.about-policy-heading h2,
+.about-quality-heading h2,
+.contact-prepare-heading h2,
+.contact-notes-heading h2 {
+  font-size: clamp(36px, 3.55vw, 56px);
+  line-height: 1.24;
+  letter-spacing: -.045em;
+}
+.mission h2, .about-mission h2 { font-size: clamp(40px, 4.4vw, 68px); line-height: 1.2; }
+.final-cta h2 { font-size: clamp(40px, 5vw, 76px); line-height: 1.18; }
+.faq-heading h2 { max-width: 100%; font-size: clamp(38px, 3.2vw, 52px); white-space: nowrap; }
+.live-copy h3 { max-width: 470px; font-size: clamp(34px, 2.7vw, 44px); line-height: 1.3; }
+.section-heading { grid-template-columns: minmax(0, 1.18fr) minmax(300px, .82fr); gap: clamp(38px, 5vw, 72px); }
+.faq-layout { grid-template-columns: minmax(280px, .84fr) minmax(0, 1.16fr); gap: clamp(42px, 5vw, 72px); }
+
+@media (max-width: 960px) {
+  .site-header.menu-active { background: #06111d; backdrop-filter: none; box-shadow: none; }
+  .site-header.menu-active .header-inner { position: relative; z-index: 1010; }
+  .global-nav {
+    position: fixed !important;
+    z-index: 1005 !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    max-height: 100dvh !important;
+    padding: calc(92px + env(safe-area-inset-top)) max(25px, env(safe-area-inset-right)) calc(34px + env(safe-area-inset-bottom)) max(25px, env(safe-area-inset-left)) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0 !important;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    background: #06111d !important;
+    color: #fff;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-12px) !important;
+    transition: opacity .22s ease, visibility .22s ease, transform .22s ease !important;
+  }
+  .global-nav::before {
+    content: "サイト案内";
+    flex: 0 0 auto;
+    padding: 0 2px 20px;
+    border-bottom: 1px solid rgba(255,255,255,.16);
+    color: rgba(255,255,255,.52);
+    font-size: 11px;
+    font-weight: 900;
+    letter-spacing: .18em;
+  }
+  .global-nav.is-open { opacity: 1; visibility: visible; pointer-events: auto; transform: none !important; }
+  .global-nav > a {
+    flex: 0 0 auto;
+    padding: 15px 2px !important;
+    border-bottom: 1px solid rgba(255,255,255,.12) !important;
+    color: rgba(255,255,255,.82);
+    font-size: 16px !important;
+    line-height: 1.45;
+  }
+  .global-nav > a[aria-current="page"] { color: var(--green-2) !important; }
+  .global-nav .nav-cta {
+    flex: 0 0 auto;
+    margin: 20px 0 12px !important;
+    padding: 16px 18px !important;
+    border: 0 !important;
+    background: var(--green);
+    text-align: center;
+  }
+  .menu-button { z-index: 1012 !important; }
+  body.menu-open .mobile-cta { opacity: 0; visibility: hidden; pointer-events: none; }
+  .section-heading { grid-template-columns: 1fr; gap: 22px; }
+  .section-heading > p { max-width: 720px; }
+  .faq-layout { grid-template-columns: 1fr; gap: 38px; }
+  .faq-heading { position: static; }
+  .faq-heading h2 { white-space: normal; }
+}
+
+@media (max-width: 680px) {
+  .hero h1 { font-size: clamp(42px, 11.5vw, 52px); }
+  .build-hero h1, .operation-hero h1, .pricing-hero h1, .about-hero h1, .contact-hero h1, .legal-hero h1 {
+    font-size: clamp(36px, 9.6vw, 44px); letter-spacing: -.045em;
+  }
+  .section-heading h2,
+  .strengths-intro h2,
+  .flow-heading h2,
+  .faq-heading h2,
+  .brand-story-copy h2,
+  .operation-problem-heading h2,
+  .operation-cycle-heading h2,
+  .operation-examples-heading h2,
+  .operation-scope-heading h2,
+  .operation-process-heading h2,
+  .operation-price-copy h2,
+  .pricing-plans-heading h2,
+  .pricing-scope-heading h2,
+  .contract-check-heading h2,
+  .dpro-limited-heading h2,
+  .about-policy-heading h2,
+  .about-quality-heading h2,
+  .contact-prepare-heading h2,
+  .contact-notes-heading h2 {
+    font-size: clamp(34px, 9.2vw, 42px); line-height: 1.3; letter-spacing: -.04em;
+  }
+  .mission h2, .about-mission h2, .final-cta h2 { font-size: clamp(36px, 10vw, 46px); }
+  .faq-heading h2 { font-size: clamp(36px, 9.2vw, 42px); }
+  .live-copy h3 { font-size: clamp(32px, 8.7vw, 39px); }
+}
+
+@media (max-width: 390px) {
+  .hero h1 { font-size: 40px; }
+  .build-hero h1, .operation-hero h1, .pricing-hero h1, .about-hero h1, .contact-hero h1, .legal-hero h1 { font-size: 35px; }
+  .section-heading h2,
+  .strengths-intro h2,
+  .flow-heading h2,
+  .faq-heading h2,
+  .brand-story-copy h2,
+  .operation-problem-heading h2,
+  .operation-cycle-heading h2,
+  .operation-examples-heading h2,
+  .operation-scope-heading h2,
+  .operation-process-heading h2,
+  .operation-price-copy h2,
+  .pricing-plans-heading h2,
+  .pricing-scope-heading h2,
+  .contract-check-heading h2,
+  .dpro-limited-heading h2,
+  .about-policy-heading h2,
+  .about-quality-heading h2,
+  .contact-prepare-heading h2,
+  .contact-notes-heading h2 { font-size: 33px; }
+}
