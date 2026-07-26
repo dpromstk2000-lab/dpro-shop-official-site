@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="900" viewBox="0 0 1440 900">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#edf4f6"/><stop offset="1" stop-color="#f9fbfc"/></linearGradient>
+  <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b2730"/><stop offset="1" stop-color="#123c3e"/></linearGradient>
+</defs>
+<rect width="1440" height="900" fill="url(#bg)"/>
+<rect x="0" y="0" width="245" height="900" fill="#08202a"/>
+<rect x="32" y="38" width="48" height="48" rx="14" fill="#21d184"/>
+<text x="48" y="72" font-size="26" font-family="sans-serif" font-weight="900" fill="#06202a">D</text>
+<text x="95" y="58" font-size="20" font-family="sans-serif" font-weight="800" fill="#fff">DPRO PET CARE</text>
+<text x="95" y="78" font-size="10" font-family="sans-serif" fill="#8eb0b3">受付・予約・顧客管理</text>
+<g font-family="sans-serif" font-size="15" fill="#b8cbcd">
+  <text x="42" y="150">今日の受付</text><text x="42" y="202">予約一覧</text>
+  <text x="42" y="254">顧客検索</text><text x="42" y="306">会員管理</text>
+  <text x="42" y="358">設定</text>
+</g>
+<rect x="27" y="118" width="190" height="48" rx="12" fill="#174a48"/>
+<circle cx="56" cy="142" r="7" fill="#21d184"/>
+<text x="285" y="70" font-size="27" font-family="sans-serif" font-weight="900" fill="#102434">今日の受付状況</text>
+<text x="285" y="103" font-size="14" font-family="sans-serif" fill="#71818e">予約と来院状況を一つの画面で確認</text>
+<g>
+  <rect x="285" y="145" width="245" height="125" rx="20" fill="#fff"/>
+  <rect x="550" y="145" width="245" height="125" rx="20" fill="#fff"/>
+  <rect x="815" y="145" width="245" height="125" rx="20" fill="#fff"/>
+  <rect x="1080" y="145" width="245" height="125" rx="20" fill="#fff"/>
+  <g font-family="sans-serif">
+    <text x="314" y="182" font-size="13" fill="#6d7c88">本日の予約</text><text x="314" y="235" font-size="43" font-weight="900" fill="#102434">12</text>
+    <text x="579" y="182" font-size="13" fill="#6d7c88">受付済み</text><text x="579" y="235" font-size="43" font-weight="900" fill="#159e68">08</text>
+    <text x="844" y="182" font-size="13" fill="#6d7c88">待機中</text><text x="844" y="235" font-size="43" font-weight="900" fill="#102434">03</text>
+    <text x="1109" y="182" font-size="13" fill="#6d7c88">完了</text><text x="1109" y="235" font-size="43" font-weight="900" fill="#159e68">05</text>
+  </g>
+</g>
+<rect x="285" y="305" width="1040" height="510" rx="24" fill="#fff"/>
+<text x="320" y="355" font-size="20" font-family="sans-serif" font-weight="800" fill="#102434">予約・受付一覧</text>
+<g font-family="sans-serif" font-size="13" fill="#72808c">
+  <text x="320" y="405">時間</text><text x="450" y="405">お客様</text><text x="720" y="405">内容</text><text x="1020" y="405">状態</text>
+</g>
+<line x1="320" y1="425" x2="1290" y2="425" stroke="#e5ecef"/>
+<g font-family="sans-serif">
+  <g transform="translate(0 0)"><text x="320" y="480" font-size="18" font-weight="800" fill="#102434">09:00</text><text x="450" y="480" font-size="17" fill="#102434">山田 さくら 様</text><text x="720" y="480" font-size="15" fill="#667581">健康チェック</text><rect x="1018" y="451" width="112" height="42" rx="21" fill="#e8faf1"/><text x="1051" y="478" font-size="14" font-weight="800" fill="#159e68">受付済</text></g>
+  <line x1="320" y1="520" x2="1290" y2="520" stroke="#edf1f3"/>
+  <g><text x="320" y="575" font-size="18" font-weight="800" fill="#102434">10:00</text><text x="450" y="575" font-size="17" fill="#102434">佐藤 モカ 様</text><text x="720" y="575" font-size="15" fill="#667581">トリミング</text><rect x="1018" y="546" width="112" height="42" rx="21" fill="#eef4f7"/><text x="1051" y="573" font-size="14" font-weight="800" fill="#536a77">予約</text></g>
+  <line x1="320" y1="615" x2="1290" y2="615" stroke="#edf1f3"/>
+  <g><text x="320" y="670" font-size="18" font-weight="800" fill="#102434">11:30</text><text x="450" y="670" font-size="17" fill="#102434">田中 レオ 様</text><text x="720" y="670" font-size="15" fill="#667581">診察・予防接種</text><rect x="1018" y="641" width="112" height="42" rx="21" fill="#fff2df"/><text x="1047" y="668" font-size="14" font-weight="800" fill="#b56f16">待機中</text></g>
+  <line x1="320" y1="710" x2="1290" y2="710" stroke="#edf1f3"/>
+  <g><text x="320" y="765" font-size="18" font-weight="800" fill="#102434">13:00</text><text x="450" y="765" font-size="17" fill="#102434">高橋 ココ 様</text><text x="720" y="765" font-size="15" fill="#667581">定期ケア</text><rect x="1018" y="736" width="112" height="42" rx="21" fill="#e8faf1"/><text x="1051" y="763" font-size="14" font-weight="800" fill="#159e68">完了</text></g>
+</g>
+</svg>

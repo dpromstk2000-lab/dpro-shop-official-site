@@ -115,6 +115,50 @@
     reveals.forEach((element) => element.classList.add("is-visible"));
   }
 
+
+  const demoButtons = [...document.querySelectorAll("[data-load-demo]")];
+
+  demoButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const group = button.getAttribute("data-load-demo");
+      const holders = [...document.querySelectorAll(`[data-demo-group="${group}"]`)]
+        .filter((holder) => !holder.classList.contains("is-live"));
+
+      if (!holders.length) return;
+
+      button.disabled = true;
+      button.textContent = "実画面を読み込み中…";
+
+      let loadedCount = 0;
+      holders.forEach((holder) => {
+        const frame = document.createElement("iframe");
+        frame.src = holder.dataset.liveSrc || "";
+        frame.title = holder.dataset.liveTitle || "DPRO実画面デモ";
+        frame.loading = "eager";
+        frame.referrerPolicy = "no-referrer";
+        frame.tabIndex = -1;
+
+        frame.addEventListener("load", () => {
+          loadedCount += 1;
+          holder.classList.add("is-live");
+          if (loadedCount >= holders.length) {
+            button.textContent = "実画面を表示中";
+            button.hidden = true;
+          }
+        }, { once: true });
+
+        holder.replaceChildren(frame);
+      });
+
+      window.setTimeout(() => {
+        if (!button.hidden) {
+          button.disabled = false;
+          button.textContent = "実画面を再読み込み";
+        }
+      }, 10000);
+    });
+  });
+
   const details = [...document.querySelectorAll(".faq-list details")];
   details.forEach((item) => item.addEventListener("toggle", () => {
     if (!item.open) return;

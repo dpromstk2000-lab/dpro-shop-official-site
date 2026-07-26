@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1365" viewBox="0 0 1024 1365">
+<rect width="1024" height="1365" fill="#f2f6f8"/>
+<rect width="1024" height="112" fill="#09212b"/>
+<rect x="36" y="26" width="58" height="58" rx="16" fill="#20d183"/>
+<text x="53" y="69" font-size="34" font-family="sans-serif" font-weight="900" fill="#09212b">D</text>
+<text x="116" y="55" font-size="25" font-family="sans-serif" font-weight="900" fill="#fff">DPRO OWNER</text>
+<text x="116" y="82" font-size="13" font-family="sans-serif" fill="#9ebcbe">店舗管理 iPad</text>
+<text x="45" y="166" font-size="30" font-family="sans-serif" font-weight="900" fill="#102434">今日の店舗状況</text>
+<g>
+<rect x="42" y="205" width="288" height="150" rx="24" fill="#fff"/>
+<rect x="368" y="205" width="288" height="150" rx="24" fill="#fff"/>
+<rect x="694" y="205" width="288" height="150" rx="24" fill="#fff"/>
+<text x="76" y="255" font-size="16" font-family="sans-serif" fill="#71808c">予約</text>
+<text x="76" y="322" font-size="58" font-family="sans-serif" font-weight="900" fill="#102434">12</text>
+<text x="402" y="255" font-size="16" font-family="sans-serif" fill="#71808c">施術中</text>
+<text x="402" y="322" font-size="58" font-family="sans-serif" font-weight="900" fill="#18a86c">04</text>
+<text x="728" y="255" font-size="16" font-family="sans-serif" fill="#71808c">完了</text>
+<text x="728" y="322" font-size="58" font-family="sans-serif" font-weight="900" fill="#102434">07</text>
+</g>
+<rect x="42" y="396" width="940" height="410" rx="26" fill="#fff"/>
+<text x="76" y="450" font-size="25" font-family="sans-serif" font-weight="900" fill="#102434">本日の進捗</text>
+<g font-family="sans-serif">
+<rect x="76" y="493" width="872" height="76" rx="16" fill="#f5f8f9"/>
+<text x="100" y="538" font-size="20" font-weight="800" fill="#102434">09:00　山田さくら様</text>
+<rect x="760" y="510" width="150" height="42" rx="21" fill="#e8faf1"/><text x="801" y="538" font-size="15" font-weight="800" fill="#159e68">施術中</text>
+<rect x="76" y="586" width="872" height="76" rx="16" fill="#f5f8f9"/>
+<text x="100" y="631" font-size="20" font-weight="800" fill="#102434">10:30　佐藤モカ様</text>
+<rect x="760" y="603" width="150" height="42" rx="21" fill="#edf2f5"/><text x="808" y="631" font-size="15" font-weight="800" fill="#596a77">受付済</text>
+<rect x="76" y="679" width="872" height="76" rx="16" fill="#f5f8f9"/>
+<text x="100" y="724" font-size="20" font-weight="800" fill="#102434">12:00　田中レオ様</text>
+<rect x="760" y="696" width="150" height="42" rx="21" fill="#fff1df"/><text x="810" y="724" font-size="15" font-weight="800" fill="#b86f17">予約</text>
+</g>
+<text x="45" y="875" font-size="28" font-family="sans-serif" font-weight="900" fill="#102434">よく使う操作</text>
+<g font-family="sans-serif" font-weight="800">
+<rect x="42" y="920" width="288" height="165" rx="25" fill="#0c2932"/><text x="96" y="1015" font-size="24" fill="#fff">受付登録</text>
+<rect x="368" y="920" width="288" height="165" rx="25" fill="#fff"/><text x="428" y="1015" font-size="24" fill="#102434">顧客検索</text>
+<rect x="694" y="920" width="288" height="165" rx="25" fill="#fff"/><text x="752" y="1015" font-size="24" fill="#102434">作業報告</text>
+<rect x="42" y="1120" width="288" height="165" rx="25" fill="#fff"/><text x="96" y="1215" font-size="24" fill="#102434">予約一覧</text>
+<rect x="368" y="1120" width="288" height="165" rx="25" fill="#fff"/><text x="424" y="1215" font-size="24" fill="#102434">メッセージ</text>
+<rect x="694" y="1120" width="288" height="165" rx="25" fill="#20d183"/><text x="766" y="1215" font-size="24" fill="#fff">設定</text>
+</g>
+</svg>
