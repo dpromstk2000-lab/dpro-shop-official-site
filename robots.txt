@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://dpromstk2000-lab.github.io/dpro-shop-official-site/sitemap.xml
+Sitemap: https://dpromstk2000-lab.github.io/dpro-shop-official-site/sitemap.xml　
