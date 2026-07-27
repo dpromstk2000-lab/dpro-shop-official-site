@@ -4,6 +4,26 @@
   document.documentElement.classList.remove("no-js");
   document.documentElement.classList.add("js");
 
+  const sendAnalyticsEvent = (eventName, parameters = {}) => {
+    if (typeof window.gtag !== "function") return;
+    window.gtag("event", eventName, parameters);
+  };
+
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest("a[href]");
+    if (!link) return;
+
+    const href = link.href || "";
+    if (href.includes("lin.ee/YxJGXV6D")) {
+      sendAnalyticsEvent("generate_lead", {
+        event_category: "contact",
+        event_label: "LINE無料相談",
+        link_url: href,
+        page_location: window.location.href
+      });
+    }
+  });
+
   const header = document.querySelector(".site-header");
   const menuButton = document.querySelector(".menu-button");
   const nav = document.querySelector(".global-nav");
@@ -121,6 +141,11 @@
   demoButtons.forEach((button) => {
     button.addEventListener("click", () => {
       const group = button.getAttribute("data-load-demo");
+      sendAnalyticsEvent("select_content", {
+        content_type: "dpro_demo",
+        item_id: group || "unknown",
+        page_location: window.location.href
+      });
       const holders = [...document.querySelectorAll(`[data-demo-group="${group}"]`)]
         .filter((holder) => !holder.classList.contains("is-live"));
 
