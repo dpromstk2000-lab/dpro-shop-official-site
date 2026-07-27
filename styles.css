@@ -133,3 +133,103 @@
   outline-color:#fff;
   outline-offset:4px;
 }
+/* STEP DPRO-WEB-17-R1
+   モバイル・コントラストと公開キャッシュの最終修正 */
+
+/* 濃色背景上で使用する、読みやすいアクセント文字 */
+:root{
+  --green-on-dark:#71dca8;
+  --cyan-on-light:#12677c;
+  --violet-on-light:#5845c7;
+  --muted-strong:#526074;
+}
+
+/* ヘッダー・ヒーロー内の小さい文字を、モバイルでも十分な濃度へ */
+.brand-copy small,
+.eyebrow-light,
+.hero-metrics small,
+.stage-caption,
+.device-browser-bar,
+.stage-chip-a small,
+.stage-chip-b small,
+.scroll-cue,
+.final-cta-inner>p:not(.eyebrow),
+.footer-brand p,
+.footer-links a,
+.footer-legal-links a{
+  color:rgba(255,255,255,.74);
+}
+
+/* 暗い背景の現在ページ・状態表示には、明るい緑を使用 */
+.global-nav a[aria-current="page"],
+.device-browser-bar>b,
+.live-status,
+.operation-live,
+.pricing-status{
+  color:var(--green-on-dark);
+}
+
+/* 白・薄色カード上の小さい補足文字 */
+.proof-strip-inner,
+.service-card:not(.service-card-dark) .service-number,
+.service-card:not(.service-card-dark) .service-summary,
+.service-card:not(.service-card-dark) .service-keywords span,
+.service-card:not(.service-card-dark) .service-price small,
+.example-card .example-top small,
+.example-card .calendar-head span,
+.example-card .example-note,
+.pricing-table .pricing-row small,
+.live-stage-head .mini-brand small,
+.price-note{
+  color:var(--muted-strong);
+}
+
+/* 薄色面に置かれるアクセント文字は濃い色へ */
+.service-card:not(.service-card-dark) .service-label,
+.example-card .example-top>span,
+.pricing-table .pricing-row>strong,
+.live-stage-head .live-status{
+  color:var(--green-dark);
+}
+
+/* 白背景上で青・紫を文字として使う箇所 */
+.scope-separate>p span,
+.scope-extra .scope-column-head span,
+.scope-alert>span{
+  color:var(--violet-on-light);
+}
+
+/* モバイル固定CTAを明示的に高コントラスト化 */
+@media (max-width:680px){
+  .mobile-cta{
+    background:rgba(255,255,255,.985);
+  }
+  .mobile-cta a:first-child{
+    background:#fff;
+    color:var(--ink);
+  }
+  .mobile-cta a:last-child{
+    background:#056c3c;
+    color:#fff;
+  }
+
+  .global-nav>a[aria-current="page"]{
+    color:var(--green-on-dark)!important;
+  }
+
+  .hero-metrics small,
+  .stage-caption,
+  .device-browser-bar,
+  .stage-chip-a small,
+  .stage-chip-b small,
+  .scroll-cue{
+    color:rgba(255,255,255,.78);
+  }
+}
+
+/* 同一アクセント色を背景と文字の両方に流用しない */
+.demo-load-button:hover,
+.demo-frame.is-live:after{
+  background:#056c3c;
+  color:#fff;
+}
