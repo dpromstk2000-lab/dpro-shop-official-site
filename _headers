@@ -1,4 +1,4 @@
-# STEP DPRO-WEB-17-R3 — Google Analytics・Cloudflare Pages security headers
+# STEP DPRO-WEB-18 — 公開後最終動作検査・Cloudflare Pages security headers
 /*
   Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self'; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.google.com https://*.google.com https://www.google.co.jp https://*.google.co.jp https://stats.g.doubleclick.net https://*.doubleclick.net; font-src 'self' data:; frame-src 'self' https://dpromstk2000-lab.github.io; connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com https://www.google.com https://*.google.com https://www.google.co.jp https://*.google.co.jp https://stats.g.doubleclick.net https://*.doubleclick.net https://cloudflareinsights.com; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests
   X-Frame-Options: DENY
@@ -13,3 +13,7 @@ https://dpro-shop-official-site.pages.dev/*
 
 https://:version.dpro-shop-official-site.pages.dev/*
   X-Robots-Tag: noindex, nofollow
+
+/system-check*
+  X-Robots-Tag: noindex, nofollow, noarchive
+  Cache-Control: no-store, max-age=0

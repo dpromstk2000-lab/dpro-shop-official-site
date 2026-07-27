@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /system-check
 
 Sitemap: https://dpro-shop.com/sitemap.xml
