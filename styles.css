@@ -233,3 +233,10 @@
   background:#056c3c;
   color:#fff;
 }
+/* STEP DPRO-WEB-17-R2
+   PageSpeedデスクトップ検査で特定されたペットサロンカード内の
+   small / span 2要素だけを高コントラスト化 */
+.example-visual.pet-visual small,
+.example-visual.pet-visual span{
+  color:#425166;
+}
