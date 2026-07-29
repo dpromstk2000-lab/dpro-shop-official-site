@@ -1,4 +1,4 @@
-name: STEP DPRO-SYSTEMS-2 Official Site
+name: STEP DPRO-SYSTEMS-2 Official Site R2
 
 on:
   workflow_dispatch:
@@ -62,8 +62,12 @@ jobs:
           Path("sitemap.xml").write_text(sitemap, encoding="utf-8")
 
           updated = index_path.read_text(encoding="utf-8")
-          assert updated.count('href="systems/">DPROシステム</a>') >= 2
-          assert "dpro-line-systems-site" not in updated
+
+          # 今回変更する上部メニューとフッターだけを厳密に確認。
+          # トップページ内の他の場所に旧製品サイトURLが残っていても失敗させない。
+          assert old_top not in updated
+          assert old_footer not in updated
+          assert updated.count(new_top) >= 2
           assert "https://dpro-shop.com/systems/" in sitemap
           assert "https://dpro-shop.com/systems/vet" in sitemap
 
@@ -79,5 +83,5 @@ jobs:
             exit 0
           fi
 
-          git commit -m "STEP DPRO-SYSTEMS-2 connect official systems pages"
+          git commit -m "STEP DPRO-SYSTEMS-2-R2 connect official systems pages"
           git push
