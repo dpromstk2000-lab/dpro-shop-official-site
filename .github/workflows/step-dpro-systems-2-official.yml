@@ -1,0 +1,83 @@
+name: STEP DPRO-SYSTEMS-2 Official Site
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/step-dpro-systems-2-official.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Update official navigation and sitemap
+        shell: python
+        run: |
+          from pathlib import Path
+          import xml.etree.ElementTree as ET
+
+          index_path = Path("index.html")
+          text = index_path.read_text(encoding="utf-8")
+
+          old_top = '<a href="https://dpromstk2000-lab.github.io/dpro-line-systems-site/" rel="noopener" target="_blank">製品サイト</a>'
+          new_top = '<a href="systems/">DPROシステム</a>'
+
+          old_footer = '<a href="https://dpromstk2000-lab.github.io/dpro-line-systems-site/" rel="noopener" target="_blank">DPRO製品サイト</a>'
+          new_footer = '<a href="systems/">DPROシステム</a>'
+
+          if old_top in text:
+              text = text.replace(old_top, new_top, 1)
+          elif new_top not in text:
+              raise SystemExit("ERROR: top navigation target not found")
+
+          if old_footer in text:
+              text = text.replace(old_footer, new_footer, 1)
+          elif new_footer not in text:
+              raise SystemExit("ERROR: footer navigation target not found")
+
+          index_path.write_text(text, encoding="utf-8")
+
+          sitemap = """<?xml version='1.0' encoding='utf-8'?>
+          <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+            <url><loc>https://dpro-shop.com/</loc><lastmod>2026-07-27</lastmod><changefreq>monthly</changefreq><priority>1.0</priority></url>
+            <url><loc>https://dpro-shop.com/line-build</loc><lastmod>2026-07-27</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+            <url><loc>https://dpro-shop.com/line-operation</loc><lastmod>2026-07-27</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+            <url><loc>https://dpro-shop.com/website</loc><lastmod>2026-07-27</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+            <url><loc>https://dpro-shop.com/pricing</loc><lastmod>2026-07-27</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+            <url><loc>https://dpro-shop.com/systems/</loc><lastmod>2026-07-29</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
+            <url><loc>https://dpro-shop.com/systems/vet</loc><lastmod>2026-07-29</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+            <url><loc>https://dpro-shop.com/about</loc><lastmod>2026-07-27</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+            <url><loc>https://dpro-shop.com/privacy</loc><lastmod>2026-07-27</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+            <url><loc>https://dpro-shop.com/terms</loc><lastmod>2026-07-27</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+            <url><loc>https://dpro-shop.com/contact</loc><lastmod>2026-07-27</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>
+          </urlset>
+          """
+          sitemap = "\n".join(line.strip() for line in sitemap.strip().splitlines()) + "\n"
+          ET.fromstring(sitemap)
+          Path("sitemap.xml").write_text(sitemap, encoding="utf-8")
+
+          updated = index_path.read_text(encoding="utf-8")
+          assert updated.count('href="systems/">DPROシステム</a>') >= 2
+          assert "dpro-line-systems-site" not in updated
+          assert "https://dpro-shop.com/systems/" in sitemap
+          assert "https://dpro-shop.com/systems/vet" in sitemap
+
+      - name: Commit changes
+        shell: bash
+        run: |
+          git config user.name "dpro-systems-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add index.html sitemap.xml
+
+          if git diff --cached --quiet; then
+            echo "No changes needed"
+            exit 0
+          fi
+
+          git commit -m "STEP DPRO-SYSTEMS-2 connect official systems pages"
+          git push
