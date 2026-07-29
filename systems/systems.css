@@ -2190,3 +2190,34 @@ linear-gradient(145deg,#06101c,#0a1b2c);
 .sys-product-card.is-caretaxi .sys-product-phone-inner b,.sys-product-card.is-caretaxi .sys-product-card-copy small,.sys-product-card.is-caretaxi .sys-product-status{color:#0d5a60}
 .sys-product-card.is-caretaxi .sys-product-phone-inner span{background:#e8f3f4;color:#365e63}
 @media(max-width:760px){.caretaxi-metrics{grid-template-columns:1fr 1fr}.caretaxi-stage-tablet{display:none}.caretaxi-live-owner>div{grid-template-columns:1fr 1fr}.caretaxi-live-ipad{grid-template-columns:1fr}}
+
+/* DPRO-SYSTEMS-6 ESTATE PRODUCT PAGE */
+.estate-product-page{--estate:#1f6f5b;--estate-dark:#145345;--estate-soft:#eef7f4;--estate-gold:#c58b2a}
+.estate-product-page .estate-product-hero{
+  background:
+    radial-gradient(circle at 76% 18%,rgba(68,220,255,.17),transparent 28%),
+    radial-gradient(circle at 26% 91%,rgba(126,107,255,.19),transparent 37%),
+    linear-gradient(145deg,#05101c,#0a1d31 50%,#07111f);
+}
+.estate-product-page .product-hero-copy h1 em{
+  background:linear-gradient(115deg,#fff 0%,var(--sys-cyan) 50%,#b7afff 100%);
+  background-clip:text;-webkit-background-clip:text;
+}
+.estate-code{background:linear-gradient(135deg,rgba(68,220,255,.16),rgba(126,107,255,.16))!important;color:#d9f5ff!important}
+.estate-monitor-ui{min-height:455px;padding:22px;display:grid;grid-template-columns:162px 1fr;background:#eff5f2}
+.estate-side{padding:17px;border-radius:14px;background:linear-gradient(160deg,#123c34,#1f6f5b);color:#fff}
+.estate-side strong{display:block;font-size:13px}.estate-side span{margin-top:10px;padding:8px 9px;display:block;border-radius:8px;background:rgba(255,255,255,.09);color:rgba(255,255,255,.78);font-size:7px;font-weight:850}
+.estate-main{padding:6px 0 0 17px}.estate-head{display:flex;align-items:center;justify-content:space-between}.estate-head strong{font-size:17px}.estate-head b{padding:6px 10px;border-radius:999px;background:#fff;color:#145345;font-size:9px}
+.estate-kpi{margin-top:16px;display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.estate-kpi span{padding:11px 8px;border-radius:11px;background:#fff;color:#697a73;font-size:7px;font-weight:850}.estate-kpi b{margin-top:5px;display:block;color:#154f43;font-size:16px}
+.estate-task{margin-top:10px;padding:12px;display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid #d9e6e1;border-radius:12px;background:#fff}.estate-task div{display:flex;flex-direction:column}.estate-task div b{font-size:10px}.estate-task div small{margin-top:3px;color:#708079;font-size:7px}.estate-task>strong{padding:6px 8px;border-radius:999px;background:#e9f7f1;color:#0d6b55;font-size:7px}.estate-task>strong.is-blue{background:#eef4ff;color:#255ec7}.estate-task>strong.is-warn{background:#fff5df;color:#9a5a00}
+.estate-stage-phone{bottom:8px}.estate-phone-card{margin-top:12px;padding:11px;border:1px solid #dce7e3;border-radius:12px;background:#fff}.estate-phone-card small{color:#6a7d75;font-size:7px}.estate-phone-card h3{margin:8px 0;font-size:13px}.estate-phone-card span{margin-top:6px;padding:7px 8px;display:block;border-radius:8px;background:#f0f7f4;color:#3b5d53;font-size:6px;font-weight:800}.estate-phone-card b{margin-top:9px;padding:8px;display:block;border-radius:9px;background:#1f6f5b;color:#fff;font-size:7px;text-align:center}
+.estate-stage-tablet{bottom:4px}.estate-staff-row{margin-top:14px;display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.estate-staff-row span{padding:11px 4px;border-radius:9px;background:#eaf6f2;color:#175b49;font-size:6px;font-weight:900;text-align:center}
+.estate-live-request,.estate-live-follow{min-height:430px;padding:62px 22px 24px;background:linear-gradient(180deg,#eff7f4,#fff)}.estate-live-request small{color:#687b74;font-size:10px;font-weight:900}.estate-live-request h4,.estate-live-follow h4{margin:13px 0;font-size:24px}.estate-live-request span{margin-top:9px;padding:12px;display:block;border:1px solid #d8e5e0;border-radius:11px;background:#fff;color:#4b665d;font-size:11px;font-weight:800}.estate-live-request b{margin-top:14px;padding:12px;display:block;border-radius:11px;background:#1f6f5b;color:#fff;text-align:center}
+.estate-live-owner{min-height:420px;display:grid;grid-template-columns:145px 1fr;background:#edf5f2}.estate-live-owner aside{padding:22px 13px;background:#0b493d;color:#fff}.estate-live-owner aside b{display:block;font-size:12px}.estate-live-owner aside span{margin-top:12px;display:block;color:rgba(255,255,255,.72);font-size:8px}.estate-live-owner main{padding:28px}.estate-live-owner main>div{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.estate-live-owner main span{padding:13px;border-radius:11px;background:#fff;color:#63776f;font-size:8px;font-weight:850}.estate-live-owner main b{display:block;margin-top:7px;color:#155746;font-size:18px}.estate-live-owner h4{margin:25px 0 9px;font-size:22px}.estate-live-owner p{color:#60766d}
+.estate-live-ipad{min-height:390px;padding:28px;display:grid;grid-template-columns:repeat(4,1fr);gap:9px;background:#edf5f2}.estate-live-ipad div{padding:16px 11px;border-radius:14px;background:#fff}.estate-live-ipad strong{display:block;color:#184f42}.estate-live-ipad span{margin-top:13px;display:block;color:#667a72;font-size:11px}
+.estate-live-follow>div{display:grid;grid-template-columns:1fr 1fr;gap:8px}.estate-live-follow span{padding:14px;border-radius:12px;background:#fff;color:#63776f;font-size:9px;font-weight:850}.estate-live-follow b{margin-top:6px;display:block;color:#145345;font-size:18px}.estate-live-follow p{color:#60776e}
+.sys-product-card.is-estate .sys-product-visual{background:radial-gradient(circle at 82% 15%,rgba(31,111,91,.2),transparent 34%),linear-gradient(145deg,#ecf6f3,#fbfcfb)}
+.sys-product-card.is-estate .sys-product-monitor-grid span{background:#edf6f3;color:#2e5e51}
+.sys-product-card.is-estate .sys-product-phone-inner b,.sys-product-card.is-estate .sys-product-card-copy small,.sys-product-card.is-estate .sys-product-status{color:#17634f}
+.sys-product-card.is-estate .sys-product-phone-inner span{background:#edf6f3;color:#3c6258}
+@media(max-width:760px){.estate-monitor-ui{grid-template-columns:1fr;padding:13px}.estate-side{display:none}.estate-main{padding:4px}.estate-kpi{grid-template-columns:1fr 1fr}.estate-stage-tablet{display:none}.estate-live-owner{grid-template-columns:1fr}.estate-live-owner aside{display:none}.estate-live-ipad{grid-template-columns:1fr 1fr}}
