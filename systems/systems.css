@@ -2152,3 +2152,41 @@ linear-gradient(145deg,#06101c,#0a1b2c);
 .shuttle-live-staff div{margin-top:25px;display:grid;grid-template-columns:1fr 1fr;gap:8px}.shuttle-live-staff div span{padding:12px 5px;border-radius:11px;background:#0f766e;color:#fff;font-size:9px;font-weight:900;text-align:center}
 .sys-product-card.is-shuttle .sys-product-visual{background:radial-gradient(circle at 82% 15%,rgba(15,118,110,.2),transparent 34%),linear-gradient(145deg,#e9f7f4,#f8fbfb)}.sys-product-card.is-shuttle .sys-product-monitor-grid span{background:#e7f5f2;color:#295b53}.sys-product-card.is-shuttle .sys-product-phone-inner b,.sys-product-card.is-shuttle .sys-product-card-copy small,.sys-product-card.is-shuttle .sys-product-status{color:#0b625a}.sys-product-card.is-shuttle .sys-product-phone-inner span{background:#e5f5f1;color:#315c55}
 @media(max-width:760px){.shuttle-monitor-ui{grid-template-columns:1fr;padding:13px}.shuttle-monitor-side{display:none}.shuttle-monitor-main{padding:4px}.shuttle-stop-grid{grid-template-columns:1fr 1fr}.shuttle-stage-tablet{display:none}.shuttle-live-owner>div{grid-template-columns:1fr}}
+
+/* DPRO-SYSTEMS-5 CARETAXI PRODUCT PAGE */
+.caretaxi-product-page{--caretaxi:#0f5c62;--caretaxi-dark:#083f44;--caretaxi-soft:#e8f4f3}
+.caretaxi-product-page .caretaxi-product-hero{
+  background:
+    radial-gradient(circle at 76% 18%,rgba(68,220,255,.17),transparent 28%),
+    radial-gradient(circle at 26% 91%,rgba(126,107,255,.19),transparent 37%),
+    linear-gradient(145deg,#05101c,#0a1d31 50%,#07111f);
+}
+.caretaxi-product-page .product-hero-copy h1 em{
+  background:linear-gradient(115deg,#fff 0%,var(--sys-cyan) 50%,#b7afff 100%);
+  background-clip:text;-webkit-background-clip:text;
+}
+.caretaxi-code{background:linear-gradient(135deg,rgba(68,220,255,.16),rgba(126,107,255,.16))!important;color:#d9f5ff!important}
+.caretaxi-monitor-ui{min-height:455px;padding:24px;background:#edf5f6}
+.caretaxi-monitor-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.caretaxi-monitor-head strong{font-size:17px}.caretaxi-monitor-head span{padding:7px 10px;border-radius:999px;background:#fff;color:#0a5258;font-size:9px;font-weight:900}
+.caretaxi-metrics{margin-top:17px;display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.caretaxi-metrics span{padding:13px;border-radius:12px;background:#fff;color:#62767b;font-size:8px;font-weight:850}
+.caretaxi-metrics b{margin-top:7px;display:block;color:#0c4f55;font-size:18px}
+.caretaxi-trip{margin-top:11px;padding:13px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid #d2e1e3;border-radius:13px;background:#fff}
+.caretaxi-trip div{display:flex;flex-direction:column}.caretaxi-trip b{font-size:11px}.caretaxi-trip small{margin-top:4px;color:#697c81;font-size:7px}
+.caretaxi-trip>strong{padding:6px 9px;border-radius:999px;background:#e6efff;color:#245aa1;font-size:8px}.caretaxi-trip>strong.is-run{background:#eee8ff;color:#5e3da5}.caretaxi-trip>strong.is-wait{background:#fff0d8;color:#875300}
+.caretaxi-stage-phone{bottom:10px}.caretaxi-phone-card{margin-top:12px;padding:11px;border:1px solid #d5e5e6;border-radius:12px;background:#fff}
+.caretaxi-phone-card small{color:#6b7d82;font-size:7px}.caretaxi-phone-card h3{margin:8px 0;font-size:13px}.caretaxi-phone-card span{margin-top:6px;padding:7px 8px;display:block;border-radius:8px;background:#edf5f6;color:#36565b;font-size:6px;font-weight:800}.caretaxi-phone-card b{margin-top:9px;padding:8px;display:block;border-radius:9px;background:#0f5c62;color:#fff;font-size:7px;text-align:center}
+.caretaxi-stage-tablet{bottom:5px}.caretaxi-lanes{margin-top:14px;display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.caretaxi-lanes span{padding:11px 4px;border-radius:9px;background:#e7f2f3;color:#185a5f;font-size:6px;font-weight:900;text-align:center}
+.caretaxi-live-request,.caretaxi-live-member,.caretaxi-live-staff{min-height:430px;padding:64px 22px 24px;background:linear-gradient(180deg,#edf6f6,#fff)}
+.caretaxi-live-request small,.caretaxi-live-staff small{color:#687d82;font-size:10px;font-weight:900}.caretaxi-live-request h4,.caretaxi-live-member h4,.caretaxi-live-staff h4{margin:13px 0;font-size:24px}
+.caretaxi-live-request span{margin-top:9px;padding:12px;display:block;border:1px solid #d4e2e4;border-radius:11px;background:#fff;color:#4b656b;font-size:11px;font-weight:800}.caretaxi-live-request b{margin-top:14px;padding:12px;display:block;border-radius:11px;background:#0f5c62;color:#fff;text-align:center}
+.caretaxi-live-member>div{display:grid;grid-template-columns:1fr 1fr;gap:9px}.caretaxi-live-member span{padding:15px;border-radius:13px;background:#fff;color:#62777c;font-size:10px;font-weight:850}.caretaxi-live-member b{margin-top:7px;display:block;color:#0b5359;font-size:20px}.caretaxi-live-member p{color:#65787d}
+.caretaxi-live-owner{min-height:420px;padding:29px;background:#edf5f6}.caretaxi-live-owner>div{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.caretaxi-live-owner span{padding:13px;border-radius:11px;background:#fff;color:#65777c;font-size:8px;font-weight:850}.caretaxi-live-owner b{display:block;margin-top:7px;color:#0a5056;font-size:18px}.caretaxi-live-owner h4{margin:25px 0 10px;font-size:24px}.caretaxi-live-owner p{color:#60757a}
+.caretaxi-live-ipad{min-height:390px;padding:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;background:#eaf3f4}.caretaxi-live-ipad>div{padding:14px;border-radius:14px;background:#dce9eb}.caretaxi-live-ipad strong{display:block;color:#174f55}.caretaxi-live-ipad span{margin-top:12px;padding:12px;display:block;border-radius:10px;background:#fff;color:#5f7479;font-size:10px}
+.caretaxi-live-staff p{color:#5f7479;line-height:1.7}.caretaxi-live-staff>div{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:20px}.caretaxi-live-staff>div span{padding:11px;border-radius:10px;background:#fff;border:1px solid #cddfe1;text-align:center;font-weight:900}.caretaxi-live-staff>b{margin-top:10px;padding:13px;display:block;border-radius:11px;background:#0f5c62;color:#fff;text-align:center}
+.sys-product-card.is-caretaxi .sys-product-visual{background:radial-gradient(circle at 82% 15%,rgba(15,92,98,.2),transparent 34%),linear-gradient(145deg,#e9f5f5,#f8fbfb)}
+.sys-product-card.is-caretaxi .sys-product-monitor-grid span{background:#e8f3f4;color:#28575c}
+.sys-product-card.is-caretaxi .sys-product-phone-inner b,.sys-product-card.is-caretaxi .sys-product-card-copy small,.sys-product-card.is-caretaxi .sys-product-status{color:#0d5a60}
+.sys-product-card.is-caretaxi .sys-product-phone-inner span{background:#e8f3f4;color:#365e63}
+@media(max-width:760px){.caretaxi-metrics{grid-template-columns:1fr 1fr}.caretaxi-stage-tablet{display:none}.caretaxi-live-owner>div{grid-template-columns:1fr 1fr}.caretaxi-live-ipad{grid-template-columns:1fr}}
