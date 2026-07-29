@@ -1,0 +1,207 @@
+name: STEP DPRO-SYSTEMS-3 Official Product Distinction
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/step-dpro-systems-3-official-distinction.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Distinguish official product page from operation demo
+        shell: python
+        run: |
+          from pathlib import Path
+
+          html_path = Path("systems/vet.html")
+          css_path = Path("systems/systems.css")
+          html = html_path.read_text(encoding="utf-8")
+          css = css_path.read_text(encoding="utf-8")
+
+          def replace_once(text, old, new, label):
+              if new in text:
+                  return text
+              if old not in text:
+                  raise SystemExit(f"ERROR: {label} target not found")
+              return text.replace(old, new, 1)
+
+          html = replace_once(
+              html,
+              '<body class="system-product-page">',
+              '<body class="system-product-page official-product-page">',
+              "official body class"
+          )
+
+          old_header = """<nav class="sys-breadcrumb" aria-label="パンくずリスト"><a href="../">DPRO SHOP</a><span>／</span><a href="./">DPROシステム</a><span>／</span><strong>動物病院</strong></nav>
+          <div class="product-code" aria-hidden="true">VET</div>
+          <p class="eyebrow eyebrow-light"><span></span>DPRO PET CARE LINE</p>"""
+          new_header = """<nav class="sys-breadcrumb" aria-label="パンくずリスト"><a href="../">DPRO SHOP</a><span>／</span><a href="./">DPROシステム</a><span>／</span><strong>動物病院</strong></nav>
+          <div class="official-product-label"><span>DPRO SHOP</span><strong>公式製品紹介ページ</strong><small>DPRO PET CARE LINE｜動物病院向けシステム</small></div>
+          <div class="product-code" aria-hidden="true">VET</div>
+          <p class="eyebrow eyebrow-light"><span></span>FEATURES・BENEFITS・REAL DEMO</p>"""
+          html = replace_once(html, old_header, new_header, "official product label")
+
+          html = replace_once(
+              html,
+              '<div class="product-stage-label"><i></i>REAL OPERATION FLOW / CUSTOMER・RECEPTION・DOCTOR</div>',
+              '<div class="product-stage-label"><i></i>OFFICIAL PRODUCT GUIDE / SYSTEM PREVIEW</div>',
+              "hero stage label"
+          )
+
+          html = replace_once(
+              html,
+              '<div class="product-browser"><span class="product-browser-dots"><i></i><i></i><i></i></span><span>DPRO PET CARE / 受付PC</span><b>LIVE</b></div>',
+              '<div class="product-browser"><span class="product-browser-dots"><i></i><i></i><i></i></span><span>DPRO PET CARE / 受付PCイメージ</span><b>PREVIEW</b></div>',
+              "preview browser label"
+          )
+
+          html = replace_once(
+              html,
+              '<article class="product-feature reveal"><span class="product-feature-icon">CHECK</span><h3>営業前system-check</h3><p>API接続、Worker、管理コード、デモ準備、本日の受付データを一括確認します。</p></article>',
+              '<article class="product-feature reveal"><span class="product-feature-icon">TEL</span><h3>電話・窓口受付</h3><p>LINEを利用しない受付も、電話・窓口から同じ当日一覧へ追加できます。</p></article>',
+              "owner-facing tenth feature"
+          )
+
+          html = replace_once(
+              html,
+              '<article class="product-role reveal"><span>ADMIN</span><h3>管理者</h3><p>患者・連携・システム状態を確認します。</p><ul><li>患者・ペット管理</li><li>LINE未連携</li><li>フォロー確認</li><li>system-check</li></ul></article>',
+              '<article class="product-role reveal"><span>ADMIN</span><h3>管理者</h3><p>患者・LINE連携・受付状況を確認します。</p><ul><li>患者・ペット管理</li><li>LINE未連携</li><li>フォロー確認</li><li>受付状況確認</li></ul></article>',
+              "administrator owner-facing list"
+          )
+
+          html = replace_once(
+              html,
+              '画面が動くだけで完成とはせず、保存先、認証、デモ分離、営業前検査を確認してから本番運用へ進みます。',
+              '画面が動くだけで完成とはせず、保存先、認証、デモ分離、DPRO SHOP側の公開前検査を終えてから本番運用へ進みます。',
+              "safety introduction"
+          )
+
+          html = replace_once(
+              html,
+              '<article class="product-safety-card reveal"><span>01 / CHECK</span><h3>営業前system-check</h3><p>API接続、Worker version、管理コード、デモ準備、本日の受付データをまとめて検査します。</p></article>',
+              '<article class="product-safety-card reveal"><span>01 / DPRO CHECK</span><h3>公開前検査はDPRO SHOPが実施</h3><p>API接続、保存先、権限、画面動作などの技術確認は、導入前にDPRO SHOP側で実施します。</p></article>',
+              "DPRO-side safety check"
+          )
+
+          marker = "/* DPRO-SYSTEMS-3 OFFICIAL PRODUCT DISTINCTION */"
+          styles = """
+          /* DPRO-SYSTEMS-3 OFFICIAL PRODUCT DISTINCTION */
+          body.official-product-page{
+            --system-accent:var(--sys-blue);
+            --system-accent-dark:#1768b8;
+            --system-accent-soft:#eaf4ff;
+          }
+          body.official-product-page .product-hero{
+            background:
+              radial-gradient(circle at 76% 18%,rgba(68,220,255,.17),transparent 28%),
+              radial-gradient(circle at 26% 91%,rgba(126,107,255,.19),transparent 37%),
+              linear-gradient(145deg,#05101c,#0a1d31 50%,#07111f);
+          }
+          body.official-product-page .product-hero-copy h1 em{
+            background:linear-gradient(115deg,#fff 0%,var(--sys-cyan) 50%,#b7afff 100%);
+            background-clip:text;
+            -webkit-background-clip:text;
+          }
+          body.official-product-page .product-code{
+            background:linear-gradient(135deg,rgba(68,220,255,.16),rgba(126,107,255,.16));
+            color:#d9f5ff;
+          }
+          .official-product-label{
+            width:max-content;
+            max-width:100%;
+            margin:0 0 20px;
+            padding:12px 16px;
+            display:grid;
+            grid-template-columns:auto auto;
+            column-gap:10px;
+            align-items:center;
+            border:1px solid rgba(255,255,255,.17);
+            border-radius:15px;
+            background:rgba(255,255,255,.075);
+            box-shadow:0 16px 42px rgba(0,0,0,.16);
+            backdrop-filter:blur(14px);
+          }
+          .official-product-label span{
+            padding:5px 8px;
+            border-radius:8px;
+            background:linear-gradient(135deg,var(--sys-cyan),var(--sys-violet));
+            color:var(--sys-dark);
+            font-size:8px;
+            font-weight:950;
+            letter-spacing:.12em;
+          }
+          .official-product-label strong{font-size:13px;letter-spacing:.03em}
+          .official-product-label small{
+            grid-column:1/-1;
+            margin-top:7px;
+            color:rgba(255,255,255,.58);
+            font-size:9px;
+            font-weight:750;
+          }
+          body.official-product-page .product-stage-label i{
+            background:var(--sys-cyan);
+            box-shadow:0 0 0 7px rgba(68,220,255,.1);
+          }
+          body.official-product-page .product-browser b{color:var(--sys-cyan)}
+          body.official-product-page .product-live{
+            background:
+              radial-gradient(circle at 78% 12%,rgba(68,220,255,.12),transparent 28%),
+              radial-gradient(circle at 16% 88%,rgba(126,107,255,.12),transparent 31%),
+              linear-gradient(145deg,#050d15,#07111f 52%,#0a1b2d);
+          }
+          body.official-product-page .product-live-copy>span,
+          body.official-product-page .product-live-copy li:before{color:var(--sys-cyan)}
+          body.official-product-page .product-after-result,
+          body.official-product-page .product-price-card.is-accent{
+            background:
+              radial-gradient(circle at 84% 12%,rgba(68,220,255,.13),transparent 35%),
+              linear-gradient(145deg,#0b1c2e,#091a32);
+          }
+          body.official-product-page .product-after-result>span,
+          body.official-product-page .product-price-card.is-accent small{color:var(--sys-cyan)}
+          body.official-product-page .product-after-result li:before{background:var(--sys-cyan)}
+          body.official-product-page .product-final-cta{
+            background:
+              radial-gradient(circle at 82% 18%,rgba(68,220,255,.14),transparent 30%),
+              radial-gradient(circle at 20% 88%,rgba(126,107,255,.15),transparent 33%),
+              linear-gradient(145deg,#06101c,#0a1b2c);
+          }
+          @media(max-width:760px){
+            .official-product-label{width:100%;grid-template-columns:auto 1fr}
+          }
+          """
+          if marker not in css:
+              css = css.rstrip() + "\n\n" + "\n".join(line.strip() for line in styles.strip().splitlines()) + "\n"
+
+          html_path.write_text(html, encoding="utf-8")
+          css_path.write_text(css, encoding="utf-8")
+
+          updated_html = html_path.read_text(encoding="utf-8")
+          updated_css = css_path.read_text(encoding="utf-8")
+          assert 'official-product-page' in updated_html
+          assert '公式製品紹介ページ' in updated_html
+          assert '営業前system-check' not in updated_html
+          assert '電話・窓口受付' in updated_html
+          assert '<li>system-check</li>' not in updated_html
+          assert '公開前検査はDPRO SHOPが実施' in updated_html
+          assert marker in updated_css
+
+      - name: Commit changes
+        shell: bash
+        run: |
+          git config user.name "dpro-systems-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add systems/vet.html systems/systems.css
+          if git diff --cached --quiet; then
+            echo "No changes needed"
+            exit 0
+          fi
+          git commit -m "STEP DPRO-SYSTEMS-3 distinguish official VET product page"
+          git push
