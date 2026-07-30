@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ja">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async fetchpriority="low" src="https://www.googletagmanager.com/gtag/js?id=G-YPN3998BHG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-YPN3998BHG');
+</script>
+<meta charset="utf-8">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="中古車買取・販売店向けDPRO 中古車買取・販売 LINE。査定・下取り、在庫公開、試乗・商談、契約、納車、アフター、入出金、帳票までをLINE・PC・iPadでつなぐ機能と実画面デモを紹介します。">
+<meta name="theme-color" content="#07111f">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DPRO SHOP">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="DPRO 中古車買取・販売 LINE｜査定・在庫・商談・納車を一元管理">
+<meta property="og:description" content="車を売りたいお客様と、車を買いたいお客様を、査定・在庫・商談・契約・納車まで一つの店舗運営につなぎます。">
+<meta property="og:url" content="https://dpro-shop.com/systems/used-car">
+<meta property="og:image" content="https://dpro-shop.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DPRO 中古車買取・販売 LINE｜中古車店向け">
+<meta name="twitter:description" content="買取査定、販売在庫、試乗・商談、契約、納車、アフターをLINE・PC・iPadでつなぐ中古車店向けシステム。">
+<meta name="twitter:image" content="https://dpro-shop.com/og-image.png">
+<title>DPRO 中古車買取・販売 LINE｜査定・在庫・商談・納車管理｜DPRO SHOP</title>
+<link rel="canonical" href="https://dpro-shop.com/systems/used-car">
+<link rel="manifest" href="../site.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="../sitemap.xml">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="stylesheet" href="../styles.css?v=17r2">
+<link rel="stylesheet" href="systems.css?v=1">
+<script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://dpro-shop.com/#website",
+      "name":"DPRO SHOP",
+      "url":"https://dpro-shop.com/",
+      "inLanguage":"ja"
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://dpro-shop.com/systems/used-car#webpage",
+      "url":"https://dpro-shop.com/systems/used-car",
+      "name":"DPRO 中古車買取・販売 LINE｜査定・在庫・商談・納車管理",
+      "description":"中古車買取・販売店向けDPROシステムの機能、利用者別画面、導入前後、安全設計、実画面デモを紹介します。",
+      "isPartOf":{"@id":"https://dpro-shop.com/#website"},
+      "inLanguage":"ja",
+      "dateModified":"2026-07-30",
+      "breadcrumb":{"@id":"https://dpro-shop.com/systems/used-car#breadcrumb"},
+      "mainEntity":{"@id":"https://dpro-shop.com/systems/used-car#software"}
+    },
+    {
+      "@type":"BreadcrumbList",
+      "@id":"https://dpro-shop.com/systems/used-car#breadcrumb",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"DPRO SHOP","item":"https://dpro-shop.com/"},
+        {"@type":"ListItem","position":2,"name":"業種別DPROシステム","item":"https://dpro-shop.com/systems/"},
+        {"@type":"ListItem","position":3,"name":"中古車買取・販売","item":"https://dpro-shop.com/systems/used-car"}
+      ]
+    },
+    {
+      "@type":"SoftwareApplication",
+      "@id":"https://dpro-shop.com/systems/used-car#software",
+      "name":"DPRO 中古車買取・販売 LINE",
+      "alternateName":"DPRO USED CAR LINE",
+      "applicationCategory":"BusinessApplication",
+      "operatingSystem":"Web browser / LINE",
+      "description":"買取査定・下取り、販売在庫、試乗・商談、契約、納車、アフター、入出金、帳票をLINE・PC・iPadでつなぐ中古車店向け業務システム。",
+      "url":"https://dpro-shop.com/systems/used-car",
+      "offers":[
+        {
+          "@type":"Offer",
+          "name":"DPROシステム構築",
+          "price":"33000",
+          "priceCurrency":"JPY",
+          "description":"LINE公式アカウント構築・運用契約店舗限定"
+        },
+        {
+          "@type":"Offer",
+          "name":"DPROシステム利用・基本保守",
+          "price":"1100",
+          "priceCurrency":"JPY",
+          "description":"月額。LINE公式アカウント構築・運用契約店舗限定"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<style>
+body.official-used-car-page{
+  --system-accent:#2e91ff;
+  --system-accent-dark:#3158d8;
+  --system-accent-soft:#eaf3ff;
+}
+.used-car-monitor-ui{display:grid;grid-template-columns:142px 1fr;min-height:310px;background:#eef3f8;color:#16283c}
+.used-car-monitor-side{padding:21px 15px;background:linear-gradient(180deg,#0c1c30,#102b48);color:#fff;display:flex;flex-direction:column;gap:10px}
+.used-car-monitor-side strong{margin-bottom:8px;font-size:13px;letter-spacing:.06em}
+.used-car-monitor-side span{padding:9px 10px;border-radius:9px;background:rgba(255,255,255,.07);font-size:10px;font-weight:800}
+.used-car-monitor-main{padding:20px;min-width:0}
+.used-car-monitor-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.used-car-monitor-head strong{font-size:16px}.used-car-monitor-head b{padding:7px 10px;border-radius:999px;background:#dff7ee;color:#087557;font-size:10px}
+.used-car-kpi-grid{margin-top:15px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.used-car-kpi{padding:11px;border:1px solid #d9e3ed;border-radius:12px;background:#fff}.used-car-kpi small{display:block;color:#637084;font-size:8px;font-weight:900}.used-car-kpi strong{display:block;margin-top:5px;font-size:18px}
+.used-car-board{margin-top:12px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.used-car-column{padding:10px;border-radius:12px;background:#e3e9ef}.used-car-column>strong{display:flex;justify-content:space-between;font-size:9px}.used-car-task{margin-top:7px;padding:9px;border-radius:9px;background:#fff;box-shadow:0 4px 12px rgba(10,30,52,.06)}.used-car-task b,.used-car-task span{display:block}.used-car-task b{font-size:9px}.used-car-task span{margin-top:3px;color:#657487;font-size:7px}
+.used-car-phone-card{margin:10px;padding:15px;border-radius:16px;background:#fff;color:#122033;box-shadow:0 12px 26px rgba(4,17,31,.15)}
+.used-car-phone-card small{color:#805614;font-size:8px;font-weight:900}.used-car-phone-card h3{margin:6px 0 12px;font-size:15px}.used-car-phone-menu{display:grid;gap:7px}.used-car-phone-menu span{padding:9px;border:1px solid #e2e7ec;border-radius:10px;font-size:9px;font-weight:850}.used-car-phone-menu span:first-child{border-color:#f0b44d;background:#fff6e5}
+.used-car-tablet-list{display:grid;gap:8px;margin-top:12px}.used-car-tablet-item{padding:10px;border-radius:10px;background:rgba(255,255,255,.1);font-size:9px}.used-car-tablet-item strong,.used-car-tablet-item span{display:block}.used-car-tablet-item span{margin-top:3px;color:rgba(255,255,255,.62)}
+.used-car-demo-placeholder{min-height:330px;padding:20px;background:#edf2f6;color:#122033}.used-car-demo-placeholder h4{margin:0;font-size:16px}.used-car-demo-placeholder p{margin:5px 0 0;color:#657487;font-size:11px}.used-car-demo-placeholder-grid{margin-top:15px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.used-car-demo-placeholder-card{min-height:120px;padding:12px;border:1px solid #d8e1ea;border-radius:13px;background:#fff}.used-car-demo-placeholder-card b{display:block;font-size:11px}.used-car-demo-placeholder-card span{display:block;margin-top:7px;color:#647286;font-size:9px;line-height:1.55}
+.used-car-phone-placeholder{min-height:520px;padding:14px;background:linear-gradient(180deg,#10243e,#e9eef3 34%)}
+.used-car-phone-placeholder .used-car-phone-card{margin:28px 0 0}
+.used-car-demo-modal[hidden]{display:none}
+.used-car-demo-modal{position:fixed;z-index:1500;inset:0;display:grid;place-items:center;padding:22px;background:rgba(3,10,19,.78);backdrop-filter:blur(10px)}
+.used-car-demo-dialog{width:min(1180px,100%);height:min(820px,calc(100vh - 44px));display:flex;flex-direction:column;overflow:hidden;border:1px solid rgba(255,255,255,.17);border-radius:24px;background:#fff;box-shadow:0 34px 110px rgba(0,0,0,.45)}
+.used-car-demo-dialog-head{min-height:68px;padding:12px 14px 12px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;background:#07111f;color:#fff}.used-car-demo-dialog-head div{min-width:0}.used-car-demo-dialog-head small{display:block;color:#44dcff;font-size:9px;font-weight:900;letter-spacing:.14em}.used-car-demo-dialog-head h2{margin:3px 0 0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:18px}.used-car-demo-close{width:46px;height:46px;flex:0 0 auto;border:1px solid rgba(255,255,255,.2);border-radius:50%;background:rgba(255,255,255,.08);color:#fff;font-size:25px;cursor:pointer}
+.used-car-demo-body{position:relative;flex:1;min-height:0;background:#eef2f6}.used-car-demo-body iframe{width:100%;height:100%;display:block;border:0;background:#fff}.used-car-demo-fallback{position:absolute;right:13px;bottom:13px;padding:9px 13px;border-radius:999px;background:rgba(7,17,31,.9);color:#fff;font-size:11px;font-weight:850;text-decoration:none;box-shadow:0 8px 25px rgba(0,0,0,.2)}
+body.demo-modal-open{overflow:hidden}
+@media(max-width:900px){.used-car-kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.used-car-board{grid-template-columns:1fr}.used-car-demo-placeholder-grid{grid-template-columns:1fr}.used-car-monitor-ui{grid-template-columns:112px 1fr}.used-car-monitor-side{padding:16px 10px}.used-car-monitor-main{padding:14px}}
+@media(max-width:560px){.used-car-monitor-ui{grid-template-columns:1fr}.used-car-monitor-side{display:none}.used-car-kpi-grid{grid-template-columns:1fr 1fr}.used-car-kpi strong{font-size:15px}.used-car-board{grid-template-columns:1fr}.used-car-demo-modal{padding:0}.used-car-demo-dialog{width:100%;height:100%;border:0;border-radius:0}.used-car-demo-dialog-head{padding-left:14px}.used-car-demo-dialog-head h2{font-size:15px}.used-car-demo-fallback{right:8px;bottom:8px}.used-car-demo-placeholder{padding:14px}}
+</style>
+</head>
+<body class="system-product-page official-product-page official-used-car-page">
+<div class="sys-progress" aria-hidden="true"></div>
+<a class="skip-link" href="#main">本文へ移動</a>
+<header class="site-header" id="top">
+<div class="header-inner">
+<a class="brand" href="../" aria-label="DPRO SHOP トップへ"><span class="brand-mark" aria-hidden="true">D</span><span class="brand-copy"><strong>DPRO SHOP</strong><small>LINE BUSINESS DESIGN</small></span></a>
+<button class="menu-button" type="button" aria-expanded="false" aria-controls="global-nav" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+<nav class="global-nav" id="global-nav" aria-label="メインナビゲーション">
+<a href="../">トップ</a>
+<a href="../line-build">LINE構築</a>
+<a href="../line-operation">LINE運用</a>
+<a href="../website">HP制作</a>
+<a href="./">DPROシステム</a>
+<a href="../pricing">料金</a>
+<a href="../about">DPRO SHOP</a>
+<a class="nav-cta" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで無料相談</a>
+</nav>
+</div>
+</header>
+
+<main id="main">
+<section class="product-hero" aria-labelledby="product-title">
+<div class="product-hero-grid" aria-hidden="true"></div>
+<div class="product-hero-inner">
+<div class="product-hero-copy reveal">
+<nav class="sys-breadcrumb" aria-label="パンくずリスト"><a href="../">DPRO SHOP</a><span>／</span><a href="./">DPROシステム</a><span>／</span><strong>中古車買取・販売</strong></nav>
+<div class="official-product-label"><span>DPRO SHOP</span><strong>公式製品紹介ページ</strong><small>DPRO 中古車買取・販売 LINE｜中古車店向けシステム</small></div>
+<div class="product-code" aria-hidden="true">CAR</div>
+<p class="eyebrow eyebrow-light"><span></span>BUYBACK・INVENTORY・SALES・DELIVERY</p>
+<h1 id="product-title"><span>車を売りたい人と、</span><span><em>買いたい人を、一つの店舗運営へ。</em></span></h1>
+<p class="product-hero-lead">買取・下取り査定から、商品化、販売在庫、試乗・商談、契約、必要書類、納車、アフターまで。お客様のLINEと店舗のPC・iPadを、顧客と車両の同じ情報でつなぐ中古車店向けシステムです。</p>
+<div class="product-hero-actions">
+<a class="button button-line" href="#features"><span class="line-badge">CAR</span><span>機能を詳しく見る</span><b>↓</b></a>
+<a class="button button-ghost" href="https://dpromstk2000-lab.github.io/dpro-used-car-line-liff/index.html?demo=1&amp;v=CAR-24-R4" target="_blank" rel="noopener" data-demo-link="used-car-top">実際の操作デモ</a>
+</div>
+<div class="product-proof-tags"><span>買取・下取り査定</span><span>販売在庫公開</span><span>試乗・商談</span><span>契約・納車管理</span><span>PC・iPad</span><span>アフター管理</span></div>
+</div>
+
+<div class="product-hero-stage reveal" aria-label="DPRO 中古車買取・販売 LINEの画面イメージ">
+<div class="product-stage-label"><i></i>OFFICIAL PRODUCT GUIDE / SYSTEM PREVIEW</div>
+<div class="product-stage-monitor">
+<div class="product-browser"><span class="product-browser-dots"><i></i><i></i><i></i></span><span>DPRO USED CAR / PC総合管理イメージ</span><b>PREVIEW</b></div>
+<div class="used-car-monitor-ui">
+<div class="used-car-monitor-side"><strong>DPRO USED CAR</strong><span>本日の全体</span><span>査定・買取</span><span>在庫・商品化</span><span>商談・契約</span><span>納車・アフター</span></div>
+<div class="used-car-monitor-main"><div class="used-car-monitor-head"><strong>本日の店舗状況</strong><b>優先対応 5件</b></div><div class="used-car-kpi-grid"><div class="used-car-kpi"><small>査定予定</small><strong>4件</strong></div><div class="used-car-kpi"><small>商談中</small><strong>7件</strong></div><div class="used-car-kpi"><small>納車予定</small><strong>3件</strong></div><div class="used-car-kpi"><small>公開在庫</small><strong>18台</strong></div></div><div class="used-car-board"><div class="used-car-column"><strong>査定・買取 <b>3</b></strong><div class="used-car-task"><b>プリウス／写真査定</b><span>概算額の確認待ち</span></div><div class="used-car-task"><b>N-BOX／店頭査定</b><span>本日 14:00</span></div></div><div class="used-car-column"><strong>商品化・在庫 <b>2</b></strong><div class="used-car-task"><b>アクア／入庫済み</b><span>掲載写真・価格確認</span></div></div><div class="used-car-column"><strong>商談・納車 <b>4</b></strong><div class="used-car-task"><b>ヴォクシー／試乗</b><span>必要書類を案内</span></div><div class="used-car-task"><b>ハスラー／納車準備</b><span>入金・登録確認</span></div></div></div></div>
+</div>
+</div>
+<div class="product-stage-phone"><div class="product-phone-inner"><div class="product-phone-brand"><b>LINE</b>DPRO USED CAR</div><div class="used-car-phone-card"><small>売る・買うを、ひとつのLINEで</small><h3>中古車店メニュー</h3><div class="used-car-phone-menu"><span>車を売りたい</span><span>販売在庫を見る</span><span>マイページ</span></div></div></div></div>
+<div class="product-stage-tablet"><div class="product-tablet-inner"><small>FIELD IPAD</small><h3>今日の来店・査定・納車</h3><div class="used-car-tablet-list"><div class="used-car-tablet-item"><strong>10:30　試乗相談</strong><span>在庫：コンパクトSUV</span></div><div class="used-car-tablet-item"><strong>14:00　店頭査定</strong><span>車両情報・写真を確認</span></div><div class="used-car-tablet-item"><strong>16:30　納車</strong><span>書類・入金・鍵を確認</span></div></div></div></div>
+</div>
+</div>
+</section>
+
+<nav class="product-local-nav" aria-label="ページ内メニュー">
+<div class="product-local-nav-inner"><a href="#summary" class="is-active">概要</a><a href="#system-map">全体構成</a><a href="#features">主な機能</a><a href="#flow">利用の流れ</a><a href="#roles">画面別</a><a href="#demo">実画面</a><a href="#after">導入前後</a><a href="#safety">安全設計</a><a href="#pricing">料金</a><a href="#faq">よくある質問</a></div>
+</nav>
+
+<section class="section product-summary" id="summary">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>UNDERSTAND IN 30 SECONDS</p><h2>30秒で分かる、<br><em>このシステムの役割。</em></h2></div><p>販売管理ソフトや整備システムの全機能を置き換えるのではなく、お客様との受付から査定・販売・納車・次回案内までの情報を、LINEと店舗画面の間でつなぎます。</p></div>
+<div class="product-summary-grid">
+<article class="product-summary-card reveal"><span>01 / CUSTOMER</span><h3>お客様はLINEから、売却と購入の入口へ。</h3><p>買取・下取り査定、販売在庫、試乗・購入相談、マイページを一つの入口から利用できます。</p></article>
+<article class="product-summary-card reveal"><span>02 / STORE</span><h3>店舗は顧客と車両を中心に、案件を追跡。</h3><p>査定、買取契約、商品化、在庫、商談、販売契約、納車を、PC・iPadで同じ進行情報として確認します。</p></article>
+<article class="product-summary-card reveal"><span>03 / CONTINUITY</span><h3>納車後も、点検・車検・代替提案へ。</h3><p>納車で情報を終わらせず、アフター予定、整備履歴、次回案内、買い替え候補まで継続して管理します。</p></article>
+</div>
+<div class="product-problem-grid">
+<article class="product-problem reveal"><div class="product-problem-before"><small>導入前</small><strong>査定受付と販売商談が分かれ、下取り情報を探し直す</strong></div><div class="product-problem-arrow">↓</div><div class="product-problem-after"><small>導入後</small><strong>顧客・所有車・査定・販売商談を関連付けて確認</strong></div></article>
+<article class="product-problem reveal"><div class="product-problem-before"><small>導入前</small><strong>買取車両が点検・商品化・公開のどこにあるか曖昧</strong></div><div class="product-problem-arrow">↓</div><div class="product-problem-after"><small>導入後</small><strong>入庫・商品化・販売中・売約・納車を状態で管理</strong></div></article>
+<article class="product-problem reveal"><div class="product-problem-before"><small>導入前</small><strong>試乗、書類、入金、納車準備が担当者の記憶に依存</strong></div><div class="product-problem-arrow">↓</div><div class="product-problem-after"><small>導入後</small><strong>予約・契約・書類・タスク・納車予定を店舗で共有</strong></div></article>
+</div>
+</div>
+</section>
+
+<section class="section product-map" id="system-map">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>ONE CUSTOMER, ONE VEHICLE JOURNEY</p><h2>お客様・車両・店舗スタッフを、<br><em>同じ進行情報でつなぐ。</em></h2></div><p>お客様とスタッフに同じ管理画面を見せるのではなく、LINE、マイページ、PC、iPadへ役割に必要な情報だけを表示します。</p></div>
+<div class="product-map-board reveal">
+<div class="product-map-label"><strong>DPRO 中古車買取・販売 LINE 全体構成</strong><span>LINE × PC × iPad × Worker</span></div>
+<div class="product-map-flow">
+<div class="product-map-side">
+<div class="product-map-node"><b>CUSTOMER / LINE</b><strong>お客様向け総合入口</strong><p>買取・下取り査定、販売在庫、試乗・購入相談</p></div>
+<div class="product-map-node"><b>MEMBER / WEB</b><strong>お客様マイページ</strong><p>査定・商談・必要書類・契約・納車予定・アフター</p></div>
+</div>
+<div class="product-map-arrow">→</div>
+<div class="product-map-core"><b>API</b><strong>Worker API・データベース</strong><span>顧客・所有車・査定・在庫・商談・<br>契約・納車・履歴を保存・再取得</span></div>
+<div class="product-map-arrow">→</div>
+<div class="product-map-side">
+<div class="product-map-node"><b>OWNER / PC</b><strong>店舗総合管理</strong><p>査定・在庫・商談・契約・納車・会計・分析</p></div>
+<div class="product-map-node"><b>STAFF / IPAD</b><strong>今日の現場管理</strong><p>来店・査定・試乗・商品化・書類・納車タスク</p></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section product-features" id="features">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>MAIN FEATURES</p><h2>買取から販売・納車後までを支える、<br><em>10の主要機能。</em></h2></div><p>査定受付だけに限定せず、買取車の商品化、販売在庫、商談、契約、納車、アフターまでを顧客と車両の流れとして扱います。</p></div>
+<div class="product-feature-grid">
+<article class="product-feature reveal"><span class="product-feature-icon">SELL</span><h3>買取・下取り査定受付</h3><p>お客様が店頭・出張・写真査定を選び、車両情報、希望日時、写真をLINE側から送信します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">360</span><h3>顧客・所有車360°管理</h3><p>店舗が顧客と所有車、査定、商談、契約、履歴を関連付け、重複候補を確認しながら編集します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">BUY</span><h3>査定進行・買取契約</h3><p>査定額、次回対応、検討・合意、書類、引取までを追跡し、合意後の買取契約作成へつなぎます。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">STOCK</span><h3>商品化・販売在庫変換</h3><p>買取車両を入庫・商品化タスクへ移し、準備完了後に販売在庫として管理します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">WEB</span><h3>公開在庫・車両詳細</h3><p>公開条件と掲載準備を確認し、写真、支払総額、状態、詳細条件をお客様向け在庫画面へ掲載します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">DEAL</span><h3>試乗・商談・販売契約</h3><p>来店・試乗・購入・下取り相談、見積、ローン相談、次回対応、失注理由、販売契約を管理します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">GOAL</span><h3>必要書類・入金・納車</h3><p>契約後の必要書類、入金、登録・納車準備、未完了タスクを確認し、完了条件を満たして納車へ進めます。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">CARE</span><h3>アフター・整備履歴</h3><p>納車後の点検、車検、オイル交換などの予定と履歴を確認し、次回案内や代替提案へつなぎます。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">LINE</span><h3>LINE連絡・履歴</h3><p>査定結果、書類、納車、点検案内のテンプレート、送信予定、履歴を管理します。自動送信は標準でOFFです。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">DATA</span><h3>入出金・帳票・分析・CSV</h3><p>未収・入金・支払、帳票、粗利・在庫回転・成約率、担当実績を確認し、CSVは事前検査後に確定します。</p></article>
+</div>
+</div>
+</section>
+
+<section class="section product-flow" id="flow">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>FROM FIRST CONTACT TO AFTERCARE</p><h2>最初の相談から納車後まで、<br><em>6つの流れ。</em></h2></div><p>売却と購入を別々の顧客情報にせず、下取りを伴う買い替えも含めて、同じお客様・車両情報から次の業務へ引き継ぎます。</p></div>
+<div class="product-flow-list">
+<article class="product-flow-step reveal"><span class="product-flow-number">01</span><h3>LINEから入口を選ぶ</h3><p>お客様が「車を売りたい」「車を買いたい」「マイページ」から目的を選びます。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">02</span><h3>査定・在庫相談を受付</h3><p>車両情報・写真・希望日時、または在庫・試乗・購入相談を受け付けます。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">03</span><h3>PC・iPadで現場対応</h3><p>スタッフが来店、査定、商談、次回対応を確認し、その場で進行を更新します。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">04</span><h3>買取・商品化・販売へ</h3><p>買取成立車は契約・引取・入庫を経て商品化し、公開準備後に販売在庫へ移します。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">05</span><h3>契約・書類・納車準備</h3><p>販売契約、必要書類、入金、登録、車両準備、納車予定を店舗とお客様で確認します。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">06</span><h3>納車・アフターへ継続</h3><p>納車完了後にフォロー予定を作成し、点検・車検・整備履歴、次回提案へつなぎます。</p></article>
+</div>
+</div>
+</section>
+
+<section class="section product-roles" id="roles">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>SCREENS BY ROLE</p><h2>使う人ごとに、<br><em>必要な画面だけ。</em></h2></div><p>お客様の入口・マイページ、店舗のPC総合管理、現場のiPad管理という4つの実在画面を公開デモで確認できます。</p></div>
+<div class="product-role-grid">
+<article class="product-role reveal"><span>LINE</span><h3>お客様向け総合入口</h3><p>売却・購入・利用中の確認をスマートフォンから始めます。</p><ul><li>買取・下取り査定</li><li>販売在庫・車両詳細</li><li>来店・試乗・購入相談</li><li>マイページ入口</li></ul></article>
+<article class="product-role reveal"><span>MY</span><h3>お客様マイページ</h3><p>本人に関係する進行と案内だけを確認します。</p><ul><li>査定額・次回対応</li><li>商談・予約・契約状況</li><li>必要書類・納車予定</li><li>アフター予定・履歴</li></ul></article>
+<article class="product-role reveal"><span>PC</span><h3>オーナーPC総合管理</h3><p>店舗運営を顧客・車両・案件の横断情報から管理します。</p><ul><li>査定・買取・在庫</li><li>商談・契約・納車</li><li>連絡・入出金・帳票</li><li>分析・CSV・設定</li></ul></article>
+<article class="product-role reveal"><span>iPad</span><h3>スタッフiPad現場管理</h3><p>今日の来店と未完了業務を現場で確認・更新します。</p><ul><li>来店・試乗・納車受付</li><li>査定・商談の進行</li><li>商品化・在庫準備</li><li>書類・未完了タスク</li></ul></article>
+</div>
+</div>
+</section>
+
+<section class="section product-live" id="demo">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-light"><span></span>REAL SCREEN DEMO</p><h2>説明画像ではなく、<br>本物の画面を体験。</h2></div><p>初期表示では外部画面を読み込みません。「この画面を読み込む」を押した時だけ、最新のGitHub Pagesデモをモーダル内へ生成します。公開デモは架空データのDEMO環境です。</p></div>
+<div class="product-live-list">
+<article class="product-live-row">
+<div class="product-live-copy reveal"><span>01 / CUSTOMER ENTRY</span><h3>お客様向け<br>総合LINE入口</h3><p>車を売りたい方、車を買いたい方、利用中のお客様に、目的別の入口を表示します。</p><ul><li>買取・下取り査定</li><li>販売在庫・車両詳細</li><li>来店・試乗・購入相談</li></ul><div class="product-live-actions"><button class="button button-line" type="button" aria-haspopup="dialog" data-demo-url="https://dpromstk2000-lab.github.io/dpro-used-car-line-liff/index.html?demo=1&amp;v=CAR-24-R4" data-demo-title="お客様向け総合LINE入口">この画面を読み込む</button><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/dpro-used-car-line-liff/index.html?demo=1&amp;v=CAR-24-R4" target="_blank" rel="noopener" data-demo-link="used-car-entry">別タブで体験する</a></div></div>
+<div class="live-device reveal"><div class="live-window live-window-phone"><div class="live-window-head"><span>DPRO USED CAR / CUSTOMER ENTRY</span><i></i></div><div class="demo-frame"><div class="used-car-phone-placeholder"><div class="used-car-phone-card"><small>売る・買うを、ひとつのLINEで</small><h3>愛車の次を、もっと安心に。</h3><div class="used-car-phone-menu"><span>車を売りたい</span><span>車を買いたい</span><span>マイページ</span></div></div></div></div></div></div>
+</article>
+
+<article class="product-live-row">
+<div class="product-live-copy reveal"><span>02 / CUSTOMER PORTAL</span><h3>お客様<br>マイページ</h3><p>査定・商談・予約・必要書類・納車予定・アフターなど、ご本人の情報を確認できます。</p><ul><li>査定額と次回対応</li><li>試乗・商談・契約状況</li><li>必要書類と納車予定</li></ul><div class="product-live-actions"><button class="button button-line" type="button" aria-haspopup="dialog" data-demo-url="https://dpromstk2000-lab.github.io/dpro-used-car-line-liff/member.html?demo=1&amp;line_user_id=demo_car_line_001&amp;v=CAR-24-R4" data-demo-title="お客様マイページ">この画面を読み込む</button><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/dpro-used-car-line-liff/member.html?demo=1&amp;line_user_id=demo_car_line_001&amp;v=CAR-24-R4" target="_blank" rel="noopener" data-demo-link="used-car-member">別タブで体験する</a></div></div>
+<div class="live-device reveal"><div class="live-window live-window-phone"><div class="live-window-head"><span>DPRO USED CAR / MY PAGE</span><i></i></div><div class="demo-frame"><div class="used-car-phone-placeholder"><div class="used-car-phone-card"><small>MY PAGE</small><h3>現在のお手続き</h3><div class="used-car-phone-menu"><span>査定結果・次回対応</span><span>必要書類</span><span>納車予定・アフター</span></div></div></div></div></div></div>
+</article>
+
+<article class="product-live-row">
+<div class="product-live-copy reveal"><span>03 / OWNER PC</span><h3>中古車店<br>PC総合管理</h3><p>査定・買取、在庫、商談、予約、契約、納車、書類、タスク、連絡、入出金、分析を管理します。</p><ul><li>本日の全体と優先対応</li><li>顧客・車両・案件の横断管理</li><li>在庫・契約・納車・経営確認</li></ul><div class="product-live-actions"><button class="button button-line" type="button" aria-haspopup="dialog" data-demo-url="https://dpromstk2000-lab.github.io/dpro-used-car-line-liff/owner.html?demo=1&amp;v=CAR-24-R4" data-demo-title="中古車店PC総合管理">この画面を読み込む</button><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/dpro-used-car-line-liff/owner.html?demo=1&amp;v=CAR-24-R4" target="_blank" rel="noopener" data-demo-link="used-car-owner">別タブで体験する</a></div></div>
+<div class="live-device reveal"><div class="live-window"><div class="live-window-head"><span>DPRO USED CAR / OWNER PC</span><i></i></div><div class="demo-frame"><div class="used-car-demo-placeholder"><h4>本日の店舗状況</h4><p>査定・商品化・商談・納車を優先度順に確認</p><div class="used-car-demo-placeholder-grid"><div class="used-car-demo-placeholder-card"><b>査定・買取</b><span>写真査定、店頭査定、査定額、契約、引取</span></div><div class="used-car-demo-placeholder-card"><b>在庫・販売</b><span>商品化、公開準備、問い合わせ、試乗、商談</span></div><div class="used-car-demo-placeholder-card"><b>契約・納車</b><span>書類、入金、登録、納車準備、アフター</span></div></div></div></div></div></div>
+</article>
+
+<article class="product-live-row">
+<div class="product-live-copy reveal"><span>04 / FIELD IPAD</span><h3>スタッフiPad<br>今日の現場管理</h3><p>来店、査定、商談、商品化準備、必要書類、納車、未完了タスクを現場で確認・更新します。</p><ul><li>来店・試乗・納車受付</li><li>査定・商談の進行更新</li><li>在庫準備と書類確認</li></ul><div class="product-live-actions"><button class="button button-line" type="button" aria-haspopup="dialog" data-demo-url="https://dpromstk2000-lab.github.io/dpro-used-car-line-liff/owner-ipad.html?demo=1&amp;v=CAR-24-R4" data-demo-title="スタッフiPad 今日の現場管理">この画面を読み込む</button><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/dpro-used-car-line-liff/owner-ipad.html?demo=1&amp;v=CAR-24-R4" target="_blank" rel="noopener" data-demo-link="used-car-ipad">別タブで体験する</a></div></div>
+<div class="live-device reveal"><div class="live-window live-window-tablet"><div class="live-window-head"><span>DPRO USED CAR / FIELD IPAD</span><i></i></div><div class="demo-frame"><div class="used-car-demo-placeholder"><h4>今日の現場</h4><p>来店・査定・試乗・納車・タスクを時間順に確認</p><div class="used-car-demo-placeholder-grid"><div class="used-car-demo-placeholder-card"><b>10:30 試乗</b><span>対象在庫と希望条件を確認</span></div><div class="used-car-demo-placeholder-card"><b>14:00 査定</b><span>車両・写真・査定進行を更新</span></div><div class="used-car-demo-placeholder-card"><b>16:30 納車</b><span>書類・入金・車両準備を確認</span></div></div></div></div></div></div>
+</article>
+</div>
+</div>
+</section>
+
+<section class="section product-after" id="after">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>BEFORE / AFTER</p><h2>管理表を増やすのではなく、<br><em>顧客と車両の流れをつなぐ。</em></h2></div><p>紙や表計算を一つの画面へ写すだけではなく、受付した情報を次の査定、在庫、商談、契約、納車、アフターへ引き継ぎます。</p></div>
+<div class="product-after-grid">
+<div class="product-after-panel product-after-before reveal"><span>BEFORE</span><h3>売却・仕入・販売・納車が、担当や管理表ごとに分かれる。</h3><ul><li>査定受付と販売商談で顧客情報を再入力</li><li>買取車の商品化状況を口頭で確認</li><li>試乗・書類・入金・納車タスクが個人管理</li><li>納車後の点検案内や履歴が分散</li></ul></div>
+<div class="product-after-arrow reveal">→</div>
+<div class="product-after-panel product-after-result reveal"><span>AFTER</span><h3>LINE受付から納車後まで、顧客と車両を中心に確認。</h3><ul><li>所有車・査定・下取り・販売商談を関連付け</li><li>入庫・商品化・公開・売約・納車を状態管理</li><li>PC・iPadで予約・書類・タスクを共有</li><li>アフター予定・整備履歴・代替候補を継続管理</li></ul></div>
+</div>
+</div>
+</section>
+
+<section class="section product-safety" id="safety">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>SAFE OPERATION</p><h2>営業デモから本番導入まで、<br><em>安全確認を前提に。</em></h2></div><p>本番環境へ自動で切り替えず、公開範囲、管理権限、データ移行、外部連携の状態を確認してから運用を開始します。</p></div>
+<div class="product-safety-grid">
+<article class="product-safety-card reveal"><span>01 / SEPARATE</span><h3>デモと本番を分離</h3><p>公開デモは架空データを使用し、本番は契約店舗ごとのGitHub、Worker、データベースとして分離します。</p></article>
+<article class="product-safety-card reveal"><span>02 / GUARD</span><h3>公開・管理者ガード</h3><p>公開在庫と非公開の査定写真・管理情報を分け、管理画面は認証と権限を前提に取り扱います。</p></article>
+<article class="product-safety-card reveal"><span>03 / DATA</span><h3>重複・移行前検査</h3><p>電話番号の表記を整えて照合し、重複候補を確認します。CSV移行はプレビュー・検査後に確定します。</p></article>
+<article class="product-safety-card reveal"><span>04 / MANUAL</span><h3>自動実行を標準でOFF</h3><p>LINE自動送信、銀行自動連携、CSV自動確定、本番環境の自動変更は標準でOFFとし、人の確認を残します。</p></article>
+</div>
+<p class="product-price-note reveal"><strong>置き換えない業務：</strong>実車査定・整備・車検、名義変更などの法定手続き、ローン審査、決済・銀行処理そのものは、店舗や外部サービスで行います。帳票PDFはブラウザの印刷・PDF保存を利用する構成です。</p>
+</div>
+</section>
+
+<section class="section product-pricing" id="pricing">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>DPRO OPTION PRICE</p><h2>LINE構築・運用店舗へ追加する、<br><em>DPROシステム料金。</em></h2></div><p>DPROシステムは単体販売ではなく、DPRO SHOPのLINE公式アカウント構築・運用契約店舗向けの追加サービスです。</p></div>
+<div class="product-price-grid">
+<article class="product-price-card reveal"><small>INITIAL SETUP</small><h3>DPROシステム構築費</h3><div class="product-price-value"><strong>33,000円</strong><span>税込</span></div><p>店舗情報、デモ環境、基本画面、接続先、公開・操作確認など、導入に必要な初期設定を行います。</p></article>
+<article class="product-price-card is-accent reveal"><small>MONTHLY USE &amp; MAINTENANCE</small><h3>利用・基本保守費</h3><div class="product-price-value"><strong>月額1,100円</strong><span>税込</span></div><p>システム利用と基本的な保守・確認を含みます。大規模な機能追加や個別開発は、事前に内容と費用をご案内します。</p></article>
+</div>
+<p class="product-price-note reveal"><strong>別途必要：</strong>LINE公式アカウント構築77,000円（税込）／LINE運用サポート月額3,300円（税込）。ローン、決済、会計、整備・車検、名義変更などの外部サービス連携が必要な場合は、内容を確認して個別にご案内します。</p>
+</div>
+</section>
+
+<section class="section sys-faq" id="faq">
+<div class="section-inner">
+<div class="sys-center-heading reveal"><p class="eyebrow eyebrow-dark"><span></span>FAQ</p><h2>中古車買取・販売店向けDPROシステムの<br>よくある質問。</h2></div>
+<div class="faq-list">
+<details class="reveal"><summary>どのくらいの規模の中古車店を想定していますか。</summary><p>買取・下取りと中古車販売を一つの店舗または少人数のチームで行い、顧客・車両・査定・在庫・商談・納車を同じ流れで管理したい事業者を主な対象としています。大規模チェーンや基幹システム全体の置き換えは個別確認です。</p></details>
+<details class="reveal"><summary>スマートフォンやiPadでも使えますか。</summary><p>お客様向け入口とマイページはスマートフォン、現場スタッフ向け画面はiPad・タブレット、店舗総合管理はPCを中心に設計しています。ブラウザから利用します。</p></details>
+<details class="reveal"><summary>LINEを利用しないお客様も管理できますか。</summary><p>店舗側のPC・iPadでは、顧客・車両・査定・商談を管理できます。LINE連携していないお客様への連絡方法や受付手順は、現在の電話・店頭対応と併用して設計します。</p></details>
+<details class="reveal"><summary>今使っている販売管理や整備システムと併用できますか。</summary><p>併用を前提に整理できます。DPROはお客様とのLINE受付、査定・在庫・商談・契約・納車・アフターの進行共有を中心とし、既存の会計・整備・車検・登録業務を自動的に置き換えるものではありません。</p></details>
+<details class="reveal"><summary>在庫を自動で公開しても大丈夫ですか。</summary><p>公開準備と公開条件を確認してから掲載する設計です。非公開の査定写真を自動公開する設定はOFFで、公開前の確認を残します。</p></details>
+<details class="reveal"><summary>公開デモに本物のお客様情報は入っていますか。</summary><p>入りません。公開デモは架空データを使用します。本番環境は契約店舗ごとに分離し、公開デモとは別のGitHub、Worker、データベースで運用します。</p></details>
+</div>
+</div>
+</section>
+
+<section class="section product-final-cta">
+<div class="section-inner product-final-cta-inner reveal">
+<p class="eyebrow eyebrow-light"><span></span>TRY THE REAL DPRO USED CAR</p>
+<h2>今の査定・在庫・商談管理と比べながら、<br>実画面を確認しませんか。</h2>
+<p>現在の査定受付、在庫公開、試乗・商談、契約・書類、納車、アフターの方法を伺い、どの画面から導入すると使いやすいかを一緒に整理します。</p>
+<div class="product-final-actions">
+<a class="button button-line" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener"><span class="line-badge">LINE</span><span>無料で導入相談する</span><b>→</b></a>
+<a class="button button-ghost" href="https://dpromstk2000-lab.github.io/dpro-used-car-line-liff/index.html?demo=1&amp;v=CAR-24-R4" target="_blank" rel="noopener" data-demo-link="used-car-final">実際の操作デモ</a>
+</div>
+</div>
+</section>
+</main>
+
+<footer class="site-footer">
+<div class="footer-inner">
+<div class="footer-brand"><a class="brand" href="../"><span class="brand-mark" aria-hidden="true">D</span><span class="brand-copy"><strong>DPRO SHOP</strong><small>LINE BUSINESS DESIGN</small></span></a><p>福岡県を中心に、LINE公式アカウント、ホームページ、<br>契約店舗限定の業種別DPROシステムを支援します。</p></div>
+<div class="footer-links">
+<div><strong>SERVICE</strong><a href="../line-build">LINE公式アカウント構築</a><a href="../line-operation">LINE運用サポート</a><a href="../website">ホームページ制作</a><a href="../pricing">料金</a></div>
+<div><strong>PRODUCT</strong><a href="./">DPROシステム一覧</a><a href="used-car">中古車買取・販売</a><a href="https://dpromstk2000-lab.github.io/dpro-used-car-line-liff/index.html?demo=1&amp;v=CAR-24-R4" target="_blank" rel="noopener">中古車買取・販売デモ</a></div>
+<div><strong>GUIDE</strong><a href="../about">DPRO SHOPについて</a><a href="../contact">お問い合わせ</a><a href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで無料相談</a></div>
+</div>
+</div>
+<div class="footer-legal-links" aria-label="法務・お問い合わせ"><a href="../privacy">プライバシーポリシー</a><a href="../terms">サービス利用上の注意事項</a><a href="../contact">お問い合わせ</a></div>
+<div class="footer-bottom"><span>© 2026 DPRO SHOP. All Rights Reserved.</span><a href="#top">PAGE TOP ↑</a></div>
+</footer>
+<div class="product-mobile-cta" aria-label="固定アクション"><a href="https://dpromstk2000-lab.github.io/dpro-used-car-line-liff/index.html?demo=1&amp;v=CAR-24-R4" target="_blank" rel="noopener" data-demo-link="used-car-mobile">デモを体験</a><a href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで相談</a></div>
+
+<div class="used-car-demo-modal" id="usedCarDemoModal" hidden aria-hidden="true">
+<div class="used-car-demo-dialog" role="dialog" aria-modal="true" aria-labelledby="usedCarDemoTitle">
+<div class="used-car-demo-dialog-head"><div><small>LIVE DEMO / DEMO ENVIRONMENT</small><h2 id="usedCarDemoTitle">実際の操作デモ</h2></div><button class="used-car-demo-close" id="usedCarDemoClose" type="button" aria-label="デモ画面を閉じる">×</button></div>
+<div class="used-car-demo-body" id="usedCarDemoBody"></div>
+</div>
+</div>
+
+<script defer src="../script.js?v=17r1"></script>
+<script defer src="systems.js?v=1"></script>
+<script>
+(() => {
+  "use strict";
+  const modal = document.getElementById("usedCarDemoModal");
+  const body = document.getElementById("usedCarDemoBody");
+  const title = document.getElementById("usedCarDemoTitle");
+  const closeButton = document.getElementById("usedCarDemoClose");
+  const triggers = [...document.querySelectorAll("[data-demo-url]")];
+  let lastFocus = null;
+
+  const closeModal = () => {
+    if (modal.hidden) return;
+    body.replaceChildren();
+    modal.hidden = true;
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("demo-modal-open");
+    if (lastFocus instanceof HTMLElement) lastFocus.focus();
+  };
+
+  const openModal = (trigger) => {
+    const url = trigger.dataset.demoUrl;
+    if (!url) return;
+    lastFocus = trigger;
+    title.textContent = trigger.dataset.demoTitle || "実際の操作デモ";
+
+    const iframe = document.createElement("iframe");
+    iframe.title = `${title.textContent}（DEMO環境）`;
+    iframe.src = url;
+    iframe.referrerPolicy = "strict-origin-when-cross-origin";
+    iframe.allow = "camera; microphone; clipboard-write";
+
+    const fallback = document.createElement("a");
+    fallback.className = "used-car-demo-fallback";
+    fallback.href = url;
+    fallback.target = "_blank";
+    fallback.rel = "noopener";
+    fallback.textContent = "表示できない場合は別タブで開く";
+
+    body.replaceChildren(iframe, fallback);
+    modal.hidden = false;
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("demo-modal-open");
+    closeButton.focus();
+  };
+
+  triggers.forEach((trigger) => trigger.addEventListener("click", () => openModal(trigger)));
+  closeButton.addEventListener("click", closeModal);
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) closeModal();
+  });
+  document.addEventListener("keydown", (event) => {
+    if (modal.hidden) return;
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeModal();
+      return;
+    }
+    if (event.key !== "Tab") return;
+    const focusable = [...modal.querySelectorAll('button:not([disabled]),a[href],iframe,[tabindex]:not([tabindex="-1"])')];
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+})();
+</script>
+</body>
+</html>
