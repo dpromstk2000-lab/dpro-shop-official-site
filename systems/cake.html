@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ja">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async fetchpriority="low" src="https://www.googletagmanager.com/gtag/js?id=G-YPN3998BHG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-YPN3998BHG');
+</script>
+<meta charset="utf-8">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="ケーキ・洋菓子店向けDPROシステム。写真付き商品カタログ、当日取り置き・事前予約、受取日時、商品・数量管理、製作・支払い確認・受渡しまでを実画面デモとともに紹介します。">
+<meta name="theme-color" content="#07111f">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DPRO SHOP">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="DPRO ケーキ・洋菓子店 LINE｜写真カタログ・取り置き・予約・製作管理">
+<meta property="og:description" content="写真から商品を選び、取り置き・予約へ。店舗の商品管理、製作、支払い確認、受渡しまでをつなぐケーキ・洋菓子店向けDPROシステム。">
+<meta property="og:url" content="https://dpro-shop.com/systems/cake">
+<meta property="og:image" content="https://dpro-shop.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DPRO ケーキ・洋菓子店 LINE｜DPRO SHOP">
+<meta name="twitter:description" content="写真付き商品カタログ、当日取り置き・事前予約、商品・数量管理、スタッフiPadを一つにつなぐ店舗向けシステム。">
+<meta name="twitter:image" content="https://dpro-shop.com/og-image.png">
+<title>DPRO ケーキ・洋菓子店 LINE｜写真カタログ・取り置き・予約・製作管理｜DPRO SHOP</title>
+<link rel="canonical" href="https://dpro-shop.com/systems/cake">
+<link rel="manifest" href="../site.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="../sitemap.xml">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="stylesheet" href="../styles.css?v=17r2">
+<link rel="stylesheet" href="systems.css?v=1">
+<script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://dpro-shop.com/#website",
+      "name":"DPRO SHOP",
+      "url":"https://dpro-shop.com/",
+      "inLanguage":"ja"
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://dpro-shop.com/systems/cake#webpage",
+      "url":"https://dpro-shop.com/systems/cake",
+      "name":"DPRO ケーキ・洋菓子店 LINE｜写真カタログ・取り置き・予約・製作管理",
+      "description":"ケーキ・洋菓子店向けDPROシステムの機能、利用者別の操作、導入前後、実画面デモを紹介します。",
+      "isPartOf":{"@id":"https://dpro-shop.com/#website"},
+      "inLanguage":"ja",
+      "dateModified":"2026-07-30",
+      "breadcrumb":{"@id":"https://dpro-shop.com/systems/cake#breadcrumb"},
+      "mainEntity":{"@id":"https://dpro-shop.com/systems/cake#software"}
+    },
+    {
+      "@type":"BreadcrumbList",
+      "@id":"https://dpro-shop.com/systems/cake#breadcrumb",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"DPRO SHOP","item":"https://dpro-shop.com/"},
+        {"@type":"ListItem","position":2,"name":"業種別DPROシステム","item":"https://dpro-shop.com/systems/"},
+        {"@type":"ListItem","position":3,"name":"ケーキ・洋菓子店","item":"https://dpro-shop.com/systems/cake"}
+      ]
+    },
+    {
+      "@type":"SoftwareApplication",
+      "@id":"https://dpro-shop.com/systems/cake#software",
+      "name":"DPRO ケーキ・洋菓子店 LINE",
+      "alternateName":"DPRO パティスリー",
+      "applicationCategory":"BusinessApplication",
+      "operatingSystem":"Web browser / LINE",
+      "description":"写真付き商品カタログ、当日取り置き、事前予約、オーダー相談、受取日時、商品・数量管理、製作、支払い確認、受渡しをつなぐケーキ・洋菓子店向け業務システム。",
+      "url":"https://dpro-shop.com/systems/cake",
+      "offers":[
+        {
+          "@type":"Offer",
+          "name":"DPROシステム構築",
+          "price":"33000",
+          "priceCurrency":"JPY",
+          "description":"LINE公式アカウント構築・運用契約店舗限定"
+        },
+        {
+          "@type":"Offer",
+          "name":"DPROシステム利用・基本保守",
+          "price":"1100",
+          "priceCurrency":"JPY",
+          "description":"月額。LINE公式アカウント構築・運用契約店舗限定"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<style>
+.cake-product-page{
+  --cake-berry:#ad3158;
+  --cake-berry-dark:#7f2541;
+  --cake-berry-soft:#fff0f4;
+  --cake-cocoa:#58352f;
+  --cake-gold:#b47b28;
+}
+.cake-product-page .cake-code{
+  background:linear-gradient(135deg,rgba(68,220,255,.16),rgba(126,107,255,.16));
+  color:#d9f5ff;
+}
+.cake-monitor-ui{
+  min-height:455px;
+  padding:22px;
+  display:grid;
+  grid-template-columns:152px minmax(0,1fr);
+  background:#f5f0ec;
+  color:#3e2924;
+}
+.cake-monitor-side{
+  padding:16px;
+  border-radius:14px;
+  background:linear-gradient(160deg,#4b2e2b,#7f2541);
+  color:#fff;
+}
+.cake-monitor-side strong{display:block;font-size:12px}
+.cake-monitor-side span{
+  margin-top:10px;
+  padding:8px 9px;
+  display:block;
+  border-radius:8px;
+  background:rgba(255,255,255,.09);
+  color:rgba(255,255,255,.78);
+  font-size:7px;
+  font-weight:850;
+}
+.cake-monitor-main{min-width:0;padding:6px 0 0 16px}
+.cake-monitor-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.cake-monitor-head strong{font-size:16px}
+.cake-monitor-head b{padding:6px 10px;border-radius:999px;background:#fff;color:var(--cake-berry-dark);font-size:8px}
+.cake-kpis{margin-top:15px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
+.cake-kpis span{min-width:0;padding:11px 8px;border-radius:11px;background:#fff;color:#75665f;font-size:7px;font-weight:850}
+.cake-kpis b{margin-top:5px;display:block;color:var(--cake-berry-dark);font-size:16px}
+.cake-order-board{margin-top:12px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.cake-order-lane{min-width:0;min-height:220px;padding:10px;border-radius:12px;background:#eadfda}
+.cake-order-lane>strong{display:block;color:#61433d;font-size:8px}
+.cake-order-card{margin-top:8px;padding:9px 7px;border-radius:9px;background:#fff;color:#66534e;font-size:7px;font-weight:800;line-height:1.45}
+.cake-order-card b{display:block;color:#7f2541;font-size:8px}
+.cake-stage-phone{bottom:8px}
+.cake-phone-card{margin-top:12px;padding:11px;border:1px solid #eadccf;border-radius:12px;background:#fff}
+.cake-phone-card small{color:#796b64;font-size:7px}
+.cake-phone-card h3{margin:8px 0;font-size:13px}
+.cake-phone-card span{margin-top:6px;padding:7px 8px;display:block;border-radius:8px;background:#fff0f4;color:#6d4550;font-size:6px;font-weight:800}
+.cake-phone-card b{margin-top:9px;padding:8px;display:block;border-radius:9px;background:#ad3158;color:#fff;font-size:7px;text-align:center}
+.cake-stage-tablet{bottom:4px}
+.cake-tablet-list{margin-top:14px;display:grid;gap:7px}
+.cake-tablet-list span{padding:10px;border-radius:9px;background:#fff0f4;color:#6e3a4d;font-size:7px;font-weight:900}
+.cake-demo-preview{
+  height:100%;
+  min-height:100%;
+  padding:24px;
+  background:linear-gradient(145deg,#fbf6ef,#f7eded);
+  color:#3e2924;
+}
+.cake-demo-preview small{color:#7f2541;font-size:9px;font-weight:950;letter-spacing:.12em}
+.cake-demo-preview h4{margin:10px 0 0;font-size:22px;line-height:1.35}
+.cake-demo-preview p{margin:11px 0 0;color:#75665f;font-size:11px;line-height:1.7}
+.cake-demo-products{margin-top:18px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.cake-demo-product{min-width:0;padding:11px;border:1px solid #eadccf;border-radius:13px;background:#fff}
+.cake-demo-product i{height:75px;display:grid;place-items:center;border-radius:10px;background:linear-gradient(135deg,#f8dfe5,#f1d5da);font-style:normal;font-size:28px}
+.cake-demo-product b{margin-top:8px;display:block;font-size:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cake-demo-product span{margin-top:3px;display:block;color:#ad3158;font-size:8px;font-weight:900}
+.cake-demo-member .cake-demo-order{margin-top:15px;padding:15px;border:1px solid #eadccf;border-radius:14px;background:#fff}
+.cake-demo-order strong{font-size:15px}
+.cake-demo-order span{margin-top:7px;padding:6px 9px;display:inline-flex;border-radius:999px;background:#e8f3ea;color:#386344;font-size:8px;font-weight:900}
+.cake-demo-order p{margin-top:10px}
+.cake-demo-owner{display:grid;grid-template-columns:112px minmax(0,1fr);gap:13px;padding:20px;background:#f5f0ec}
+.cake-demo-owner aside{padding:14px;border-radius:12px;background:#58352f;color:#fff}
+.cake-demo-owner aside b{font-size:10px}
+.cake-demo-owner aside span{margin-top:9px;display:block;color:rgba(255,255,255,.72);font-size:7px}
+.cake-demo-owner main{min-width:0;padding:0}
+.cake-demo-owner main>div{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.cake-demo-owner main span{min-width:0;padding:11px;border-radius:10px;background:#fff;color:#75665f;font-size:7px;font-weight:850}
+.cake-demo-owner main b{display:block;margin-top:5px;color:#7f2541;font-size:15px}
+.cake-demo-owner h4{margin:18px 0 8px;font-size:18px}
+.cake-demo-owner p{margin:0;color:#75665f;font-size:9px;line-height:1.6}
+.cake-demo-ipad{padding:22px;background:#f8f1e9;color:#3e2924}
+.cake-demo-ipad>div:first-child{padding:14px;border-radius:13px;background:linear-gradient(135deg,#58352f,#8f2947);color:#fff}
+.cake-demo-ipad h4{margin:4px 0 0;font-size:19px}
+.cake-demo-ipad small{font-size:8px;opacity:.75}
+.cake-demo-ipad-grid{margin-top:13px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.cake-demo-ipad-grid span{padding:13px;border:1px solid #e7d6c8;border-radius:11px;background:#fff;color:#6d5953;font-size:9px;font-weight:850}
+.cake-demo-ipad-grid b{display:block;margin-top:6px;color:#ad3158;font-size:16px}
+.cake-scope-note{
+  margin-top:20px;
+  padding:17px 20px;
+  border:1px solid #d8e0e8;
+  border-radius:17px;
+  background:#fff;
+  color:#59687b;
+  font-size:13px;
+  line-height:1.85;
+}
+.cake-demo-modal[hidden]{display:none}
+.cake-demo-modal{
+  position:fixed;
+  z-index:1600;
+  inset:0;
+  display:grid;
+  place-items:center;
+  padding:22px;
+}
+.cake-demo-modal-backdrop{
+  position:absolute;
+  inset:0;
+  border:0;
+  background:rgba(3,10,18,.82);
+  cursor:pointer;
+}
+.cake-demo-modal-dialog{
+  position:relative;
+  z-index:2;
+  width:min(1180px,100%);
+  height:min(820px,calc(100vh - 44px));
+  display:grid;
+  grid-template-rows:auto minmax(0,1fr);
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:25px;
+  background:#fff;
+  box-shadow:0 42px 130px rgba(0,0,0,.58);
+}
+.cake-demo-modal-head{
+  min-height:64px;
+  padding:10px 14px 10px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  background:#07111f;
+  color:#fff;
+}
+.cake-demo-modal-title{min-width:0}
+.cake-demo-modal-title small{display:block;color:var(--sys-cyan);font-size:8px;font-weight:950;letter-spacing:.14em}
+.cake-demo-modal-title strong{display:block;margin-top:4px;font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cake-demo-modal-actions{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+.cake-demo-modal-actions a{
+  min-height:43px;
+  padding:8px 13px;
+  display:inline-flex;
+  align-items:center;
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:999px;
+  color:#fff;
+  font-size:10px;
+  font-weight:900;
+}
+.cake-demo-modal-close{
+  width:43px;
+  height:43px;
+  border:1px solid rgba(255,255,255,.22);
+  border-radius:50%;
+  background:rgba(255,255,255,.08);
+  color:#fff;
+  font-size:22px;
+  cursor:pointer;
+}
+.cake-demo-modal-frame{min-height:0;background:#f5f7f9}
+.cake-demo-modal-frame iframe{width:100%;height:100%;border:0;background:#fff}
+body.cake-demo-open{overflow:hidden}
+@media(max-width:760px){
+  .cake-monitor-ui{grid-template-columns:1fr;padding:13px}
+  .cake-monitor-side{display:none}
+  .cake-monitor-main{padding:4px}
+  .cake-kpis{grid-template-columns:1fr 1fr}
+  .cake-order-board{grid-template-columns:1fr 1fr}
+  .cake-order-lane{min-height:150px}
+  .cake-stage-tablet{display:none}
+  .cake-demo-products{grid-template-columns:1fr 1fr}
+  .cake-demo-product:nth-child(3){display:none}
+  .cake-demo-owner{grid-template-columns:1fr;padding:14px}
+  .cake-demo-owner aside{display:none}
+  .cake-demo-owner main>div{grid-template-columns:1fr 1fr}
+  .cake-demo-modal{padding:8px}
+  .cake-demo-modal-dialog{height:calc(100vh - 16px);border-radius:18px}
+  .cake-demo-modal-head{min-height:58px;padding:8px 8px 8px 13px}
+  .cake-demo-modal-actions a{display:none}
+}
+@media(max-width:430px){
+  .cake-order-board{grid-template-columns:1fr}
+  .cake-order-lane:nth-child(3){display:none}
+  .cake-demo-preview{padding:16px}
+  .cake-demo-ipad{padding:15px}
+  .cake-demo-modal-title strong{max-width:235px;font-size:13px}
+}
+</style>
+</head>
+<body class="system-product-page official-product-page cake-product-page">
+<div class="sys-progress" aria-hidden="true"></div>
+<a class="skip-link" href="#main">本文へ移動</a>
+<header class="site-header" id="top">
+<div class="header-inner">
+<a class="brand" href="../" aria-label="DPRO SHOP トップへ"><span class="brand-mark" aria-hidden="true">D</span><span class="brand-copy"><strong>DPRO SHOP</strong><small>LINE BUSINESS DESIGN</small></span></a>
+<button class="menu-button" type="button" aria-expanded="false" aria-controls="global-nav" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+<nav class="global-nav" id="global-nav" aria-label="メインナビゲーション">
+<a href="../">トップ</a>
+<a href="../line-build">LINE構築</a>
+<a href="../line-operation">LINE運用</a>
+<a href="../website">HP制作</a>
+<a href="./">DPROシステム</a>
+<a href="../pricing">料金</a>
+<a href="../about">DPRO SHOP</a>
+<a class="nav-cta" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで無料相談</a>
+</nav>
+</div>
+</header>
+
+<main id="main">
+<section class="product-hero" aria-labelledby="product-title">
+<div class="product-hero-grid" aria-hidden="true"></div>
+<div class="product-hero-inner">
+<div class="product-hero-copy reveal">
+<nav class="sys-breadcrumb" aria-label="パンくずリスト"><a href="../">DPRO SHOP</a><span>／</span><a href="./">DPROシステム</a><span>／</span><strong>ケーキ・洋菓子店</strong></nav>
+<div class="official-product-label"><span>DPRO SHOP</span><strong>公式製品紹介ページ</strong><small>DPRO ケーキ・洋菓子店 LINE｜店舗受取・製作管理システム</small></div>
+<div class="product-code cake-code" aria-hidden="true">CAKE</div>
+<p class="eyebrow eyebrow-light"><span></span>CATALOG・RESERVE・PRODUCTION・HANDOVER</p>
+<h1 id="product-title"><span>写真から選び、予約。</span><span><em>作って、渡すまで一つに。</em></span></h1>
+<p class="product-hero-lead">お客様の写真付き商品カタログと、当日取り置き・事前予約・オーダー相談、店舗の商品管理、スタッフの製作・支払い確認・受渡しを同じ予約データでつなぐ、ケーキ・洋菓子店向けシステムです。</p>
+<div class="product-hero-actions">
+<a class="button button-line" href="#features"><span class="line-badge">CAKE</span><span>機能を詳しく見る</span><b>↓</b></a>
+<a class="button button-ghost" href="https://dpromstk2000-lab.github.io/dpro-cake-line-liff/index.html?demo=1&amp;v=CAKE-16" target="_blank" rel="noopener" data-demo-link="cake-top">実際の操作デモ</a>
+</div>
+<div class="product-proof-tags"><span>写真付き商品カタログ</span><span>当日取り置き</span><span>事前予約</span><span>商品・数量管理</span><span>スタッフiPad</span><span>予約確認</span></div>
+</div>
+
+<div class="product-hero-stage reveal" aria-label="DPRO ケーキ・洋菓子店 LINEの画面イメージ">
+<div class="product-stage-label"><i></i>OFFICIAL PRODUCT GUIDE / SYSTEM PREVIEW</div>
+<div class="product-stage-monitor">
+<div class="product-browser"><span class="product-browser-dots"><i></i><i></i><i></i></span><span>DPRO パティスリー / オーナーPC</span><b>PREVIEW</b></div>
+<div class="cake-monitor-ui">
+<div class="cake-monitor-side"><strong>DPRO パティスリー</strong><span>本日の予約</span><span>商品・カタログ</span><span>受取枠・営業日</span><span>注文履歴</span></div>
+<div class="cake-monitor-main"><div class="cake-monitor-head"><strong>本日の予約・製作状況</strong><b>受取 8件</b></div><div class="cake-kpis"><span>予約確認待ち<b>2</b></span><span>製作待ち<b>3</b></span><span>製作中<b>1</b></span><span>受取待ち<b>2</b></span></div><div class="cake-order-board"><div class="cake-order-lane"><strong>10:00–12:00</strong><div class="cake-order-card"><b>いちごデコレーション</b>5号／プレートあり</div><div class="cake-order-card"><b>焼き菓子ギフト</b>包装・のし確認</div></div><div class="cake-order-lane"><strong>14:00–16:00</strong><div class="cake-order-card"><b>季節のフルーツタルト</b>製作中</div></div><div class="cake-order-lane"><strong>16:00–18:00</strong><div class="cake-order-card"><b>ショートケーキ</b>当日取り置き</div><div class="cake-order-card"><b>オーダーケーキ</b>参考写真あり</div></div></div></div>
+</div>
+</div>
+<div class="product-stage-phone cake-stage-phone"><div class="product-phone-inner"><div class="product-phone-brand"><b>LINE</b>DPRO PATISSERIE</div><div class="cake-phone-card"><small>写真付き商品カタログ</small><h3>季節のいちごケーキ</h3><span>事前予約・受取日時を選択</span><span>サイズ・プレート・ろうそく</span><b>予約へ進む</b></div></div></div>
+<div class="product-stage-tablet cake-stage-tablet"><div class="product-tablet-inner"><small>STAFF IPAD</small><h3>製作・支払い・受渡し</h3><div class="cake-tablet-list"><span>10:30 予約内容を確認</span><span>13:00 製作を開始</span><span>15:30 受取準備完了</span><span>16:00 支払い確認・受渡し</span></div></div></div>
+</div>
+</div>
+</section>
+
+<nav class="product-local-nav" aria-label="ページ内メニュー">
+<div class="product-local-nav-inner"><a href="#summary" class="is-active">概要</a><a href="#system-map">全体構成</a><a href="#features">主な機能</a><a href="#flow">利用の流れ</a><a href="#roles">画面別</a><a href="#demo">実画面</a><a href="#after">導入前後</a><a href="#safety">安全設計</a><a href="#pricing">料金</a><a href="#faq">よくある質問</a></div>
+</nav>
+
+<section class="section product-summary" id="summary">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>UNDERSTAND IN 30 SECONDS</p><h2>30秒で分かる、<br><em>このシステムの役割。</em></h2></div><p>商品を探すところから、店舗で製作し、お客様へ渡すところまで。店頭受取の予約業務を一つの流れに整理します。</p></div>
+<div class="product-summary-grid">
+<article class="product-summary-card reveal"><span>01 / CUSTOMER</span><h3>お客様は写真から選び、そのまま受取予約。</h3><p>商品写真、価格、説明、アレルギー情報、販売方法、残数を確認し、サイズ・オプション・受取日時を選べます。</p></article>
+<article class="product-summary-card reveal"><span>02 / OWNER</span><h3>オーナーは商品と受付条件をまとめて管理。</h3><p>商品、写真、価格、公開期間、販売方法、数量上限、締切、営業日・受取枠をPCで管理します。</p></article>
+<article class="product-summary-card reveal"><span>03 / STAFF</span><h3>スタッフはiPadで製作から受渡しまで確認。</h3><p>予約内容、プレート、注意事項、参考写真、製作状況、支払い確認、受渡し完了を当日の流れに沿って更新します。</p></article>
+</div>
+<div class="product-problem-grid">
+<article class="product-problem reveal"><div class="product-problem-before"><small>導入前</small><strong>商品写真はSNS、予約内容は電話や紙へ分散</strong></div><div class="product-problem-arrow">↓</div><div class="product-problem-after"><small>導入後</small><strong>写真カタログから受取予約まで同じ商品情報で接続</strong></div></article>
+<article class="product-problem reveal"><div class="product-problem-before"><small>導入前</small><strong>数量上限や締切をスタッフが個別に判断</strong></div><div class="product-problem-arrow">↓</div><div class="product-problem-after"><small>導入後</small><strong>日別・商品別・サイズ別の受付条件を画面で確認</strong></div></article>
+<article class="product-problem reveal"><div class="product-problem-before"><small>導入前</small><strong>製作・支払い・受渡しを口頭やメモで引き継ぐ</strong></div><div class="product-problem-arrow">↓</div><div class="product-problem-after"><small>導入後</small><strong>スタッフiPadで予約状態と注意事項を共有</strong></div></article>
+</div>
+<p class="cake-scope-note reveal"><strong>対象範囲：</strong>店頭受取の商品カタログ、取り置き・予約、商品・数量管理、製作・支払い確認・受渡しです。POSレジ、オンライン決済、配送管理、会計ソフトそのものを置き換えるシステムではありません。</p>
+</div>
+</section>
+
+<section class="section product-map" id="system-map">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>ONE ORDER, FOUR EXPERIENCES</p><h2>お客様・オーナー・スタッフを、<br><em>同じ商品・予約データでつなぐ。</em></h2></div><p>使う人全員に同じ画面を見せるのではなく、商品を選ぶ人、管理する人、製作する人に必要な操作を分けています。</p></div>
+<div class="product-map-board reveal">
+<div class="product-map-label"><strong>DPRO ケーキ・洋菓子店 LINE 全体構成</strong><span>WEB / LINE × PC × iPad × Worker</span></div>
+<div class="product-map-flow">
+<div class="product-map-side">
+<div class="product-map-node"><b>CUSTOMER / WEB・LINE</b><strong>写真カタログ・予約</strong><p>商品検索、サイズ・オプション、受取日時、アレルギー確認、参考写真</p></div>
+<div class="product-map-node"><b>MEMBER / SMARTPHONE</b><strong>予約確認</strong><p>今後の予約、過去・取消、予約詳細、キャンセル依頼</p></div>
+</div>
+<div class="product-map-arrow">→</div>
+<div class="product-map-core"><b>API</b><strong>Worker API・データベース</strong><span>商品・在庫条件・受取枠・顧客・予約・工程を<br>同じデータとして保存・再取得</span></div>
+<div class="product-map-arrow">→</div>
+<div class="product-map-side">
+<div class="product-map-node"><b>OWNER / PC</b><strong>商品・予約管理</strong><p>商品、写真、価格、公開、数量、締切、営業日、予約状況</p></div>
+<div class="product-map-node"><b>STAFF / IPAD</b><strong>製作・支払い・受渡し</strong><p>予約確認、製作開始、完成、支払い確認、受渡し完了</p></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section product-features" id="features">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>MAIN FEATURES</p><h2>店頭受取の販売と製作に必要な、<br><em>10の主要機能。</em></h2></div><p>単なる予約フォームではなく、商品を見せる、受付条件を守る、製作する、渡すという店舗業務につなげます。</p></div>
+<div class="product-feature-grid">
+<article class="product-feature reveal"><span class="product-feature-icon">PHOTO</span><h3>写真付き商品カタログ</h3><p>商品写真、説明、価格、カテゴリー、アレルギー情報、販売状態をスマートフォンで確認できます。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">FIND</span><h3>検索・絞り込み・共有URL</h3><p>商品名、カテゴリー、販売方法、受取日で探し、商品ごとのURLをLINEやSNSから共有できます。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">4WAY</span><h3>販売方法4区分</h3><p>当日取り置き、事前予約、オーダー相談、店頭販売のみを商品ごとに設定します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">SIZE+</span><h3>サイズ・オプション・参考写真</h3><p>号数・数量、プレート、ろうそく、装飾、包装などを選び、オーダー商品では参考写真も登録できます。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">TIME</span><h3>受取日・受取時間</h3><p>商品の準備日数と営業条件に合わせて受取日を制御し、空いている時間枠から選択します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">LIMIT</span><h3>数量・締切・売り切れ管理</h3><p>商品全体、サイズ別、お一人様、日別の上限や当日締切を確認し、受付超過や重複を防ぎます。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">OWNER</span><h3>オーナーPC商品管理</h3><p>商品の新規登録・複製・写真・公開状態・販売期間・カテゴリー・日付別設定を管理します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">iPad</span><h3>スタッフ製作・受渡し</h3><p>受取時間順、工程別、商品別の表示で、予約確認、製作開始、完成、支払い、受渡しを更新します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">MEMBER</span><h3>お客様の予約確認</h3><p>今後の予約、過去・取消、商品明細、受取日時、予定金額を確認し、対象予約はキャンセルを依頼できます。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">GUARD</span><h3>重複・再送信・在庫ガード</h3><p>同一日時の重複警告、再送信対策、受付枠・数量の再確認により、予約確定時の不整合を抑えます。</p></article>
+</div>
+</div>
+</section>
+
+<section class="section product-flow" id="flow">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>FROM CATALOG TO HANDOVER</p><h2>商品を見つけてから受渡しまで、<br><em>6つの流れ。</em></h2></div><p>お客様の入力だけで終わらず、店舗側の確認、製作、支払い、受渡し完了までを一つの予約として扱います。</p></div>
+<div class="product-flow-list">
+<article class="product-flow-step reveal"><span class="product-flow-number">01</span><h3>写真から商品を選ぶ</h3><p>カテゴリー、販売方法、受取日、残数を見ながら商品を探します。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">02</span><h3>サイズ・内容を指定</h3><p>号数、数量、プレート、ろうそく、包装、参考写真などを選びます。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">03</span><h3>受取日時を選ぶ</h3><p>準備日数、営業日、空き枠に合わせて店頭受取の日時を選択します。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">04</span><h3>予約を送信・確認</h3><p>お客様情報とアレルギー確認を入力し、予約番号と内容を確認します。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">05</span><h3>店舗で確認・製作</h3><p>オーナーPCとスタッフiPadで注意事項を確認し、製作状況を更新します。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">06</span><h3>支払い確認・受渡し</h3><p>店頭で支払いを確認し、商品を渡した後に受渡し完了として残します。</p></article>
+</div>
+</div>
+</section>
+
+<section class="section product-roles" id="roles">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>SCREENS BY ROLE</p><h2>使う人ごとに、<br><em>必要な画面だけ。</em></h2></div><p>お客様の商品選び、予約後の確認、店舗の商品管理、現場の製作・受渡しを、それぞれの端末に合わせます。</p></div>
+<div class="product-role-grid">
+<article class="product-role reveal"><span>WEB</span><h3>お客様カタログ</h3><p>スマートフォンで商品を探し、受取予約へ進みます。</p><ul><li>写真・価格・アレルギー</li><li>検索・カテゴリー</li><li>サイズ・オプション</li><li>受取日時・予約送信</li></ul></article>
+<article class="product-role reveal"><span>LINE</span><h3>予約確認</h3><p>予約後の内容と現在の状態を確認します。</p><ul><li>今後の予約</li><li>過去・取消</li><li>商品明細・予定金額</li><li>キャンセル依頼</li></ul></article>
+<article class="product-role reveal"><span>PC</span><h3>オーナー</h3><p>商品・カタログ・受付条件・予約を管理します。</p><ul><li>商品・写真・価格</li><li>公開・販売期間</li><li>数量・締切・受取枠</li><li>予約・顧客確認</li></ul></article>
+<article class="product-role reveal"><span>iPad</span><h3>店舗スタッフ</h3><p>当日の製作と受渡し業務を進めます。</p><ul><li>受取時間順・商品別集計</li><li>注意事項・参考写真</li><li>製作開始・完成</li><li>支払い確認・受渡し</li></ul></article>
+</div>
+</div>
+</section>
+
+<section class="section product-live" id="demo">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-light"><span></span>REAL SCREEN DEMO</p><h2>説明画像ではなく、<br>実際の操作デモを体験。</h2></div><p>初期表示では実システムを読み込みません。「操作デモを開く」を押した時だけモーダル内にiframeを生成し、閉じると破棄します。別タブでも確認できます。</p></div>
+<div class="product-live-list">
+<article class="product-live-row">
+<div class="product-live-copy reveal"><span>01 / CUSTOMER CATALOG</span><h3>写真カタログ・<br>取り置き・予約</h3><p>商品を写真から探し、販売方法、サイズ、オプション、残数、受取予定日を確認して予約へ進みます。</p><ul><li>検索・カテゴリー・販売方法</li><li>商品共有URL</li><li>受取日・時間枠</li></ul><div class="product-live-actions"><button class="button button-line" type="button" data-cake-demo-url="https://dpromstk2000-lab.github.io/dpro-cake-line-liff/index.html?demo=1&amp;v=CAKE-16" data-cake-demo-title="お客様向け写真カタログ・予約">操作デモを開く</button><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/dpro-cake-line-liff/index.html?demo=1&amp;v=CAKE-16" target="_blank" rel="noopener" data-demo-link="cake-catalog">別タブで体験する</a></div></div>
+<div class="live-device reveal"><div class="live-window live-window-phone"><div class="live-window-head"><span>DPRO PATISSERIE / CUSTOMER</span><i></i></div><div class="demo-frame"><div class="cake-demo-preview"><small>PHOTO CATALOG</small><h4>写真から選ぶ<br>ケーキ予約</h4><div class="cake-demo-products"><div class="cake-demo-product"><i>🍓</i><b>いちごデコレーション</b><span>事前予約</span></div><div class="cake-demo-product"><i>🎁</i><b>焼き菓子ギフト</b><span>取り置き</span></div><div class="cake-demo-product"><i>🎂</i><b>オーダーケーキ</b><span>相談受付</span></div></div></div></div></div></div>
+</article>
+
+<article class="product-live-row">
+<div class="product-live-copy reveal"><span>02 / MEMBER</span><h3>お客様の<br>予約確認</h3><p>今後の予約、過去・取消、受取日時、商品明細、予定金額を確認し、対象予約はキャンセルを依頼できます。</p><ul><li>予約状態と受取日時</li><li>商品・オプション明細</li><li>キャンセル依頼</li></ul><div class="product-live-actions"><button class="button button-line" type="button" data-cake-demo-url="https://dpromstk2000-lab.github.io/dpro-cake-line-liff/member.html?demo=1&amp;v=CAKE-16" data-cake-demo-title="お客様向け予約確認">操作デモを開く</button><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/dpro-cake-line-liff/member.html?demo=1&amp;v=CAKE-16" target="_blank" rel="noopener" data-demo-link="cake-member">別タブで体験する</a></div></div>
+<div class="live-device reveal"><div class="live-window live-window-phone"><div class="live-window-head"><span>DPRO PATISSERIE / MEMBER</span><i></i></div><div class="demo-frame"><div class="cake-demo-preview cake-demo-member"><small>RESERVATION STATUS</small><h4>ご予約内容を、<br>いつでも確認。</h4><div class="cake-demo-order"><strong>7月31日 16:00</strong><br><span>店舗確認済み</span><p>いちごデコレーション 5号<br>お支払い予定 4,500円</p></div></div></div></div></div>
+</article>
+
+<article class="product-live-row">
+<div class="product-live-copy reveal"><span>03 / OWNER PC</span><h3>商品・写真・<br>受付条件の管理</h3><p>商品登録、写真、販売方法、数量、期間、共有URL、日付別販売設定、予約状況をPCで管理します。</p><ul><li>公開・非公開・アーカイブ</li><li>数量上限・締切</li><li>営業日・受取枠</li></ul><div class="product-live-actions"><button class="button button-line" type="button" data-cake-demo-url="https://dpromstk2000-lab.github.io/dpro-cake-line-liff/owner.html?demo=1&amp;v=CAKE-16" data-cake-demo-title="オーナーPC商品・予約管理">操作デモを開く</button><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/dpro-cake-line-liff/owner.html?demo=1&amp;v=CAKE-16" target="_blank" rel="noopener" data-demo-link="cake-owner">別タブで体験する</a></div></div>
+<div class="live-device reveal"><div class="live-window"><div class="live-window-head"><span>DPRO PATISSERIE / OWNER PC</span><i></i></div><div class="demo-frame"><div class="cake-demo-owner"><aside><b>DPRO パティスリー</b><span>ダッシュボード</span><span>予約管理</span><span>商品・カタログ</span><span>営業日・受取枠</span></aside><main><div><span>公開商品<b>18</b></span><span>本日の予約<b>8</b></span><span>製作中<b>1</b></span></div><h4>商品と予約を一つの管理画面で</h4><p>写真・価格・サイズ・オプション・数量・締切・公開期間・日付別設定を確認します。</p></main></div></div></div></div>
+</article>
+
+<article class="product-live-row">
+<div class="product-live-copy reveal"><span>04 / STAFF IPAD</span><h3>製作・支払い・<br>受渡し</h3><p>予約を受取時間順・工程別・商品別に確認し、製作開始、完成、支払い確認、受渡し完了を更新します。</p><ul><li>製作ボード・商品別集計</li><li>プレート・注意事項・参考写真</li><li>支払い確認後に受渡し完了</li></ul><div class="product-live-actions"><button class="button button-line" type="button" data-cake-demo-url="https://dpromstk2000-lab.github.io/dpro-cake-line-liff/owner-ipad.html?demo=1&amp;v=CAKE-16" data-cake-demo-title="スタッフiPad 製作・受渡し">操作デモを開く</button><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/dpro-cake-line-liff/owner-ipad.html?demo=1&amp;v=CAKE-16" target="_blank" rel="noopener" data-demo-link="cake-ipad">別タブで体験する</a></div></div>
+<div class="live-device reveal"><div class="live-window live-window-tablet"><div class="live-window-head"><span>DPRO PATISSERIE / STAFF IPAD</span><i></i></div><div class="demo-frame"><div class="cake-demo-ipad"><div><small>TODAY'S PRODUCTION</small><h4>本日の製作・受渡し</h4></div><div class="cake-demo-ipad-grid"><span>予約確認待ち<b>2</b></span><span>製作待ち<b>3</b></span><span>製作中<b>1</b></span><span>受取待ち<b>2</b></span></div></div></div></div></div>
+</article>
+</div>
+<p class="cake-scope-note reveal"><strong>DEMO環境：</strong>公開デモは架空の商品・予約情報を使う確認用画面です。管理コード、APIキー、秘密鍵、環境変数はこの紹介ページに掲載していません。</p>
+</div>
+</section>
+
+<section class="section product-after" id="after">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>BEFORE / AFTER</p><h2>予約フォームを置くだけでなく、<br><em>商品選びの前後をつなぐ。</em></h2></div><p>写真を見て選ぶ段階と、店舗が作って渡す段階を同じ予約情報でつなぎ、確認の往復を減らします。</p></div>
+<div class="product-after-grid">
+<div class="product-after-panel product-after-before reveal"><span>BEFORE</span><h3>商品情報、予約、製作メモが場面ごとに分かれる。</h3><ul><li>SNS写真と価格表が別々</li><li>電話・DM・紙で予約内容が分散</li><li>数量上限や締切を都度判断</li><li>プレートや注意事項を口頭で引き継ぐ</li><li>受渡し済みかを手書きで確認</li></ul></div>
+<div class="product-after-arrow reveal">→</div>
+<div class="product-after-panel product-after-result reveal"><span>AFTER</span><h3>商品を選ぶところから受渡しまで、同じ予約で確認。</h3><ul><li>写真・価格・販売方法を同じカタログへ</li><li>サイズ・オプション・受取日時を予約へ保存</li><li>数量・締切・空き枠を画面で確認</li><li>オーナーPCとスタッフiPadで注意事項を共有</li><li>支払い確認と受渡し完了を履歴へ残す</li></ul></div>
+</div>
+</div>
+</section>
+
+<section class="section product-safety" id="safety">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>SAFE OPERATION</p><h2>公開デモから店舗運用まで、<br><em>確認と制御を前提に。</em></h2></div><p>見た目だけの予約画面ではなく、保存、認証、数量・受取枠、再送信など、実運用で必要な確認を組み込んでいます。</p></div>
+<div class="product-safety-grid">
+<article class="product-safety-card reveal"><span>01 / DEMO</span><h3>デモ用店舗・利用者を明示</h3><p>公開デモはデモ用店舗コードとデモ利用者を使い、本番のお客様情報を紹介ページへ表示しません。</p></article>
+<article class="product-safety-card reveal"><span>02 / AUTH</span><h3>管理画面は認証後に操作</h3><p>オーナーPCとスタッフiPadは管理コード入力後に開く構成で、管理コード自体を公式紹介ページへ掲載しません。</p></article>
+<article class="product-safety-card reveal"><span>03 / SAVE</span><h3>Worker API・DBへ保存</h3><p>商品・顧客・予約・工程はWorker APIを通じて保存し、各画面が同じ情報を再取得します。</p></article>
+<article class="product-safety-card reveal"><span>04 / GUARD</span><h3>数量・重複・再送信を確認</h3><p>受付枠、商品・サイズ別数量、同一日時の重複、送信の二重実行を予約確定時にも確認します。</p></article>
+</div>
+<p class="cake-scope-note reveal"><strong>本番導入：</strong>公開デモとは分け、契約店舗専用のGitHub・Worker・データベースとして準備します。権限、保存期間、個人情報の取扱いは店舗の運用内容を確認して設定します。</p>
+</div>
+</section>
+
+<section class="section product-pricing" id="pricing">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>DPRO OPTION PRICE</p><h2>LINE構築・運用店舗へ追加する、<br><em>DPROシステム料金。</em></h2></div><p>DPROシステムは単体販売ではなく、DPRO SHOPのLINE公式アカウント構築・運用契約店舗向けの追加サービスです。</p></div>
+<div class="product-price-grid">
+<article class="product-price-card reveal"><small>INITIAL SETUP</small><h3>DPROシステム構築費</h3><div class="product-price-value"><strong>33,000円</strong><span>税込</span></div><p>店舗情報、商品・予約の基本設定、デモ環境、接続先、公開・操作確認など、導入に必要な初期設定を行います。</p></article>
+<article class="product-price-card is-accent reveal"><small>MONTHLY USE &amp; MAINTENANCE</small><h3>利用・基本保守費</h3><div class="product-price-value"><strong>月額1,100円</strong><span>税込</span></div><p>システム利用と基本的な保守・確認を含みます。大規模な機能追加や個別開発は、事前に内容と費用をご案内します。</p></article>
+</div>
+<p class="product-price-note reveal"><strong>別途必要：</strong>LINE公式アカウント構築77,000円（税込）／LINE運用サポート月額3,300円（税込）。POSレジ、オンライン決済、配送、外部サービスとの個別連携が必要な場合は別途確認します。</p>
+</div>
+</section>
+
+<section class="section sys-faq" id="faq">
+<div class="section-inner">
+<div class="sys-center-heading reveal"><p class="eyebrow eyebrow-dark"><span></span>FAQ</p><h2>ケーキ・洋菓子店向けDPROシステムの<br>よくある質問。</h2></div>
+<div class="faq-list">
+<details class="reveal"><summary>どのような店舗に向いていますか。</summary><p>ホールケーキ、プチガトー、焼き菓子ギフト、季節商品、オーダーケーキなどを店頭受取で販売し、商品写真、予約、製作、受渡しを一つの流れで管理したい店舗に向いています。商品数や受取枠は店舗の運用に合わせて設定します。</p></details>
+<details class="reveal"><summary>お客様はスマートフォンだけで予約できますか。</summary><p>はい。写真付き商品カタログ、商品選択、サイズ・オプション、受取日時、お客様情報の入力まで、スマートフォンで操作できます。PCからも利用できます。</p></details>
+<details class="reveal"><summary>LINE未連携のお客様も利用できますか。</summary><p>公開カタログと予約フォームはWeb画面として開けるため、LINE未連携のお客様も予約できます。LINE連携時は、予約確認画面への導線をLINE内へまとめる運用ができます。</p></details>
+<details class="reveal"><summary>今のレジや電話予約と併用できますか。</summary><p>併用できます。このシステムはPOSレジや会計ソフトを置き換えるものではありません。電話・店頭受付を残しながら、Web予約から段階的に運用する方法を確認します。</p></details>
+<details class="reveal"><summary>オーダーケーキの参考写真を受け取れますか。</summary><p>はい。対象商品ではJPEG・PNG・WebPの参考写真を予約へ登録できます。画像サイズと形式を確認し、店舗側の画面から予約内容と一緒に確認します。</p></details>
+<details class="reveal"><summary>公開デモと本番環境は同じですか。</summary><p>同じではありません。公開デモは架空データを使う確認用です。本番は契約店舗専用のGitHub・Worker・データベースとして準備し、権限や保存内容を確認してから運用します。</p></details>
+</div>
+</div>
+</section>
+
+<section class="section product-final-cta">
+<div class="section-inner product-final-cta-inner reveal">
+<p class="eyebrow eyebrow-light"><span></span>TRY THE REAL DPRO PATISSERIE</p>
+<h2>今の商品案内と予約方法を比べながら、<br>実画面を確認しませんか。</h2>
+<p>現在の商品写真、電話・DM予約、受取枠、製作表、支払い・受渡し方法を伺い、どの画面から始めると使いやすいかを一緒に整理します。</p>
+<div class="product-final-actions">
+<a class="button button-line" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener"><span class="line-badge">LINE</span><span>無料で導入相談する</span><b>→</b></a>
+<a class="button button-ghost" href="https://dpromstk2000-lab.github.io/dpro-cake-line-liff/index.html?demo=1&amp;v=CAKE-16" target="_blank" rel="noopener" data-demo-link="cake-final">実際の操作デモ</a>
+</div>
+</div>
+</section>
+</main>
+
+<footer class="site-footer">
+<div class="footer-inner">
+<div class="footer-brand"><a class="brand" href="../"><span class="brand-mark" aria-hidden="true">D</span><span class="brand-copy"><strong>DPRO SHOP</strong><small>LINE BUSINESS DESIGN</small></span></a><p>福岡県を中心に、LINE公式アカウント、ホームページ、<br>契約店舗限定の業種別DPROシステムを支援します。</p></div>
+<div class="footer-links">
+<div><strong>SERVICE</strong><a href="../line-build">LINE公式アカウント構築</a><a href="../line-operation">LINE運用サポート</a><a href="../website">ホームページ制作</a><a href="../pricing">料金</a></div>
+<div><strong>PRODUCT</strong><a href="./">DPROシステム一覧</a><a href="cake">ケーキ・洋菓子店</a><a href="https://dpromstk2000-lab.github.io/dpro-cake-line-liff/index.html?demo=1&amp;v=CAKE-16" target="_blank" rel="noopener">ケーキ・洋菓子店デモ</a></div>
+<div><strong>GUIDE</strong><a href="../about">DPRO SHOPについて</a><a href="../contact">お問い合わせ</a><a href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで無料相談</a></div>
+</div>
+</div>
+<div class="footer-legal-links" aria-label="法務・お問い合わせ"><a href="../privacy">プライバシーポリシー</a><a href="../terms">サービス利用上の注意事項</a><a href="../contact">お問い合わせ</a></div>
+<div class="footer-bottom"><span>© 2026 DPRO SHOP. All Rights Reserved.</span><a href="#top">PAGE TOP ↑</a></div>
+</footer>
+<div class="product-mobile-cta" aria-label="固定アクション"><a href="https://dpromstk2000-lab.github.io/dpro-cake-line-liff/index.html?demo=1&amp;v=CAKE-16" target="_blank" rel="noopener" data-demo-link="cake-mobile">デモを体験</a><a href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで相談</a></div>
+
+<div class="cake-demo-modal" id="cake-demo-modal" hidden aria-hidden="true">
+<button class="cake-demo-modal-backdrop" type="button" data-cake-demo-close aria-label="操作デモを閉じる"></button>
+<div class="cake-demo-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="cake-demo-modal-title">
+<div class="cake-demo-modal-head">
+<div class="cake-demo-modal-title"><small>DEMO ENVIRONMENT / REAL SCREEN</small><strong id="cake-demo-modal-title">実際の操作デモ</strong></div>
+<div class="cake-demo-modal-actions"><a id="cake-demo-external" href="#" target="_blank" rel="noopener">別タブで開く</a><button class="cake-demo-modal-close" type="button" data-cake-demo-close aria-label="操作デモを閉じる">×</button></div>
+</div>
+<div class="cake-demo-modal-frame" id="cake-demo-modal-frame" aria-live="polite"></div>
+</div>
+</div>
+
+<script defer src="../script.js?v=17r1"></script>
+<script defer src="systems.js?v=1"></script>
+<script>
+(() => {
+  "use strict";
+
+  const modal = document.getElementById("cake-demo-modal");
+  const frameHolder = document.getElementById("cake-demo-modal-frame");
+  const title = document.getElementById("cake-demo-modal-title");
+  const external = document.getElementById("cake-demo-external");
+  const openButtons = [...document.querySelectorAll("[data-cake-demo-url]")];
+  const closeButtons = [...document.querySelectorAll("[data-cake-demo-close]")];
+  let lastFocus = null;
+
+  if (!modal || !frameHolder || !title || !external) return;
+
+  const focusableElements = () => [...modal.querySelectorAll("a[href],button:not([disabled])")]
+    .filter((element) => !element.hidden && element.offsetParent !== null);
+
+  const closeDemo = () => {
+    if (modal.hidden) return;
+    frameHolder.replaceChildren();
+    modal.hidden = true;
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("cake-demo-open");
+    if (lastFocus instanceof HTMLElement) lastFocus.focus();
+    lastFocus = null;
+  };
+
+  const openDemo = (button) => {
+    const url = button.dataset.cakeDemoUrl || "";
+    const demoTitle = button.dataset.cakeDemoTitle || "DPRO ケーキ・洋菓子店 LINE 操作デモ";
+    if (!url) return;
+
+    lastFocus = document.activeElement;
+    title.textContent = demoTitle;
+    external.href = url;
+
+    const frame = document.createElement("iframe");
+    frame.src = url;
+    frame.title = `${demoTitle}（DEMO環境）`;
+    frame.loading = "eager";
+    frame.referrerPolicy = "no-referrer";
+    frame.setAttribute("allow", "clipboard-write");
+
+    frameHolder.replaceChildren(frame);
+    modal.hidden = false;
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("cake-demo-open");
+    window.requestAnimationFrame(() => modal.querySelector(".cake-demo-modal-close")?.focus());
+  };
+
+  openButtons.forEach((button) => button.addEventListener("click", () => openDemo(button)));
+  closeButtons.forEach((button) => button.addEventListener("click", closeDemo));
+
+  document.addEventListener("keydown", (event) => {
+    if (modal.hidden) return;
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeDemo();
+      return;
+    }
+    if (event.key !== "Tab") return;
+
+    const focusable = focusableElements();
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+})();
+</script>
+</body>
+</html>
