@@ -2343,3 +2343,40 @@ linear-gradient(145deg,#06101c,#0a1b2c);
   .dayservice-kpis{grid-template-columns:1fr 1fr}.dayservice-stage-tablet{display:none}
   .dayservice-live-owner{grid-template-columns:1fr}.dayservice-live-owner aside{display:none}
 }
+
+/* DPRO-SYSTEMS-10 HAIR SALON PRODUCT PAGE */
+.hair-product-page{--hair:#153f34;--hair-dark:#0e2c24;--hair-soft:#e8f3ee;--hair-gold:#ad7a2c}
+.hair-product-page .hair-product-hero{
+  background:
+    radial-gradient(circle at 77% 18%,rgba(68,220,255,.18),transparent 28%),
+    radial-gradient(circle at 25% 91%,rgba(173,122,44,.18),transparent 37%),
+    linear-gradient(145deg,#05101c,#0a1d31 50%,#07111f);
+}
+.hair-product-page .product-hero-copy h1 em{
+  background:linear-gradient(115deg,#fff 0%,#9ce7dc 50%,#f3d6a7 100%);
+  background-clip:text;-webkit-background-clip:text;
+}
+.hair-code{background:linear-gradient(135deg,rgba(68,220,255,.16),rgba(173,122,44,.18))!important;color:#e7fbf6!important}
+.hair-monitor-ui{min-height:455px;padding:22px;display:grid;grid-template-columns:150px 1fr;background:#eef4f1}
+.hair-monitor-side{padding:16px;border-radius:14px;background:linear-gradient(160deg,#102a22,#153f34 65%,#28705b);color:#fff}
+.hair-monitor-side strong{display:block;font-size:12px}.hair-monitor-side span{margin-top:10px;padding:8px 9px;display:block;border-radius:8px;background:rgba(255,255,255,.09);color:rgba(255,255,255,.78);font-size:7px;font-weight:850}
+.hair-monitor-main{padding:6px 0 0 16px}.hair-monitor-head{display:flex;align-items:center;justify-content:space-between}.hair-monitor-head strong{font-size:16px}.hair-monitor-head b{padding:6px 10px;border-radius:999px;background:#fff;color:#153f34;font-size:9px}
+.hair-kpis{margin-top:15px;display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.hair-kpis span{padding:11px 8px;border-radius:11px;background:#fff;color:#697a74;font-size:7px;font-weight:850}.hair-kpis b{margin-top:5px;display:block;color:#153f34;font-size:16px}
+.hair-board{margin-top:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.hair-board>div{min-height:220px;padding:10px;border-radius:12px;background:#dfeae5}.hair-board strong{display:block;color:#31594d;font-size:8px}.hair-board span{margin-top:8px;padding:9px 7px;display:block;border-radius:9px;background:#fff;color:#536b63;font-size:7px;font-weight:800;line-height:1.45}
+.hair-stage-phone{bottom:8px}.hair-phone-card{margin-top:12px;padding:11px;border:1px solid #d6e4de;border-radius:12px;background:#fff}.hair-phone-card small{color:#697b75;font-size:7px}.hair-phone-card h3{margin:8px 0;font-size:13px}.hair-phone-card span{margin-top:6px;padding:7px 8px;display:block;border-radius:8px;background:#edf6f2;color:#3b5e54;font-size:6px;font-weight:800}.hair-phone-card b{margin-top:9px;padding:8px;display:block;border-radius:9px;background:#153f34;color:#fff;font-size:7px;text-align:center}
+.hair-stage-tablet{bottom:4px}.hair-tablet-row{margin-top:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.hair-tablet-row span{padding:11px 4px;border-radius:9px;background:#e9f4ef;color:#1d5545;font-size:6px;font-weight:900;text-align:center}
+.hair-live-booking,.hair-live-member{min-height:430px;padding:62px 22px 24px;background:linear-gradient(180deg,#eef6f2,#fff)}.hair-live-booking small,.hair-live-member small{color:#697a74;font-size:10px;font-weight:900}.hair-live-booking h4,.hair-live-member h4{margin:13px 0;font-size:24px}.hair-live-booking span{margin-top:9px;padding:12px;display:block;border:1px solid #d7e5df;border-radius:11px;background:#fff;color:#4a665d;font-size:11px;font-weight:800}.hair-live-booking>b{margin-top:14px;padding:12px;display:block;border-radius:11px;background:#153f34;color:#fff;text-align:center}
+.hair-live-member>b{padding:11px;display:block;border-radius:11px;background:#fbf2df;color:#805711;text-align:center}.hair-live-member>div{margin-top:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.hair-live-member span{padding:9px 5px;border-radius:10px;background:#eaf4ef;color:#153f34;font-size:8px;text-align:center;font-weight:850}.hair-live-member p{color:#60746d}
+.hair-live-board{min-height:390px;padding:24px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;background:#edf4f0}.hair-live-board>div{padding:12px 8px;border-radius:12px;background:#fff;border:1px solid #d8e4de}.hair-live-board strong{display:block;color:#255348;font-size:9px}.hair-live-board span{margin-top:12px;display:block;color:#153f34;font-size:23px;font-weight:950}
+.hair-live-staff{min-height:400px;padding:27px;background:#edf4f0}.hair-live-staff>div:first-child{padding:17px;border-radius:13px;background:linear-gradient(135deg,#153f34,#28705b);color:#fff}.hair-live-staff small{font-size:9px;opacity:.75}.hair-live-staff h4{margin:5px 0 0;font-size:20px}.hair-staff-tabs{margin-top:14px;display:grid;grid-template-columns:repeat(5,1fr);gap:6px}.hair-staff-tabs span{padding:10px 4px;border-radius:9px;background:#fff;color:#345c51;font-size:7px;font-weight:850;text-align:center}.hair-live-staff p{margin-top:15px;padding:14px;border-radius:12px;background:#fff;color:#60736c}
+.hair-live-owner{min-height:420px;display:grid;grid-template-columns:138px 1fr;background:#edf4f0}.hair-live-owner aside{padding:21px 13px;background:#102a22;color:#fff}.hair-live-owner aside b{display:block;font-size:11px}.hair-live-owner aside span{margin-top:12px;display:block;color:rgba(255,255,255,.72);font-size:8px}.hair-live-owner main{padding:28px}.hair-live-owner main>div{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.hair-live-owner main span{padding:13px;border-radius:11px;background:#fff;color:#63766f;font-size:8px;font-weight:850}.hair-live-owner main b{display:block;margin-top:7px;color:#153f34;font-size:18px}.hair-live-owner h4{margin:25px 0 9px;font-size:21px}.hair-live-owner p{color:#60746d}
+.sys-product-card.is-hair .sys-product-visual{background:radial-gradient(circle at 82% 15%,rgba(21,63,52,.22),transparent 34%),linear-gradient(145deg,#eaf5f0,#fbfcfc)}
+.sys-product-card.is-hair .sys-product-monitor-grid span{background:#ecf5f1;color:#2d5c50}
+.sys-product-card.is-hair .sys-product-phone-inner b,.sys-product-card.is-hair .sys-product-card-copy small,.sys-product-card.is-hair .sys-product-status{color:#153f34}
+.sys-product-card.is-hair .sys-product-phone-inner span{background:#ecf5f1;color:#3a6257}
+@media(max-width:760px){
+  .hair-monitor-ui{grid-template-columns:1fr;padding:13px}.hair-monitor-side{display:none}.hair-monitor-main{padding:4px}
+  .hair-kpis{grid-template-columns:1fr 1fr}.hair-board{grid-template-columns:1fr 1fr}.hair-board>div{min-height:150px}
+  .hair-stage-tablet{display:none}.hair-live-board{grid-template-columns:1fr 1fr}.hair-staff-tabs{grid-template-columns:1fr 1fr}
+  .hair-live-owner{grid-template-columns:1fr}.hair-live-owner aside{display:none}
+}
