@@ -2380,3 +2380,39 @@ linear-gradient(145deg,#06101c,#0a1b2c);
   .hair-stage-tablet{display:none}.hair-live-board{grid-template-columns:1fr 1fr}.hair-staff-tabs{grid-template-columns:1fr 1fr}
   .hair-live-owner{grid-template-columns:1fr}.hair-live-owner aside{display:none}
 }
+
+/* DPRO-SYSTEMS-11 NAIL SALON PRODUCT PAGE */
+.nail-product-page{--nail:#8c6558;--nail-dark:#68473e;--nail-soft:#f7ece6;--nail-gold:#a98143}
+.nail-product-page .nail-product-hero{
+  background:
+    radial-gradient(circle at 77% 18%,rgba(200,154,135,.22),transparent 28%),
+    radial-gradient(circle at 25% 91%,rgba(169,129,67,.18),transparent 37%),
+    linear-gradient(145deg,#05101c,#0a1d31 50%,#07111f);
+}
+.nail-product-page .product-hero-copy h1 em{
+  background:linear-gradient(115deg,#fff 0%,#f0cfc1 50%,#e4c587 100%);
+  background-clip:text;-webkit-background-clip:text;
+}
+.nail-code{background:linear-gradient(135deg,rgba(200,154,135,.18),rgba(169,129,67,.18))!important;color:#fff1ea!important}
+.nail-monitor-ui{min-height:455px;padding:22px;display:grid;grid-template-columns:150px 1fr;background:#f5efeb}
+.nail-monitor-side{padding:16px;border-radius:14px;background:linear-gradient(160deg,#4d342d,#68473e 65%,#9c6c5d);color:#fff}
+.nail-monitor-side strong{display:block;font-size:12px}.nail-monitor-side span{margin-top:10px;padding:8px 9px;display:block;border-radius:8px;background:rgba(255,255,255,.09);color:rgba(255,255,255,.78);font-size:7px;font-weight:850}
+.nail-monitor-main{padding:6px 0 0 16px}.nail-monitor-head{display:flex;align-items:center;justify-content:space-between}.nail-monitor-head strong{font-size:16px}.nail-monitor-head b{padding:6px 10px;border-radius:999px;background:#fff;color:#68473e;font-size:9px}
+.nail-kpis{margin-top:15px;display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.nail-kpis span{padding:11px 8px;border-radius:11px;background:#fff;color:#776d68;font-size:7px;font-weight:850}.nail-kpis b{margin-top:5px;display:block;color:#68473e;font-size:16px}
+.nail-board{margin-top:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.nail-board>div{min-height:220px;padding:10px;border-radius:12px;background:#ece1db}.nail-board strong{display:block;color:#6b5148;font-size:8px}.nail-board span{margin-top:8px;padding:9px 7px;display:block;border-radius:9px;background:#fff;color:#66564e;font-size:7px;font-weight:800;line-height:1.45}
+.nail-stage-phone{bottom:8px}.nail-phone-card{margin-top:12px;padding:11px;border:1px solid #e2d5ce;border-radius:12px;background:#fff}.nail-phone-card small{color:#776d68;font-size:7px}.nail-phone-card h3{margin:8px 0;font-size:13px}.nail-phone-card span{margin-top:6px;padding:7px 8px;display:block;border-radius:8px;background:#f8eee9;color:#68473e;font-size:6px;font-weight:800}.nail-phone-card b{margin-top:9px;padding:8px;display:block;border-radius:9px;background:#68473e;color:#fff;font-size:7px;text-align:center}
+.nail-stage-tablet{bottom:4px}.nail-tablet-row{margin-top:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.nail-tablet-row span{padding:11px 4px;border-radius:9px;background:#f7ece6;color:#68473e;font-size:6px;font-weight:900;text-align:center}
+.nail-live-booking,.nail-live-member{min-height:430px;padding:62px 22px 24px;background:linear-gradient(180deg,#f8efea,#fff)}.nail-live-booking small,.nail-live-member small{color:#776d68;font-size:10px;font-weight:900}.nail-live-booking h4,.nail-live-member h4{margin:13px 0;font-size:24px}.nail-live-booking span{margin-top:9px;padding:12px;display:block;border:1px solid #e2d5ce;border-radius:11px;background:#fff;color:#66564e;font-size:11px;font-weight:800}.nail-live-booking>b{margin-top:14px;padding:12px;display:block;border-radius:11px;background:#68473e;color:#fff;text-align:center}
+.nail-live-member>b{padding:11px;display:block;border-radius:11px;background:#fbf2df;color:#805711;text-align:center}.nail-live-member>div{margin-top:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.nail-live-member span{padding:9px 5px;border-radius:10px;background:#f7ece6;color:#68473e;font-size:8px;text-align:center;font-weight:850}.nail-live-member p{color:#71615a}
+.nail-live-ipad{min-height:390px;padding:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:9px;background:#f4eeea}.nail-live-ipad>div{padding:13px 9px;border-radius:13px;background:#fff;border:1px solid #e2d6cf}.nail-live-ipad strong{display:block;color:#68473e;font-size:9px}.nail-live-ipad span{margin-top:12px;display:block;color:#8c6558;font-size:19px;font-weight:950}
+.nail-live-owner{min-height:420px;display:grid;grid-template-columns:138px 1fr;background:#f4eeea}.nail-live-owner aside{padding:21px 13px;background:#4d342d;color:#fff}.nail-live-owner aside b{display:block;font-size:11px}.nail-live-owner aside span{margin-top:12px;display:block;color:rgba(255,255,255,.72);font-size:8px}.nail-live-owner main{padding:28px}.nail-live-owner main>div{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.nail-live-owner main span{padding:13px;border-radius:11px;background:#fff;color:#776d68;font-size:8px;font-weight:850}.nail-live-owner main b{display:block;margin-top:7px;color:#68473e;font-size:18px}.nail-live-owner h4{margin:25px 0 9px;font-size:21px}.nail-live-owner p{color:#71615a}
+.sys-product-card.is-nail .sys-product-visual{background:radial-gradient(circle at 82% 15%,rgba(140,101,88,.24),transparent 34%),linear-gradient(145deg,#f6ece7,#fbfcfc)}
+.sys-product-card.is-nail .sys-product-monitor-grid span{background:#f7ece6;color:#68473e}
+.sys-product-card.is-nail .sys-product-phone-inner b,.sys-product-card.is-nail .sys-product-card-copy small,.sys-product-card.is-nail .sys-product-status{color:#8c6558}
+.sys-product-card.is-nail .sys-product-phone-inner span{background:#f7ece6;color:#68473e}
+@media(max-width:760px){
+  .nail-monitor-ui{grid-template-columns:1fr;padding:13px}.nail-monitor-side{display:none}.nail-monitor-main{padding:4px}
+  .nail-kpis{grid-template-columns:1fr 1fr}.nail-board{grid-template-columns:1fr 1fr}.nail-board>div{min-height:150px}
+  .nail-stage-tablet{display:none}.nail-live-ipad{grid-template-columns:1fr 1fr}
+  .nail-live-owner{grid-template-columns:1fr}.nail-live-owner aside{display:none}
+}
