@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ja">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async fetchpriority="low" src="https://www.googletagmanager.com/gtag/js?id=G-YPN3998BHG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-YPN3998BHG');
+</script>
+<meta charset="utf-8">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="飲食店向けDPRO テイクアウト・モバイルオーダー LINE。写真付き商品カタログ、LINE・電話・店頭注文、30分受取枠、厨房4列ボード、マイページ・再注文、商品管理を実画面デモとともに紹介します。">
+<meta name="theme-color" content="#07111f">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DPRO SHOP">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="DPRO テイクアウト・モバイルオーダー LINE｜注文・厨房・受取を一元管理">
+<meta property="og:description" content="写真から選ぶ注文と、厨房・受け渡しを一つに。飲食店向けDPROシステムの機能と実画面を紹介します。">
+<meta property="og:url" content="https://dpro-shop.com/systems/takeout">
+<meta property="og:image" content="https://dpro-shop.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DPRO テイクアウト・モバイルオーダー LINE｜DPRO SHOP">
+<meta name="twitter:description" content="写真付き注文、受取枠、厨房4列ボード、マイページ、店舗管理を一つにつなぐ飲食店向けシステム。">
+<meta name="twitter:image" content="https://dpro-shop.com/og-image.png">
+<title>DPRO テイクアウト・モバイルオーダー LINE｜注文・厨房・受取を一元管理｜DPRO SHOP</title>
+<link rel="canonical" href="https://dpro-shop.com/systems/takeout">
+<link rel="manifest" href="../site.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="../sitemap.xml">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="stylesheet" href="../styles.css?v=17r2">
+<link rel="stylesheet" href="systems.css?v=1">
+<script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://dpro-shop.com/#website",
+      "name":"DPRO SHOP",
+      "url":"https://dpro-shop.com/",
+      "inLanguage":"ja"
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://dpro-shop.com/systems/takeout#webpage",
+      "url":"https://dpro-shop.com/systems/takeout",
+      "name":"DPRO テイクアウト・モバイルオーダー LINE｜注文・厨房・受取を一元管理",
+      "description":"飲食店向けDPRO テイクアウト・モバイルオーダー LINEの機能、利用者別画面、導入前後、実画面デモを紹介します。",
+      "isPartOf":{"@id":"https://dpro-shop.com/#website"},
+      "inLanguage":"ja",
+      "dateModified":"2026-07-30",
+      "breadcrumb":{"@id":"https://dpro-shop.com/systems/takeout#breadcrumb"},
+      "mainEntity":{"@id":"https://dpro-shop.com/systems/takeout#software"}
+    },
+    {
+      "@type":"BreadcrumbList",
+      "@id":"https://dpro-shop.com/systems/takeout#breadcrumb",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"DPRO SHOP","item":"https://dpro-shop.com/"},
+        {"@type":"ListItem","position":2,"name":"業種別DPROシステム","item":"https://dpro-shop.com/systems/"},
+        {"@type":"ListItem","position":3,"name":"テイクアウト・モバイルオーダー","item":"https://dpro-shop.com/systems/takeout"}
+      ]
+    },
+    {
+      "@type":"SoftwareApplication",
+      "@id":"https://dpro-shop.com/systems/takeout#software",
+      "name":"DPRO テイクアウト・モバイルオーダー LINE",
+      "alternateName":"DPRO テイクアウト LINE",
+      "applicationCategory":"BusinessApplication",
+      "operatingSystem":"Web browser / LINE",
+      "description":"写真付き商品カタログ、LINE・電話・店頭注文、30分受取枠、調理ポイント、厨房4列ボード、マイページ・再注文、商品・営業設定をつなぐ飲食店向け業務システム。",
+      "url":"https://dpro-shop.com/systems/takeout",
+      "offers":[
+        {
+          "@type":"Offer",
+          "name":"DPROシステム構築",
+          "price":"33000",
+          "priceCurrency":"JPY",
+          "description":"LINE公式アカウント構築・運用契約店舗限定"
+        },
+        {
+          "@type":"Offer",
+          "name":"DPROシステム利用・基本保守",
+          "price":"1100",
+          "priceCurrency":"JPY",
+          "description":"月額。LINE公式アカウント構築・運用契約店舗限定"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<style>
+/* TAKEOUT page-only presentation. Shared files are intentionally untouched. */
+html{overflow-x:clip}
+body.takeout-page{margin:0;max-width:100%}
+.takeout-page,.takeout-page *{box-sizing:border-box}
+.takeout-page{--system-accent:#ec572f;--system-accent-dark:#a83a1d;--system-accent-soft:#fff0e8;--takeout-brown:#422d23;--takeout-cream:#fff8f1;--takeout-green:#27815a;overflow-x:clip}
+.takeout-page .product-hero{background:radial-gradient(circle at 74% 18%,rgba(68,220,255,.13),transparent 26%),radial-gradient(circle at 28% 92%,rgba(126,107,255,.15),transparent 34%),linear-gradient(145deg,#05101c,#081929 52%,#07111f)}
+.takeout-page .product-code{color:rgba(255,255,255,.055)}
+.takeout-page .line-badge{background:linear-gradient(135deg,#ff7a45,#ec572f)}
+.takeout-stage{position:relative;min-height:610px}
+.takeout-monitor{position:absolute;inset:36px 0 auto 0;overflow:hidden;border:1px solid rgba(255,255,255,.17);border-radius:27px;background:#f7f3ee;box-shadow:0 45px 110px rgba(0,0,0,.42);transform:perspective(1200px) rotateY(-3deg)}
+.takeout-monitor-bar{height:42px;padding:0 17px;display:flex;align-items:center;justify-content:space-between;background:#2a1d17;color:#fff;font-size:10px;font-weight:900;letter-spacing:.08em}
+.takeout-monitor-bar span{display:flex;gap:6px}.takeout-monitor-bar i{width:7px;height:7px;border-radius:50%;background:#ec572f}.takeout-monitor-bar i:nth-child(2){background:#f2b84b}.takeout-monitor-bar i:nth-child(3){background:#27815a}
+.takeout-board{padding:18px}.takeout-board-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:13px}.takeout-board-head strong{font-size:16px;color:#2f2925}.takeout-board-head b{padding:7px 10px;border-radius:999px;background:#fff0e8;color:#a83a1d;font-size:10px}
+.takeout-columns{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.takeout-column{min-height:218px;padding:10px;border:1px solid #e9dfd7;border-radius:14px;background:#fff}.takeout-column>strong{display:flex;justify-content:space-between;color:#5b4a40;font-size:10px}.takeout-order{margin-top:9px;padding:10px;border-radius:11px;background:#fff8f1;box-shadow:0 7px 18px rgba(64,45,32,.07)}.takeout-order b,.takeout-order span{display:block}.takeout-order b{font-size:10px;color:#2f2925}.takeout-order span{margin-top:4px;color:#756b64;font-size:8px;line-height:1.5}
+.takeout-phone{position:absolute;z-index:3;right:-20px;bottom:0;width:210px;padding:9px;border:1px solid rgba(255,255,255,.2);border-radius:35px;background:#151515;box-shadow:0 35px 80px rgba(0,0,0,.42);transform:rotate(3deg)}
+.takeout-phone-screen{min-height:396px;padding:17px 12px;border-radius:27px;background:linear-gradient(180deg,#fbf7f1,#f7f1e8);color:#29231f}.takeout-phone-brand{padding:16px;border-radius:20px;background:linear-gradient(115deg,#2b1d17,#6b3922);color:#fff}.takeout-phone-brand small,.takeout-phone-brand strong{display:block}.takeout-phone-brand small{font-size:8px;letter-spacing:.12em}.takeout-phone-brand strong{margin-top:4px;font-size:14px}.takeout-product-grid{margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px}.takeout-product{padding:8px;border-radius:13px;background:#fff;box-shadow:0 7px 18px rgba(72,47,30,.08)}.takeout-product i{height:46px;display:block;border-radius:9px;background:linear-gradient(135deg,#f0b44d,#ec572f)}.takeout-product:nth-child(2) i{background:linear-gradient(135deg,#65c49b,#27815a)}.takeout-product:nth-child(3) i{background:linear-gradient(135deg,#f0c5ac,#9a5b00)}.takeout-product:nth-child(4) i{background:linear-gradient(135deg,#d9c8ff,#7555aa)}.takeout-product b,.takeout-product span{display:block}.takeout-product b{margin-top:6px;font-size:8px}.takeout-product span{margin-top:2px;color:#c94220;font-size:8px;font-weight:900}
+.takeout-tablet{position:absolute;z-index:2;left:-20px;bottom:5px;width:240px;padding:8px;border:1px solid rgba(255,255,255,.2);border-radius:24px;background:#171717;box-shadow:0 30px 70px rgba(0,0,0,.36);transform:rotate(-4deg)}
+.takeout-tablet-screen{padding:15px;border-radius:17px;background:#f7f3ee;color:#2f2925}.takeout-tablet-screen small{font-size:7px;font-weight:900;letter-spacing:.15em;color:#ec572f}.takeout-tablet-screen h3{margin:5px 0 10px;font-size:12px}.takeout-mini-columns{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}.takeout-mini-columns span{min-height:80px;padding:6px 3px;border-radius:7px;background:#fff;font-size:6px;font-weight:900;text-align:center}
+.takeout-scope-note{margin-top:28px;padding:20px 22px;border-left:4px solid var(--system-accent);border-radius:0 14px 14px 0;background:var(--system-accent-soft);color:#5f3a2c;font-size:14px;line-height:1.8}
+.takeout-demo-modal[hidden]{display:none!important}.takeout-demo-modal{position:fixed;z-index:2000;inset:0;display:grid;place-items:center;padding:24px;background:rgba(3,10,18,.82);backdrop-filter:blur(12px)}
+.takeout-demo-dialog{width:min(1200px,100%);height:min(820px,calc(100vh - 48px));display:flex;flex-direction:column;overflow:hidden;border:1px solid rgba(255,255,255,.2);border-radius:24px;background:#07111f;box-shadow:0 40px 120px rgba(0,0,0,.55)}
+.takeout-demo-head{min-height:58px;padding:10px 13px 10px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px;border-bottom:1px solid rgba(255,255,255,.12);color:#fff}.takeout-demo-head strong{font-size:14px}.takeout-demo-head span{display:block;margin-top:3px;color:rgba(255,255,255,.55);font-size:10px;font-weight:700}.takeout-demo-close{width:42px;height:42px;border:1px solid rgba(255,255,255,.16);border-radius:50%;background:rgba(255,255,255,.08);color:#fff;font-size:22px;cursor:pointer}.takeout-demo-close:focus-visible{outline:3px solid #44dcff;outline-offset:2px}.takeout-demo-body{position:relative;flex:1;min-height:0;background:#fff}.takeout-demo-body iframe{width:100%;height:100%;display:block;border:0;background:#fff}.takeout-demo-loading{position:absolute;inset:0;display:grid;place-items:center;background:#f6f8fb;color:#334155;font-weight:900}.takeout-demo-body.is-loaded .takeout-demo-loading{display:none}.takeout-demo-foot{padding:10px 16px;display:flex;justify-content:space-between;gap:12px;align-items:center;background:#0b1b2d;color:rgba(255,255,255,.6);font-size:10px}.takeout-demo-foot a{color:#44dcff;font-weight:900}.takeout-demo-foot a:focus-visible{outline:2px solid #44dcff;outline-offset:3px}
+.takeout-page.demo-modal-open{overflow:hidden}
+@media(max-width:1000px){.takeout-stage{min-height:560px}.takeout-phone{right:0;width:185px}.takeout-tablet{left:0;width:215px}.takeout-columns{gap:6px}.takeout-board{padding:12px}.takeout-order{padding:7px}}
+@media(max-width:700px){.takeout-stage{min-height:465px}.takeout-monitor{inset:34px 4px auto}.takeout-monitor-bar{height:35px;font-size:8px}.takeout-board{padding:9px}.takeout-board-head strong{font-size:11px}.takeout-board-head b{font-size:7px}.takeout-column{min-height:150px;padding:6px}.takeout-column>strong{font-size:7px}.takeout-order{margin-top:5px}.takeout-order b{font-size:7px}.takeout-order span{font-size:6px}.takeout-phone{right:5px;width:142px;padding:6px;border-radius:25px}.takeout-phone-screen{min-height:275px;padding:11px 8px;border-radius:20px}.takeout-phone-brand{padding:10px;border-radius:14px}.takeout-phone-brand strong{font-size:10px}.takeout-product-grid{gap:5px}.takeout-product{padding:5px}.takeout-product i{height:30px}.takeout-product b,.takeout-product span{font-size:6px}.takeout-tablet{left:5px;width:160px;padding:6px}.takeout-tablet-screen{padding:10px}.takeout-tablet-screen h3{font-size:9px}.takeout-mini-columns span{min-height:52px;font-size:5px}.takeout-demo-modal{padding:8px}.takeout-demo-dialog{height:calc(100vh - 16px);border-radius:16px}.takeout-demo-head{padding-left:13px}.takeout-demo-head strong{font-size:12px}.takeout-demo-foot{align-items:flex-start;flex-direction:column}}
+@media(max-width:390px){.takeout-stage{min-height:420px}.takeout-monitor{left:0;right:0}.takeout-phone{width:128px}.takeout-tablet{width:145px}.takeout-board-head b{display:none}.takeout-column:nth-child(4) .takeout-order{display:none}}
+@media(prefers-reduced-motion:reduce){.takeout-monitor,.takeout-phone,.takeout-tablet{transform:none}.takeout-demo-modal{backdrop-filter:none}}
+</style>
+</head>
+<body class="system-product-page official-product-page takeout-page">
+<div class="sys-progress" aria-hidden="true"></div>
+<a class="skip-link" href="#main">本文へ移動</a>
+<header class="site-header" id="top">
+<div class="header-inner">
+<a class="brand" href="../" aria-label="DPRO SHOP トップへ"><span class="brand-mark" aria-hidden="true">D</span><span class="brand-copy"><strong>DPRO SHOP</strong><small>LINE BUSINESS DESIGN</small></span></a>
+<button class="menu-button" type="button" aria-expanded="false" aria-controls="global-nav" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+<nav class="global-nav" id="global-nav" aria-label="メインナビゲーション">
+<a href="../">トップ</a>
+<a href="../line-build">LINE構築</a>
+<a href="../line-operation">LINE運用</a>
+<a href="../website">HP制作</a>
+<a href="./">DPROシステム</a>
+<a href="../pricing">料金</a>
+<a href="../about">DPRO SHOP</a>
+<a class="nav-cta" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで無料相談</a>
+</nav>
+</div>
+</header>
+
+<main id="main">
+<section class="product-hero" aria-labelledby="product-title">
+<div class="product-hero-grid" aria-hidden="true"></div>
+<div class="product-hero-inner">
+<div class="product-hero-copy reveal">
+<nav class="sys-breadcrumb" aria-label="パンくずリスト"><a href="../">DPRO SHOP</a><span>／</span><a href="./">DPROシステム</a><span>／</span><strong>テイクアウト・モバイルオーダー</strong></nav>
+<div class="official-product-label"><span>DPRO SHOP</span><strong>公式製品紹介ページ</strong><small>DPRO テイクアウト・モバイルオーダー LINE｜飲食店向け</small></div>
+<div class="product-code" aria-hidden="true">TAKEOUT</div>
+<p class="eyebrow eyebrow-light"><span></span>ORDER・KITCHEN・PICKUP・REPEAT</p>
+<h1 id="product-title"><span>写真から選ぶ注文と、</span><span><em>厨房・受け渡しを一つに。</em></span></h1>
+<p class="product-hero-lead">写真付き商品カタログからのLINE注文、電話・店頭受付、30分単位の受取枠、厨房の調理進行、受取確認、前回と同じ注文までを一元化する、テイクアウト対応飲食店向けシステムです。</p>
+<div class="product-hero-actions">
+<a class="button button-line" href="#features"><span class="line-badge">TO</span><span>機能を詳しく見る</span><b>↓</b></a>
+<button class="button button-ghost" type="button" data-open-demo data-demo-title="写真付きモバイルオーダー" data-demo-url="https://dpromstk2000-lab.github.io/dpro-takeout-line-liff/index.html?preview=1&amp;v=takeout-site-18">実際の操作デモ</button>
+</div>
+<div class="product-proof-tags"><span>写真付き注文</span><span>LINE・電話・店頭</span><span>30分受取枠</span><span>厨房4列ボード</span><span>マイページ・再注文</span><span>商品・営業設定</span></div>
+</div>
+
+<div class="product-hero-stage reveal" aria-label="DPROテイクアウトの注文・店舗管理・厨房画面イメージ">
+<div class="product-stage-label"><i></i>OFFICIAL PRODUCT GUIDE / SYSTEM PREVIEW</div>
+<div class="takeout-stage" aria-hidden="true">
+<div class="takeout-monitor">
+<div class="takeout-monitor-bar"><span><i></i><i></i><i></i></span><b>DPRO TAKEOUT / PC注文管理</b><small>PREVIEW</small></div>
+<div class="takeout-board"><div class="takeout-board-head"><strong>本日の注文・調理状況</strong><b>注文受付中</b></div><div class="takeout-columns">
+<div class="takeout-column"><strong>受付確認 <b>2</b></strong><div class="takeout-order"><b>11:30 山田様</b><span>LINE注文／弁当2点</span></div><div class="takeout-order"><b>12:00 佐藤様</b><span>電話注文／惣菜3点</span></div></div>
+<div class="takeout-column"><strong>調理待ち <b>1</b></strong><div class="takeout-order"><b>12:00 鈴木様</b><span>店頭受付／残り24分</span></div></div>
+<div class="takeout-column"><strong>調理中 <b>1</b></strong><div class="takeout-order"><b>11:30 高橋様</b><span>作業中／残り8分</span></div></div>
+<div class="takeout-column"><strong>受取待ち <b>1</b></strong><div class="takeout-order"><b>11:00 田中様</b><span>調理完了／お渡し待ち</span></div></div>
+</div></div>
+</div>
+<div class="takeout-phone"><div class="takeout-phone-screen"><div class="takeout-phone-brand"><small>DPRO TAKEOUT</small><strong>写真から選んで注文</strong></div><div class="takeout-product-grid"><div class="takeout-product"><i></i><b>日替わり弁当</b><span>680円</span></div><div class="takeout-product"><i></i><b>唐揚げ弁当</b><span>750円</span></div><div class="takeout-product"><i></i><b>お惣菜セット</b><span>520円</span></div><div class="takeout-product"><i></i><b>季節のデザート</b><span>380円</span></div></div></div></div>
+<div class="takeout-tablet"><div class="takeout-tablet-screen"><small>KITCHEN &amp; CASHIER</small><h3>厨房・レジ 4列ボード</h3><div class="takeout-mini-columns"><span>受付確認</span><span>調理待ち</span><span>調理中</span><span>受取待ち</span></div></div></div>
+</div>
+</div>
+</div>
+</section>
+
+<nav class="product-local-nav" aria-label="ページ内メニュー">
+<div class="product-local-nav-inner"><a href="#summary" class="is-active">概要</a><a href="#system-map">全体構成</a><a href="#features">主な機能</a><a href="#flow">利用の流れ</a><a href="#roles">画面別</a><a href="#demo">実画面</a><a href="#after">導入前後</a><a href="#safety">安全設計</a><a href="#pricing">料金</a><a href="#faq">よくある質問</a></div>
+</nav>
+
+<section class="section product-summary" id="summary">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>UNDERSTAND IN 30 SECONDS</p><h2>30秒で分かる、<br><em>このシステムの役割。</em></h2></div><p>ネットショップやPOS全体を置き換えるのではなく、テイクアウト注文の受付、受取枠、調理進行、受け渡し、再注文をLINEと店舗画面でつなぎます。</p></div>
+<div class="product-summary-grid">
+<article class="product-summary-card reveal"><span>01 / CUSTOMER</span><h3>お客様は写真を見ながら、受取時間まで選択。</h3><p>商品写真、カテゴリー、価格、在庫、売り切れ、混雑状況を確認し、30分単位の受取枠とオプションを選んで注文できます。</p></article>
+<article class="product-summary-card reveal"><span>02 / STORE</span><h3>店舗はLINE・電話・店頭注文を同じ台帳へ。</h3><p>受付経路を残したまま一つの注文一覧へ集約し、確認、調理待ち、調理中、受取待ち、受取済みまで進行を共有します。</p></article>
+<article class="product-summary-card reveal"><span>03 / REPEAT</span><h3>注文後はマイページから、状況確認と再注文。</h3><p>注文状況のタイムライン、受取日時変更、キャンセル、前回と同じ内容での再注文に対応します。</p></article>
+</div>
+<div class="product-problem-grid">
+<article class="product-problem reveal"><div class="product-problem-before"><small>導入前</small><strong>LINE・電話・店頭の注文が別々で、転記と確認が増える</strong></div><div class="product-problem-arrow">↓</div><div class="product-problem-after"><small>導入後</small><strong>受付経路を残して同じ注文台帳と厨房ボードへ集約</strong></div></article>
+<article class="product-problem reveal"><div class="product-problem-before"><small>導入前</small><strong>注文が同じ時間帯に集中し、厨房の負荷が見えにくい</strong></div><div class="product-problem-arrow">↓</div><div class="product-problem-after"><small>導入後</small><strong>30分枠・件数上限・調理ポイントで受注量を調整</strong></div></article>
+<article class="product-problem reveal"><div class="product-problem-before"><small>導入前</small><strong>受取状況や再注文の案内が電話・口頭中心になる</strong></div><div class="product-problem-arrow">↓</div><div class="product-problem-after"><small>導入後</small><strong>マイページで状況・変更・キャンセル・再注文を案内</strong></div></article>
+</div>
+<p class="takeout-scope-note reveal"><strong>対象：</strong>弁当、惣菜、唐揚げ、寿司、カフェ、スイーツ、軽食など、店頭受取型の注文を扱う小規模・中小規模店舗。<br><strong>対象外：</strong>配達員の配車管理、フル機能のEC、POSレジ、キャッシュレス決済そのものは標準機能として置き換えません。</p>
+</div>
+</section>
+
+<section class="section product-map" id="system-map">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>ONE ORDER, FOUR EXPERIENCES</p><h2>お客様・受付・厨房・管理者を、<br><em>同じ注文情報でつなぐ。</em></h2></div><p>全員に同じ画面を見せるのではなく、お客様は注文と確認、店舗は受付と調理、管理者は商品・営業設定というように役割を分けます。</p></div>
+<div class="product-map-board reveal">
+<div class="product-map-label"><strong>DPRO テイクアウト・モバイルオーダー LINE 全体構成</strong><span>LINE × PC × iPad × Worker</span></div>
+<div class="product-map-flow">
+<div class="product-map-side">
+<div class="product-map-node"><b>CUSTOMER / LINE</b><strong>注文画面・マイページ</strong><p>商品選択・受取枠・オプション・状況確認・再注文</p></div>
+<div class="product-map-node"><b>RECEPTION / WEB</b><strong>電話・店頭受付</strong><p>LINE未利用者を含む注文登録・受付経路・顧客情報</p></div>
+</div>
+<div class="product-map-arrow">→</div>
+<div class="product-map-core"><b>API</b><strong>Worker API・データベース</strong><span>商品・注文・受取枠・調理進行・<br>顧客情報を同じデータとして保存</span></div>
+<div class="product-map-arrow">→</div>
+<div class="product-map-side">
+<div class="product-map-node"><b>OWNER / PC</b><strong>注文・商品・営業管理</strong><p>注文検索・状態更新・商品写真・在庫・曜日・休業日</p></div>
+<div class="product-map-node"><b>KITCHEN / IPAD</b><strong>厨房・レジ進行ボード</strong><p>受付確認・調理待ち・調理中・受取待ち・受取済み</p></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section product-features" id="features">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>MAIN FEATURES</p><h2>注文から受け渡しまでに必要な、<br><em>10の主要機能。</em></h2></div><p>注文フォームだけではなく、混雑、厨房の進行、商品管理、注文後の再利用までを実際の店舗運用につなげます。</p></div>
+<div class="product-feature-grid">
+<article class="product-feature reveal"><span class="product-feature-icon">PHOTO</span><h3>写真付き商品カタログ</h3><p>商品写真、説明、価格、カテゴリー、おすすめ、人気、売り切れを分かりやすく表示します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">ORDER</span><h3>LINEモバイルオーダー</h3><p>商品、数量、オプション、受取日時をスマートフォンから選択して注文できます。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">TEL</span><h3>電話・店頭注文</h3><p>LINEを利用しない注文も、受付経路を残して同じ注文台帳へ登録します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">30M</span><h3>30分単位の受取枠</h3><p>過去日時を除外し、店舗が設定した受付可能時間から受取枠を選べます。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">CAP</span><h3>調理ポイント・枠上限</h3><p>商品ごとの作業量と30分枠の件数・ポイント上限を使い、注文集中を調整します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">BOARD</span><h3>厨房4列ボード</h3><p>受付確認、調理待ち、調理中、受取待ちを時間順に表示し、受取済みまで更新します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">TIME</span><h3>残り時間・超過表示</h3><p>受取予定までの残り時間と時間超過を表示し、優先すべき注文を確認しやすくします。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">MY</span><h3>マイページ・再注文</h3><p>注文状況、履歴、日時変更、キャンセル、前回と同じ内容での再注文に対応します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">ITEM</span><h3>商品・写真・在庫管理</h3><p>商品写真、価格、販売曜日、オプション、在庫、売り切れを店舗側で管理します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">OPEN</span><h3>営業・混雑設定</h3><p>休業日、注文受付状態、自動・手動の混雑表示など、当日の営業状況を調整します。</p></article>
+</div>
+</div>
+</section>
+
+<section class="section product-flow" id="flow">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>FROM MENU TO PICKUP</p><h2>商品選択から再注文まで、<br><em>6つの流れ。</em></h2></div><p>注文の入口だけではなく、店舗での確認、厨房の進行、商品のお渡し、次回注文までを一つの流れとして扱います。</p></div>
+<div class="product-flow-list">
+<article class="product-flow-step reveal"><span class="product-flow-number">01</span><h3>写真から商品を選ぶ</h3><p>カテゴリー、写真、説明、価格、売り切れを見ながら商品とオプションを選びます。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">02</span><h3>受取日時を選択</h3><p>混雑状況を確認し、店舗が受け付け可能な30分単位の受取枠を選びます。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">03</span><h3>店舗が注文を確認</h3><p>LINE・電話・店頭の注文を同じ一覧で確認し、調理待ちへ進めます。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">04</span><h3>厨房で調理進行</h3><p>4列ボードで調理待ち、調理中、受取待ちへ更新し、残り時間を共有します。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">05</span><h3>商品を受け渡す</h3><p>受取待ちから受取済みへ更新し、当日の対応履歴として残します。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">06</span><h3>状況確認・再注文</h3><p>お客様はマイページから注文履歴を確認し、前回と同じ内容で再注文できます。</p></article>
+</div>
+</div>
+</section>
+
+<section class="section product-roles" id="roles">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>SCREENS BY ROLE</p><h2>使う人ごとに、<br><em>必要な画面だけ。</em></h2></div><p>お客様、受付担当、厨房・レジ、オーナー管理者に、役割に合った情報と操作を表示します。</p></div>
+<div class="product-role-grid">
+<article class="product-role reveal"><span>LINE</span><h3>お客様</h3><p>スマートフォンで商品選択と注文確認を行います。</p><ul><li>写真付き商品カタログ</li><li>受取枠・オプション</li><li>注文状況タイムライン</li><li>日時変更・再注文</li></ul></article>
+<article class="product-role reveal"><span>PC</span><h3>受付・オーナー</h3><p>本日の注文と顧客・受付経路を管理します。</p><ul><li>注文検索・状態更新</li><li>LINE・電話・店頭受付</li><li>顧客情報</li><li>連絡文面の確認</li></ul></article>
+<article class="product-role reveal"><span>iPad</span><h3>厨房・レジ</h3><p>タブレットで調理と受け渡しを進めます。</p><ul><li>厨房4列ボード</li><li>残り時間・超過</li><li>調理進行</li><li>受取済み更新</li></ul></article>
+<article class="product-role reveal"><span>ADMIN</span><h3>商品・営業管理</h3><p>商品と店舗の受付条件を設定します。</p><ul><li>写真・価格・在庫</li><li>販売曜日・オプション</li><li>休業日・受付状態</li><li>混雑表示設定</li></ul></article>
+</div>
+</div>
+</section>
+
+<section class="section product-live" id="demo">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-light"><span></span>REAL SCREEN DEMO</p><h2>説明画像ではなく、<br>実際の操作デモ。</h2></div><p>初期表示では外部画面を読み込みません。「この画面を開く」を押した時だけモーダル内へiframeを生成し、閉じるとiframeを破棄します。すべて架空データを使うDEMO環境です。</p></div>
+<div class="product-live-list">
+<article class="product-live-row">
+<div class="product-live-copy reveal"><span>01 / CUSTOMER ORDER</span><h3>写真付き<br>モバイルオーダー</h3><p>商品写真、カテゴリー、在庫、混雑状況を見ながら、受取日時とオプションを選択できます。</p><ul><li>写真付き商品カタログ</li><li>30分単位の受取時間</li><li>商品オプション・カート</li></ul><div class="product-live-actions"><button class="button button-line" type="button" data-open-demo data-demo-title="写真付きモバイルオーダー" data-demo-url="https://dpromstk2000-lab.github.io/dpro-takeout-line-liff/index.html?preview=1&amp;v=takeout-site-18">この画面を開く</button><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/dpro-takeout-line-liff/index.html?preview=1&amp;v=takeout-site-18" target="_blank" rel="noopener" data-demo-link="takeout-order">別タブで体験する</a></div></div>
+<div class="live-device reveal"><div class="live-window live-window-phone"><div class="live-window-head"><span>DPRO TAKEOUT / CUSTOMER ORDER</span><i></i></div><div class="demo-frame"><div class="live-phone-placeholder"><div class="product-phone-card"><small>写真付きメニュー</small><h3>受取商品を選択</h3><div class="product-pet-row"><span class="product-pet-avatar">A</span><div><strong>日替わり弁当</strong><span>680円／在庫あり</span></div></div><div class="product-pet-row"><span class="product-pet-avatar">B</span><div><strong>唐揚げ弁当</strong><span>750円／おすすめ</span></div></div><div class="product-qr">PICKUP 12:00</div></div></div></div></div></div>
+</article>
+
+<article class="product-live-row">
+<div class="product-live-copy reveal"><span>02 / MY PAGE</span><h3>注文確認・<br>マイページ</h3><p>注文状況をタイムラインで確認し、受取日時変更、キャンセル、前回と同じ注文ができます。</p><ul><li>注文状況タイムライン</li><li>日時変更・キャンセル</li><li>前回と同じ内容で再注文</li></ul><div class="product-live-actions"><button class="button button-line" type="button" data-open-demo data-demo-title="注文確認・マイページ" data-demo-url="https://dpromstk2000-lab.github.io/dpro-takeout-line-liff/member.html?preview=1&amp;v=takeout-site-18">この画面を開く</button><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/dpro-takeout-line-liff/member.html?preview=1&amp;v=takeout-site-18" target="_blank" rel="noopener" data-demo-link="takeout-member">別タブで体験する</a></div></div>
+<div class="live-device reveal"><div class="live-window"><div class="live-window-head"><span>DPRO TAKEOUT / MY PAGE</span><i></i></div><div class="demo-frame"><div class="live-placeholder"><div class="live-placeholder-top"><b>注文状況</b><span>受取 12:00</span></div><div class="live-placeholder-grid"><div class="live-placeholder-column"><strong>注文確認</strong><div class="live-placeholder-card"><b>受付済み</b><span>店舗が注文を確認しました</span></div></div><div class="live-placeholder-column"><strong>調理</strong><div class="live-placeholder-card"><b>調理中</b><span>受取まであと18分</span></div></div><div class="live-placeholder-column"><strong>受取</strong><div class="live-placeholder-card"><b>店舗で受取</b><span>準備完了後にお渡し</span></div></div></div></div></div></div></div>
+</article>
+
+<article class="product-live-row">
+<div class="product-live-copy reveal"><span>03 / OWNER PC</span><h3>PCオーナー<br>注文管理</h3><p>本日の注文、進行状況、顧客情報、受付経路をPCでまとめて確認します。</p><ul><li>注文検索・状態管理</li><li>顧客情報・受付経路</li><li>LINE・電話・店頭注文</li></ul><div class="product-live-actions"><button class="button button-line" type="button" data-open-demo data-demo-title="PCオーナー注文管理" data-demo-url="https://dpromstk2000-lab.github.io/dpro-takeout-line-liff/owner.html?preview=1&amp;v=takeout-site-18">この画面を開く</button><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/dpro-takeout-line-liff/owner.html?preview=1&amp;v=takeout-site-18" target="_blank" rel="noopener" data-demo-link="takeout-owner">別タブで体験する</a></div></div>
+<div class="live-device reveal"><div class="live-window"><div class="live-window-head"><span>DPRO TAKEOUT / OWNER PC</span><i></i></div><div class="demo-frame"><div class="live-placeholder"><div class="live-placeholder-top"><b>本日の注文管理</b><span>注文 5件</span></div><div class="live-placeholder-grid"><div class="live-placeholder-column"><strong>受付確認</strong><div class="live-placeholder-card"><b>山田様</b><span>LINE／11:30</span></div></div><div class="live-placeholder-column"><strong>調理中</strong><div class="live-placeholder-card"><b>高橋様</b><span>残り8分</span></div></div><div class="live-placeholder-column"><strong>受取待ち</strong><div class="live-placeholder-card"><b>田中様</b><span>準備完了</span></div></div></div></div></div></div></div>
+</article>
+
+<article class="product-live-row">
+<div class="product-live-copy reveal"><span>04 / KITCHEN &amp; CASHIER</span><h3>厨房・レジ用<br>4列ボード</h3><p>受付確認、調理待ち、調理中、受取待ちを4列で表示し、残り時間や時間超過を確認できます。</p><ul><li>4列進行ボード</li><li>残り時間・時間超過</li><li>受付経路・受取時刻</li></ul><div class="product-live-actions"><button class="button button-line" type="button" data-open-demo data-demo-title="厨房・レジ用4列ボード" data-demo-url="https://dpromstk2000-lab.github.io/dpro-takeout-line-liff/owner-ipad.html?preview=1&amp;v=takeout-site-18">この画面を開く</button><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/dpro-takeout-line-liff/owner-ipad.html?preview=1&amp;v=takeout-site-18" target="_blank" rel="noopener" data-demo-link="takeout-ipad">別タブで体験する</a></div></div>
+<div class="live-device reveal"><div class="live-window live-window-tablet"><div class="live-window-head"><span>DPRO TAKEOUT / KITCHEN &amp; CASHIER</span><i></i></div><div class="demo-frame"><div class="live-placeholder"><div class="live-placeholder-top"><b>厨房・レジ進行ボード</b><span>注文受付中</span></div><div class="live-placeholder-grid"><div class="live-placeholder-column"><strong>受付確認</strong><div class="live-placeholder-card"><b>山田様</b><span>弁当2点</span></div></div><div class="live-placeholder-column"><strong>調理待ち</strong><div class="live-placeholder-card"><b>鈴木様</b><span>12:00受取</span></div></div><div class="live-placeholder-column"><strong>調理中</strong><div class="live-placeholder-card"><b>高橋様</b><span>残り8分</span></div></div></div></div></div></div></div>
+</article>
+</div>
+</div>
+</section>
+
+<section class="section product-after" id="after">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>BEFORE / AFTER</p><h2>注文フォームを作るだけでなく、<br><em>厨房と受け渡しまでつなぐ。</em></h2></div><p>単に紙や電話をスマートフォンへ置き換えるのではなく、注文が店舗へ届いてから商品を渡すまでの情報移動を整理します。</p></div>
+<div class="product-after-grid">
+<article class="product-after-card reveal"><small>BEFORE</small><h3>注文受付</h3><p>LINE、電話、店頭の注文を別々に確認し、紙や口頭で厨房へ伝える。</p><strong>受付経路ごとに情報が分かれる</strong></article>
+<article class="product-after-card is-after reveal"><small>AFTER</small><h3>注文受付</h3><p>受付経路を残したまま同じ注文台帳へ登録し、厨房ボードへ共有。</p><strong>注文情報を一つに集約</strong></article>
+<article class="product-after-card reveal"><small>BEFORE</small><h3>調理・受け渡し</h3><p>受取時刻や進行を口頭確認し、優先順位や遅れが見えにくい。</p><strong>今どの注文を進めるか分かりにくい</strong></article>
+<article class="product-after-card is-after reveal"><small>AFTER</small><h3>調理・受け渡し</h3><p>4列ボード、残り時間、超過表示で、受付から受取済みまでを共有。</p><strong>現在地と優先順位を画面で確認</strong></article>
+<article class="product-after-card reveal"><small>BEFORE</small><h3>注文後</h3><p>状況確認、日時変更、キャンセル、再注文を電話や個別対応で受ける。</p><strong>同じ確認対応が繰り返される</strong></article>
+<article class="product-after-card is-after reveal"><small>AFTER</small><h3>注文後</h3><p>マイページで注文状況と履歴を確認し、変更・キャンセル・再注文へ。</p><strong>お客様自身が確認できる入口を用意</strong></article>
+</div>
+</div>
+</section>
+
+<section class="section product-safety" id="safety">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>SECURITY &amp; OPERATION DESIGN</p><h2>店舗運用を前提にした、<br><em>安全設計と公開前確認。</em></h2></div><p>公開デモと本番環境を分け、管理用情報を公開ページへ載せず、導入店舗ごとの接続先と権限で運用します。</p></div>
+<div class="product-safety-grid">
+<article class="product-safety-card reveal"><span>01 / DPRO CHECK</span><h3>公開前検査はDPRO SHOPが実施</h3><p>API接続、保存先、注文受付、受取枠、権限、主要画面などの技術確認を導入前に行います。</p></article>
+<article class="product-safety-card reveal"><span>02 / SAVE</span><h3>API・DBへ保存</h3><p>画面上だけの見せかけ更新ではなく、Worker APIからデータベースへ保存し、各画面で再取得します。</p></article>
+<article class="product-safety-card reveal"><span>03 / AUTH</span><h3>管理情報を公開ページへ載せない</h3><p>管理コード、APIキー、秘密鍵、環境変数は公式紹介ページへ掲載せず、権限に応じて取り扱います。</p></article>
+<article class="product-safety-card reveal"><span>04 / SEPARATE</span><h3>デモと本番を分離</h3><p>公開デモは架空データ、本番は契約店舗専用のGitHub・Worker・データベースとして分離します。</p></article>
+</div>
+</div>
+</section>
+
+<section class="section product-pricing" id="pricing">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>DPRO OPTION PRICE</p><h2>LINE構築・運用店舗へ追加する、<br><em>DPROシステム料金。</em></h2></div><p>DPROシステムは単体販売ではなく、DPRO SHOPのLINE公式アカウント構築・運用契約店舗向けの追加サービスです。</p></div>
+<div class="product-price-grid">
+<article class="product-price-card reveal"><small>INITIAL SETUP</small><h3>DPROシステム構築費</h3><div class="product-price-value"><strong>33,000円</strong><span>税込</span></div><p>店舗情報、デモ環境、基本画面、接続先、公開・操作確認など、導入に必要な初期設定を行います。</p></article>
+<article class="product-price-card is-accent reveal"><small>MONTHLY USE &amp; MAINTENANCE</small><h3>利用・基本保守費</h3><div class="product-price-value"><strong>月額1,100円</strong><span>税込</span></div><p>システム利用と基本的な保守・確認を含みます。大規模な機能追加や個別開発は、事前に内容と費用をご案内します。</p></article>
+</div>
+<p class="product-price-note reveal"><strong>別途必要：</strong>LINE公式アカウント構築77,000円（税込）／LINE運用サポート月額3,300円（税込）。POS、決済、デリバリーサービスなど外部サービスとの個別連携が必要な場合は別途確認します。</p>
+</div>
+</section>
+
+<section class="section sys-faq" id="faq">
+<div class="section-inner">
+<div class="sys-center-heading reveal"><p class="eyebrow eyebrow-dark"><span></span>FAQ</p><h2>テイクアウト・モバイルオーダーの<br>よくある質問。</h2></div>
+<div class="faq-list">
+<details class="reveal"><summary>どのくらいの規模の店舗に向いていますか。</summary><p>弁当、惣菜、唐揚げ、寿司、カフェ、スイーツ、軽食など、店頭受取型の注文を扱う小規模・中小規模店舗を主な対象としています。商品数、注文数、受取枠、厨房運用を確認して導入範囲を整理します。</p></details>
+<details class="reveal"><summary>お客様はスマートフォンだけで注文できますか。</summary><p>はい。写真付き商品カタログ、商品選択、受取枠、オプション、マイページはスマートフォン表示を前提にしています。店舗側はPCとiPad・タブレットを使い分けます。</p></details>
+<details class="reveal"><summary>LINEを使わないお客様の注文も管理できますか。</summary><p>はい。電話・店頭注文を店舗側から登録し、LINE注文と同じ注文台帳・厨房ボードへまとめられます。</p></details>
+<details class="reveal"><summary>現在の電話注文や店頭受付と併用できますか。</summary><p>できます。最初からすべてをLINE注文へ切り替えるのではなく、電話・店頭受付を残したまま同じ進行管理へ集約する運用を想定しています。</p></details>
+<details class="reveal"><summary>POSレジや決済システムを置き換えますか。</summary><p>標準では置き換えません。主な対象は、商品表示、注文受付、受取枠、調理進行、受け渡し、マイページです。POS・決済・デリバリーとの個別連携は別途確認します。</p></details>
+<details class="reveal"><summary>本番環境は公開デモと同じですか。</summary><p>同じではありません。公開デモは架空データを使用し、本番環境は契約店舗ごとにGitHub・Worker・データベースを分離して設定します。</p></details>
+</div>
+</div>
+</section>
+
+<section class="section product-final-cta">
+<div class="section-inner product-final-cta-inner reveal">
+<p class="eyebrow eyebrow-light"><span></span>TRY THE REAL DPRO TAKEOUT</p>
+<h2>今の注文受付と比べながら、<br>実画面を確認しませんか。</h2>
+<p>現在の商品数、注文経路、受取時間、厨房の流れを伺い、どの画面から導入すると使いやすいかを一緒に整理します。</p>
+<div class="product-final-actions">
+<a class="button button-line" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener"><span class="line-badge">LINE</span><span>無料で導入相談する</span><b>→</b></a>
+<button class="button button-ghost" type="button" data-open-demo data-demo-title="写真付きモバイルオーダー" data-demo-url="https://dpromstk2000-lab.github.io/dpro-takeout-line-liff/index.html?preview=1&amp;v=takeout-site-18">実際の操作デモ</button>
+</div>
+</div>
+</section>
+</main>
+
+<footer class="site-footer">
+<div class="footer-inner">
+<div class="footer-brand"><a class="brand" href="../"><span class="brand-mark" aria-hidden="true">D</span><span class="brand-copy"><strong>DPRO SHOP</strong><small>LINE BUSINESS DESIGN</small></span></a><p>福岡県を中心に、LINE公式アカウント、ホームページ、<br>契約店舗限定の業種別DPROシステムを支援します。</p></div>
+<div class="footer-links">
+<div><strong>SERVICE</strong><a href="../line-build">LINE公式アカウント構築</a><a href="../line-operation">LINE運用サポート</a><a href="../website">ホームページ制作</a><a href="../pricing">料金</a></div>
+<div><strong>PRODUCT</strong><a href="./">DPROシステム一覧</a><a href="takeout">テイクアウト・モバイルオーダー</a><a href="https://dpromstk2000-lab.github.io/dpro-takeout-line-liff/index.html?preview=1&amp;v=takeout-site-18" target="_blank" rel="noopener">テイクアウト操作デモ</a></div>
+<div><strong>GUIDE</strong><a href="../about">DPRO SHOPについて</a><a href="../contact">お問い合わせ</a><a href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで無料相談</a></div>
+</div>
+</div>
+<div class="footer-legal-links" aria-label="法務・お問い合わせ"><a href="../privacy">プライバシーポリシー</a><a href="../terms">サービス利用上の注意事項</a><a href="../contact">お問い合わせ</a></div>
+<div class="footer-bottom"><span>© 2026 DPRO SHOP. All Rights Reserved.</span><a href="#top">PAGE TOP ↑</a></div>
+</footer>
+<div class="product-mobile-cta" aria-label="固定アクション"><button type="button" data-open-demo data-demo-title="写真付きモバイルオーダー" data-demo-url="https://dpromstk2000-lab.github.io/dpro-takeout-line-liff/index.html?preview=1&amp;v=takeout-site-18">デモを体験</button><a href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで相談</a></div>
+
+<div class="takeout-demo-modal" id="takeout-demo-modal" role="dialog" aria-modal="true" aria-labelledby="takeout-demo-title" aria-describedby="takeout-demo-description" aria-hidden="true" hidden>
+<div class="takeout-demo-dialog" role="document">
+<div class="takeout-demo-head"><div><strong id="takeout-demo-title">DPROテイクアウト 操作デモ</strong><span id="takeout-demo-description">架空データを使用する公開DEMO環境です。</span></div><button class="takeout-demo-close" type="button" aria-label="操作デモを閉じる" data-close-demo>×</button></div>
+<div class="takeout-demo-body" id="takeout-demo-body"><div class="takeout-demo-loading" role="status" aria-live="polite">実画面を読み込んでいます…</div></div>
+<div class="takeout-demo-foot"><span>閉じると読み込んだiframeを破棄します。Escキーでも終了できます。</span><a id="takeout-demo-external" href="https://dpromstk2000-lab.github.io/dpro-takeout-line-liff/index.html?preview=1&amp;v=takeout-site-18" target="_blank" rel="noopener">別タブで開く →</a></div>
+</div>
+</div>
+
+<script defer src="../script.js?v=17r1"></script>
+<script defer src="systems.js?v=1"></script>
+<script>
+(() => {
+  "use strict";
+  const modal = document.getElementById("takeout-demo-modal");
+  const body = document.getElementById("takeout-demo-body");
+  const title = document.getElementById("takeout-demo-title");
+  const external = document.getElementById("takeout-demo-external");
+  const closeButton = modal?.querySelector("[data-close-demo]");
+  const openButtons = [...document.querySelectorAll("[data-open-demo]")];
+  let previousFocus = null;
+
+  const destroyFrame = () => {
+    if (!body) return;
+    body.classList.remove("is-loaded");
+    body.replaceChildren(Object.assign(document.createElement("div"), {
+      className: "takeout-demo-loading",
+      textContent: "実画面を読み込んでいます…"
+    }));
+    body.firstElementChild?.setAttribute("role", "status");
+    body.firstElementChild?.setAttribute("aria-live", "polite");
+  };
+
+  const closeModal = () => {
+    if (!modal || modal.hidden) return;
+    modal.hidden = true;
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("demo-modal-open");
+    destroyFrame();
+    if (previousFocus instanceof HTMLElement) previousFocus.focus();
+  };
+
+  const openModal = (button) => {
+    if (!modal || !body || !title || !external) return;
+    const url = button.dataset.demoUrl || "";
+    if (!url.startsWith("https://dpromstk2000-lab.github.io/dpro-takeout-line-liff/")) return;
+    previousFocus = document.activeElement;
+    title.textContent = button.dataset.demoTitle || "DPROテイクアウト 操作デモ";
+    external.href = url;
+    destroyFrame();
+    modal.hidden = false;
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("demo-modal-open");
+    const frame = document.createElement("iframe");
+    frame.src = url;
+    frame.title = `${title.textContent}（公開DEMO）`;
+    frame.loading = "eager";
+    frame.referrerPolicy = "no-referrer";
+    frame.allow = "clipboard-read; clipboard-write";
+    frame.addEventListener("load", () => body.classList.add("is-loaded"), { once: true });
+    body.appendChild(frame);
+    closeButton?.focus();
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "select_content", {
+        content_type: "dpro_demo_modal",
+        item_id: button.dataset.demoTitle || "takeout",
+        link_url: url,
+        page_location: window.location.href
+      });
+    }
+  };
+
+  openButtons.forEach((button) => button.addEventListener("click", () => openModal(button)));
+  closeButton?.addEventListener("click", closeModal);
+  modal?.addEventListener("click", (event) => { if (event.target === modal) closeModal(); });
+  document.addEventListener("keydown", (event) => {
+    if (!modal || modal.hidden) return;
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeModal();
+      return;
+    }
+    if (event.key !== "Tab") return;
+    const focusable = [...modal.querySelectorAll('button:not([disabled]),a[href],iframe')];
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+})();
+</script>
+</body>
+</html>
