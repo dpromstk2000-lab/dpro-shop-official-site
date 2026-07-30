@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ja">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async fetchpriority="low" src="https://www.googletagmanager.com/gtag/js?id=G-YPN3998BHG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-YPN3998BHG');
+</script>
+<meta charset="utf-8">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="車検・整備工場向けDPRO 車検・整備工場 LINE。LINE・電話・店頭受付、作業進捗、見積確認・承認、車両別整備履歴、次回車検・オイル交換フォローをPC・iPad・会員ページでつなぎます。">
+<meta name="theme-color" content="#07111f">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DPRO SHOP">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="DPRO 車検・整備工場 LINE｜受付・進捗・見積承認・整備履歴">
+<meta property="og:description" content="受付から引渡し、車両別整備履歴、次回車検・オイル交換案内まで。車検・整備工場向けDPROシステムの機能と実画面を紹介します。">
+<meta property="og:url" content="https://dpro-shop.com/systems/car-service">
+<meta property="og:image" content="https://dpro-shop.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DPRO 車検・整備工場 LINE｜DPRO SHOP">
+<meta name="twitter:description" content="LINE・電話・店頭受付、進捗、見積承認、整備履歴、次回フォローを一つにつなぐ車検・整備工場向けシステム。">
+<meta name="twitter:image" content="https://dpro-shop.com/og-image.png">
+<title>DPRO 車検・整備工場 LINE｜受付・進捗・見積承認・整備履歴｜DPRO SHOP</title>
+<link rel="canonical" href="https://dpro-shop.com/systems/car-service">
+<link rel="manifest" href="../site.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="../sitemap.xml">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="stylesheet" href="../styles.css?v=17r2">
+<link rel="stylesheet" href="systems.css?v=1">
+<script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://dpro-shop.com/#website",
+      "name":"DPRO SHOP",
+      "url":"https://dpro-shop.com/",
+      "inLanguage":"ja"
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://dpro-shop.com/systems/car-service#webpage",
+      "url":"https://dpro-shop.com/systems/car-service",
+      "name":"DPRO 車検・整備工場 LINE｜受付・進捗・見積承認・整備履歴",
+      "description":"車検・整備工場向けDPROシステムの機能、利用者別画面、導入前後、実画面デモを紹介します。",
+      "isPartOf":{"@id":"https://dpro-shop.com/#website"},
+      "inLanguage":"ja",
+      "dateModified":"2026-07-30",
+      "breadcrumb":{"@id":"https://dpro-shop.com/systems/car-service#breadcrumb"},
+      "mainEntity":{"@id":"https://dpro-shop.com/systems/car-service#software"}
+    },
+    {
+      "@type":"BreadcrumbList",
+      "@id":"https://dpro-shop.com/systems/car-service#breadcrumb",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"DPRO SHOP","item":"https://dpro-shop.com/"},
+        {"@type":"ListItem","position":2,"name":"業種別DPROシステム","item":"https://dpro-shop.com/systems/"},
+        {"@type":"ListItem","position":3,"name":"車検・整備工場","item":"https://dpro-shop.com/systems/car-service"}
+      ]
+    },
+    {
+      "@type":"SoftwareApplication",
+      "@id":"https://dpro-shop.com/systems/car-service#software",
+      "name":"DPRO 車検・整備工場 LINE",
+      "alternateName":["DPRO CAR LINE","DPRO NEXT"],
+      "applicationCategory":"BusinessApplication",
+      "operatingSystem":"Web browser / LINE",
+      "description":"LINE・電話・店頭受付、車両別入庫管理、整備進捗、見積確認・承認、整備履歴、次回車検・オイル交換フォローをつなぐ車検・整備工場向け業務システム。",
+      "url":"https://dpro-shop.com/systems/car-service",
+      "offers":[
+        {
+          "@type":"Offer",
+          "name":"DPROシステム構築",
+          "price":"33000",
+          "priceCurrency":"JPY",
+          "description":"LINE公式アカウント構築・運用契約店舗限定"
+        },
+        {
+          "@type":"Offer",
+          "name":"DPROシステム利用・基本保守",
+          "price":"1100",
+          "priceCurrency":"JPY",
+          "description":"月額。LINE公式アカウント構築・運用契約店舗限定"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<style>
+body.car-service-page{
+  --system-accent:#2e91ff;
+  --system-accent-dark:#1d4ed8;
+  --system-accent-soft:#eaf3ff;
+}
+.car-service-page .product-code{color:#cbe3ff}
+.car-service-page .product-hero-copy h1 em{
+  background:linear-gradient(115deg,#fff 0%,#9dd9ff 48%,#b7afff 100%);
+  background-clip:text;
+  -webkit-background-clip:text;
+}
+.car-monitor-ui{
+  min-height:455px;
+  padding:20px;
+  display:grid;
+  grid-template-columns:150px 1fr;
+  gap:16px;
+  background:#eef3f8;
+  color:#172033;
+}
+.car-monitor-side{
+  padding:17px;
+  border-radius:15px;
+  background:linear-gradient(160deg,#08182a,#142b49);
+  color:#fff;
+}
+.car-monitor-side strong{display:block;font-size:13px;line-height:1.35}
+.car-monitor-side small{display:block;margin-top:5px;color:#9dd9ff;font-size:7px;letter-spacing:.1em}
+.car-monitor-side span{
+  display:block;
+  margin-top:11px;
+  padding:8px 9px;
+  border-radius:8px;
+  background:rgba(255,255,255,.075);
+  color:rgba(255,255,255,.72);
+  font-size:7px;
+  font-weight:800;
+}
+.car-monitor-side span:first-of-type{background:linear-gradient(90deg,rgba(46,145,255,.32),rgba(126,107,255,.2));color:#fff}
+.car-monitor-main{min-width:0;padding-top:3px}
+.car-monitor-head{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.car-monitor-head strong{font-size:15px}
+.car-monitor-head b{padding:6px 9px;border-radius:999px;background:#dbeafe;color:#1d4ed8;font-size:7px}
+.car-kpi-grid{margin-top:15px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.car-kpi{min-width:0;padding:10px;border-radius:11px;background:#fff;border:1px solid #dfe7f0}
+.car-kpi small{display:block;color:#64748b;font-size:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.car-kpi strong{display:block;margin-top:4px;font-size:15px}
+.car-board{margin-top:12px;padding:12px;border-radius:13px;background:#fff;border:1px solid #dfe7f0}
+.car-board-title{display:flex;justify-content:space-between;align-items:center;font-size:9px;font-weight:900}
+.car-board-title span{color:#64748b;font-size:6px}
+.car-work-list{margin-top:9px;display:grid;gap:7px}
+.car-work-item{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;padding:9px;border-radius:9px;background:#f8fafc;border:1px solid #e6ebf1}
+.car-work-item strong{display:block;font-size:7px}
+.car-work-item small{display:block;margin-top:3px;color:#64748b;font-size:6px}
+.car-work-item b{padding:5px 7px;border-radius:999px;background:#ede9fe;color:#6d28d9;font-size:6px;white-space:nowrap}
+.car-work-item.is-ready b{background:#dcfce7;color:#166534}
+.car-stage-phone-ui{
+  height:100%;
+  padding:27px 12px 13px;
+  overflow:hidden;
+  border-radius:27px;
+  background:radial-gradient(circle at top,rgba(234,88,12,.18),transparent 36%),#121212;
+  color:#f8fafc;
+}
+.car-stage-phone-ui .car-phone-brand{display:flex;align-items:center;gap:7px;font-size:8px;font-weight:950}
+.car-stage-phone-ui .car-phone-brand b{width:27px;height:27px;display:grid;place-items:center;border-radius:9px;background:linear-gradient(135deg,#f97316,#c2410c);font-size:7px}
+.car-stage-phone-card{margin-top:13px;padding:13px;border-radius:15px;background:#202020;border:1px solid #393939}
+.car-stage-phone-card small{color:#f59e0b;font-size:6px;font-weight:900}
+.car-stage-phone-card h3{margin:6px 0 0;font-size:12px}
+.car-phone-choice{margin-top:9px;padding:9px;border:1px solid #414141;border-radius:10px;background:#171717}
+.car-phone-choice strong{display:block;font-size:7px}
+.car-phone-choice span{display:block;margin-top:3px;color:#a3a3a3;font-size:6px}
+.car-phone-next{margin-top:10px;padding:9px;border-radius:10px;background:linear-gradient(135deg,#f97316,#c2410c);text-align:center;font-size:7px;font-weight:950}
+.car-stage-tablet-ui{height:100%;padding:16px;border-radius:17px;background:#f7f9fc;color:#172033}
+.car-stage-tablet-ui>small{color:#2e91ff;font-size:7px;font-weight:950;letter-spacing:.08em}
+.car-stage-tablet-ui h3{margin:6px 0 0;font-size:14px}
+.car-ipad-columns{margin-top:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.car-ipad-column{min-height:198px;padding:8px;border-radius:10px;background:#fff;border:1px solid #dfe7f0}
+.car-ipad-column>strong{display:block;font-size:7px}
+.car-ipad-job{margin-top:7px;padding:8px;border-radius:8px;background:#f8fafc;border-left:3px solid #2e91ff}
+.car-ipad-job.is-work{border-left-color:#7e6bff}
+.car-ipad-job.is-ready{border-left-color:#16a34a}
+.car-ipad-job b{display:block;font-size:7px}
+.car-ipad-job span{display:block;margin-top:3px;color:#64748b;font-size:5px}
+.car-service-page .product-stage-phone{height:415px}
+.car-service-page .product-phone-inner{padding:0;background:#121212}
+.car-service-page .product-stage-tablet{width:285px;height:350px}
+.car-service-page .product-tablet-inner{padding:0;background:#f7f9fc}
+.car-service-note{
+  margin-top:22px;
+  padding:17px 19px;
+  border:1px solid #d9e5f4;
+  border-radius:17px;
+  background:#f5f9ff;
+  color:#425166;
+  font-size:13px;
+  line-height:1.8;
+}
+.car-service-note strong{color:#1d4ed8}
+.car-demo-placeholder{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:28px;
+  background:
+    radial-gradient(circle at 78% 18%,rgba(46,145,255,.16),transparent 28%),
+    linear-gradient(145deg,#eef4fa,#f8fafc);
+  color:#172033;
+}
+.car-demo-placeholder.is-dark{background:radial-gradient(circle at 70% 10%,rgba(249,115,22,.18),transparent 32%),#151515;color:#fff}
+.car-demo-placeholder.is-tablet{background:#f3f6fa}
+.car-demo-label{display:inline-flex;align-self:flex-start;padding:6px 9px;border-radius:999px;background:#dbeafe;color:#1d4ed8;font-size:8px;font-weight:950;letter-spacing:.1em}
+.car-demo-placeholder.is-dark .car-demo-label{background:rgba(249,115,22,.16);color:#fdba74}
+.car-demo-placeholder h4{margin:18px 0 0;font-size:clamp(21px,3vw,34px);line-height:1.25}
+.car-demo-placeholder p{max-width:550px;margin:13px 0 0;color:#64748b;font-size:13px;line-height:1.8}
+.car-demo-placeholder.is-dark p{color:#b7b7b7}
+.car-demo-mini-grid{margin-top:22px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.car-demo-mini{min-height:84px;padding:12px;border-radius:13px;background:#fff;border:1px solid #dfe7f0}
+.car-demo-placeholder.is-dark .car-demo-mini{background:#222;border-color:#3b3b3b}
+.car-demo-mini strong{display:block;font-size:12px}
+.car-demo-mini span{display:block;margin-top:7px;color:#64748b;font-size:9px;line-height:1.55}
+.car-demo-placeholder.is-dark .car-demo-mini span{color:#a3a3a3}
+.demo-modal[hidden]{display:none}
+.demo-modal{
+  position:fixed;
+  z-index:2000;
+  inset:0;
+  display:grid;
+  place-items:center;
+  padding:18px;
+}
+.demo-modal-backdrop{position:absolute;inset:0;background:rgba(2,8,18,.82);backdrop-filter:blur(8px)}
+.demo-modal-dialog{
+  position:relative;
+  width:min(1420px,100%);
+  height:min(900px,calc(100vh - 36px));
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:24px;
+  background:#07111f;
+  box-shadow:0 45px 130px rgba(0,0,0,.58);
+}
+.demo-modal-header{
+  min-height:64px;
+  padding:12px 16px 12px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  border-bottom:1px solid rgba(255,255,255,.11);
+  color:#fff;
+}
+.demo-modal-title-wrap{min-width:0}
+.demo-modal-title-wrap small{display:block;color:#7dd3fc;font-size:9px;font-weight:900;letter-spacing:.12em}
+.demo-modal-title-wrap strong{display:block;margin-top:4px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:15px}
+.demo-modal-actions{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+.demo-modal-actions a,
+.demo-modal-actions button{
+  min-height:40px;
+  padding:9px 12px;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:11px;
+  background:rgba(255,255,255,.06);
+  color:#fff;
+  font-size:11px;
+  font-weight:900;
+  cursor:pointer;
+}
+.demo-modal-actions button{width:40px;padding:0;font-size:19px}
+.demo-modal-frame-wrap{min-height:0;flex:1;background:#f1f5f9}
+.demo-modal-frame-wrap iframe{width:100%;height:100%;display:block;border:0;background:#fff}
+body.is-demo-modal-open{overflow:hidden}
+.demo-environment-note{
+  margin-top:18px;
+  padding:14px 16px;
+  border:1px solid rgba(125,211,252,.24);
+  border-radius:15px;
+  background:rgba(46,145,255,.08);
+  color:rgba(255,255,255,.72);
+  font-size:12px;
+  line-height:1.7;
+}
+.demo-environment-note strong{color:#fff}
+.car-service-page .product-safety-card:nth-child(1),
+.car-service-page .product-safety-card:nth-child(2){border-top-color:#2e91ff}
+.car-service-page .product-safety-card:nth-child(3),
+.car-service-page .product-safety-card:nth-child(4){border-top-color:#7e6bff}
+@media (max-width:980px){
+  .car-monitor-ui{grid-template-columns:120px 1fr;padding:15px;gap:11px}
+  .car-kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .car-service-page .product-stage-tablet{right:0;width:250px}
+}
+@media (max-width:768px){
+  .car-monitor-ui{grid-template-columns:1fr;min-height:390px}
+  .car-monitor-side{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+  .car-monitor-side strong,.car-monitor-side small{grid-column:1/-1}
+  .car-monitor-side span{margin-top:0}
+  .car-demo-mini-grid{grid-template-columns:1fr}
+  .demo-modal{padding:0}
+  .demo-modal-dialog{height:100vh;border-radius:0;border:0}
+  .demo-modal-header{min-height:58px;padding:9px 10px 9px 13px}
+  .demo-modal-actions a{display:none}
+}
+@media (max-width:480px){
+  .car-service-page .product-hero-copy h1{font-size:clamp(42px,13.5vw,60px)}
+  .car-monitor-ui{padding:11px;min-height:365px}
+  .car-monitor-side{padding:12px}
+  .car-kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+  .car-board{padding:9px}
+  .car-service-page .product-stage-phone{width:170px;height:360px}
+  .car-service-page .product-stage-tablet{width:220px;height:300px}
+  .car-ipad-columns{gap:4px}
+  .car-ipad-column{padding:5px}
+  .car-demo-placeholder{padding:20px}
+  .car-service-note{padding:15px;font-size:12px}
+}
+</style>
+</head>
+<body class="system-product-page official-product-page car-service-page">
+<div class="sys-progress" aria-hidden="true"></div>
+<a class="skip-link" href="#main">本文へ移動</a>
+<header class="site-header" id="top">
+<div class="header-inner">
+<a class="brand" href="../" aria-label="DPRO SHOP トップへ"><span class="brand-mark" aria-hidden="true">D</span><span class="brand-copy"><strong>DPRO SHOP</strong><small>LINE BUSINESS DESIGN</small></span></a>
+<button class="menu-button" type="button" aria-expanded="false" aria-controls="global-nav" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+<nav class="global-nav" id="global-nav" aria-label="メインナビゲーション">
+<a href="../">トップ</a>
+<a href="../line-build">LINE構築</a>
+<a href="../line-operation">LINE運用</a>
+<a href="../website">HP制作</a>
+<a href="./">DPROシステム</a>
+<a href="../pricing">料金</a>
+<a href="../about">DPRO SHOP</a>
+<a class="nav-cta" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで無料相談</a>
+</nav>
+</div>
+</header>
+
+<main id="main">
+<section class="product-hero" aria-labelledby="product-title">
+<div class="product-hero-grid" aria-hidden="true"></div>
+<div class="product-hero-inner">
+<div class="product-hero-copy reveal">
+<nav class="sys-breadcrumb" aria-label="パンくずリスト"><a href="../">DPRO SHOP</a><span>／</span><a href="./">DPROシステム</a><span>／</span><strong>車検・整備工場</strong></nav>
+<div class="official-product-label"><span>DPRO SHOP</span><strong>公式製品紹介ページ</strong><small>DPRO 車検・整備工場 LINE｜DPRO NEXT</small></div>
+<div class="product-code" aria-hidden="true">CAR</div>
+<p class="eyebrow eyebrow-light"><span></span>RECEPTION・PROGRESS・ESTIMATE・FOLLOW-UP</p>
+<h1 id="product-title"><span>受付・進捗・見積承認・</span><span><em>次回案内まで、LINEで。</em></span></h1>
+<p class="product-hero-lead">お客様のLINE相談とマイカー会員ページ、店舗の受付iPad、オーナーPCを一つにつなぎ、受付から引渡し、車両別整備履歴、次回車検・オイル交換の案内までを整理する車検・整備工場向けシステムです。</p>
+<div class="product-hero-actions">
+<a class="button button-line" href="#features"><span class="line-badge">CAR</span><span>機能を詳しく見る</span><b>↓</b></a>
+<a class="button button-ghost" href="#demo">実際の操作デモを見る</a>
+</div>
+<div class="product-proof-tags"><span>LINE・電話・店頭受付</span><span>車両別入庫管理</span><span>整備進捗</span><span>見積確認・承認</span><span>整備履歴</span><span>次回車検フォロー</span></div>
+</div>
+
+<div class="product-hero-stage reveal" aria-label="DPRO 車検・整備工場 LINEの画面イメージ">
+<div class="product-stage-label"><i></i>OFFICIAL PRODUCT GUIDE / DPRO NEXT</div>
+<div class="product-stage-monitor">
+<div class="product-browser"><span class="product-browser-dots"><i></i><i></i><i></i></span><span>DPRO CAR / PCオーナー管理画面イメージ</span><b>PREVIEW</b></div>
+<div class="car-monitor-ui">
+<div class="car-monitor-side"><strong>DPRO CAR LINE</strong><small>OWNER WORKSPACE</small><span>今日の業務</span><span>相談一覧</span><span>入庫・作業</span><span>顧客・車両</span><span>次回フォロー</span></div>
+<div class="car-monitor-main">
+<div class="car-monitor-head"><strong>今日の業務ボード</strong><b>本日 6件</b></div>
+<div class="car-kpi-grid"><div class="car-kpi"><small>未対応相談</small><strong>3</strong></div><div class="car-kpi"><small>本日の入庫</small><strong>2</strong></div><div class="car-kpi"><small>作業中</small><strong>1</strong></div><div class="car-kpi"><small>車検フォロー</small><strong>8</strong></div></div>
+<div class="car-board"><div class="car-board-title">本日の入庫・作業予定 <span>受付経路・現在位置を共有</span></div><div class="car-work-list"><div class="car-work-item"><div><strong>山田様／ジムニー</strong><small>LINE受付・車検見積・10:00入庫</small></div><b>見積確認中</b></div><div class="car-work-item is-ready"><div><strong>佐藤様／ハイエース</strong><small>電話受付・オイル交換・作業完了</small></div><b>引渡し待ち</b></div><div class="car-work-item"><div><strong>田中様／シルビア</strong><small>店頭受付・異音点検・点検中</small></div><b>作業中</b></div></div></div>
+</div>
+</div>
+</div>
+<div class="product-stage-phone"><div class="product-phone-inner"><div class="car-stage-phone-ui"><div class="car-phone-brand"><b>LINE</b>DPRO CAR</div><div class="car-stage-phone-card"><small>車検・整備相談</small><h3>今回のお車を選択</h3><div class="car-phone-choice"><strong>登録済みの車で相談</strong><span>ジムニー／ナンバー 1234</span></div><div class="car-phone-choice"><strong>新しい車を追加</strong><span>家族車・社用車・2台目</span></div><div class="car-phone-next">相談内容へ進む</div></div></div></div></div>
+<div class="product-stage-tablet"><div class="product-tablet-inner"><div class="car-stage-tablet-ui"><small>RECEPTION / WORK IPAD</small><h3>入庫・作業・引渡し</h3><div class="car-ipad-columns"><div class="car-ipad-column"><strong>到着待ち</strong><div class="car-ipad-job"><b>ジムニー</b><span>10:00 車検</span></div></div><div class="car-ipad-column"><strong>作業中</strong><div class="car-ipad-job is-work"><b>シルビア</b><span>点検・見積</span></div></div><div class="car-ipad-column"><strong>引渡し待ち</strong><div class="car-ipad-job is-ready"><b>ハイエース</b><span>作業完了</span></div></div></div></div></div></div>
+</div>
+</div>
+</section>
+
+<nav class="product-local-nav" aria-label="ページ内メニュー">
+<div class="product-local-nav-inner"><a href="#summary" class="is-active">概要</a><a href="#system-map">全体構成</a><a href="#features">主な機能</a><a href="#flow">利用の流れ</a><a href="#roles">画面別</a><a href="#demo">実画面</a><a href="#after">導入前後</a><a href="#safety">安全設計</a><a href="#pricing">料金</a><a href="#faq">よくある質問</a></div>
+</nav>
+
+<section class="section product-summary" id="summary">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>UNDERSTAND IN 30 SECONDS</p><h2>30秒で分かる、<br><em>このシステムの役割。</em></h2></div><p>受付フォームだけで終わらず、顧客・車両・入庫予定・作業状況・見積確認・整備履歴・次回案内を、同じ業務の流れとしてつなぎます。</p></div>
+<div class="product-summary-grid">
+<article class="product-summary-card reveal"><span>01 / CUSTOMER</span><h3>お客様はLINEから、車と相談内容を送信。</h3><p>初回はお客様・車両を登録し、2回目以降は登録済み車両を選択。車検、点検、オイル交換、修理、カスタムなどを相談できます。</p></article>
+<article class="product-summary-card reveal"><span>02 / RECEPTION &amp; WORK</span><h3>受付・現場はiPadで、今日の現在位置を共有。</h3><p>電話・店頭受付、到着待ち、作業中、見積確認、引渡し待ちを、タッチ操作しやすい店舗用画面で確認します。</p></article>
+<article class="product-summary-card reveal"><span>03 / OWNER</span><h3>オーナーPCで、受付から次回案内まで管理。</h3><p>未対応相談、入庫、進捗、見積、顧客・車両、整備履歴、車検・オイル交換・再連絡の候補を一つの管理画面で扱います。</p></article>
+</div>
+<div class="product-problem-grid">
+<article class="product-problem reveal"><div class="product-problem-before"><small>導入前</small><strong>LINE・電話・店頭の相談が別々で、車両情報を何度も確認</strong></div><div class="product-problem-arrow">↓</div><div class="product-problem-after"><small>導入後</small><strong>受付経路を残しながら、顧客・車両・入庫予定を同じ台帳へ</strong></div></article>
+<article class="product-problem reveal"><div class="product-problem-before"><small>導入前</small><strong>作業状況と見積回答を、電話や口頭で都度確認</strong></div><div class="product-problem-arrow">↓</div><div class="product-problem-after"><small>導入後</small><strong>進捗と見積確認・承認を画面で整理し、受付と現場で共有</strong></div></article>
+<article class="product-problem reveal"><div class="product-problem-before"><small>導入前</small><strong>車検・オイル交換の案内が、担当者の記憶や個別メモ頼み</strong></div><div class="product-problem-arrow">↓</div><div class="product-problem-after"><small>導入後</small><strong>車両別履歴と次回目安から、連絡候補とLINE文面を整理</strong></div></article>
+</div>
+<p class="car-service-note reveal"><strong>既存業務との関係：</strong>法定点検記録簿、会計・請求・決済、部品在庫などの専門業務を置き換えるページではありません。今回確認できた実装範囲は、相談・受付、顧客と車両、入庫と進捗、見積確認、整備履歴、次回フォローです。</p>
+</div>
+</section>
+
+<section class="section product-map" id="system-map">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>ONE VEHICLE DATA, FOUR EXPERIENCES</p><h2>お客様・受付・現場・オーナーを、<br><em>同じ顧客・車両情報でつなぐ。</em></h2></div><p>全員に同じ管理画面を見せるのではなく、相談、会員確認、店舗受付、全体管理に必要な操作を役割ごとに分けています。</p></div>
+<div class="product-map-board reveal">
+<div class="product-map-label"><strong>DPRO 車検・整備工場 LINE 全体構成</strong><span>LINE × MEMBER × PC × iPad × Worker</span></div>
+<div class="product-map-flow">
+<div class="product-map-side">
+<div class="product-map-node"><b>CUSTOMER / LINE</b><strong>車検・整備相談</strong><p>初回・再訪、登録車両、新しい車、相談内容、希望入庫日</p></div>
+<div class="product-map-node"><b>MEMBER / LINE</b><strong>マイカー会員ページ</strong><p>現在の整備、見積確認、車両別履歴、次回車検・オイル交換目安</p></div>
+</div>
+<div class="product-map-arrow">→</div>
+<div class="product-map-core"><b>API</b><strong>Worker API・データベース</strong><span>顧客・車両・相談・入庫・進捗・見積・<br>整備履歴・フォロー候補を保存・再取得</span></div>
+<div class="product-map-arrow">→</div>
+<div class="product-map-side">
+<div class="product-map-node"><b>OWNER / PC</b><strong>オーナー管理</strong><p>今日の業務、相談、入庫、顧客・車両、履歴、次回フォロー</p></div>
+<div class="product-map-node"><b>RECEPTION / IPAD</b><strong>受付・現場運用</strong><p>電話・店頭受付、到着待ち、作業中、引渡し待ち、見積確認</p></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section product-features" id="features">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>MAIN FEATURES</p><h2>受付から次回来店まで支える、<br><em>10の主要機能。</em></h2></div><p>誰が、どの場面で、何のために使うかが分かるように、最新完成版で確認できた機能だけを重要度順に整理しました。</p></div>
+<div class="product-feature-grid">
+<article class="product-feature reveal"><span class="product-feature-icon">LINE</span><h3>初回・再訪相談</h3><p>お客様がLINEから相談。再訪時は登録済みのお客様・車両を選び、再入力を減らします。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">4WAY</span><h3>受付経路の統合</h3><p>LINE、電話、店頭、管理者代理の受付経路を残しながら、同じ相談・入庫管理へまとめます。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">CAR+</span><h3>顧客・複数車両管理</h3><p>顧客だけでなく車両単位で管理し、2台目、家族車、社用車などを分けて確認します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">BOOK</span><h3>仮入庫・入庫予定</h3><p>希望入庫日を受け付け、店舗側で調整・確定。今日や今後の予定を状態別に確認します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">STEP</span><h3>整備進捗タイムライン</h3><p>受付、入庫、点検、見積、承認、作業、最終確認、引渡しまでの現在位置を共有します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">EST</span><h3>見積確認・承認</h3><p>お客様は会員ページから見積を確認し、承認または変更相談。店舗側も回答状況を把握します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">GUARD</span><h3>承認前の作業防止</h3><p>見積承認が必要な案件では、承認前に次の作業へ進めない運用ガードを設けます。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">HIST</span><h3>車両別整備履歴</h3><p>完了日、作業内容、次回提案を車両ごとに残し、お客様もマイカーページで確認できます。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">NEXT</span><h3>次回フォロー候補</h3><p>車検、オイル交換、見積後未返信、再連絡予定など、今連絡したい対象を管理画面に整理します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">MSG</span><h3>個別LINE文面</h3><p>車検案内、入庫前確認、作業完了、オイル交換などの文面を編集・コピーして、連絡に使えます。</p></article>
+</div>
+</div>
+</section>
+
+<section class="section product-flow" id="flow">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>FROM CONSULTATION TO NEXT VISIT</p><h2>相談から引渡し、次回案内まで、<br><em>6つの流れ。</em></h2></div><p>単発の予約フォームではなく、一度登録した顧客・車両情報を、その後の入庫、作業、履歴、再来店へつなげます。</p></div>
+<div class="product-flow-list">
+<article class="product-flow-step reveal"><span class="product-flow-number">01</span><h3>LINEから相談</h3><p>お客様が車両、相談内容、希望入庫日を送信します。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">02</span><h3>店舗で受付・調整</h3><p>相談内容を確認し、仮入庫から確定予定へ進めます。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">03</span><h3>来店・入庫</h3><p>電話・店頭受付も含め、iPadで到着と車両を確認します。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">04</span><h3>点検・見積確認</h3><p>点検後の見積を提示し、お客様の承認・変更相談を受けます。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">05</span><h3>作業・引渡し</h3><p>承認後に作業へ進み、完了・最終確認・引渡し待ちへ更新します。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">06</span><h3>履歴・次回案内</h3><p>車両別履歴を残し、車検・オイル交換などの連絡候補へつなぎます。</p></article>
+</div>
+</div>
+</section>
+
+<section class="section product-roles" id="roles">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>SCREENS BY ROLE</p><h2>使う人と場面ごとに、<br><em>必要な画面だけ。</em></h2></div><p>現在の完成版で実在を確認できた、お客様相談、マイカー会員、オーナーPC、店舗iPadの4画面を掲載します。</p></div>
+<div class="product-role-grid">
+<article class="product-role reveal"><span>LINE</span><h3>お客様相談</h3><p>スマートフォンから車検・整備・修理・カスタムを相談します。</p><ul><li>初回・再訪判定</li><li>登録車両選択</li><li>相談内容</li><li>希望入庫日</li></ul></article>
+<article class="product-role reveal"><span>MEM</span><h3>マイカー会員</h3><p>登録車両ごとの現在状況、見積、履歴、次回目安を確認します。</p><ul><li>複数車両</li><li>整備進捗</li><li>見積承認・変更相談</li><li>整備履歴・次回相談</li></ul></article>
+<article class="product-role reveal"><span>PC</span><h3>オーナー・管理者</h3><p>相談から次回フォローまで、店舗全体の情報を管理します。</p><ul><li>今日やること</li><li>相談・入庫・進捗</li><li>顧客・車両・履歴</li><li>フォロー・LINE文面</li></ul></article>
+<article class="product-role reveal"><span>iPad</span><h3>受付・現場</h3><p>店舗で、今日の入庫と作業の現在位置を短い操作で更新します。</p><ul><li>電話・店頭受付</li><li>到着待ち</li><li>作業中</li><li>引渡し待ち</li></ul></article>
+</div>
+</div>
+</section>
+
+<section class="section product-live" id="demo">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-light"><span></span>REAL SCREEN DEMO</p><h2>説明画像ではなく、<br>実際の操作デモを確認。</h2></div><p>初期表示では外部画面を読み込みません。「実際の操作デモを開く」を押した時だけモーダル内にiframeを生成し、閉じた時はiframeを破棄します。</p></div>
+<div class="product-live-list">
+<article class="product-live-row">
+<div class="product-live-copy reveal"><span>01 / CUSTOMER</span><h3>お客様用<br>車検・整備相談</h3><p>LINE認証なしで確認できる製品紹介用デモです。相談の入力手順を体験できますが、データは送信されません。</p><ul><li>初回・再訪の確認</li><li>登録済み車両・新しい車両</li><li>車検・点検・修理・カスタム相談</li></ul><div class="product-live-actions"><button class="button button-line js-open-demo" type="button" data-demo-title="お客様用 車検・整備相談デモ" data-demo-url="https://dpromstk2000-lab.github.io/line-shaken-liff/index-product-demo.html?v=step-ksh-next-10">実際の操作デモを開く</button><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/line-shaken-liff/index-product-demo.html?v=step-ksh-next-10" target="_blank" rel="noopener">別タブで体験する</a></div><div class="demo-environment-note"><strong>DEMO環境：</strong>LINE認証なしの製品紹介モードです。相談・仮入庫データは送信されません。</div></div>
+<div class="live-device reveal"><div class="live-window live-window-phone"><div class="live-window-head"><span>DPRO CAR / CUSTOMER CONSULTATION</span><i></i></div><div class="car-demo-placeholder is-dark"><span class="car-demo-label">PRODUCT DEMO</span><h4>登録済みの車を選び、<br>相談内容へ。</h4><p>実画面はボタンを押した時だけ読み込みます。</p><div class="car-demo-mini-grid"><div class="car-demo-mini"><strong>車検</strong><span>見積・予約相談</span></div><div class="car-demo-mini"><strong>整備</strong><span>点検・オイル交換</span></div><div class="car-demo-mini"><strong>修理</strong><span>キズ・異音・トラブル</span></div></div></div></div></div>
+</article>
+
+<article class="product-live-row">
+<div class="product-live-copy reveal"><span>02 / MEMBER</span><h3>マイカー<br>会員ページ</h3><p>登録車両ごとの現在の整備状況、見積確認・承認、整備履歴、次回車検・オイル交換目安を確認できます。</p><ul><li>複数車両の切替</li><li>受付から引渡しまでの進捗</li><li>車両別履歴・前回と同じ相談</li></ul><div class="product-live-actions"><button class="button button-line js-open-demo" type="button" data-demo-title="マイカー会員ページ" data-demo-url="https://dpromstk2000-lab.github.io/line-shaken-liff/member.html?demo=1&amp;v=step-ksh-next-7">実際の操作デモを開く</button><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/line-shaken-liff/member.html?demo=1&amp;v=step-ksh-next-7" target="_blank" rel="noopener">別タブで体験する</a></div></div>
+<div class="live-device reveal"><div class="live-window live-window-phone"><div class="live-window-head"><span>DPRO CAR / MY CAR MEMBER</span><i></i></div><div class="car-demo-placeholder is-dark"><span class="car-demo-label">MEMBER DEMO</span><h4>現在の整備と、<br>次回目安を一画面で。</h4><p>登録車両、入庫予定、見積確認、履歴を確認する表示例です。</p><div class="car-demo-mini-grid"><div class="car-demo-mini"><strong>現在の整備</strong><span>見積確認中</span></div><div class="car-demo-mini"><strong>登録車両</strong><span>2台</span></div><div class="car-demo-mini"><strong>次回車検</strong><span>90日以内</span></div></div></div></div></div>
+</article>
+
+<article class="product-live-row">
+<div class="product-live-copy reveal"><span>03 / OWNER PC</span><h3>PCオーナー<br>管理画面</h3><p>今日の業務、受付経路、作業進捗、見積、顧客・車両、整備履歴、次回フォローを一括管理します。</p><ul><li>未対応相談・仮入庫・本日の入庫</li><li>進捗・見積・作業完了</li><li>車検・オイル交換・再連絡候補</li></ul><div class="product-live-actions"><button class="button button-line js-open-demo" type="button" data-demo-title="PCオーナー管理画面" data-demo-url="https://dpromstk2000-lab.github.io/line-shaken-liff/dashboard.html?embed_demo=1&amp;v=step-ksh-next-8">実際の操作デモを開く</button><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/line-shaken-liff/dashboard.html?embed_demo=1&amp;v=step-ksh-next-8" target="_blank" rel="noopener">別タブで体験する</a></div></div>
+<div class="live-device reveal"><div class="live-window"><div class="live-window-head"><span>DPRO CAR / OWNER PC</span><i></i></div><div class="car-demo-placeholder"><span class="car-demo-label">OWNER PC DEMO</span><h4>今日やることから、<br>次回フォローまで。</h4><p>初期表示を軽く保つため、実画面はボタン操作後に読み込みます。</p><div class="car-demo-mini-grid"><div class="car-demo-mini"><strong>未対応相談</strong><span>新規・確認中</span></div><div class="car-demo-mini"><strong>入庫・作業</strong><span>現在位置を共有</span></div><div class="car-demo-mini"><strong>次回フォロー</strong><span>車検・オイル交換</span></div></div></div></div></div>
+</article>
+
+<article class="product-live-row">
+<div class="product-live-copy reveal"><span>04 / RECEPTION IPAD</span><h3>受付・現場用<br>iPad画面</h3><p>電話・店頭受付、到着待ち、作業中、引渡し待ちを大きなボタンと一覧で確認し、店舗内の進捗を更新します。</p><ul><li>タッチ操作向け画面</li><li>到着待ち・作業中・引渡し待ち</li><li>見積承認前の作業開始防止</li></ul><div class="product-live-actions"><button class="button button-line js-open-demo" type="button" data-demo-title="受付・現場用 iPad画面" data-demo-url="https://dpromstk2000-lab.github.io/line-shaken-liff/owner-ipad.html?embed_demo=1&amp;v=step-ksh-next-6">実際の操作デモを開く</button><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/line-shaken-liff/owner-ipad.html?embed_demo=1&amp;v=step-ksh-next-6" target="_blank" rel="noopener">別タブで体験する</a></div></div>
+<div class="live-device reveal"><div class="live-window live-window-tablet"><div class="live-window-head"><span>DPRO CAR / RECEPTION IPAD</span><i></i></div><div class="car-demo-placeholder is-tablet"><span class="car-demo-label">IPAD DEMO</span><h4>到着・作業・引渡しを、<br>現場で短く更新。</h4><p>店舗受付と作業進行に必要な操作をiPad向けにまとめています。</p><div class="car-demo-mini-grid"><div class="car-demo-mini"><strong>到着待ち</strong><span>今日の入庫</span></div><div class="car-demo-mini"><strong>作業中</strong><span>進捗を更新</span></div><div class="car-demo-mini"><strong>引渡し待ち</strong><span>完了確認</span></div></div></div></div></div>
+</article>
+</div>
+</div>
+</section>
+
+<section class="section product-after" id="after">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>BEFORE / AFTER</p><h2>受付表をデジタル化するだけでなく、<br><em>車両の次回来店までつなぐ。</em></h2></div><p>相談を受けた瞬間だけではなく、その車の入庫、作業、引渡し、履歴、次回案内まで、情報が途切れにくい運用へ整理します。</p></div>
+<div class="product-after-grid">
+<div class="product-after-panel product-after-before reveal"><span>BEFORE</span><h3>受付・進捗・履歴・案内が、担当者ごとに分かれる。</h3><ul><li>LINE、電話、店頭の相談を別々に記録</li><li>車両情報を来店のたびに確認</li><li>作業状況と見積回答を口頭で共有</li><li>次回車検・オイル交換を個別メモで管理</li></ul></div>
+<div class="product-after-arrow reveal">→</div>
+<div class="product-after-panel product-after-result reveal"><span>AFTER</span><h3>同じ顧客・車両情報で、受付から次回案内まで確認。</h3><ul><li>受付経路を残して同じ相談台帳へ</li><li>複数車両を顧客にひも付けて管理</li><li>PC・iPad・会員ページで現在位置を共有</li><li>車両別履歴から次回フォロー候補を整理</li></ul></div>
+</div>
+</div>
+</section>
+
+<section class="section product-safety" id="safety">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>SAFE OPERATION</p><h2>営業デモから本番導入まで、<br><em>分離と権限確認を前提に。</em></h2></div><p>公開デモは架空データと専用表示を使い、本番は契約店舗専用の環境として分離します。掲載できる範囲は、GitHub上の最新画面と検査ページで確認した内容に限定しています。</p></div>
+<div class="product-safety-grid">
+<article class="product-safety-card reveal"><span>01 / DEMO</span><h3>製品紹介デモは送信しない</h3><p>お客様相談の製品紹介モードは、LINE認証を行わず、相談・仮入庫データを送信しない確認用画面です。</p></article>
+<article class="product-safety-card reveal"><span>02 / SEPARATE</span><h3>デモと本番を分離</h3><p>公開デモは架空情報、本番は契約店舗ごとのGitHub・Worker・データベースとして分けて運用します。</p></article>
+<article class="product-safety-card reveal"><span>03 / AUTH</span><h3>管理画面は権限を分ける</h3><p>お客様画面、会員画面、オーナーPC、店舗iPadを分け、管理用情報を公開URLへ埋め込まない構成を前提にします。</p></article>
+<article class="product-safety-card reveal"><span>04 / DPRO CHECK</span><h3>公開前に接続と動作を確認</h3><p>Worker API、保存先、画面URL、公開ガード、主要操作をDPRO SHOP側で確認してから本番運用へ進みます。</p></article>
+</div>
+</div>
+</section>
+
+<section class="section product-pricing" id="pricing">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>DPRO OPTION PRICE</p><h2>LINE構築・運用店舗へ追加する、<br><em>DPROシステム料金。</em></h2></div><p>DPROシステムは単体販売ではなく、DPRO SHOPのLINE公式アカウント構築・運用契約店舗向けの追加サービスです。</p></div>
+<div class="product-price-grid">
+<article class="product-price-card reveal"><small>INITIAL SETUP</small><h3>DPROシステム構築費</h3><div class="product-price-value"><strong>33,000円</strong><span>税込</span></div><p>店舗情報、デモ環境、基本画面、接続先、公開・操作確認など、導入に必要な初期設定を行います。</p></article>
+<article class="product-price-card is-accent reveal"><small>MONTHLY USE &amp; MAINTENANCE</small><h3>利用・基本保守費</h3><div class="product-price-value"><strong>月額1,100円</strong><span>税込</span></div><p>システム利用と基本的な保守・確認を含みます。大規模な機能追加や個別開発は、事前に内容と費用をご案内します。</p></article>
+</div>
+<p class="product-price-note reveal"><strong>別途必要：</strong>LINE公式アカウント構築77,000円（税込）／LINE運用サポート月額3,300円（税込）。会計・請求・決済、部品在庫、外部整備システムなどとの個別連携が必要な場合は別途確認します。</p>
+</div>
+</section>
+
+<section class="section sys-faq" id="faq">
+<div class="section-inner">
+<div class="sys-center-heading reveal"><p class="eyebrow eyebrow-dark"><span></span>FAQ</p><h2>車検・整備工場向けDPROシステムの<br>よくある質問。</h2></div>
+<div class="faq-list">
+<details class="reveal"><summary>どのような店舗に向いていますか。</summary><p>車検専門店、自動車整備工場、修理・カスタム相談を受ける店舗、中古車販売と整備を行う店舗など、顧客と車両を継続管理し、入庫から次回案内まで整理したい事業者を想定しています。</p></details>
+<details class="reveal"><summary>スマートフォンやiPadで使えますか。</summary><p>お客様の相談・会員ページはスマートフォン向け、店舗受付と現場運用はiPad・タブレット向け、全体管理はPC向けの画面を用意しています。</p></details>
+<details class="reveal"><summary>LINEを使わないお客様も受け付けられますか。</summary><p>はい。電話・店頭・管理者代理の受付経路を管理画面へ追加し、LINE相談と同じ相談・入庫管理の中で扱えます。</p></details>
+<details class="reveal"><summary>既存の会計・整備ソフトを置き換えますか。</summary><p>今回確認できた範囲は、相談・受付、顧客・車両、入庫・進捗、見積確認、整備履歴、次回フォローです。法定点検記録簿、会計・請求、部品在庫などは既存業務と併用し、必要な外部連携は個別に確認します。</p></details>
+<details class="reveal"><summary>公開デモに本物のお客様情報は入っていますか。</summary><p>入りません。公開デモは架空データを使用し、お客様相談の製品紹介モードではデータを送信しません。本番環境は契約店舗ごとに分離します。</p></details>
+</div>
+</div>
+</section>
+
+<section class="section product-final-cta">
+<div class="section-inner product-final-cta-inner reveal">
+<p class="eyebrow eyebrow-light"><span></span>TRY THE REAL DPRO CAR LINE</p>
+<h2>今の受付・進捗管理と比べながら、<br>実画面を確認しませんか。</h2>
+<p>現在の相談経路、車両台帳、入庫管理、見積確認、次回案内の方法を伺い、どの画面から導入すると使いやすいかを一緒に整理します。</p>
+<div class="product-final-actions">
+<a class="button button-line" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener"><span class="line-badge">LINE</span><span>無料で導入相談する</span><b>→</b></a>
+<a class="button button-ghost" href="https://dpromstk2000-lab.github.io/line-shaken-liff/index-product-demo.html?v=step-ksh-next-10" target="_blank" rel="noopener">実際の操作デモを体験する</a>
+</div>
+</div>
+</section>
+</main>
+
+<footer class="site-footer">
+<div class="footer-inner">
+<div class="footer-brand"><a class="brand" href="../"><span class="brand-mark" aria-hidden="true">D</span><span class="brand-copy"><strong>DPRO SHOP</strong><small>LINE BUSINESS DESIGN</small></span></a><p>福岡県を中心に、LINE公式アカウント、ホームページ、<br>契約店舗限定の業種別DPROシステムを支援します。</p></div>
+<div class="footer-links">
+<div><strong>SERVICE</strong><a href="../line-build">LINE公式アカウント構築</a><a href="../line-operation">LINE運用サポート</a><a href="../website">ホームページ制作</a><a href="../pricing">料金</a></div>
+<div><strong>PRODUCT</strong><a href="./">DPROシステム一覧</a><a href="car-service">車検・整備工場</a><a href="https://dpromstk2000-lab.github.io/line-shaken-liff/index-product-demo.html?v=step-ksh-next-10" target="_blank" rel="noopener">車検・整備工場デモ</a></div>
+<div><strong>GUIDE</strong><a href="../about">DPRO SHOPについて</a><a href="../contact">お問い合わせ</a><a href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで無料相談</a></div>
+</div>
+</div>
+<div class="footer-legal-links" aria-label="法務・お問い合わせ"><a href="../privacy">プライバシーポリシー</a><a href="../terms">サービス利用上の注意事項</a><a href="../contact">お問い合わせ</a></div>
+<div class="footer-bottom"><span>© 2026 DPRO SHOP. All Rights Reserved.</span><a href="#top">PAGE TOP ↑</a></div>
+</footer>
+<div class="product-mobile-cta" aria-label="固定アクション"><a href="#demo">デモを体験</a><a href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで相談</a></div>
+
+<div class="demo-modal" id="demo-modal" hidden aria-hidden="true">
+<div class="demo-modal-backdrop" data-demo-close></div>
+<div class="demo-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title" aria-describedby="demo-modal-description">
+<div class="demo-modal-header">
+<div class="demo-modal-title-wrap"><small>DEMO ENVIRONMENT / EXTERNAL GITHUB PAGES</small><strong id="demo-modal-title">実際の操作デモ</strong><span id="demo-modal-description" class="visually-hidden">DPRO 車検・整備工場 LINEの公開デモ画面です。</span></div>
+<div class="demo-modal-actions"><a id="demo-modal-external" href="#" target="_blank" rel="noopener">別タブで開く</a><button type="button" aria-label="デモ画面を閉じる" data-demo-close>×</button></div>
+</div>
+<div class="demo-modal-frame-wrap" id="demo-modal-frame-wrap"></div>
+</div>
+</div>
+
+<script defer src="../script.js?v=17r1"></script>
+<script defer src="systems.js?v=1"></script>
+<script>
+(function(){
+  'use strict';
+  const modal = document.getElementById('demo-modal');
+  const frameWrap = document.getElementById('demo-modal-frame-wrap');
+  const modalTitle = document.getElementById('demo-modal-title');
+  const externalLink = document.getElementById('demo-modal-external');
+  const openButtons = Array.from(document.querySelectorAll('.js-open-demo'));
+  const closeTargets = Array.from(document.querySelectorAll('[data-demo-close]'));
+  let lastTrigger = null;
+
+  function createFrame(title, url){
+    const frame = document.createElement('iframe');
+    frame.src = url;
+    frame.title = title;
+    frame.loading = 'eager';
+    frame.referrerPolicy = 'strict-origin-when-cross-origin';
+    frame.allow = 'clipboard-write; fullscreen';
+    frame.setAttribute('allowfullscreen', '');
+    return frame;
+  }
+
+  function openDemo(button){
+    const title = button.dataset.demoTitle || '実際の操作デモ';
+    const url = button.dataset.demoUrl || '';
+    if (!url) return;
+    lastTrigger = button;
+    modalTitle.textContent = title;
+    externalLink.href = url;
+    frameWrap.replaceChildren(createFrame(title, url));
+    modal.hidden = false;
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('is-demo-modal-open');
+    const closeButton = modal.querySelector('button[data-demo-close]');
+    if (closeButton) closeButton.focus();
+  }
+
+  function closeDemo(){
+    if (modal.hidden) return;
+    frameWrap.replaceChildren();
+    modal.hidden = true;
+    modal.setAttribute('aria-hidden', 'true');
+    externalLink.href = '#';
+    document.body.classList.remove('is-demo-modal-open');
+    if (lastTrigger) lastTrigger.focus();
+  }
+
+  function trapFocus(event){
+    if (event.key !== 'Tab' || modal.hidden) return;
+    const focusable = Array.from(modal.querySelectorAll('a[href],button:not([disabled])')).filter(function(el){return el.offsetParent !== null;});
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first){event.preventDefault();last.focus();}
+    else if (!event.shiftKey && document.activeElement === last){event.preventDefault();first.focus();}
+  }
+
+  openButtons.forEach(function(button){button.addEventListener('click', function(){openDemo(button);});});
+  closeTargets.forEach(function(target){target.addEventListener('click', closeDemo);});
+  document.addEventListener('keydown', function(event){
+    if (event.key === 'Escape' && !modal.hidden){event.preventDefault();closeDemo();return;}
+    trapFocus(event);
+  });
+})();
+</script>
+</body>
+</html>
