@@ -2272,3 +2272,39 @@ linear-gradient(145deg,#06101c,#0a1b2c);
   .cleaning-live-board{grid-template-columns:1fr 1fr}
   .cleaning-live-follow>div{grid-template-columns:1fr 1fr}
 }
+
+/* DPRO-SYSTEMS-8 REPAIR PRODUCT PAGE */
+.repair-product-page{--repair:#0f766e;--repair-dark:#095d56;--repair-soft:#e8f5f2;--repair-amber:#d38b14}
+.repair-product-page .repair-product-hero{
+  background:
+    radial-gradient(circle at 77% 18%,rgba(68,220,255,.18),transparent 28%),
+    radial-gradient(circle at 25% 91%,rgba(126,107,255,.18),transparent 37%),
+    linear-gradient(145deg,#05101c,#0a1d31 50%,#07111f);
+}
+.repair-product-page .product-hero-copy h1 em{
+  background:linear-gradient(115deg,#fff 0%,var(--sys-cyan) 50%,#b7afff 100%);
+  background-clip:text;-webkit-background-clip:text;
+}
+.repair-code{background:linear-gradient(135deg,rgba(68,220,255,.16),rgba(126,107,255,.16))!important;color:#d9f5ff!important}
+.repair-monitor-ui{min-height:455px;padding:22px;display:grid;grid-template-columns:150px 1fr;background:#edf5f2}
+.repair-side{padding:16px;border-radius:14px;background:linear-gradient(160deg,#0a5e57,#0f766e);color:#fff}
+.repair-side strong{display:block;font-size:12px}.repair-side span{margin-top:10px;padding:8px 9px;display:block;border-radius:8px;background:rgba(255,255,255,.09);color:rgba(255,255,255,.78);font-size:7px;font-weight:850}
+.repair-main{padding:6px 0 0 16px}.repair-head{display:flex;align-items:center;justify-content:space-between}.repair-head strong{font-size:16px}.repair-head b{padding:6px 10px;border-radius:999px;background:#fff;color:#095d56;font-size:9px}
+.repair-kpis{margin-top:15px;display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.repair-kpis span{padding:11px 8px;border-radius:11px;background:#fff;color:#697a75;font-size:7px;font-weight:850}.repair-kpis b{margin-top:5px;display:block;color:#095d56;font-size:16px}
+.repair-case{margin-top:10px;padding:12px;display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid #d7e5e0;border-radius:12px;background:#fff}.repair-case div{display:flex;flex-direction:column}.repair-case div b{font-size:10px}.repair-case div small{margin-top:3px;color:#6e7f79;font-size:7px}.repair-case>strong{padding:6px 8px;border-radius:999px;background:#fff3dc;color:#8c5700;font-size:7px}.repair-case>strong.is-run{background:#e8f5f2;color:#0a665d}.repair-case>strong.is-ready{background:#edf4ff;color:#255ca5}
+.repair-stage-phone{bottom:8px}.repair-phone-card{margin-top:12px;padding:11px;border:1px solid #d6e5e0;border-radius:12px;background:#fff}.repair-phone-card small{color:#697b75;font-size:7px}.repair-phone-card h3{margin:8px 0;font-size:13px}.repair-phone-card span{margin-top:6px;padding:7px 8px;display:block;border-radius:8px;background:#edf7f4;color:#3b5e55;font-size:6px;font-weight:800}.repair-phone-card b{margin-top:9px;padding:8px;display:block;border-radius:9px;background:#0f766e;color:#fff;font-size:7px;text-align:center}
+.repair-stage-tablet{bottom:4px}.repair-photo-row{margin-top:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.repair-photo-row span{padding:11px 4px;border-radius:9px;background:#e9f6f3;color:#145e55;font-size:6px;font-weight:900;text-align:center}
+.repair-live-request,.repair-live-member{min-height:430px;padding:63px 22px 24px;background:linear-gradient(180deg,#edf7f4,#fff)}.repair-live-request small,.repair-live-member small{color:#687b75;font-size:10px;font-weight:900}.repair-live-request h4,.repair-live-member h4{margin:13px 0;font-size:24px}.repair-live-request span{margin-top:9px;padding:12px;display:block;border:1px solid #d7e5e0;border-radius:11px;background:#fff;color:#4a665d;font-size:11px;font-weight:800}.repair-live-request>b,.repair-live-member>b{margin-top:14px;padding:12px;display:block;border-radius:11px;background:#0f766e;color:#fff;text-align:center}
+.repair-live-member>div{display:grid;grid-template-columns:1fr 1fr;gap:8px}.repair-live-member span{padding:13px;border-radius:12px;background:#fff;color:#647871;font-size:9px;font-weight:850}.repair-live-member span b{margin-top:5px;display:block;color:#095d56;font-size:15px}.repair-live-member p{color:#60756e}
+.repair-live-ipad{min-height:390px;padding:25px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px;background:#edf5f2}.repair-live-ipad>div{padding:15px 10px;border-radius:14px;background:#fff;border:1px solid #d9e6e1}.repair-live-ipad strong{display:block;color:#174f47;font-size:10px}.repair-live-ipad span{margin-top:13px;display:block;color:#0f766e;font-size:21px;font-weight:950}
+.repair-live-owner{min-height:420px;display:grid;grid-template-columns:138px 1fr;background:#edf5f2}.repair-live-owner aside{padding:21px 13px;background:#09544e;color:#fff}.repair-live-owner aside b{display:block;font-size:11px}.repair-live-owner aside span{margin-top:12px;display:block;color:rgba(255,255,255,.72);font-size:8px}.repair-live-owner main{padding:28px}.repair-live-owner main>div{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.repair-live-owner main span{padding:13px;border-radius:11px;background:#fff;color:#63766f;font-size:8px;font-weight:850}.repair-live-owner main b{display:block;margin-top:7px;color:#095d56;font-size:18px}.repair-live-owner h4{margin:25px 0 9px;font-size:21px}.repair-live-owner p{color:#60746d}
+.repair-live-settings{min-height:410px;padding:28px;display:grid;grid-template-columns:1fr 1fr;gap:10px;background:#edf5f2}.repair-live-settings>div{padding:17px;border-radius:14px;background:#fff;border:1px solid #d8e5e0}.repair-live-settings strong{display:block;color:#095d56}.repair-live-settings span{margin-top:7px;display:block;color:#667971;font-size:10px}
+.sys-product-card.is-repair .sys-product-visual{background:radial-gradient(circle at 82% 15%,rgba(15,118,110,.2),transparent 34%),linear-gradient(145deg,#eaf6f3,#fbfcfc)}
+.sys-product-card.is-repair .sys-product-monitor-grid span{background:#ecf6f3;color:#2d5c53}
+.sys-product-card.is-repair .sys-product-phone-inner b,.sys-product-card.is-repair .sys-product-card-copy small,.sys-product-card.is-repair .sys-product-status{color:#0d6b63}
+.sys-product-card.is-repair .sys-product-phone-inner span{background:#ecf6f3;color:#3a6259}
+@media(max-width:760px){
+  .repair-monitor-ui{grid-template-columns:1fr;padding:13px}.repair-side{display:none}.repair-main{padding:4px}
+  .repair-kpis{grid-template-columns:1fr 1fr}.repair-stage-tablet{display:none}
+  .repair-live-ipad{grid-template-columns:1fr 1fr}.repair-live-owner{grid-template-columns:1fr}.repair-live-owner aside{display:none}
+}
