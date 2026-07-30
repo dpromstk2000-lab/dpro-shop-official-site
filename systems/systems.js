@@ -1,6 +1,83 @@
 (() => {
   "use strict";
 
+  const injectHomeNursingCard = () => {
+    if (!document.body.classList.contains("systems-hub-page")) return;
+    const grid = document.querySelector(".sys-catalog-grid");
+    if (!grid || grid.querySelector('a[href="home-nursing"]')) return;
+
+    const card = document.createElement("a");
+    card.className = "sys-product-card is-home-nursing";
+    card.href = "home-nursing";
+    card.dataset.systemCategory = "welfare-care";
+    card.innerHTML = `
+      <div class="sys-product-visual">
+        <span class="sys-product-status">公式紹介ページ公開中</span>
+        <div class="sys-product-monitor"><div class="sys-product-monitor-grid">
+          <span>本日の訪問<br>4件</span><span>訪問中<br>1件</span><span>家族連絡<br>1件</span>
+          <span>訪問予定・配置</span><span>家族報告承認</span><span>管理者iPad</span>
+        </div></div>
+        <div class="sys-product-phone"><div class="sys-product-phone-inner">
+          <b>本人・家族LINE</b><span>次回訪問予定</span><span>完了報告</span><span>変更・相談</span>
+        </div></div>
+      </div>
+      <div class="sys-product-card-copy">
+        <small>HOME NURSING &amp; FAMILY</small>
+        <h3>DPRO 訪問看護ステーション LINE<br>訪問看護・家族連携</h3>
+        <p>LINE相談、本人・家族連携、訪問予定・スタッフ配置、訪問開始・終了、家族報告、非緊急連絡、管理PC・iPadまでを一つにつなぎます。</p>
+        <span class="sys-product-card-link">詳しい機能と実画面を見る <b>→</b></span>
+      </div>`;
+
+    const dayservice = grid.querySelector('a[href="dayservice"]');
+    const emptyState = grid.querySelector("[data-system-empty]");
+    if (dayservice) {
+      dayservice.insertAdjacentElement("afterend", card);
+    } else if (emptyState) {
+      grid.insertBefore(card, emptyState);
+    } else {
+      grid.append(card);
+    }
+
+    const jsonLdScripts = [
+      ...document.querySelectorAll('script[type="application/ld+json"]')
+    ];
+    jsonLdScripts.forEach((script) => {
+      try {
+        const data = JSON.parse(script.textContent || "{}");
+        const graph = Array.isArray(data?.["@graph"]) ? data["@graph"] : [];
+        const list = graph.find(
+          (item) => item?.["@type"] === "ItemList" &&
+            item?.["@id"] === "https://dpro-shop.com/systems/#list"
+        );
+        if (!list || !Array.isArray(list.itemListElement)) return;
+        if (
+          list.itemListElement.some(
+            (item) => item?.url === "https://dpro-shop.com/systems/home-nursing"
+          )
+        ) return;
+
+        list.itemListElement.forEach((item) => {
+          if (Number(item.position) >= 8) item.position += 1;
+        });
+        list.itemListElement.push({
+          "@type": "ListItem",
+          position: 8,
+          url: "https://dpro-shop.com/systems/home-nursing",
+          name: "DPRO 訪問看護ステーション LINE"
+        });
+        list.itemListElement.sort(
+          (a, b) => Number(a.position) - Number(b.position)
+        );
+        list.numberOfItems = list.itemListElement.length;
+        script.textContent = JSON.stringify(data);
+      } catch (_error) {
+        // 構造化データの解析失敗は、画面のカード表示を妨げない。
+      }
+    });
+  };
+
+  injectHomeNursingCard();
+
   const filters = [...document.querySelectorAll("[data-system-filter]")];
   const cards = [...document.querySelectorAll("[data-system-category]")];
   const empty = document.querySelector("[data-system-empty]");
