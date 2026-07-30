@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ja">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async fetchpriority="low" src="https://www.googletagmanager.com/gtag/js?id=G-YPN3998BHG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-YPN3998BHG');
+</script>
+<meta charset="utf-8">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="ベーカリー向けDPRO ベーカリー LINE。写真付きパンカタログ、LINE取り置き、商品・写真管理、お一人様上限、スタッフiPad、ECOレスキューの機能と実画面デモを紹介します。">
+<meta name="theme-color" content="#07111f">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DPRO SHOP">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="DPRO ベーカリー LINE｜写真付きパンカタログ・LINE取り置き">
+<meta property="og:description" content="パンの写真・価格・売り切れ情報を公開カタログで伝え、そのままLINE取り置きと店舗の準備・受け渡しへつなぎます。">
+<meta property="og:url" content="https://dpro-shop.com/systems/bakery">
+<meta property="og:image" content="https://dpro-shop.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DPRO ベーカリー LINE｜DPRO SHOP">
+<meta name="twitter:description" content="写真付きパンカタログ、LINE取り置き、商品管理、スタッフiPadをつなぐベーカリー向けシステム。">
+<meta name="twitter:image" content="https://dpro-shop.com/og-image.png">
+<title>DPRO ベーカリー LINE｜写真付きパンカタログ・LINE取り置き｜DPRO SHOP</title>
+<link rel="canonical" href="https://dpro-shop.com/systems/bakery">
+<link rel="manifest" href="../site.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="../sitemap.xml">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="stylesheet" href="../styles.css?v=17r2">
+<link rel="stylesheet" href="systems.css?v=1">
+<script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
+<style>
+.official-product-page{overflow-x:clip}
+.bakery-stage{position:relative;min-width:0}
+.bakery-monitor-ui{display:grid;grid-template-columns:150px minmax(0,1fr);min-height:330px;background:linear-gradient(145deg,#fffaf2,#fff);color:#251d18}
+.bakery-monitor-side{padding:18px 13px;background:linear-gradient(180deg,#422514,#6c3618);color:#fff6e9;display:grid;align-content:start;gap:9px}
+.bakery-monitor-side strong{font-size:13px;letter-spacing:.06em}
+.bakery-monitor-side span{padding:9px 10px;border-radius:10px;background:rgba(255,255,255,.08);font-size:11px;font-weight:800}
+.bakery-monitor-main{padding:18px;min-width:0}
+.bakery-monitor-head{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:14px}
+.bakery-monitor-head strong{font-size:17px}
+.bakery-monitor-head b{border-radius:999px;padding:6px 10px;background:#e8f7ee;color:#17613f;font-size:11px}
+.bakery-product-preview{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.bakery-product-card{min-width:0;border:1px solid #ead8c3;border-radius:16px;background:#fff;overflow:hidden;box-shadow:0 8px 22px rgba(88,48,19,.08)}
+.bakery-product-photo{height:82px;display:grid;place-items:center;background:linear-gradient(135deg,#ffe3ba,#fff3de);font-size:34px}
+.bakery-product-body{padding:10px}
+.bakery-product-body small{display:block;color:#9a4e16;font-weight:900}
+.bakery-product-body strong{display:block;margin-top:3px;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bakery-product-body span{display:block;margin-top:4px;color:#66584f;font-size:10px}
+.bakery-product-body i{display:inline-flex;margin-top:7px;border-radius:999px;padding:4px 7px;background:#176c4a;color:#fff;font-style:normal;font-size:9px;font-weight:900}
+.bakery-phone-card{padding:14px;border-radius:18px;background:linear-gradient(145deg,#2a1d17,#6f3215);color:#fff8ee;box-shadow:0 12px 30px rgba(64,29,13,.25)}
+.bakery-phone-card small{color:#ffd6a6;font-weight:900}
+.bakery-phone-card h3{margin:6px 0 12px;font-size:18px}
+.bakery-phone-menu{display:grid;gap:7px}
+.bakery-phone-menu span{display:flex;justify-content:space-between;gap:8px;padding:9px 10px;border-radius:11px;background:rgba(255,255,255,.1);font-size:11px;font-weight:900}
+.bakery-phone-menu b{color:#ffd6a6}
+.bakery-staff-mini{padding:13px;color:#2d241e}
+.bakery-staff-mini small{font-weight:900;color:#9a4e16}
+.bakery-staff-mini h3{margin:6px 0 10px;font-size:15px}
+.bakery-staff-row{display:grid;grid-template-columns:1fr auto;gap:8px;padding:8px;border-radius:10px;background:#fff7ed;border:1px solid #fed7aa;margin-top:6px;font-size:10px}
+.bakery-staff-row b{color:#176c4a}
+.bakery-map-core{background:linear-gradient(145deg,#101e34,#2d2768)}
+.bakery-role-label{letter-spacing:.04em}
+.bakery-feature-note{margin-top:18px;padding:15px 17px;border-radius:16px;background:#fff6e7;border:1px solid #f1d2a7;color:#5f493a;font-size:13px;line-height:1.8}
+.bakery-demo-notice{margin-top:18px;padding:14px 16px;border-radius:16px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);font-size:13px;line-height:1.75}
+.bakery-placeholder{min-height:340px;padding:20px;background:linear-gradient(145deg,#fbf2e8,#fff);color:#29211b;display:grid;align-content:center;gap:14px}
+.bakery-placeholder-phone{min-height:520px;background:linear-gradient(180deg,#fff7ed,#fffbeb)}
+.bakery-placeholder-title{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.bakery-placeholder-title strong{font-size:18px}
+.bakery-placeholder-title span{border-radius:999px;padding:5px 9px;background:#e8f7ee;color:#17613f;font-size:11px;font-weight:900}
+.bakery-placeholder-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.bakery-placeholder-card{min-width:0;border:1px solid #ead8c3;border-radius:15px;background:#fff;padding:12px}
+.bakery-placeholder-card b{display:block;font-size:13px}
+.bakery-placeholder-card span{display:block;margin-top:4px;color:#74675d;font-size:11px}
+.bakery-placeholder-card i{display:inline-flex;margin-top:9px;border-radius:999px;padding:5px 8px;background:#9a4e16;color:#fff;font-style:normal;font-size:10px;font-weight:900}
+.bakery-admin-form{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.bakery-admin-field{padding:10px;border-radius:12px;border:1px solid #dec4a6;background:#fff}
+.bakery-admin-field small{display:block;color:#74675d;font-size:10px}
+.bakery-admin-field b{display:block;margin-top:3px;font-size:12px}
+.bakery-admin-field.is-photo{grid-row:span 2;display:grid;place-items:center;background:linear-gradient(135deg,#ffe0b1,#fff1da);font-size:42px}
+.bakery-status-board{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.bakery-status-column{padding:11px;border-radius:14px;background:#fff;border:1px solid #ead8c3}
+.bakery-status-column>strong{display:flex;justify-content:space-between;gap:6px;font-size:12px}
+.bakery-status-ticket{margin-top:8px;padding:9px;border-radius:10px;background:#fff7ed;font-size:10px}
+.bakery-status-ticket b{display:block;font-size:11px}
+.bakery-limit-panel{padding:16px;border-radius:18px;background:#fff;border:1px solid #ead8c3}
+.bakery-limit-panel h4{margin:0 0 10px;font-size:16px}
+.bakery-limit-row{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-top:1px solid #f0e2d2;font-size:12px}
+.bakery-limit-row b{color:#9a4e16}
+.demo-modal[hidden]{display:none!important}
+.demo-modal{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;padding:18px}
+.demo-modal-backdrop{position:absolute;inset:0;border:0;background:rgba(2,8,23,.78);cursor:pointer}
+.demo-modal-dialog{position:relative;width:min(1240px,100%);height:min(86vh,900px);display:grid;grid-template-rows:auto 1fr;background:#07111f;border:1px solid rgba(166,206,255,.32);border-radius:24px;box-shadow:0 30px 100px rgba(0,0,0,.45);overflow:hidden}
+.demo-modal-head{display:flex;justify-content:space-between;gap:14px;align-items:center;padding:13px 16px;background:#0d1b31;color:#fff}
+.demo-modal-title-wrap{min-width:0}
+.demo-modal-title-wrap small{display:block;color:#9dc9ff;font-weight:800}
+.demo-modal-title-wrap strong{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.demo-modal-actions{display:flex;gap:8px;align-items:center}
+.demo-modal-actions a,.demo-modal-actions button{min-height:42px;border-radius:999px;padding:9px 13px;font:inherit;font-size:13px;font-weight:900}
+.demo-modal-actions a{color:#061528;background:#8ff4c2;text-decoration:none}
+.demo-modal-actions button{border:1px solid rgba(255,255,255,.35);color:#fff;background:transparent;cursor:pointer}
+.demo-modal-frame{min-height:0;background:#fff;display:grid;place-items:center}
+.demo-modal-frame iframe{width:100%;height:100%;border:0;background:#fff}
+.demo-modal-loading{color:#26364c;font-weight:900}
+body.demo-modal-open{overflow:hidden}
+@media(max-width:980px){
+  .bakery-product-preview,.bakery-placeholder-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .bakery-product-card:last-child,.bakery-placeholder-card:last-child{display:none}
+}
+@media(max-width:760px){
+  .bakery-monitor-ui{grid-template-columns:1fr;min-height:auto}
+  .bakery-monitor-side{display:none}
+  .bakery-product-preview{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .bakery-placeholder{min-height:300px}
+  .bakery-status-board{grid-template-columns:1fr}
+  .bakery-admin-form{grid-template-columns:1fr}
+  .bakery-admin-field.is-photo{grid-row:auto;min-height:130px}
+  .demo-modal{padding:8px}
+  .demo-modal-dialog{height:92vh;border-radius:18px}
+  .demo-modal-head{align-items:flex-start}
+  .demo-modal-actions{flex-direction:column;align-items:stretch}
+}
+@media(max-width:520px){
+  .bakery-product-preview,.bakery-placeholder-grid{grid-template-columns:1fr 1fr}
+  .bakery-product-card:last-child{display:none}
+  .bakery-product-photo{height:64px;font-size:27px}
+  .bakery-monitor-main{padding:12px}
+  .bakery-placeholder{padding:14px}
+  .bakery-placeholder-card{padding:9px}
+  .demo-modal-title-wrap small{font-size:10px}
+  .demo-modal-title-wrap strong{font-size:13px}
+  .demo-modal-actions a,.demo-modal-actions button{font-size:11px;padding:8px 10px}
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://dpro-shop.com/#website",
+      "name":"DPRO SHOP",
+      "url":"https://dpro-shop.com/",
+      "inLanguage":"ja"
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://dpro-shop.com/systems/bakery#webpage",
+      "url":"https://dpro-shop.com/systems/bakery",
+      "name":"DPRO ベーカリー LINE｜写真付きパンカタログ・LINE取り置き",
+      "description":"ベーカリー向けDPRO ベーカリー LINEの機能、利用者別画面、導入前後、実画面デモを紹介します。",
+      "isPartOf":{"@id":"https://dpro-shop.com/#website"},
+      "inLanguage":"ja",
+      "dateModified":"2026-07-30",
+      "breadcrumb":{"@id":"https://dpro-shop.com/systems/bakery#breadcrumb"},
+      "mainEntity":{"@id":"https://dpro-shop.com/systems/bakery#software"}
+    },
+    {
+      "@type":"BreadcrumbList",
+      "@id":"https://dpro-shop.com/systems/bakery#breadcrumb",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"DPRO SHOP","item":"https://dpro-shop.com/"},
+        {"@type":"ListItem","position":2,"name":"業種別DPROシステム","item":"https://dpro-shop.com/systems/"},
+        {"@type":"ListItem","position":3,"name":"ベーカリー","item":"https://dpro-shop.com/systems/bakery"}
+      ]
+    },
+    {
+      "@type":"SoftwareApplication",
+      "@id":"https://dpro-shop.com/systems/bakery#software",
+      "name":"DPRO ベーカリー LINE",
+      "alternateName":"DPRO BAKERY LINE",
+      "applicationCategory":"BusinessApplication",
+      "operatingSystem":"Web browser / LINE",
+      "description":"写真付きパンカタログ、LINE取り置き、商品・写真管理、取り置き上限、スタッフiPad、ECOレスキューをつなぐベーカリー向け業務システム。",
+      "url":"https://dpro-shop.com/systems/bakery",
+      "offers":[
+        {
+          "@type":"Offer",
+          "name":"DPROシステム構築",
+          "price":"33000",
+          "priceCurrency":"JPY",
+          "description":"LINE公式アカウント構築・運用契約店舗限定"
+        },
+        {
+          "@type":"Offer",
+          "name":"DPROシステム利用・基本保守",
+          "price":"1100",
+          "priceCurrency":"JPY",
+          "description":"月額。LINE公式アカウント構築・運用契約店舗限定"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body class="system-product-page official-product-page">
+<div class="sys-progress" aria-hidden="true"></div>
+<a class="skip-link" href="#main">本文へ移動</a>
+<header class="site-header" id="top">
+<div class="header-inner">
+<a class="brand" href="../" aria-label="DPRO SHOP トップへ"><span class="brand-mark" aria-hidden="true">D</span><span class="brand-copy"><strong>DPRO SHOP</strong><small>LINE BUSINESS DESIGN</small></span></a>
+<button class="menu-button" type="button" aria-expanded="false" aria-controls="global-nav" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+<nav class="global-nav" id="global-nav" aria-label="メインナビゲーション">
+<a href="../">トップ</a>
+<a href="../line-build">LINE構築</a>
+<a href="../line-operation">LINE運用</a>
+<a href="../website">HP制作</a>
+<a href="./">DPROシステム</a>
+<a href="../pricing">料金</a>
+<a href="../about">DPRO SHOP</a>
+<a class="nav-cta" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで無料相談</a>
+</nav>
+</div>
+</header>
+
+<main id="main">
+<section class="product-hero" aria-labelledby="product-title">
+<div class="product-hero-grid" aria-hidden="true"></div>
+<div class="product-hero-inner">
+<div class="product-hero-copy reveal">
+<nav class="sys-breadcrumb" aria-label="パンくずリスト"><a href="../">DPRO SHOP</a><span>／</span><a href="./">DPROシステム</a><span>／</span><strong>ベーカリー</strong></nav>
+<div class="official-product-label"><span>DPRO SHOP</span><strong>公式製品紹介ページ</strong><small>DPRO ベーカリー LINE｜ベーカリー向けシステム</small></div>
+<div class="product-code" aria-hidden="true">BAKERY</div>
+<p class="eyebrow eyebrow-light"><span></span>PHOTO CATALOG・LINE PREORDER・STORE OPERATION</p>
+<h1 id="product-title"><span>パンの魅力を写真で伝え、</span><span><em>そのままLINEで取り置きへ。</em></span></h1>
+<p class="product-hero-lead">写真・価格・説明・売り切れ情報を公開カタログで伝え、お客様のLINE取り置き、スタッフの準備・受け渡し、オーナーの商品管理までを一つにつなぐベーカリー向けシステムです。</p>
+<div class="product-hero-actions">
+<a class="button button-line" href="#features"><span class="line-badge">BK</span><span>機能を詳しく見る</span><b>↓</b></a>
+<button class="button button-ghost" type="button" data-open-demo="bakery-catalog" data-demo-title="お客様向け 写真付きパンカタログ" data-demo-url="https://dpromstk2000-lab.github.io/bakery-line-system/catalog.html?shop_code=bakery_demo&amp;catalog_api=https%3A%2F%2Fdpro-bakery-catalog-api.dpromstk2000.workers.dev&amp;api=https%3A%2F%2Fdpro-bakery-wallet-api.dpromstk2000.workers.dev&amp;v=33-r1" aria-haspopup="dialog" aria-controls="bakery-demo-modal" aria-expanded="false">実際の操作デモ</button>
+</div>
+<div class="product-proof-tags"><span>写真付きパンカタログ</span><span>LINE取り置き</span><span>商品・写真管理</span><span>お一人様上限</span><span>スタッフiPad</span><span>ECOレスキュー</span></div>
+</div>
+
+<div class="product-hero-stage bakery-stage reveal" aria-label="DPRO ベーカリー LINEの画面イメージ">
+<div class="product-stage-label"><i></i>OFFICIAL PRODUCT GUIDE / SYSTEM PREVIEW</div>
+<div class="product-stage-monitor">
+<div class="product-browser"><span class="product-browser-dots"><i></i><i></i><i></i></span><span>DPRO BAKERY / 公開パンカタログ</span><b>PREVIEW</b></div>
+<div class="bakery-monitor-ui">
+<div class="bakery-monitor-side"><strong>DPRO BAKERY</strong><span>公開カタログ</span><span>カテゴリー</span><span>おすすめ商品</span><span>売り切れ情報</span></div>
+<div class="bakery-monitor-main">
+<div class="bakery-monitor-head"><strong>本日のパンカタログ</strong><b>取り置き受付中</b></div>
+<div class="bakery-product-preview">
+<div class="bakery-product-card"><div class="bakery-product-photo" aria-hidden="true">🥐</div><div class="bakery-product-body"><small>おすすめ</small><strong>発酵バタークロワッサン</strong><span>香りと軽い食感</span><i>取り置き</i></div></div>
+<div class="bakery-product-card"><div class="bakery-product-photo" aria-hidden="true">🍞</div><div class="bakery-product-body"><small>食パン</small><strong>湯種食パン</strong><span>毎日の朝食に</span><i>取り置き</i></div></div>
+<div class="bakery-product-card"><div class="bakery-product-photo" aria-hidden="true">🥖</div><div class="bakery-product-body"><small>ハード系</small><strong>天然酵母バゲット</strong><span>小麦の香り</span><i>詳しく見る</i></div></div>
+</div>
+</div>
+</div>
+</div>
+<div class="product-stage-phone"><div class="product-phone-inner"><div class="product-phone-brand"><b>LINE</b>DPRO BAKERY</div><div class="bakery-phone-card"><small>デジタル会員証</small><h3>いつものパンを取り置き</h3><div class="bakery-phone-menu"><span>商品を選ぶ <b>→</b></span><span>受取日時を選ぶ <b>→</b></span><span>予約履歴を見る <b>→</b></span></div></div></div></div>
+<div class="product-stage-tablet"><div class="product-tablet-inner bakery-staff-mini"><small>STAFF / IPAD</small><h3>本日の準備・受け渡し</h3><div class="bakery-staff-row"><span>10:30 佐藤様</span><b>準備中</b></div><div class="bakery-staff-row"><span>11:00 田中様</span><b>準備完了</b></div></div></div>
+</div>
+</div>
+</section>
+
+<nav class="product-local-nav" aria-label="ページ内メニュー">
+<div class="product-local-nav-inner"><a href="#summary" class="is-active">概要</a><a href="#system-map">全体構成</a><a href="#features">主な機能</a><a href="#flow">利用の流れ</a><a href="#roles">画面別</a><a href="#demo">実画面</a><a href="#after">導入前後</a><a href="#safety">安全設計</a><a href="#pricing">料金</a><a href="#faq">よくある質問</a></div>
+</nav>
+
+<section class="section product-summary" id="summary">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>UNDERSTAND IN 30 SECONDS</p><h2>30秒で分かる、<br><em>このシステムの役割。</em></h2></div><p>POS・会計・通販サイトを置き換えるのではなく、パンを知ってもらう入口から、取り置き、準備、受け渡しまでの情報をつなぎます。</p></div>
+<div class="product-summary-grid">
+<article class="product-summary-card reveal"><span>01 / CUSTOMER</span><h3>お客様は写真で選び、LINEで取り置き。</h3><p>公開カタログで写真・価格・説明・売り切れ情報を確認し、希望商品をLINEの取り置き画面へ引き継げます。</p></article>
+<article class="product-summary-card reveal"><span>02 / SHOP</span><h3>店舗は商品情報と受付上限を管理。</h3><p>オーナーが商品写真、価格、公開状態、取り置き可否、店舗全体・お一人様の上限を設定します。</p></article>
+<article class="product-summary-card reveal"><span>03 / STAFF</span><h3>スタッフは準備と受け渡しに集中。</h3><p>当日の取り置きをiPad・タブレットで確認し、未確認、準備中、準備完了、受け渡し済みへ更新します。</p></article>
+</div>
+<div class="product-problem-grid">
+<article class="product-problem reveal"><div class="product-problem-before"><small>導入前</small><strong>SNS投稿が流れ、パンの商品一覧として見てもらいにくい</strong></div><div class="product-problem-arrow">↓</div><div class="product-problem-after"><small>導入後</small><strong>写真・価格・説明を固定URLの公開カタログへ集約</strong></div></article>
+<article class="product-problem reveal"><div class="product-problem-before"><small>導入前</small><strong>電話・DMの取り置き内容を紙や口頭でスタッフへ共有</strong></div><div class="product-problem-arrow">↓</div><div class="product-problem-after"><small>導入後</small><strong>LINE受付から準備・受け渡しまで同じ予約情報で確認</strong></div></article>
+<article class="product-problem reveal"><div class="product-problem-before"><small>導入前</small><strong>人気商品の受けすぎや、同じ方からの分割予約を確認しにくい</strong></div><div class="product-problem-arrow">↓</div><div class="product-problem-after"><small>導入後</small><strong>店舗全体とお一人様の累計上限を予約保存時にも確認</strong></div></article>
+</div>
+</div>
+</section>
+
+<section class="section product-map" id="system-map">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>ONE DATA, FOUR EXPERIENCES</p><h2>カタログ・LINE・スタッフ・管理を、<br><em>同じ商品と予約情報でつなぐ。</em></h2></div><p>全員に同じ画面を見せるのではなく、お客様、スタッフ、オーナーそれぞれに必要な操作だけを用意します。</p></div>
+<div class="product-map-board reveal">
+<div class="product-map-label"><strong>DPRO ベーカリー LINE 全体構成</strong><span>PUBLIC CATALOG × LINE × PC × iPad × API</span></div>
+<div class="product-map-flow">
+<div class="product-map-side">
+<div class="product-map-node"><b>CUSTOMER / WEB</b><strong>公開パンカタログ</strong><p>写真・価格・説明・検索・カテゴリー・売り切れ表示</p></div>
+<div class="product-map-node"><b>MEMBER / LINE</b><strong>会員証・取り置き</strong><p>商品・数量・受取日時・いつものパン・予約履歴</p></div>
+</div>
+<div class="product-map-arrow">→</div>
+<div class="product-map-core bakery-map-core"><b>API</b><strong>Worker API・データベース・画像保存</strong><span>商品・写真・会員・予約・上限・<br>ステータスを保存して各画面へ反映</span></div>
+<div class="product-map-arrow">→</div>
+<div class="product-map-side">
+<div class="product-map-node"><b>STAFF / IPAD</b><strong>準備・受け渡し</strong><p>当日一覧・準備中・準備完了・受け渡し済み</p></div>
+<div class="product-map-node"><b>OWNER / PC</b><strong>店舗・商品管理</strong><p>今日の状況・商品写真・上限・顧客・ECO案内</p></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section product-features" id="features">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>MAIN FEATURES</p><h2>見てもらう入口から受け渡しまで、<br><em>10の主要機能。</em></h2></div><p>商品紹介だけ、予約フォームだけで終わらず、ベーカリーの実際の販売・準備の流れへつなげます。</p></div>
+<div class="product-feature-grid">
+<article class="product-feature reveal"><span class="product-feature-icon">PHOTO</span><h3>写真付きパンカタログ</h3><p>お客様が来店前に写真、価格、短い説明、詳しい説明を確認できます。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">LINE</span><h3>カタログからLINE取り置き</h3><p>選んだ商品を取り置き画面へ引き継ぎ、数量と受取日時を指定します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">EDIT</span><h3>商品・写真管理</h3><p>オーナーが商品名、価格、説明、カテゴリー、写真、表示順を更新します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">SOLD</span><h3>販売状態の切り替え</h3><p>販売中、売り切れ、非表示、取り置き不可を商品ごとに切り替えます。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">LIMIT</span><h3>取り置き上限ガード</h3><p>店舗全体とお一人様の1日上限を設定し、同日・同商品の累計予約も確認します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">CARD</span><h3>LINEデジタル会員証</h3><p>会員情報、予約履歴、いつものパン、前回と同じ内容への入口をまとめます。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">iPad</span><h3>スタッフ用取り置き画面</h3><p>店舗スタッフが今日・次営業日の予約と、作る順番・渡す順番を確認します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">STATUS</span><h3>準備・受け渡し進行</h3><p>未確認、準備中、準備完了、受け渡し済みなど、店頭対応の現在地を共有します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">ECO</span><h3>ECOレスキュー</h3><p>夕方の案内候補や配信用文面を作り、食品ロス対策の来店導線に活用します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">CLOSE</span><h3>定休日・休業日対応</h3><p>定休日や臨時休業日を避け、予約可能な受取日を案内します。</p></article>
+</div>
+<p class="bakery-feature-note reveal"><strong>対象外・別途確認：</strong>POSレジ、会計、オンライン決済、在庫・製造原価、通販配送を標準機能として置き換えるものではありません。チャージ・残高管理は希望店舗向けの上位オプションとして、運用条件を確認してからご案内します。</p>
+</div>
+</section>
+
+<section class="section product-flow" id="flow">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>FROM DISCOVERY TO PICKUP</p><h2>パンを知るところから受け渡しまで、<br><em>6つの流れ。</em></h2></div><p>オーナーの商品登録、お客様の取り置き、スタッフの準備、店頭受け渡しを一つの流れとして整理します。</p></div>
+<div class="product-flow-list">
+<article class="product-flow-step reveal"><span class="product-flow-number">01</span><h3>商品・写真を登録</h3><p>オーナーが写真、価格、説明、カテゴリー、取り置き可否、上限を設定します。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">02</span><h3>公開カタログへ反映</h3><p>お客様向け固定URLに、最新の商品情報と販売状態を表示します。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">03</span><h3>商品を写真で選ぶ</h3><p>お客様が検索・カテゴリー・おすすめ表示から希望商品を選びます。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">04</span><h3>LINEで取り置き</h3><p>商品、数量、受取日、受取時間を確認し、LINE会員情報で予約します。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">05</span><h3>店舗で準備</h3><p>スタッフが当日一覧を見て、準備中・準備完了へステータスを更新します。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">06</span><h3>受け渡し・次回来店</h3><p>受け渡し済みとして履歴へ残し、いつものパンやECO案内へつなげます。</p></article>
+</div>
+</div>
+</section>
+
+<section class="section product-roles" id="roles">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>SCREENS BY ROLE</p><h2>使う人ごとに、<br><em>必要な画面だけ。</em></h2></div><p>お客様、店頭スタッフ、オーナー、商品管理担当に合わせて、見る情報と操作を分けています。</p></div>
+<div class="product-role-grid">
+<article class="product-role reveal"><span class="bakery-role-label">WEB・LINE</span><h3>お客様・会員</h3><p>スマートフォンで商品を探し、取り置きを申し込みます。</p><ul><li>写真付き公開カタログ</li><li>LINEデジタル会員証</li><li>商品・数量・受取日時</li><li>いつものパン・予約履歴</li></ul></article>
+<article class="product-role reveal"><span class="bakery-role-label">STAFF・iPad</span><h3>店舗スタッフ</h3><p>今日の予約と、準備・受け渡しの現在地を確認します。</p><ul><li>今日・次営業日の一覧</li><li>準備順・受取時間</li><li>準備中・準備完了</li><li>受け渡し済み</li></ul></article>
+<article class="product-role reveal"><span class="bakery-role-label">OWNER・PC</span><h3>オーナー</h3><p>店舗全体の取り置き、顧客、営業日、ECO案内を管理します。</p><ul><li>今日やること</li><li>予約・顧客一覧</li><li>商品・取り置き上限</li><li>定休日・ECO案内</li></ul></article>
+<article class="product-role reveal"><span class="bakery-role-label">CATALOG ADMIN</span><h3>商品管理担当</h3><p>パンの商品情報と写真、公開状態を更新します。</p><ul><li>写真アップロード・軽量化</li><li>価格・説明・アレルギー</li><li>おすすめ・新商品</li><li>売り切れ・非表示</li></ul></article>
+</div>
+</div>
+</section>
+
+<section class="section product-live" id="demo">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-light"><span></span>REAL SCREEN DEMO</p><h2>説明画像ではなく、<br>実際の画面を体験。</h2></div><p>初期表示では外部画面を読み込みません。「この画面を読み込む」を押した時だけモーダル内にiframeを生成し、閉じると破棄します。</p></div>
+<p class="bakery-demo-notice reveal"><strong>DEMO環境について：</strong>公開デモは説明用の架空店舗・架空データです。本番環境では、契約店舗ごとの店舗情報、商品、受付条件、接続先を設定します。管理用の認証情報はこの紹介ページへ掲載していません。</p>
+<div class="product-live-list">
+
+<article class="product-live-row">
+<div class="product-live-copy reveal"><span>01 / PUBLIC CATALOG</span><h3>お客様向け<br>写真付きパンカタログ</h3><p>写真、価格、説明、アレルギー情報、売り切れ状態を見ながら商品を選び、取り置きへ進めます。</p><ul><li>検索・カテゴリー</li><li>おすすめ・新商品・売り切れ</li><li>LINE取り置きへの入口</li></ul><div class="product-live-actions"><button class="button button-line" type="button" data-open-demo="bakery-catalog" data-demo-title="お客様向け 写真付きパンカタログ" data-demo-url="https://dpromstk2000-lab.github.io/bakery-line-system/catalog.html?shop_code=bakery_demo&amp;catalog_api=https%3A%2F%2Fdpro-bakery-catalog-api.dpromstk2000.workers.dev&amp;api=https%3A%2F%2Fdpro-bakery-wallet-api.dpromstk2000.workers.dev&amp;v=33-r1" aria-haspopup="dialog" aria-controls="bakery-demo-modal" aria-expanded="false">この画面を読み込む</button><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/bakery-line-system/catalog.html?shop_code=bakery_demo&amp;catalog_api=https%3A%2F%2Fdpro-bakery-catalog-api.dpromstk2000.workers.dev&amp;api=https%3A%2F%2Fdpro-bakery-wallet-api.dpromstk2000.workers.dev&amp;v=33-r1" target="_blank" rel="noopener" data-demo-link="bakery-catalog">別タブで体験する</a></div></div>
+<div class="live-device reveal"><div class="live-window"><div class="live-window-head"><span>DPRO BAKERY / PUBLIC CATALOG</span><i></i></div><div class="bakery-placeholder"><div class="bakery-placeholder-title"><strong>本日のパンカタログ</strong><span>取り置き受付中</span></div><div class="bakery-placeholder-grid"><div class="bakery-placeholder-card"><b>発酵バタークロワッサン</b><span>香りと軽い食感が人気</span><i>取り置き</i></div><div class="bakery-placeholder-card"><b>湯種食パン</b><span>毎日の朝食に</span><i>取り置き</i></div><div class="bakery-placeholder-card"><b>季節のデニッシュ</b><span>期間限定商品</span><i>詳しく見る</i></div></div></div></div></div>
+</article>
+
+<article class="product-live-row">
+<div class="product-live-copy reveal"><span>02 / MEMBER &amp; PREORDER</span><h3>お客様用<br>会員証・取り置き画面</h3><p>会員登録、デジタル会員証、商品と数量、受取日時、いつものパン、予約履歴を確認します。</p><ul><li>LINEデジタル会員証</li><li>商品・数量・受取日時</li><li>いつものパン・予約履歴</li></ul><div class="product-live-actions"><button class="button button-line" type="button" data-open-demo="bakery-wallet" data-demo-title="お客様用 会員証・LINE取り置き" data-demo-url="https://dpromstk2000-lab.github.io/bakery-line-system/wallet.html?shop_code=bakery_demo&amp;api=https%3A%2F%2Fdpro-bakery-wallet-api.dpromstk2000.workers.dev&amp;catalog_api=https%3A%2F%2Fdpro-bakery-catalog-api.dpromstk2000.workers.dev&amp;v=33-r1" aria-haspopup="dialog" aria-controls="bakery-demo-modal" aria-expanded="false">この画面を読み込む</button><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/bakery-line-system/wallet.html?shop_code=bakery_demo&amp;api=https%3A%2F%2Fdpro-bakery-wallet-api.dpromstk2000.workers.dev&amp;catalog_api=https%3A%2F%2Fdpro-bakery-catalog-api.dpromstk2000.workers.dev&amp;v=33-r1" target="_blank" rel="noopener" data-demo-link="bakery-wallet">別タブで体験する</a></div></div>
+<div class="live-device reveal"><div class="live-window live-window-phone"><div class="live-window-head"><span>DPRO BAKERY / MEMBER</span><i></i></div><div class="bakery-placeholder bakery-placeholder-phone"><div class="bakery-phone-card"><small>LINEデジタル会員証</small><h3>佐藤 花子さん</h3><div class="bakery-phone-menu"><span>人気パンを取り置く <b>→</b></span><span>いつものパン <b>→</b></span><span>予約履歴 <b>→</b></span><span>ECO案内設定 <b>→</b></span></div></div><div class="bakery-limit-panel"><h4>本日の取り置き</h4><div class="bakery-limit-row"><span>クロワッサン</span><b>2個</b></div><div class="bakery-limit-row"><span>受取時間</span><b>16:30</b></div></div></div></div></div>
+</article>
+
+<article class="product-live-row">
+<div class="product-live-copy reveal"><span>03 / OWNER PC</span><h3>オーナー用<br>今日の管理画面</h3><p>未確認、準備中、受け渡し待ち、商品上限、顧客、営業日、ECO案内をPCから確認します。</p><ul><li>今日やること</li><li>予約・顧客・商品上限</li><li>営業日・ECOレスキュー</li></ul><div class="product-live-actions"><button class="button button-line" type="button" data-open-demo="bakery-owner" data-demo-title="オーナー用 今日の管理画面" data-demo-url="https://dpromstk2000-lab.github.io/bakery-line-system/owner.html?shop_code=bakery_demo&amp;api=https%3A%2F%2Fdpro-bakery-wallet-api.dpromstk2000.workers.dev&amp;catalog_api=https%3A%2F%2Fdpro-bakery-catalog-api.dpromstk2000.workers.dev&amp;v=33-r1" aria-haspopup="dialog" aria-controls="bakery-demo-modal" aria-expanded="false">この画面を読み込む</button><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/bakery-line-system/owner.html?shop_code=bakery_demo&amp;api=https%3A%2F%2Fdpro-bakery-wallet-api.dpromstk2000.workers.dev&amp;catalog_api=https%3A%2F%2Fdpro-bakery-catalog-api.dpromstk2000.workers.dev&amp;v=33-r1" target="_blank" rel="noopener" data-demo-link="bakery-owner">別タブで体験する</a></div></div>
+<div class="live-device reveal"><div class="live-window"><div class="live-window-head"><span>DPRO BAKERY / OWNER PC</span><i></i></div><div class="bakery-placeholder"><div class="bakery-placeholder-title"><strong>今日やること</strong><span>本日 6件</span></div><div class="bakery-status-board"><div class="bakery-status-column"><strong>未確認 <b>2</b></strong><div class="bakery-status-ticket"><b>10:30 佐藤様</b>クロワッサン 2</div></div><div class="bakery-status-column"><strong>準備中 <b>3</b></strong><div class="bakery-status-ticket"><b>11:00 田中様</b>食パン 1</div></div><div class="bakery-status-column"><strong>受け渡し待ち <b>1</b></strong><div class="bakery-status-ticket"><b>11:30 山本様</b>デニッシュ 2</div></div></div></div></div></div>
+</article>
+
+<article class="product-live-row">
+<div class="product-live-copy reveal"><span>04 / STAFF IPAD</span><h3>スタッフ用<br>準備・受け渡し画面</h3><p>今日・次営業日の取り置きを確認し、店頭作業に必要なステータスだけを更新します。</p><ul><li>受取時間順の一覧</li><li>準備中・準備完了</li><li>受け渡し済み</li></ul><div class="product-live-actions"><button class="button button-line" type="button" data-open-demo="bakery-staff" data-demo-title="スタッフ用 準備・受け渡し画面" data-demo-url="https://dpromstk2000-lab.github.io/bakery-line-system/staff.html?shop_code=bakery_demo&amp;api=https%3A%2F%2Fdpro-bakery-wallet-api.dpromstk2000.workers.dev&amp;v=33-r1" aria-haspopup="dialog" aria-controls="bakery-demo-modal" aria-expanded="false">この画面を読み込む</button><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/bakery-line-system/staff.html?shop_code=bakery_demo&amp;api=https%3A%2F%2Fdpro-bakery-wallet-api.dpromstk2000.workers.dev&amp;v=33-r1" target="_blank" rel="noopener" data-demo-link="bakery-staff">別タブで体験する</a></div></div>
+<div class="live-device reveal"><div class="live-window live-window-tablet"><div class="live-window-head"><span>DPRO BAKERY / STAFF IPAD</span><i></i></div><div class="bakery-placeholder"><div class="bakery-placeholder-title"><strong>本日の取り置き</strong><span>次の受取 10:30</span></div><div class="bakery-status-board"><div class="bakery-status-column"><strong>作る順番 <b>2</b></strong><div class="bakery-status-ticket"><b>佐藤様</b>クロワッサン 2</div></div><div class="bakery-status-column"><strong>準備完了 <b>1</b></strong><div class="bakery-status-ticket"><b>田中様</b>湯種食パン 1</div></div><div class="bakery-status-column"><strong>受け渡し <b>1</b></strong><div class="bakery-status-ticket"><b>山本様</b>確認待ち</div></div></div></div></div></div>
+</article>
+
+<article class="product-live-row">
+<div class="product-live-copy reveal"><span>05 / CATALOG ADMIN</span><h3>商品・写真・<br>カタログ管理画面</h3><p>商品写真、価格、説明、カテゴリー、公開状態、取り置き上限を編集し、公開URLへ反映します。</p><ul><li>写真の軽量化・アップロード</li><li>価格・説明・アレルギー</li><li>公開状態・上限設定</li></ul><div class="product-live-actions"><button class="button button-line" type="button" data-open-demo="bakery-catalog-admin" data-demo-title="商品・写真・カタログ管理画面" data-demo-url="https://dpromstk2000-lab.github.io/bakery-line-system/catalog-admin.html?shop_code=bakery_demo&amp;catalog_api=https%3A%2F%2Fdpro-bakery-catalog-api.dpromstk2000.workers.dev&amp;v=33-r1" aria-haspopup="dialog" aria-controls="bakery-demo-modal" aria-expanded="false">この画面を読み込む</button><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/bakery-line-system/catalog-admin.html?shop_code=bakery_demo&amp;catalog_api=https%3A%2F%2Fdpro-bakery-catalog-api.dpromstk2000.workers.dev&amp;v=33-r1" target="_blank" rel="noopener" data-demo-link="bakery-catalog-admin">別タブで体験する</a></div></div>
+<div class="live-device reveal"><div class="live-window"><div class="live-window-head"><span>DPRO BAKERY / CATALOG ADMIN</span><i></i></div><div class="bakery-placeholder"><div class="bakery-placeholder-title"><strong>商品編集</strong><span>公開中</span></div><div class="bakery-admin-form"><div class="bakery-admin-field is-photo" aria-hidden="true">🥐</div><div class="bakery-admin-field"><small>商品名</small><b>発酵バタークロワッサン</b></div><div class="bakery-admin-field"><small>カテゴリー</small><b>菓子パン</b></div><div class="bakery-admin-field"><small>取り置き価格</small><b>280円</b></div><div class="bakery-admin-field"><small>お一人様1日上限</small><b>3個</b></div></div></div></div></div>
+</article>
+
+</div>
+</div>
+</section>
+
+<section class="section product-after" id="after">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>BEFORE / AFTER</p><h2>予約フォームを増やすだけでなく、<br><em>商品紹介と店頭対応をつなぐ。</em></h2></div><p>写真を見てもらう入口、取り置き受付、スタッフの準備、受け渡しを分断せず、同じ商品・予約情報で確認します。</p></div>
+<div class="product-after-grid">
+<div class="product-after-panel product-after-before reveal"><span>BEFORE</span><h3>SNS・電話・紙・口頭確認が、場面ごとに分かれる。</h3><ul><li>SNS投稿が流れ、商品一覧にならない</li><li>電話・DMの内容を紙へ転記する</li><li>人気商品の受付上限を目視で確認</li><li>準備・受け渡し状況を口頭で共有</li></ul></div>
+<div class="product-after-arrow reveal">→</div>
+<div class="product-after-panel product-after-result reveal"><span>AFTER</span><h3>写真カタログから受け渡しまで、同じ情報で確認。</h3><ul><li>固定URLで写真・価格・売り切れを案内</li><li>選んだ商品をLINE取り置きへ引き継ぐ</li><li>店舗全体・お一人様の上限を確認</li><li>スタッフiPadで準備・受け渡しを共有</li></ul></div>
+</div>
+</div>
+</section>
+
+<section class="section product-safety" id="safety">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>SAFE OPERATION</p><h2>公開カタログから本番運用まで、<br><em>店舗ごとの安全確認を前提に。</em></h2></div><p>公開デモと本番を分け、管理操作の認証、画像保存、予約上限の保存時確認など、確認できた仕組みだけを掲載しています。</p></div>
+<div class="product-safety-grid">
+<article class="product-safety-card reveal"><span>01 / SEPARATE</span><h3>デモと本番を分離</h3><p>公開デモは架空店舗・架空データ。本番は契約店舗ごとの店舗コード、接続先、商品、受付条件で構成します。</p></article>
+<article class="product-safety-card reveal"><span>02 / AUTH</span><h3>管理操作は認証を前提</h3><p>商品編集、店舗管理、予約更新などの管理操作は、公開閲覧画面とは分けて取り扱います。</p></article>
+<article class="product-safety-card reveal"><span>03 / LIMIT</span><h3>予約保存時にも上限確認</h3><p>画面上の数量制限だけでなく、同日・同商品の累計予約を保存直前にも確認する構成です。</p></article>
+<article class="product-safety-card reveal"><span>04 / DATA</span><h3>API・DB・画像保存を分担</h3><p>商品写真・カタログ系と会員・取り置き系を役割ごとに分け、保存した情報を各画面で再取得します。</p></article>
+</div>
+</div>
+</section>
+
+<section class="section product-pricing" id="pricing">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>DPRO OPTION PRICE</p><h2>LINE構築・運用店舗へ追加する、<br><em>DPROシステム料金。</em></h2></div><p>DPROシステムは単体販売ではなく、DPRO SHOPのLINE公式アカウント構築・運用契約店舗向けの追加サービスです。</p></div>
+<div class="product-price-grid">
+<article class="product-price-card reveal"><small>INITIAL SETUP</small><h3>DPROシステム構築費</h3><div class="product-price-value"><strong>33,000円</strong><span>税込</span></div><p>店舗情報、基本商品、デモ環境、画面、接続先、公開・操作確認など、導入に必要な初期設定を行います。</p></article>
+<article class="product-price-card is-accent reveal"><small>MONTHLY USE &amp; MAINTENANCE</small><h3>利用・基本保守費</h3><div class="product-price-value"><strong>月額1,100円</strong><span>税込</span></div><p>システム利用と基本的な保守・確認を含みます。大規模な機能追加や個別開発は、事前に内容と費用をご案内します。</p></article>
+</div>
+<p class="product-price-note reveal"><strong>別途必要：</strong>LINE公式アカウント構築77,000円（税込）／LINE運用サポート月額3,300円（税込）。POS・決済・通販・外部サービスとの個別連携、チャージ上位オプションなどは、運用条件を確認のうえ別途ご案内します。</p>
+</div>
+</section>
+
+<section class="section sys-faq" id="faq">
+<div class="section-inner">
+<div class="sys-center-heading reveal"><p class="eyebrow eyebrow-dark"><span></span>FAQ</p><h2>ベーカリー向けDPROシステムの<br>よくある質問。</h2></div>
+<div class="faq-list">
+<details class="reveal"><summary>どのくらいの規模のベーカリーが対象ですか。</summary><p>個人店や小規模ベーカリーを中心に、少人数のスタッフで商品案内、取り置き、準備、受け渡しを行う店舗に適しています。商品数や店舗数、受付量が多い場合は、導入前に運用方法と必要な追加対応を確認します。</p></details>
+<details class="reveal"><summary>スマートフォンやiPadで使えますか。</summary><p>お客様向けの公開カタログ・会員証・取り置きはスマートフォンを想定しています。スタッフ画面はiPad・タブレット、オーナー画面と商品管理はPCを中心に、画面幅に応じて表示できます。</p></details>
+<details class="reveal"><summary>LINEを使っていないお客様も商品を見られますか。</summary><p>公開パンカタログは通常のWebページとして閲覧できます。会員証やLINE取り置きはLINEを入口とする機能です。電話・店頭受付を続ける場合は、既存業務と併用する運用を整理します。</p></details>
+<details class="reveal"><summary>POSレジや会計システムを置き換えますか。</summary><p>置き換えるものではありません。主な対象は、商品カタログ、LINE会員証、取り置き受付、準備・受け渡し、商品・顧客・ECO案内の管理です。POS、会計、決済、通販との連携は別途確認します。</p></details>
+<details class="reveal"><summary>公開デモに本物のお客様情報は入っていますか。</summary><p>入りません。公開デモは架空店舗・架空データを使用します。本番環境は契約店舗ごとに商品、店舗コード、接続先、受付条件を設定し、公開デモと分けて運用します。</p></details>
+<details class="reveal"><summary>チャージ・残高管理も標準で含まれますか。</summary><p>標準機能として前面に出しているのは、写真カタログ、LINE会員証、取り置き、店舗対応、ECOレスキューです。チャージ・残高管理は希望店舗向けの上位オプションで、利用規約、返金方針、店頭確認方法などを整理してからご案内します。</p></details>
+</div>
+</div>
+</section>
+
+<section class="section product-final-cta">
+<div class="section-inner product-final-cta-inner reveal">
+<p class="eyebrow eyebrow-light"><span></span>TRY THE REAL DPRO BAKERY</p>
+<h2>今の商品案内と取り置き方法を比べながら、<br>実画面を確認しませんか。</h2>
+<p>現在のSNS、電話・DM受付、商品更新、スタッフ共有を伺い、どの画面から始めると使いやすいかを一緒に整理します。</p>
+<div class="product-final-actions">
+<a class="button button-line" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener"><span class="line-badge">LINE</span><span>無料で導入相談する</span><b>→</b></a>
+<button class="button button-ghost" type="button" data-open-demo="bakery-catalog" data-demo-title="お客様向け 写真付きパンカタログ" data-demo-url="https://dpromstk2000-lab.github.io/bakery-line-system/catalog.html?shop_code=bakery_demo&amp;catalog_api=https%3A%2F%2Fdpro-bakery-catalog-api.dpromstk2000.workers.dev&amp;api=https%3A%2F%2Fdpro-bakery-wallet-api.dpromstk2000.workers.dev&amp;v=33-r1" aria-haspopup="dialog" aria-controls="bakery-demo-modal" aria-expanded="false">実際のデモを体験する</button>
+</div>
+</div>
+</section>
+</main>
+
+<footer class="site-footer">
+<div class="footer-inner">
+<div class="footer-brand"><a class="brand" href="../"><span class="brand-mark" aria-hidden="true">D</span><span class="brand-copy"><strong>DPRO SHOP</strong><small>LINE BUSINESS DESIGN</small></span></a><p>福岡県を中心に、LINE公式アカウント、ホームページ、<br>契約店舗限定の業種別DPROシステムを支援します。</p></div>
+<div class="footer-links">
+<div><strong>SERVICE</strong><a href="../line-build">LINE公式アカウント構築</a><a href="../line-operation">LINE運用サポート</a><a href="../website">ホームページ制作</a><a href="../pricing">料金</a></div>
+<div><strong>PRODUCT</strong><a href="./">DPROシステム一覧</a><a href="bakery">ベーカリー</a><a href="https://dpromstk2000-lab.github.io/bakery-line-system/catalog.html?shop_code=bakery_demo&amp;catalog_api=https%3A%2F%2Fdpro-bakery-catalog-api.dpromstk2000.workers.dev&amp;api=https%3A%2F%2Fdpro-bakery-wallet-api.dpromstk2000.workers.dev&amp;v=33-r1" target="_blank" rel="noopener">ベーカリーデモ</a></div>
+<div><strong>GUIDE</strong><a href="../about">DPRO SHOPについて</a><a href="../contact">お問い合わせ</a><a href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで無料相談</a></div>
+</div>
+</div>
+<div class="footer-legal-links" aria-label="法務・お問い合わせ"><a href="../privacy">プライバシーポリシー</a><a href="../terms">サービス利用上の注意事項</a><a href="../contact">お問い合わせ</a></div>
+<div class="footer-bottom"><span>© 2026 DPRO SHOP. All Rights Reserved.</span><a href="#top">PAGE TOP ↑</a></div>
+</footer>
+
+<div class="product-mobile-cta" aria-label="固定アクション"><a href="https://dpromstk2000-lab.github.io/bakery-line-system/catalog.html?shop_code=bakery_demo&amp;catalog_api=https%3A%2F%2Fdpro-bakery-catalog-api.dpromstk2000.workers.dev&amp;api=https%3A%2F%2Fdpro-bakery-wallet-api.dpromstk2000.workers.dev&amp;v=33-r1" target="_blank" rel="noopener" data-demo-link="bakery-mobile">デモを体験</a><a href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで相談</a></div>
+
+<div class="demo-modal" id="bakery-demo-modal" hidden aria-hidden="true">
+<button class="demo-modal-backdrop" type="button" data-demo-close aria-label="デモ画面を閉じる"></button>
+<div class="demo-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="bakery-demo-title" aria-describedby="bakery-demo-description">
+<div class="demo-modal-head">
+<div class="demo-modal-title-wrap"><small id="bakery-demo-description">DPRO ベーカリー LINE／公開DEMO環境</small><strong id="bakery-demo-title">実際の操作デモ</strong></div>
+<div class="demo-modal-actions"><a id="bakery-demo-external" href="#" target="_blank" rel="noopener">別タブで開く</a><button id="bakery-demo-close" type="button" data-demo-close>閉じる</button></div>
+</div>
+<div class="demo-modal-frame" id="bakery-demo-frame"><span class="demo-modal-loading">デモ画面を読み込みます。</span></div>
+</div>
+</div>
+
+<script defer src="../script.js?v=17r1"></script>
+<script defer src="systems.js?v=1"></script>
+<script>
+(() => {
+  "use strict";
+  const modal = document.getElementById("bakery-demo-modal");
+  const frameHost = document.getElementById("bakery-demo-frame");
+  const title = document.getElementById("bakery-demo-title");
+  const external = document.getElementById("bakery-demo-external");
+  const closeButton = document.getElementById("bakery-demo-close");
+  const openers = [...document.querySelectorAll("[data-open-demo]")];
+  let lastFocus = null;
+  let activeOpener = null;
+
+  const focusableElements = () =>
+    [...modal.querySelectorAll('a[href],button:not([disabled]),iframe')]
+      .filter((element) => !element.hidden);
+
+  const destroyFrame = () => {
+    const currentFrame = frameHost.querySelector("iframe");
+    if (currentFrame) {
+      currentFrame.src = "about:blank";
+      currentFrame.remove();
+    }
+    frameHost.replaceChildren();
+    const message = document.createElement("span");
+    message.className = "demo-modal-loading";
+    message.textContent = "デモ画面を読み込みます。";
+    frameHost.appendChild(message);
+  };
+
+  const closeModal = () => {
+    if (modal.hidden) return;
+    destroyFrame();
+    modal.hidden = true;
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("demo-modal-open");
+    activeOpener?.setAttribute("aria-expanded", "false");
+    if (lastFocus instanceof HTMLElement) lastFocus.focus();
+    activeOpener = null;
+  };
+
+  const openModal = (button) => {
+    const demoUrl = button.dataset.demoUrl || "";
+    const demoTitle = button.dataset.demoTitle || "DPRO ベーカリー LINE 実画面";
+    if (!demoUrl) return;
+    lastFocus = document.activeElement;
+    activeOpener = button;
+    title.textContent = demoTitle;
+    external.href = demoUrl;
+    destroyFrame();
+
+    const frame = document.createElement("iframe");
+    frame.src = demoUrl;
+    frame.title = demoTitle;
+    frame.loading = "eager";
+    frame.referrerPolicy = "no-referrer";
+    frame.allow = "clipboard-read; clipboard-write";
+    frameHost.replaceChildren(frame);
+
+    modal.hidden = false;
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("demo-modal-open");
+    button.setAttribute("aria-expanded", "true");
+    closeButton.focus();
+  };
+
+  openers.forEach((button) => button.addEventListener("click", () => openModal(button)));
+  modal.querySelectorAll("[data-demo-close]").forEach((button) => button.addEventListener("click", closeModal));
+
+  document.addEventListener("keydown", (event) => {
+    if (modal.hidden) return;
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeModal();
+      return;
+    }
+    if (event.key !== "Tab") return;
+    const focusable = focusableElements();
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+})();
+</script>
+</body>
+</html>
