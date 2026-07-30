@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ja">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async fetchpriority="low" src="https://www.googletagmanager.com/gtag/js?id=G-YPN3998BHG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-YPN3998BHG');
+</script>
+<meta charset="utf-8">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="相談支援事業所向けDPROシステム。初回相談、利用者・案件、アセスメント、計画案・正式計画、モニタリング、書類依頼、本人・家族連携をLINE・PC・iPad・職員画面でつなぎます。">
+<meta name="theme-color" content="#07111f">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DPRO SHOP">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="DPRO 相談支援事業所 LINE｜相談受付・計画・モニタリング・書類管理">
+<meta property="og:description" content="初回相談から案件化、アセスメント、計画作成、書類提出、モニタリングまで。本人・家族と相談員・管理者を役割別画面でつなぐ相談支援事業所向けシステム。">
+<meta property="og:url" content="https://dpro-shop.com/systems/sodan">
+<meta property="og:image" content="https://dpro-shop.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DPRO 相談支援事業所 LINE｜DPRO SHOP">
+<meta name="twitter:description" content="初回相談、利用者・案件、アセスメント、計画、モニタリング、書類依頼、本人・家族ポータルを役割別画面でつなぎます。">
+<meta name="twitter:image" content="https://dpro-shop.com/og-image.png">
+<title>DPRO 相談支援事業所 LINE｜相談受付・計画・モニタリング・書類管理｜DPRO SHOP</title>
+<link rel="canonical" href="https://dpro-shop.com/systems/sodan">
+<link rel="manifest" href="../site.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="../sitemap.xml">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="stylesheet" href="../styles.css?v=17r2">
+<link rel="stylesheet" href="systems.css?v=1">
+<script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://dpro-shop.com/#website",
+      "name":"DPRO SHOP",
+      "url":"https://dpro-shop.com/",
+      "inLanguage":"ja"
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://dpro-shop.com/systems/sodan#webpage",
+      "url":"https://dpro-shop.com/systems/sodan",
+      "name":"DPRO 相談支援事業所 LINE｜相談受付・計画・モニタリング・書類管理",
+      "description":"相談支援事業所向けDPROシステムの機能、役割別画面、導入前後、実際の操作デモを紹介します。",
+      "isPartOf":{"@id":"https://dpro-shop.com/#website"},
+      "inLanguage":"ja",
+      "dateModified":"2026-07-30",
+      "breadcrumb":{"@id":"https://dpro-shop.com/systems/sodan#breadcrumb"},
+      "mainEntity":{"@id":"https://dpro-shop.com/systems/sodan#software"}
+    },
+    {
+      "@type":"BreadcrumbList",
+      "@id":"https://dpro-shop.com/systems/sodan#breadcrumb",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"DPRO SHOP","item":"https://dpro-shop.com/"},
+        {"@type":"ListItem","position":2,"name":"業種別DPROシステム","item":"https://dpro-shop.com/systems/"},
+        {"@type":"ListItem","position":3,"name":"相談支援事業所","item":"https://dpro-shop.com/systems/sodan"}
+      ]
+    },
+    {
+      "@type":"SoftwareApplication",
+      "@id":"https://dpro-shop.com/systems/sodan#software",
+      "name":"DPRO 相談支援事業所 LINE",
+      "alternateName":"DPRO SODAN LINE",
+      "applicationCategory":"BusinessApplication",
+      "operatingSystem":"Web browser / LINE",
+      "description":"初回相談、利用者・案件、アセスメント、計画案・正式計画、モニタリング、書類依頼、本人・家族ポータルを役割別画面でつなぐ相談支援事業所向け業務支援システム。",
+      "url":"https://dpro-shop.com/systems/sodan",
+      "offers":[
+        {
+          "@type":"Offer",
+          "name":"DPROシステム構築",
+          "price":"33000",
+          "priceCurrency":"JPY",
+          "description":"LINE公式アカウント構築・運用契約店舗限定"
+        },
+        {
+          "@type":"Offer",
+          "name":"DPROシステム利用・基本保守",
+          "price":"1100",
+          "priceCurrency":"JPY",
+          "description":"月額。LINE公式アカウント構築・運用契約店舗限定"
+        }
+      ]
+    }
+  ]
+}
+</script>
+<style>
+body.system-product-page{
+  --system-accent:#0c8078;
+  --system-accent-dark:#12495d;
+  --system-accent-soft:#edf7f6;
+}
+.sodan-monitor-ui,.sodan-monitor-ui *,
+.sodan-demo-preview,.sodan-demo-preview *,
+.demo-modal,.demo-modal *{box-sizing:border-box}
+.sodan-monitor-ui{display:grid;grid-template-columns:126px minmax(0,1fr);min-height:320px;background:#eef5f6;color:#092b38}
+.sodan-monitor-side{padding:18px 12px;background:#12495d;color:#fff;display:grid;align-content:start;gap:7px}
+.sodan-monitor-side strong{margin-bottom:8px;font-size:12px;letter-spacing:.04em}
+.sodan-monitor-side span{padding:8px 9px;border-radius:8px;background:rgba(255,255,255,.07);font-size:8px;font-weight:800}
+.sodan-monitor-side span:first-of-type{background:#fff;color:#12495d}
+.sodan-monitor-main{min-width:0;padding:17px}
+.sodan-monitor-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.sodan-monitor-head strong{font-size:13px}.sodan-monitor-head b{padding:6px 9px;border-radius:999px;background:#e3f4f2;color:#0c6d67;font-size:8px}
+.sodan-stat-grid{margin-top:13px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:7px}
+.sodan-stat{padding:10px;border:1px solid #c7dadd;border-radius:10px;background:#fff}
+.sodan-stat small{display:block;color:#607b84;font-size:7px;font-weight:800}
+.sodan-stat strong{display:block;margin-top:3px;color:#12495d;font-size:18px}
+.sodan-dashboard-grid{margin-top:10px;display:grid;grid-template-columns:1.15fr .85fr;gap:8px}
+.sodan-panel{min-width:0;padding:11px;border:1px solid #c7dadd;border-radius:11px;background:#fff}
+.sodan-panel>strong{display:block;margin-bottom:8px;font-size:9px}
+.sodan-person{padding:8px;border-radius:8px;background:#f3f8f8;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.sodan-person+.sodan-person{margin-top:6px}.sodan-person b{font-size:8px}.sodan-person span{color:#607b84;font-size:7px}
+.sodan-alert{padding:8px;border-radius:8px;background:#fff5e8;color:#8a5317;font-size:7px;font-weight:800}
+.sodan-alert+.sodan-alert{margin-top:6px}
+.sodan-phone-card{padding:12px;border-radius:14px;background:#fff;color:#092b38;box-shadow:0 10px 28px rgba(0,0,0,.15)}
+.sodan-phone-card small{color:#0c8078;font-size:8px;font-weight:900;letter-spacing:.08em}
+.sodan-phone-card h3{margin:6px 0 0;color:#12495d;font-size:14px}
+.sodan-next{margin-top:10px;padding:10px;border-radius:10px;background:#edf7f6}
+.sodan-next strong{display:block;font-size:10px}.sodan-next span{display:block;margin-top:2px;color:#607b84;font-size:8px}
+.sodan-phone-actions{margin-top:9px;display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.sodan-phone-actions span{padding:8px 4px;border-radius:8px;background:#0c8078;color:#fff;text-align:center;font-size:7px;font-weight:900}
+.sodan-tablet-head{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.sodan-tablet-head small{font-size:8px;font-weight:900}.sodan-tablet-head b{font-size:8px;color:#0c8078}
+.sodan-tablet-item{margin-top:7px;padding:8px;border:1px solid #c7dadd;border-radius:9px;background:#fff;color:#092b38}
+.sodan-tablet-item strong{display:block;font-size:9px}.sodan-tablet-item span{display:block;margin-top:2px;color:#607b84;font-size:7px}
+.sodan-tablet-actions{margin-top:6px;display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.sodan-tablet-actions i{padding:5px 2px;border-radius:6px;background:#edf7f6;color:#0c6d67;text-align:center;font-size:6px;font-style:normal;font-weight:900}
+.sodan-demo-preview{min-height:350px;padding:28px;display:grid;align-content:center;background:linear-gradient(145deg,#f8fbfb,#edf7f6)}
+.sodan-preview-window{width:min(100%,580px);margin:auto;padding:18px;border:1px solid #c7dadd;border-radius:18px;background:#fff;box-shadow:0 18px 45px rgba(18,73,93,.1)}
+.sodan-preview-label{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-bottom:12px;border-bottom:1px solid #dce8ea;color:#12495d;font-size:12px;font-weight:900}
+.sodan-preview-label span{color:#0c8078;font-size:9px;letter-spacing:.08em}
+.sodan-preview-cards{margin-top:14px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.sodan-preview-card{min-width:0;padding:12px;border-radius:12px;background:#f3f8f8}
+.sodan-preview-card b{display:block;color:#12495d;font-size:11px;overflow-wrap:anywhere}
+.sodan-preview-card small{display:block;margin-top:4px;color:#607b84;font-size:8px;line-height:1.5}
+.sodan-preview-list{margin-top:10px;display:grid;gap:7px}
+.sodan-preview-list div{padding:9px 10px;border:1px solid #c7dadd;border-radius:10px;display:flex;justify-content:space-between;gap:10px;color:#092b38;font-size:9px;font-weight:800}
+.sodan-preview-list span{color:#0c8078}
+.sodan-demo-note{margin-top:18px;padding:14px 16px;border:1px solid rgba(255,255,255,.12);border-radius:14px;background:rgba(255,255,255,.05);color:rgba(255,255,255,.72);font-size:13px;line-height:1.8}
+.sodan-demo-note strong{color:#fff}
+.sodan-scope-note{margin-top:24px;padding:18px 20px;border-left:4px solid var(--system-accent);border-radius:0 14px 14px 0;background:var(--system-accent-soft);color:#40545a;line-height:1.85}
+.demo-modal[hidden]{display:none}
+.demo-modal{position:fixed;inset:0;z-index:2200;display:grid;place-items:center;padding:18px}
+.demo-modal-backdrop{position:absolute;inset:0;border:0;background:rgba(3,12,22,.78);backdrop-filter:blur(8px);cursor:pointer}
+.demo-modal-dialog{position:relative;width:min(1440px,100%);height:min(900px,calc(100vh - 36px));display:grid;grid-template-rows:auto minmax(0,1fr);overflow:hidden;border:1px solid rgba(255,255,255,.18);border-radius:22px;background:#07111f;box-shadow:0 40px 120px rgba(0,0,0,.5)}
+.demo-modal-head{min-width:0;padding:13px 14px 13px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid rgba(255,255,255,.12);color:#fff}
+.demo-modal-head strong{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:15px}
+.demo-modal-actions{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+.demo-modal-external,.demo-modal-close{min-height:42px;padding:8px 13px;border:1px solid rgba(255,255,255,.18);border-radius:10px;background:rgba(255,255,255,.07);color:#fff;font-size:12px;font-weight:900;text-decoration:none}
+.demo-modal-close{width:42px;padding:0;font-size:23px;line-height:1}
+.demo-modal-frame{min-width:0;min-height:0;background:#fff}
+.demo-modal-frame iframe{width:100%;height:100%;display:block;border:0;background:#fff}
+body.is-demo-open{overflow:hidden}
+@media(max-width:900px){
+  .sodan-monitor-ui{grid-template-columns:96px minmax(0,1fr)}
+  .sodan-stat-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .sodan-dashboard-grid{grid-template-columns:1fr}
+  .sodan-preview-cards{grid-template-columns:1fr}
+}
+@media(max-width:680px){
+  .sodan-monitor-ui{grid-template-columns:78px minmax(0,1fr);min-height:280px}
+  .sodan-monitor-side{padding:12px 7px}.sodan-monitor-side span{padding:7px 5px;font-size:6px}
+  .sodan-monitor-main{padding:11px}.sodan-stat strong{font-size:14px}
+  .sodan-dashboard-grid{display:block}.sodan-dashboard-grid .sodan-panel+.sodan-panel{margin-top:7px}
+  .sodan-demo-preview{min-height:280px;padding:14px}
+  .sodan-preview-window{padding:13px;border-radius:14px}
+  .sodan-preview-cards{grid-template-columns:1fr 1fr}
+  .sodan-preview-card:last-child{grid-column:1/-1}
+  .demo-modal{padding:0}
+  .demo-modal-dialog{height:100%;border-radius:0;border:0}
+  .demo-modal-head{padding:10px}.demo-modal-head strong{font-size:12px}.demo-modal-external{display:none}
+}
+@media(max-width:390px){
+  .sodan-preview-cards{grid-template-columns:1fr}.sodan-preview-card:last-child{grid-column:auto}
+  .sodan-monitor-side{display:none}.sodan-monitor-ui{grid-template-columns:1fr}
+  .sodan-phone-actions{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body class="system-product-page official-product-page">
+<div class="sys-progress" aria-hidden="true"></div>
+<a class="skip-link" href="#main">本文へ移動</a>
+<header class="site-header" id="top">
+<div class="header-inner">
+<a class="brand" href="../" aria-label="DPRO SHOP トップへ"><span class="brand-mark" aria-hidden="true">D</span><span class="brand-copy"><strong>DPRO SHOP</strong><small>LINE BUSINESS DESIGN</small></span></a>
+<button class="menu-button" type="button" aria-expanded="false" aria-controls="global-nav" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+<nav class="global-nav" id="global-nav" aria-label="メインナビゲーション">
+<a href="../">トップ</a>
+<a href="../line-build">LINE構築</a>
+<a href="../line-operation">LINE運用</a>
+<a href="../website">HP制作</a>
+<a href="./">DPROシステム</a>
+<a href="../pricing">料金</a>
+<a href="../about">DPRO SHOP</a>
+<a class="nav-cta" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで無料相談</a>
+</nav>
+</div>
+</header>
+
+<main id="main">
+<section class="product-hero" aria-labelledby="product-title">
+<div class="product-hero-grid" aria-hidden="true"></div>
+<div class="product-hero-inner">
+<div class="product-hero-copy reveal">
+<nav class="sys-breadcrumb" aria-label="パンくずリスト"><a href="../">DPRO SHOP</a><span>／</span><a href="./">DPROシステム</a><span>／</span><strong>相談支援事業所</strong></nav>
+<div class="official-product-label"><span>DPRO SHOP</span><strong>公式製品紹介ページ</strong><small>DPRO 相談支援事業所 LINE｜福祉・家族連携型＋書類管理型</small></div>
+<div class="product-code" aria-hidden="true">SODAN</div>
+<p class="eyebrow eyebrow-light"><span></span>CONSULTATION・PLAN・MONITORING・REAL DEMO</p>
+<h1 id="product-title"><span>初回相談から、計画・提出・</span><span><em>モニタリングまで。</em></span></h1>
+<p class="product-hero-lead">ご本人・ご家族の相談入口と、相談員の担当業務、管理者の案件・計画・書類管理を同じ情報でつなぐ、相談支援事業所向け業務支援システムです。</p>
+<div class="product-hero-actions">
+<a class="button button-line" href="#features"><span class="line-badge">S</span><span>機能を詳しく見る</span><b>↓</b></a>
+<a class="button button-ghost" href="#demo">実際の操作デモを見る</a>
+</div>
+<div class="product-proof-tags"><span>初回相談・面談希望</span><span>利用者・案件</span><span>アセスメント</span><span>計画案・正式計画</span><span>モニタリング</span><span>書類依頼・提出</span></div>
+</div>
+
+<div class="product-hero-stage reveal" aria-label="DPRO 相談支援事業所 LINEの画面イメージ">
+<div class="product-stage-label"><i></i>OFFICIAL PRODUCT GUIDE / SYSTEM PREVIEW</div>
+<div class="product-stage-monitor">
+<div class="product-browser"><span class="product-browser-dots"><i></i><i></i><i></i></span><span>DPRO SODAN / 管理PCイメージ</span><b>PREVIEW</b></div>
+<div class="sodan-monitor-ui">
+<div class="sodan-monitor-side"><strong>DPRO SODAN</strong><span>今日の管理</span><span>相談受付</span><span>利用者・案件</span><span>計画・提出</span><span>モニタリング</span></div>
+<div class="sodan-monitor-main">
+<div class="sodan-monitor-head"><strong>相談支援事業所ダッシュボード</strong><b>最新情報</b></div>
+<div class="sodan-stat-grid"><div class="sodan-stat"><small>新規相談</small><strong>3</strong></div><div class="sodan-stat"><small>対応中</small><strong>8</strong></div><div class="sodan-stat"><small>本日の予定</small><strong>4</strong></div><div class="sodan-stat"><small>期限超過</small><strong>0</strong></div><div class="sodan-stat"><small>書類待ち</small><strong>2</strong></div></div>
+<div class="sodan-dashboard-grid"><div class="sodan-panel"><strong>新しい相談受付</strong><div class="sodan-person"><b>INQ-000003 SODAN13 テスト</b><span>確認中</span></div><div class="sodan-person"><b>DEMO-INQ-001 高橋 一郎</b><span>新規</span></div></div><div class="sodan-panel"><strong>期限・未対応</strong><div class="sodan-alert">計画説明の期限 1件</div><div class="sodan-alert">書類提出待ち 2件</div></div></div>
+</div>
+</div>
+</div>
+<div class="product-stage-phone"><div class="product-phone-inner"><div class="product-phone-brand"><b>LINE</b>DPRO SODAN</div><div class="sodan-phone-card"><small>本人・家族ポータル</small><h3>今後の予定</h3><div class="sodan-next"><strong>8月3日（月）10:00</strong><span>初回面談／DPRO相談支援センター</span></div><div class="sodan-phone-actions"><span>書類依頼を確認</span><span>次回予定を見る</span></div></div></div></div>
+<div class="product-stage-tablet"><div class="product-tablet-inner"><div class="sodan-tablet-head"><small>MANAGEMENT IPAD</small><b>今日の管理</b></div><div class="sodan-tablet-item"><strong>新しい相談受付</strong><span>優先度と担当を確認</span><div class="sodan-tablet-actions"><i>相談</i><i>担当</i><i>予定</i></div></div><div class="sodan-tablet-item"><strong>期限・未対応</strong><span>計画・書類・モニタリング</span><div class="sodan-tablet-actions"><i>期限</i><i>書類</i><i>更新</i></div></div></div></div>
+</div>
+</div>
+</section>
+
+<nav class="product-local-nav" aria-label="ページ内メニュー">
+<div class="product-local-nav-inner"><a href="#summary" class="is-active">概要</a><a href="#system-map">全体構成</a><a href="#features">主な機能</a><a href="#flow">利用の流れ</a><a href="#roles">画面別</a><a href="#demo">実画面</a><a href="#after">導入前後</a><a href="#safety">安全設計</a><a href="#pricing">料金</a><a href="#faq">よくある質問</a></div>
+</nav>
+
+<section class="section product-summary" id="summary">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>UNDERSTAND IN 30 SECONDS</p><h2>30秒で分かる、<br><em>このシステムの役割。</em></h2></div><p>相談の受付から案件化、アセスメント、計画、書類、モニタリングまで、相談支援の長い流れを役割別画面でつなぎます。</p></div>
+<div class="product-summary-grid">
+<article class="product-summary-card reveal"><span>01 / FIRST CONTACT</span><h3>ご本人・ご家族・支援者は、初回相談から開始。</h3><p>相談内容、緊急度、希望する連絡方法、面談希望日時を公開画面から送信し、受付番号を確認できます。</p></article>
+<article class="product-summary-card reveal"><span>02 / CASEWORK</span><h3>相談員は、自分の担当相談・案件・期限を確認。</h3><p>担当範囲に限定された職員画面で、相談対応、次の対応、予定、タスクを更新します。</p></article>
+<article class="product-summary-card reveal"><span>03 / MANAGEMENT</span><h3>管理者は、計画・提出・モニタリングまで横断管理。</h3><p>利用者・案件、アセスメント、計画案・正式計画、書類依頼、提出確認、モニタリングをPCとiPadで確認します。</p></article>
+</div>
+<div class="product-problem-grid">
+<article class="product-problem reveal"><div class="product-problem-before"><small>導入前</small><strong>電話・紙・メールで受けた相談が、担当者ごとのメモに分かれる</strong></div><div class="product-problem-arrow">↓</div><div class="product-problem-after"><small>導入後</small><strong>受付番号、状態、担当、対応履歴を同じ相談受付で共有</strong></div></article>
+<article class="product-problem reveal"><div class="product-problem-before"><small>導入前</small><strong>利用者情報、案件、計画、書類、期限を別々の台帳で確認する</strong></div><div class="product-problem-arrow">↓</div><div class="product-problem-after"><small>導入後</small><strong>利用者・案件を中心に、支援の進行と次の対応をまとめて確認</strong></div></article>
+<article class="product-problem reveal"><div class="product-problem-before"><small>導入前</small><strong>担当者しか分からない未対応・期限超過が生まれやすい</strong></div><div class="product-problem-arrow">↓</div><div class="product-problem-after"><small>導入後</small><strong>管理PC・iPad・職員画面で、役割に応じた未対応と期限を表示</strong></div></article>
+</div>
+<p class="sodan-scope-note reveal"><strong>このシステムの範囲：</strong>本ページで紹介するのは、相談受付、利用者・案件、アセスメント、計画作成・提出進行、モニタリング、書類依頼・提出確認、本人・家族連携、事業所内の担当業務です。緊急通報、国保連請求、会計、給与、行政の基幹システムを自動的に置き換えるものではありません。</p>
+</div>
+</section>
+
+<section class="section product-map" id="system-map">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>ONE DATA, FIVE EXPERIENCES</p><h2>本人・家族・相談員・管理者を、<br><em>同じ相談と支援情報でつなぐ。</em></h2></div><p>全員へ同じ情報を見せるのではなく、公開相談、本人・家族、担当相談員、管理者など、立場と権限に応じた画面を用意します。</p></div>
+<div class="product-map-board reveal">
+<div class="product-map-label"><strong>DPRO 相談支援事業所 LINE 全体構成</strong><span>WEB・LINE × PC × iPad × Staff × Worker</span></div>
+<div class="product-map-flow">
+<div class="product-map-side">
+<div class="product-map-node"><b>PUBLIC / WEB</b><strong>初回相談・面談希望</strong><p>相談者区分・相談内容・緊急度・連絡方法・希望日時・受付番号</p></div>
+<div class="product-map-node"><b>MEMBER / LINE</b><strong>本人・家族ポータル</strong><p>面談予定・書類依頼・提出状況・次回モニタリング・お知らせ</p></div>
+</div>
+<div class="product-map-arrow">→</div>
+<div class="product-map-core"><b>API</b><strong>Worker API・データベース</strong><span>事業所・相談・利用者・案件・計画・<br>予定・書類・モニタリングを保存・再取得</span></div>
+<div class="product-map-arrow">→</div>
+<div class="product-map-side">
+<div class="product-map-node"><b>STAFF / MOBILE・PC</b><strong>担当相談員画面</strong><p>担当相談・担当案件・本日の予定・タスク・次の対応</p></div>
+<div class="product-map-node"><b>OWNER / PC・IPAD</b><strong>事業所管理</strong><p>相談受付・利用者・案件・計画・書類・LINE承認・期限・設定</p></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section product-features" id="features">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>MAIN FEATURES</p><h2>相談支援の一連の業務を支える、<br><em>12の主要機能。</em></h2></div><p>初回相談だけで終わらず、案件化、計画作成、書類提出、モニタリング、更新期限までを同じデータでつなぎます。</p></div>
+<div class="product-feature-grid">
+<article class="product-feature reveal"><span class="product-feature-icon">ASK</span><h3>初回相談・面談希望</h3><p>ご本人・家族・後見人・支援者・行政などが、相談内容、緊急度、連絡方法、面談希望日時を送信します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">INQ</span><h3>相談受付・担当・対応履歴</h3><p>受付番号、状態、緊急度、担当相談員、対応記録を管理し、電話・来所での受付も同じ一覧へ登録します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">CASE</span><h3>利用者・案件管理</h3><p>相談受付から利用者・案件へ登録し、支援区分、案件状態、主担当、次の対応と期限を確認します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">ASM</span><h3>アセスメント</h3><p>本人の意向、生活状況、家族・支援者、課題、強み、支援方針を案件単位で記録し、確定状態を管理します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">PLAN</span><h3>計画案・正式計画</h3><p>計画案、説明、同意、行政提出、支給決定、担当者会議、正式計画、交付までの進行を整理します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">MON</span><h3>モニタリング</h3><p>実施予定、期限、評価、本人・家族の意向、サービス利用状況、見直し要否、次回予定を管理します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">DOC</span><h3>書類依頼・提出管理</h3><p>本人・家族へ書類を依頼し、提出済み、確認中、差戻し、確認済みの状態と期限を管理します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">FILE</span><h3>非公開ファイル</h3><p>提出ファイルは公開ページへ直接置かず、非公開Storageと短時間の署名URLを使って確認します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">LINE</span><h3>本人・家族ポータル</h3><p>承認された本人・家族等が、面談予定、書類依頼、モニタリング予定、お知らせを共有範囲内で確認します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">iPad</span><h3>iPad管理画面</h3><p>今日の相談、予定、LINE承認待ち、期限超過、未対応を大きな操作で確認し、PC管理へ移動できます。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">STAFF</span><h3>職員専用・担当範囲</h3><p>職員は自分の担当相談・案件・予定・タスクだけを確認し、対応記録、次の対応、タスク完了を更新します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">CHECK</span><h3>一括システム検査</h3><p>Worker、接続先、権限、各管理機能、セッション、電話番号正規化、デモ環境を専用画面で一括確認します。</p></article>
+</div>
+</div>
+</section>
+
+<section class="section product-flow" id="flow">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>FROM FIRST CONTACT TO REVIEW</p><h2>初回相談から次回モニタリングまで、<br><em>6つの流れ。</em></h2></div><p>相談受付だけでなく、相談支援専門員が実際に追う案件の進行と、本人・家族への連絡までを一つの流れにします。</p></div>
+<div class="product-flow-list">
+<article class="product-flow-step reveal"><span class="product-flow-number">01</span><h3>初回相談を受付</h3><p>ご本人・家族・支援者が相談内容、連絡方法、面談希望を送信し、受付番号を確認します。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">02</span><h3>状態と担当を設定</h3><p>管理者が内容と緊急度を確認し、状態、担当相談員、対応記録、必要な次の連絡を登録します。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">03</span><h3>利用者・案件へ登録</h3><p>支援へ進む相談を利用者・案件へ変換し、主担当、案件状態、予定、タスクを整理します。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">04</span><h3>アセスメントと計画案</h3><p>本人の意向や生活状況を整理し、計画案を作成して説明・同意・行政提出へ進めます。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">05</span><h3>書類・正式計画を管理</h3><p>必要書類を本人・家族へ依頼し、提出確認、支給決定、会議、正式計画、交付を記録します。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">06</span><h3>モニタリングと見直し</h3><p>利用状況と目標の達成を確認し、次回予定、計画変更、更新手続きなど次の対応へつなぎます。</p></article>
+</div>
+</div>
+</section>
+
+<section class="section product-roles" id="roles">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>SCREENS BY ROLE</p><h2>使う人ごとに、<br><em>必要な画面だけ。</em></h2></div><p>公開相談、本人・家族、担当相談員、管理者を分け、内部記録や他職員の担当情報を公開画面へ表示しない構成です。</p></div>
+<div class="product-role-grid">
+<article class="product-role reveal"><span>WEB</span><h3>初めて相談する方</h3><p>LINE公式アカウントがなくても、公開Web画面から初回相談を送れます。</p><ul><li>相談者区分・相談内容</li><li>緊急度・連絡方法</li><li>面談希望日時</li><li>受付番号</li></ul></article>
+<article class="product-role reveal"><span>LINE・WEB</span><h3>本人・家族等</h3><p>承認された立場と共有範囲に応じて、予定や提出依頼を確認します。</p><ul><li>面談・訪問予定</li><li>書類依頼・提出</li><li>次回モニタリング</li><li>事業所からのお知らせ</li></ul></article>
+<article class="product-role reveal"><span>STAFF</span><h3>担当相談員</h3><p>自分の担当範囲に限定して、今日の業務と相談・案件を確認します。</p><ul><li>担当相談・案件</li><li>対応記録</li><li>本日の予定・タスク</li><li>次の対応・期限</li></ul></article>
+<article class="product-role reveal"><span>iPad</span><h3>主任・管理者</h3><p>現場で今日の相談、予定、承認待ち、期限・未対応を素早く確認します。</p><ul><li>今日の管理</li><li>相談受付</li><li>利用者・案件</li><li>PC管理への移動</li></ul></article>
+<article class="product-role reveal"><span>PC</span><h3>事業所管理者</h3><p>相談受付から利用者・案件、計画、書類、モニタリング、設定まで横断管理します。</p><ul><li>相談・利用者・案件</li><li>計画・提出・書類</li><li>モニタリング・LINE承認</li><li>電話・来所受付・横断検索</li></ul></article>
+</div>
+</div>
+</section>
+
+<section class="section product-live" id="demo">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-light"><span></span>REAL SCREEN DEMO</p><h2>説明画像ではなく、<br>実際の操作デモを体験。</h2></div><p>初期表示では外部画面を読み込みません。「この画面を読み込む」を押した時だけ、最新のGitHub Pagesデモをモーダル内へ生成します。閉じるとiframeを破棄します。</p></div>
+<div class="product-live-list">
+<article class="product-live-row">
+<div class="product-live-copy reveal"><span>01 / PUBLIC CONSULTATION</span><h3>初回相談・<br>面談希望</h3><p>ご本人・家族・後見人・支援者・行政等が、相談内容と希望日時を送信し、受付番号を確認する公開画面です。</p><ul><li>相談内容・緊急度</li><li>連絡方法・面談希望</li><li>個人情報同意・受付番号</li></ul><div class="product-live-actions"><button class="button button-line" type="button" data-demo-open data-demo-title="初回相談・面談希望" data-demo-url="https://dpromstk2000-lab.github.io/dpro-sodan-line/">この画面を読み込む</button><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/dpro-sodan-line/" target="_blank" rel="noopener" data-demo-link="sodan-public">別タブで体験する</a></div></div>
+<div class="live-device reveal"><div class="live-window"><div class="live-window-head"><span>DPRO SODAN / PUBLIC CONSULTATION</span><i></i></div><div class="sodan-demo-preview"><div class="sodan-preview-window"><div class="sodan-preview-label"><strong>初回相談・面談希望</strong><span>CONSULTATION</span></div><div class="sodan-preview-cards"><div class="sodan-preview-card"><b>相談者情報</b><small>区分・氏名・電話番号</small></div><div class="sodan-preview-card"><b>相談内容</b><small>相談対象・緊急度・連絡方法</small></div><div class="sodan-preview-card"><b>面談希望</b><small>第3希望まで・30分単位</small></div></div><div class="sodan-preview-list"><div>個人情報の取扱いに同意<span>必須</span></div><div>受付後に番号を表示<span>INQ-000003</span></div></div></div></div></div></div>
+</article>
+
+<article class="product-live-row">
+<div class="product-live-copy reveal"><span>02 / MEMBER &amp; FAMILY</span><h3>本人・ご家族<br>ポータル</h3><p>承認された本人・家族等が、今後の予定、書類依頼、提出状況、モニタリング予定、お知らせを確認する画面です。</p><ul><li>本人・家族の立場を分離</li><li>共有範囲を制御</li><li>公開デモはデモ認証</li></ul><div class="product-live-actions"><button class="button button-line" type="button" data-demo-open data-demo-title="本人・家族ポータル" data-demo-url="https://dpromstk2000-lab.github.io/dpro-sodan-line/member.html">この画面を読み込む</button><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/dpro-sodan-line/member.html" target="_blank" rel="noopener" data-demo-link="sodan-member">別タブで体験する</a></div></div>
+<div class="live-device reveal"><div class="live-window"><div class="live-window-head"><span>DPRO SODAN / MEMBER</span><i></i></div><div class="sodan-demo-preview"><div class="sodan-preview-window"><div class="sodan-preview-label"><strong>本人・家族ポータル</strong><span>MEMBER</span></div><div class="sodan-preview-cards"><div class="sodan-preview-card"><b>今後の予定</b><small>面談・訪問・オンライン</small></div><div class="sodan-preview-card"><b>提出書類</b><small>依頼内容・期限・状態</small></div><div class="sodan-preview-card"><b>モニタリング</b><small>次回予定・事業所連絡</small></div></div><div class="sodan-preview-list"><div>内部記録は表示しない<span>権限分離</span></div><div>導入時にLINE連携設定<span>LIFF対応</span></div></div></div></div></div></div>
+</article>
+
+<article class="product-live-row">
+<div class="product-live-copy reveal"><span>03 / OWNER PC</span><h3>事業所管理<br>PC画面</h3><p>相談受付、利用者・案件、アセスメント、計画・提出、モニタリング、書類、LINE承認、電話・来所受付を管理します。</p><ul><li>相談受付・担当設定</li><li>計画・書類・モニタリング</li><li>横断検索・期限管理</li></ul><div class="product-live-actions"><button class="button button-line" type="button" data-demo-open data-demo-title="事業所管理PC画面" data-demo-url="https://dpromstk2000-lab.github.io/dpro-sodan-line/owner.html">この画面を読み込む</button><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/dpro-sodan-line/owner.html" target="_blank" rel="noopener" data-demo-link="sodan-owner">別タブで体験する</a></div></div>
+<div class="live-device reveal"><div class="live-window"><div class="live-window-head"><span>DPRO SODAN / OWNER PC</span><i></i></div><div class="sodan-demo-preview"><div class="sodan-preview-window"><div class="sodan-preview-label"><strong>相談受付・案件管理</strong><span>OWNER</span></div><div class="sodan-preview-cards"><div class="sodan-preview-card"><b>相談受付</b><small>状態・担当・対応履歴</small></div><div class="sodan-preview-card"><b>利用者・案件</b><small>主担当・次の対応・期限</small></div><div class="sodan-preview-card"><b>計画・提出</b><small>説明・同意・行政提出・正式計画</small></div></div><div class="sodan-preview-list"><div>書類・モニタリングも同じ画面群<span>統合管理</span></div><div>電話番号は表記差を正規化<span>検索対応</span></div></div></div></div></div></div>
+</article>
+
+<article class="product-live-row">
+<div class="product-live-copy reveal"><span>04 / MANAGEMENT IPAD</span><h3>管理者<br>iPad画面</h3><p>今日の相談・予定、LINE承認待ち、期限超過、未対応を大きな操作で確認し、相談受付や案件へ移動できます。</p><ul><li>今日の管理</li><li>相談受付・案件</li><li>期限・未対応アラート</li></ul><div class="product-live-actions"><button class="button button-line" type="button" data-demo-open data-demo-title="管理者iPad画面" data-demo-url="https://dpromstk2000-lab.github.io/dpro-sodan-line/owner-ipad.html">この画面を読み込む</button><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/dpro-sodan-line/owner-ipad.html" target="_blank" rel="noopener" data-demo-link="sodan-ipad">別タブで体験する</a></div></div>
+<div class="live-device reveal"><div class="live-window"><div class="live-window-head"><span>DPRO SODAN / MANAGEMENT IPAD</span><i></i></div><div class="sodan-demo-preview"><div class="sodan-preview-window"><div class="sodan-preview-label"><strong>今日の管理</strong><span>IPAD</span></div><div class="sodan-preview-cards"><div class="sodan-preview-card"><b>新規相談</b><small>受付内容と緊急度を確認</small></div><div class="sodan-preview-card"><b>本日の予定</b><small>面談・訪問を確認</small></div><div class="sodan-preview-card"><b>期限超過</b><small>未対応を見落としにくく</small></div></div><div class="sodan-preview-list"><div>PC管理へすぐ移動<span>連携</span></div><div>管理コード削除ボタン<span>標準仕様</span></div></div></div></div></div></div>
+</article>
+
+<article class="product-live-row">
+<div class="product-live-copy reveal"><span>05 / STAFF</span><h3>担当相談員<br>専用画面</h3><p>担当相談、担当案件、本日の予定、未完了タスク、次の対応を確認し、担当範囲内の記録だけを更新します。</p><ul><li>職員コード・アクセスコード</li><li>担当範囲のサーバー側制限</li><li>対応記録・タスク完了</li></ul><div class="product-live-actions"><button class="button button-line" type="button" data-demo-open data-demo-title="担当相談員専用画面" data-demo-url="https://dpromstk2000-lab.github.io/dpro-sodan-line/staff.html">この画面を読み込む</button><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/dpro-sodan-line/staff.html" target="_blank" rel="noopener" data-demo-link="sodan-staff">別タブで体験する</a></div></div>
+<div class="live-device reveal"><div class="live-window"><div class="live-window-head"><span>DPRO SODAN / STAFF</span><i></i></div><div class="sodan-demo-preview"><div class="sodan-preview-window"><div class="sodan-preview-label"><strong>今日の業務</strong><span>STAFF</span></div><div class="sodan-preview-cards"><div class="sodan-preview-card"><b>担当相談</b><small>新規・確認中・連絡中</small></div><div class="sodan-preview-card"><b>担当案件</b><small>次の対応と期限</small></div><div class="sodan-preview-card"><b>担当タスク</b><small>未着手・対応中・完了</small></div></div><div class="sodan-preview-list"><div>担当外情報は取得しない<span>権限制限</span></div><div>管理者専用操作は非表示<span>安全設計</span></div></div></div></div></div></div>
+</article>
+</div>
+<p class="sodan-demo-note reveal"><strong>公開デモについて：</strong>表示される氏名・電話番号・相談内容・案件・書類・予定は、操作確認用の架空データです。現在の公開デモはLINE公式アカウントを接続せずWebデモとして提供し、本人・家族ポータルはデモ認証を使用しています。本番導入時に対象事業所のLINE Login・LIFFを接続します。</p>
+</div>
+</section>
+
+<section class="section product-after" id="after">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>BEFORE / AFTER</p><h2>記録を増やすのではなく、<br><em>探す・聞く・転記する時間を減らす。</em></h2></div><p>相談支援の専門判断を自動化するものではありません。必要な情報を同じ場所で確認し、次の対応へ進みやすくするための仕組みです。</p></div>
+<div class="product-after-grid">
+<article class="product-after-card reveal"><span>01</span><h3>相談受付</h3><div><b>BEFORE</b><p>電話、メール、紙、個人メモから相談内容と連絡履歴を探す。</p></div><div><b>AFTER</b><p>受付番号、状態、担当、緊急度、希望日時、対応履歴を一覧で確認。</p></div></article>
+<article class="product-after-card reveal"><span>02</span><h3>案件・計画・書類</h3><div><b>BEFORE</b><p>利用者台帳、計画、提出物、行政手続きの進捗を別々に確認。</p></div><div><b>AFTER</b><p>利用者・案件を中心に、アセスメント、計画、書類、期限をつなげて確認。</p></div></article>
+<article class="product-after-card reveal"><span>03</span><h3>担当業務</h3><div><b>BEFORE</b><p>誰が何を対応するか、会議や口頭で毎回確認する。</p></div><div><b>AFTER</b><p>担当相談員の画面に、自分の相談・案件・予定・タスク・次の対応を表示。</p></div></article>
+</div>
+</div>
+</section>
+
+<section class="section product-safety" id="safety">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>SECURITY &amp; OPERATION</p><h2>個人情報を扱う前提で、<br><em>公開範囲と操作権限を分ける。</em></h2></div><p>画面を分けるだけでなく、Worker API側でも担当範囲・管理者操作・本人家族の共有範囲を検証します。</p></div>
+<div class="product-safety-grid">
+<article class="product-safety-card reveal"><span>01 / PROJECT</span><h3>接続先プロジェクトガード</h3><p>想定したSupabaseプロジェクトと一致しない場合は処理を停止し、誤接続を防ぎます。</p></article>
+<article class="product-safety-card reveal"><span>02 / ROLE</span><h3>管理者・職員・本人家族を分離</h3><p>管理者、担当相談員、本人、家族等のセッションとAPIを分け、権限外の操作を拒否します。</p></article>
+<article class="product-safety-card reveal"><span>03 / SCOPE</span><h3>担当範囲と共有範囲</h3><p>職員は担当外の相談・案件を取得できず、本人・家族には内部記録や住所等を表示しません。</p></article>
+<article class="product-safety-card reveal"><span>04 / FILE</span><h3>非公開Storage・短時間URL</h3><p>提出ファイルは非公開バケットへ保存し、閲覧時に短時間だけ有効な署名URLを発行します。</p></article>
+<article class="product-safety-card reveal"><span>05 / DUPLICATE</span><h3>重複送信・二重処理を抑制</h3><p>送信識別情報と短時間の重複確認を使い、再読込や連打による相談の二重登録を抑えます。</p></article>
+<article class="product-safety-card reveal"><span>06 / CHECK</span><h3>公開前の統合検査</h3><p>2026年7月30日の完成確認では、Worker、DB、権限、各管理機能、セッション等の一括検査18件中18件の合格を確認しています。</p></article>
+</div>
+</div>
+</section>
+
+<section class="section product-pricing" id="pricing">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>DPRO OPTION PRICE</p><h2>LINE構築・運用店舗へ追加する、<br><em>DPROシステム料金。</em></h2></div><p>DPROシステムは単体販売ではなく、DPRO SHOPのLINE公式アカウント構築・運用契約店舗向けの追加サービスです。</p></div>
+<div class="product-price-grid">
+<article class="product-price-card reveal"><small>INITIAL SETUP</small><h3>DPROシステム構築費</h3><div class="product-price-value"><strong>33,000円</strong><span>税込</span></div><p>事業所情報、デモ環境、基本画面、接続先、公開・操作確認など、導入に必要な初期設定を行います。</p></article>
+<article class="product-price-card is-accent reveal"><small>MONTHLY USE &amp; MAINTENANCE</small><h3>利用・基本保守費</h3><div class="product-price-value"><strong>月額1,100円</strong><span>税込</span></div><p>システム利用と基本的な保守・確認を含みます。大規模な機能追加や個別開発は、事前に内容と費用をご案内します。</p></article>
+</div>
+<p class="product-price-note reveal"><strong>別途必要：</strong>LINE公式アカウント構築77,000円（税込）／LINE運用サポート月額3,300円（税込）。国保連請求、会計、給与、行政・記録システム等との個別連携が必要な場合は別途確認します。</p>
+</div>
+</section>
+
+<section class="section sys-faq" id="faq">
+<div class="section-inner">
+<div class="sys-center-heading reveal"><p class="eyebrow eyebrow-dark"><span></span>FAQ</p><h2>相談支援事業所向けDPROシステムの<br>よくある質問。</h2></div>
+<div class="faq-list">
+<details class="reveal"><summary>LINE公式アカウントがなくても公開デモを確認できますか。</summary><p>はい。初回相談、管理PC、管理iPad、職員画面は通常のWebブラウザで確認できます。現在の公開デモはLINE公式アカウントを接続せず、本人・家族ポータルもデモ認証で提供しています。</p></details>
+<details class="reveal"><summary>本人や家族は内部の支援記録まで見られますか。</summary><p>いいえ。本人・家族ポータルは承認された連携先と共有範囲に応じて、予定、書類依頼、モニタリング予定、お知らせ等を表示します。内部メモ、担当者専用記録、住所等をそのまま表示する構成ではありません。</p></details>
+<details class="reveal"><summary>職員ごとに担当利用者を分けられますか。</summary><p>はい。職員専用画面は自分の担当相談・担当案件・予定・タスクを表示し、担当外の相談や案件はWorker API側でも取得を拒否します。</p></details>
+<details class="reveal"><summary>電話や来所で受けた相談も登録できますか。</summary><p>はい。管理PC画面の電話・来所受付から登録し、公開フォームからの相談と同じ相談受付一覧で状態・担当・対応履歴を管理できます。</p></details>
+<details class="reveal"><summary>計画相談と障害児相談支援の両方に使えますか。</summary><p>基本データでは計画相談支援と障害児相談支援を区分して管理できます。実際の帳票項目、承認手順、自治体ごとの運用差は導入時に確認して調整します。</p></details>
+<details class="reveal"><summary>国保連請求や行政システムも置き換えますか。</summary><p>本システムの主な範囲は、相談受付、利用者・案件、計画進行、書類、モニタリング、事業所内共有です。国保連請求、会計、給与、行政基幹システムの置き換えや連携は個別に判断します。</p></details>
+<details class="reveal"><summary>公開デモに本物の利用者情報は入っていますか。</summary><p>入りません。公開デモは架空データを使用します。本番環境は契約事業所ごとに分離し、公開デモとは別のGitHub・Worker・データベースで運用します。</p></details>
+</div>
+</div>
+</section>
+
+<section class="section product-final-cta">
+<div class="section-inner product-final-cta-inner reveal">
+<p class="eyebrow eyebrow-light"><span></span>TRY THE REAL DPRO SODAN</p>
+<h2>今の相談受付・案件・計画管理と比べながら、<br>実際の画面を確認しませんか。</h2>
+<p>現在の相談受付、担当割当、利用者・案件、計画・提出、書類、モニタリングの流れを伺い、どの画面から始めると使いやすいかを一緒に整理します。</p>
+<div class="product-final-actions">
+<a class="button button-line" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener"><span class="line-badge">LINE</span><span>無料で導入相談する</span><b>→</b></a>
+<a class="button button-ghost" href="#demo">実際の操作デモを見る</a>
+</div>
+</div>
+</section>
+</main>
+
+<footer class="site-footer">
+<div class="footer-inner">
+<div class="footer-brand"><a class="brand" href="../"><span class="brand-mark" aria-hidden="true">D</span><span class="brand-copy"><strong>DPRO SHOP</strong><small>LINE BUSINESS DESIGN</small></span></a><p>福岡県を中心に、LINE公式アカウント、ホームページ、<br>契約店舗限定の業種別DPROシステムを支援します。</p></div>
+<div class="footer-links">
+<div><strong>SERVICE</strong><a href="../line-build">LINE公式アカウント構築</a><a href="../line-operation">LINE運用サポート</a><a href="../website">ホームページ制作</a><a href="../pricing">料金</a></div>
+<div><strong>PRODUCT</strong><a href="./">DPROシステム一覧</a><a href="sodan">相談支援事業所</a><a href="https://dpromstk2000-lab.github.io/dpro-sodan-line/" target="_blank" rel="noopener">相談支援事業所デモ</a></div>
+<div><strong>GUIDE</strong><a href="../about">DPRO SHOPについて</a><a href="../contact">お問い合わせ</a><a href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで無料相談</a></div>
+</div>
+</div>
+<div class="footer-legal-links" aria-label="法務・お問い合わせ"><a href="../privacy">プライバシーポリシー</a><a href="../terms">サービス利用上の注意事項</a><a href="../contact">お問い合わせ</a></div>
+<div class="footer-bottom"><span>© 2026 DPRO SHOP. All Rights Reserved.</span><a href="#top">PAGE TOP ↑</a></div>
+</footer>
+<div class="product-mobile-cta" aria-label="固定アクション"><a href="#demo">デモを体験</a><a href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで相談</a></div>
+
+<div class="demo-modal" id="demo-modal" hidden aria-hidden="true">
+<button class="demo-modal-backdrop" type="button" data-demo-close aria-label="デモ画面を閉じる"></button>
+<div class="demo-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="demo-modal-title">
+<div class="demo-modal-head"><strong id="demo-modal-title">実際の操作デモ</strong><div class="demo-modal-actions"><a class="demo-modal-external" id="demo-modal-external" href="#" target="_blank" rel="noopener">別タブで開く</a><button class="demo-modal-close" type="button" data-demo-close aria-label="閉じる">×</button></div></div>
+<div class="demo-modal-frame" id="demo-modal-frame"></div>
+</div>
+</div>
+
+<script defer src="../script.js?v=17r1"></script>
+<script defer src="systems.js?v=1"></script>
+<script>
+(() => {
+  "use strict";
+  const modal = document.getElementById("demo-modal");
+  const frameHost = document.getElementById("demo-modal-frame");
+  const title = document.getElementById("demo-modal-title");
+  const external = document.getElementById("demo-modal-external");
+  const openers = [...document.querySelectorAll("[data-demo-open]")];
+  const closers = [...document.querySelectorAll("[data-demo-close]")];
+  let returnFocus = null;
+
+  const focusable = () => [...modal.querySelectorAll('a[href],button:not([disabled]),iframe,[tabindex]:not([tabindex="-1"])')]
+    .filter((element) => !element.hidden && element.getClientRects().length > 0);
+
+  const destroyFrame = () => {
+    const iframe = frameHost.querySelector("iframe");
+    if (iframe) {
+      iframe.src = "about:blank";
+      iframe.remove();
+    }
+  };
+
+  const closeModal = () => {
+    if (modal.hidden) return;
+    destroyFrame();
+    modal.hidden = true;
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("is-demo-open");
+    openers.forEach((button) => button.setAttribute("aria-expanded", "false"));
+    if (returnFocus instanceof HTMLElement) returnFocus.focus();
+    returnFocus = null;
+  };
+
+  const openModal = (button) => {
+    const url = button.dataset.demoUrl;
+    const demoTitle = button.dataset.demoTitle || "実際の操作デモ";
+    if (!url) return;
+    returnFocus = button;
+    destroyFrame();
+    title.textContent = demoTitle;
+    external.href = url;
+    const iframe = document.createElement("iframe");
+    iframe.src = url;
+    iframe.title = demoTitle;
+    iframe.loading = "eager";
+    iframe.referrerPolicy = "strict-origin-when-cross-origin";
+    iframe.setAttribute("allow", "clipboard-read; clipboard-write");
+    frameHost.appendChild(iframe);
+    modal.hidden = false;
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("is-demo-open");
+    button.setAttribute("aria-expanded", "true");
+    modal.querySelector(".demo-modal-close").focus();
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "select_content", {
+        content_type: "dpro_inline_demo",
+        item_id: `sodan-${demoTitle}`,
+        link_url: url,
+        page_location: window.location.href
+      });
+    }
+  };
+
+  openers.forEach((button) => {
+    button.setAttribute("aria-haspopup", "dialog");
+    button.setAttribute("aria-controls", "demo-modal");
+    button.setAttribute("aria-expanded", "false");
+    button.addEventListener("click", () => openModal(button));
+  });
+  closers.forEach((button) => button.addEventListener("click", closeModal));
+  document.addEventListener("keydown", (event) => {
+    if (modal.hidden) return;
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeModal();
+      return;
+    }
+    if (event.key !== "Tab") return;
+    const items = focusable();
+    if (!items.length) return;
+    const first = items[0];
+    const last = items[items.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+})();
+</script>
+</body>
+</html>
