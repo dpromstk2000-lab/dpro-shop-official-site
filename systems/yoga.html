@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ja">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async fetchpriority="low" src="https://www.googletagmanager.com/gtag/js?id=G-YPN3998BHG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-YPN3998BHG');
+</script>
+<meta charset="utf-8">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="プライベートヨガ向けDPRO YOGA LINE。体験・通常予約、予約変更、会員履歴、受講記録、次回案内、PC・iPad運用を実画面デモとともに紹介します。">
+<meta name="theme-color" content="#07111f">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DPRO SHOP">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="DPRO YOGA LINE｜プライベートヨガのLINE予約・受講履歴・次回案内">
+<meta property="og:description" content="体験予約からレッスン進捗、受講記録、次回案内まで。LINE・PC・iPadをつなぐプライベートヨガ向けDPROシステム。">
+<meta property="og:url" content="https://dpro-shop.com/systems/yoga">
+<meta property="og:image" content="https://dpro-shop.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DPRO YOGA LINE｜プライベートヨガ">
+<meta name="twitter:description" content="体験・通常予約、会員履歴、受講記録、次回案内をLINE・PC・iPadでつなぐヨガ教室向けシステム。">
+<meta name="twitter:image" content="https://dpro-shop.com/og-image.png">
+<title>DPRO YOGA LINE｜プライベートヨガのLINE予約・受講履歴・次回案内｜DPRO SHOP</title>
+<link rel="canonical" href="https://dpro-shop.com/systems/yoga">
+<link rel="manifest" href="../site.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="../sitemap.xml">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="stylesheet" href="../styles.css?v=17r2">
+<link rel="stylesheet" href="systems.css?v=1">
+<script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
+<style>
+body.system-yoga-page{
+  --system-accent:#7568e8;
+  --system-accent-dark:#5144c6;
+  --system-accent-soft:#f0eeff;
+}
+.system-yoga-page .product-hero{
+  background:
+    radial-gradient(circle at 76% 18%,rgba(68,220,255,.18),transparent 27%),
+    radial-gradient(circle at 28% 91%,rgba(126,107,255,.28),transparent 36%),
+    linear-gradient(145deg,#06101d,#101933 50%,#17133a);
+}
+.system-yoga-page .product-code{color:#d9d5ff}
+.system-yoga-page .product-hero-copy h1 em{
+  background:linear-gradient(115deg,#fff 0%,#75e3ff 45%,#c1b9ff 100%);
+  background-clip:text;
+  -webkit-background-clip:text;
+}
+.yoga-monitor-ui{display:grid;grid-template-columns:118px 1fr;min-height:320px;background:#f8f7fc;color:#293047}
+.yoga-monitor-side{padding:24px 14px;background:linear-gradient(180deg,#443b84,#272452);color:#fff}
+.yoga-monitor-side strong{display:block;margin-bottom:22px;font-size:12px;letter-spacing:.08em}
+.yoga-monitor-side span{display:block;margin:9px 0;padding:8px 9px;border-radius:9px;background:rgba(255,255,255,.08);font-size:8px;font-weight:800}
+.yoga-monitor-main{padding:22px}
+.yoga-monitor-main-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.yoga-monitor-main-head strong{font-size:15px}
+.yoga-monitor-main-head b{padding:7px 10px;border-radius:999px;background:#eeeafe;color:#5144c6;font-size:8px}
+.yoga-kpi-row{margin-top:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.yoga-kpi{padding:13px;border:1px solid #e4e1f2;border-radius:13px;background:#fff}
+.yoga-kpi small{display:block;color:#7b8194;font-size:7px;font-weight:800}
+.yoga-kpi b{display:block;margin-top:6px;font-size:20px}
+.yoga-task-list{margin-top:12px;display:grid;gap:8px}
+.yoga-task{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px;border:1px solid #e6e4ef;border-radius:12px;background:#fff}
+.yoga-task div{min-width:0}
+.yoga-task strong{display:block;font-size:9px}
+.yoga-task span{display:block;margin-top:3px;color:#777f91;font-size:7px}
+.yoga-task b{flex:0 0 auto;padding:6px 8px;border-radius:8px;background:#eef9f5;color:#31755e;font-size:7px}
+.yoga-phone-card{padding:13px;border-radius:14px;background:#fff;box-shadow:0 11px 30px rgba(22,20,56,.14)}
+.yoga-phone-card small{color:#6258cb;font-size:7px;font-weight:900;letter-spacing:.09em}
+.yoga-phone-card h3{margin:6px 0 0;font-size:13px}
+.yoga-phone-block{margin-top:9px;padding:9px;border-radius:10px;background:#f3f1ff}
+.yoga-phone-block strong{display:block;font-size:8px}
+.yoga-phone-block span{display:block;margin-top:4px;color:#666d80;font-size:7px}
+.yoga-tablet-card{height:100%;padding:14px;border-radius:15px;background:linear-gradient(145deg,#faf9ff,#eeecfb);color:#33374b}
+.yoga-tablet-card small{font-size:7px;font-weight:900;letter-spacing:.12em;color:#6258cb}
+.yoga-tablet-card h3{margin:7px 0 11px;font-size:12px}
+.yoga-progress{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.yoga-progress span{min-height:38px;padding:7px;border:1px solid #dedaf2;border-radius:8px;background:#fff;font-size:6px;font-weight:800}
+.yoga-demo-modal[hidden]{display:none}
+.yoga-demo-modal{position:fixed;z-index:1800;inset:0;display:grid;place-items:center;padding:22px}
+.yoga-demo-backdrop{position:absolute;inset:0;border:0;background:rgba(2,8,20,.78);cursor:pointer}
+.yoga-demo-dialog{position:relative;width:min(1180px,100%);height:min(820px,calc(100vh - 44px));overflow:hidden;border:1px solid rgba(255,255,255,.18);border-radius:24px;background:#fff;box-shadow:0 35px 100px rgba(0,0,0,.45)}
+.yoga-demo-head{height:62px;padding:0 18px 0 22px;display:flex;align-items:center;justify-content:space-between;gap:14px;background:#0b1629;color:#fff}
+.yoga-demo-head strong{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px}
+.yoga-demo-head-actions{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+.yoga-demo-head a,.yoga-demo-close{min-height:38px;padding:0 13px;display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.22);border-radius:999px;background:rgba(255,255,255,.08);color:#fff;font-size:11px;font-weight:850}
+.yoga-demo-close{width:38px;padding:0;cursor:pointer}
+.yoga-demo-frame-wrap{height:calc(100% - 62px);background:#edf1f6}
+.yoga-demo-frame-wrap iframe{width:100%;height:100%;border:0;background:#fff}
+body.yoga-demo-open{overflow:hidden}
+.yoga-live-placeholder{min-height:330px;padding:28px;display:grid;place-items:center;background:linear-gradient(145deg,#f8f7ff,#eef7fb)}
+.yoga-live-placeholder-inner{width:min(100%,620px);padding:28px;border:1px solid #dddff0;border-radius:22px;background:#fff;box-shadow:0 22px 60px rgba(19,27,52,.1);text-align:center}
+.yoga-live-placeholder-inner span{display:inline-flex;padding:7px 10px;border-radius:999px;background:#efedff;color:#5144c6;font-size:9px;font-weight:900;letter-spacing:.12em}
+.yoga-live-placeholder-inner strong{display:block;margin-top:15px;font-size:clamp(20px,3vw,31px);line-height:1.35}
+.yoga-live-placeholder-inner p{margin:12px auto 0;max-width:480px;color:#687184;line-height:1.8;font-size:13px}
+@media (max-width:900px){
+  .yoga-monitor-ui{grid-template-columns:86px 1fr;min-height:270px}
+  .yoga-monitor-side{padding:18px 10px}.yoga-monitor-main{padding:16px}
+  .yoga-kpi-row{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (max-width:520px){
+  .yoga-monitor-ui{grid-template-columns:1fr;min-height:250px}
+  .yoga-monitor-side{display:none}.yoga-monitor-main{padding:14px}
+  .yoga-task:nth-child(n+3){display:none}
+  .yoga-demo-modal{padding:0}.yoga-demo-dialog{height:100vh;border-radius:0;border:0}
+  .yoga-demo-head{height:58px;padding:0 10px 0 14px}.yoga-demo-frame-wrap{height:calc(100% - 58px)}
+  .yoga-demo-head a{display:none}.yoga-live-placeholder{min-height:250px;padding:15px}.yoga-live-placeholder-inner{padding:22px 16px}
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://dpro-shop.com/#website",
+      "name":"DPRO SHOP",
+      "url":"https://dpro-shop.com/",
+      "inLanguage":"ja"
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://dpro-shop.com/systems/yoga#webpage",
+      "url":"https://dpro-shop.com/systems/yoga",
+      "name":"DPRO YOGA LINE｜プライベートヨガのLINE予約・受講履歴・次回案内",
+      "description":"プライベートヨガ向けDPRO YOGA LINEの機能、利用者別画面、導入前後、実画面デモを紹介します。",
+      "isPartOf":{"@id":"https://dpro-shop.com/#website"},
+      "inLanguage":"ja",
+      "dateModified":"2026-07-30",
+      "breadcrumb":{"@id":"https://dpro-shop.com/systems/yoga#breadcrumb"},
+      "mainEntity":{"@id":"https://dpro-shop.com/systems/yoga#software"}
+    },
+    {
+      "@type":"BreadcrumbList",
+      "@id":"https://dpro-shop.com/systems/yoga#breadcrumb",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"DPRO SHOP","item":"https://dpro-shop.com/"},
+        {"@type":"ListItem","position":2,"name":"業種別DPROシステム","item":"https://dpro-shop.com/systems/"},
+        {"@type":"ListItem","position":3,"name":"プライベートヨガ","item":"https://dpro-shop.com/systems/yoga"}
+      ]
+    },
+    {
+      "@type":"SoftwareApplication",
+      "@id":"https://dpro-shop.com/systems/yoga#software",
+      "name":"DPRO YOGA LINE",
+      "alternateName":"DPRO プライベートヨガ LINE",
+      "applicationCategory":"BusinessApplication",
+      "operatingSystem":"Web browser / LINE",
+      "description":"体験・通常予約、会員履歴、予約変更、受講記録、レッスン進捗、次回案内、電話・店頭予約をLINE・PC・iPadでつなぐプライベートヨガ向け業務システム。",
+      "url":"https://dpro-shop.com/systems/yoga",
+      "offers":[
+        {
+          "@type":"Offer",
+          "name":"DPROシステム構築",
+          "price":"33000",
+          "priceCurrency":"JPY",
+          "description":"LINE公式アカウント構築・運用契約店舗限定"
+        },
+        {
+          "@type":"Offer",
+          "name":"DPROシステム利用・基本保守",
+          "price":"1100",
+          "priceCurrency":"JPY",
+          "description":"月額。LINE公式アカウント構築・運用契約店舗限定"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body class="system-product-page official-product-page system-yoga-page">
+<div class="sys-progress" aria-hidden="true"></div>
+<a class="skip-link" href="#main">本文へ移動</a>
+<header class="site-header" id="top">
+<div class="header-inner">
+<a class="brand" href="../" aria-label="DPRO SHOP トップへ"><span class="brand-mark" aria-hidden="true">D</span><span class="brand-copy"><strong>DPRO SHOP</strong><small>LINE BUSINESS DESIGN</small></span></a>
+<button class="menu-button" type="button" aria-expanded="false" aria-controls="global-nav" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+<nav class="global-nav" id="global-nav" aria-label="メインナビゲーション">
+<a href="../">トップ</a>
+<a href="../line-build">LINE構築</a>
+<a href="../line-operation">LINE運用</a>
+<a href="../website">HP制作</a>
+<a href="./">DPROシステム</a>
+<a href="../pricing">料金</a>
+<a href="../about">DPRO SHOP</a>
+<a class="nav-cta" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで無料相談</a>
+</nav>
+</div>
+</header>
+
+<main id="main">
+<section class="product-hero" aria-labelledby="product-title">
+<div class="product-hero-grid" aria-hidden="true"></div>
+<div class="product-hero-inner">
+<div class="product-hero-copy reveal">
+<nav class="sys-breadcrumb" aria-label="パンくずリスト"><a href="../">DPRO SHOP</a><span>／</span><a href="./">DPROシステム</a><span>／</span><strong>プライベートヨガ</strong></nav>
+<div class="official-product-label"><span>DPRO SHOP</span><strong>公式製品紹介ページ</strong><small>DPRO YOGA LINE｜プライベートヨガ向けシステム</small></div>
+<div class="product-code" aria-hidden="true">YOGA</div>
+<p class="eyebrow eyebrow-light"><span></span>FEATURES・BENEFITS・REAL DEMO</p>
+<h1 id="product-title"><span>体験予約から受講後の</span><span><em>次回案内まで、LINEで。</em></span></h1>
+<p class="product-hero-lead">お客様のLINE予約・会員履歴と、店舗のPC・iPadをつなぎ、予約受付、レッスン進捗、受講記録、次回案内までを一つの流れで確認できるプライベートヨガ向けシステムです。</p>
+<div class="product-hero-actions">
+<a class="button button-line" href="#features"><span class="line-badge">YOGA</span><span>機能を詳しく見る</span><b>↓</b></a>
+<a class="button button-ghost" href="https://dpromstk2000-lab.github.io/liff-yoga-reserve/index.html?demo=1&amp;v=yoga-next-10" target="_blank" rel="noopener" data-demo-link="yoga-top">実際の操作デモ</a>
+</div>
+<div class="product-proof-tags"><span>体験・通常予約</span><span>予約変更・キャンセル</span><span>会員・受講履歴</span><span>PCオーナー管理</span><span>店舗iPad</span><span>次回案内</span></div>
+</div>
+
+<div class="product-hero-stage reveal" aria-label="DPRO YOGA LINEの画面イメージ">
+<div class="product-stage-label"><i></i>OFFICIAL PRODUCT GUIDE / SYSTEM PREVIEW</div>
+<div class="product-stage-monitor">
+<div class="product-browser"><span class="product-browser-dots"><i></i><i></i><i></i></span><span>DPRO YOGA LINE / オーナーPCイメージ</span><b>PREVIEW</b></div>
+<div class="yoga-monitor-ui">
+<div class="yoga-monitor-side"><strong>DPRO YOGA</strong><span>今日やること</span><span>本日の予約</span><span>次回案内</span><span>顧客・受講履歴</span></div>
+<div class="yoga-monitor-main"><div class="yoga-monitor-main-head"><strong>本日のレッスン運用</strong><b>今日 3件</b></div><div class="yoga-kpi-row"><div class="yoga-kpi"><small>今日やること</small><b>2</b></div><div class="yoga-kpi"><small>本日の予約</small><b>3</b></div><div class="yoga-kpi"><small>次回案内</small><b>1</b></div></div><div class="yoga-task-list"><div class="yoga-task"><div><strong>10:00 体験レッスン</strong><span>受付待ち／姿勢改善</span></div><b>次へ</b></div><div class="yoga-task"><div><strong>13:30 通常レッスン</strong><span>受講記録を入力</span></div><b>記録</b></div><div class="yoga-task"><div><strong>前回受講後フォロー</strong><span>文面を個別確認</span></div><b>確認</b></div></div></div>
+</div>
+</div>
+<div class="product-stage-phone"><div class="product-phone-inner"><div class="product-phone-brand"><b>LINE</b>DPRO YOGA</div><div class="yoga-phone-card"><small>MEMBER</small><h3>次の予約</h3><div class="yoga-phone-block"><strong>7月31日 10:00</strong><span>プライベートヨガ 60分</span></div><div class="yoga-phone-block"><strong>前回のレッスン</strong><span>同じメニューで予約する</span></div></div></div></div>
+<div class="product-stage-tablet"><div class="product-tablet-inner"><div class="yoga-tablet-card"><small>STORE IPAD</small><h3>本日の進捗</h3><div class="yoga-progress"><span>受付待ち</span><span>来店</span><span>準備</span><span>受講中</span><span>記録</span><span>次回案内</span></div></div></div></div>
+</div>
+</div>
+</section>
+
+<nav class="product-local-nav" aria-label="ページ内メニュー">
+<div class="product-local-nav-inner"><a href="#summary" class="is-active">概要</a><a href="#system-map">全体構成</a><a href="#features">主な機能</a><a href="#flow">利用の流れ</a><a href="#roles">画面別</a><a href="#demo">実画面</a><a href="#after">導入前後</a><a href="#safety">安全設計</a><a href="#pricing">料金</a><a href="#faq">よくある質問</a></div>
+</nav>
+
+<section class="section product-summary" id="summary">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>UNDERSTAND IN 30 SECONDS</p><h2>30秒で分かる、<br><em>このシステムの役割。</em></h2></div><p>予約フォームだけを置くのではなく、予約前の確認、当日のレッスン運用、受講後の記録と次回案内までをつなぎます。</p></div>
+<div class="product-summary-grid">
+<article class="product-summary-card reveal"><span>01 / CUSTOMER</span><h3>お客様はLINEから、予約と会員履歴を確認。</h3><p>体験・通常レッスンの予約、予約変更・キャンセル、前回の受講内容、同じメニューでの再予約をスマートフォンで確認できます。</p></article>
+<article class="product-summary-card reveal"><span>02 / STUDIO</span><h3>店舗はPC・iPadで、今日の動きと記録を共有。</h3><p>今日やること、本日の予約、6段階の進捗、受講記録、次回案内を、オーナーと現場スタッフの画面で確認します。</p></article>
+<article class="product-summary-card reveal"><span>03 / SCOPE</span><h3>プライベート・少人数教室の予約前後を整理。</h3><p>会計・決済・経理を置き換えるものではありません。予約、顧客、受講履歴、フォロー業務を主な対象とします。</p></article>
+</div>
+<div class="product-problem-grid">
+<article class="product-problem reveal"><div class="product-problem-before"><small>導入前</small><strong>体験・通常・電話予約が別々のメモに分かれる</strong></div><div class="product-problem-arrow">↓</div><div class="product-problem-after"><small>導入後</small><strong>LINE・電話・店頭予約を同じ予約情報へまとめる</strong></div></article>
+<article class="product-problem reveal"><div class="product-problem-before"><small>導入前</small><strong>来店、受講、記録、次回案内を口頭で確認する</strong></div><div class="product-problem-arrow">↓</div><div class="product-problem-after"><small>導入後</small><strong>PC・iPadで6段階の進捗と次の対応を共有する</strong></div></article>
+<article class="product-problem reveal"><div class="product-problem-before"><small>導入前</small><strong>前回内容を探してから、次回予約を案内する</strong></div><div class="product-problem-arrow">↓</div><div class="product-problem-after"><small>導入後</small><strong>受講履歴と前回メニューから次回予約へつなぐ</strong></div></article>
+</div>
+</div>
+</section>
+
+<section class="section product-map" id="system-map">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>ONE DATA, FOUR EXPERIENCES</p><h2>お客様・会員・オーナー・現場を、<br><em>同じ予約と受講情報でつなぐ。</em></h2></div><p>全員が同じ管理画面を使うのではなく、役割に必要な情報と操作だけを表示します。</p></div>
+<div class="product-map-board reveal">
+<div class="product-map-label"><strong>DPRO YOGA LINE 全体構成</strong><span>LINE × PC × iPad × Worker</span></div>
+<div class="product-map-flow">
+<div class="product-map-side">
+<div class="product-map-node"><b>CUSTOMER / LINE</b><strong>予約画面</strong><p>体験・通常予約、事前質問、日時・メニュー選択</p></div>
+<div class="product-map-node"><b>MEMBER / LINE</b><strong>会員ページ</strong><p>現在予約、変更・キャンセル、受講履歴、前回と同じ予約</p></div>
+</div>
+<div class="product-map-arrow">→</div>
+<div class="product-map-core"><b>API</b><strong>Worker API・データベース</strong><span>予約・顧客・受講記録・進捗・次回案内を<br>同じデータとして保存・再取得</span></div>
+<div class="product-map-arrow">→</div>
+<div class="product-map-side">
+<div class="product-map-node"><b>OWNER / PC</b><strong>オーナー管理</strong><p>今日やること、予約、顧客、電話受付、店舗設定</p></div>
+<div class="product-map-node"><b>STAFF / IPAD</b><strong>店舗・スタッフ画面</strong><p>本日の予約、6段階進捗、受講記録、次回案内</p></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section product-features" id="features">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>MAIN FEATURES</p><h2>プライベートヨガの予約前後に必要な、<br><em>10の主要機能。</em></h2></div><p>予約数を増やす入口だけでなく、当日の対応、受講記録、次回案内まで実際の店舗運用につなげます。</p></div>
+<div class="product-feature-grid">
+<article class="product-feature reveal"><span class="product-feature-icon">LINE</span><h3>LINE予約</h3><p>お客様がスマートフォンから体験・通常レッスンの日時とメニューを選択します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">Q&amp;A</span><h3>事前カウンセリング</h3><p>ヨガ経験、解決したい悩み、希望する通い方を予約時に確認できます。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">SLOT</span><h3>予約枠・上限管理</h3><p>営業時間、休業日、受付枠、同時予約数など、教室の運営条件に合わせて受付を制御します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">EDIT</span><h3>変更・キャンセル</h3><p>会員ページから現在の予約を確認し、必要な予約変更やキャンセルを行えます。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">HIST</span><h3>会員・受講履歴</h3><p>前回レッスン、受講日、メニュー、次回おすすめ日を会員ページで確認します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">REPEAT</span><h3>前回と同じ予約</h3><p>前回のメニューを引き継ぎ、日付と時間を選んで次回予約へ進めます。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">TODAY</span><h3>今日やること</h3><p>オーナーPCで、体験後フォロー、次回案内、未対応の文面確認などを優先表示します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">6 STEP</span><h3>レッスン進捗</h3><p>受付待ちから次回案内まで、当日の状態を6段階で更新し、PC・iPadで共有します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">NOTE</span><h3>受講記録</h3><p>レッスン後に受講内容や次回案内に必要な記録を残し、履歴として再確認できます。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">TEL</span><h3>電話・店頭予約</h3><p>LINEを使わないお客様の予約も、オーナー画面から同じ予約台帳へ登録できます。</p></article>
+</div>
+</div>
+</section>
+
+<section class="section product-flow" id="flow">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>FROM FIRST BOOKING TO NEXT VISIT</p><h2>体験予約から次回予約まで、<br><em>6つの流れ。</em></h2></div><p>予約を受けて終わりではなく、お客様が通い続けるための確認と現場対応を一つの流れにします。</p></div>
+<div class="product-flow-list">
+<article class="product-flow-step reveal"><span class="product-flow-number">01</span><h3>LINEから予約</h3><p>体験・通常レッスン、目的、希望日時をお客様が入力します。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">02</span><h3>店舗が予約を確認</h3><p>オーナーPCで本日の予定、事前回答、電話・店頭予約を同じ一覧で確認します。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">03</span><h3>来店・レッスン進行</h3><p>店舗iPadで次に対応するお客様を確認し、6段階の進捗を更新します。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">04</span><h3>受講記録</h3><p>レッスン内容や次回につながる情報を記録し、会員履歴へ残します。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">05</span><h3>次回案内を確認</h3><p>対象者と案内文面を個別に確認し、必要な場合だけLINE用文面をコピーします。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">06</span><h3>会員が次回予約</h3><p>前回の受講内容を確認し、同じメニューまたは別の内容で次回予約へ進みます。</p></article>
+</div>
+</div>
+</section>
+
+<section class="section product-roles" id="roles">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>SCREENS BY ROLE</p><h2>使う人ごとに、<br><em>必要な画面だけ。</em></h2></div><p>お客様の予約入口、会員履歴、オーナー管理、店舗iPadを分け、管理情報をお客様画面へ出さない構成です。</p></div>
+<div class="product-role-grid">
+<article class="product-role reveal"><span>LINE</span><h3>予約するお客様</h3><p>スマートフォンから予約と事前回答を送信します。</p><ul><li>体験・通常予約</li><li>メニュー・日時選択</li><li>現在予約の確認</li><li>変更・キャンセル</li></ul></article>
+<article class="product-role reveal"><span>MEMBER</span><h3>LINE会員</h3><p>受講履歴と次の予約を自分の画面で確認します。</p><ul><li>前回レッスン</li><li>受講履歴</li><li>次回おすすめ日</li><li>前回と同じ予約</li></ul></article>
+<article class="product-role reveal"><span>PC</span><h3>オーナー</h3><p>教室全体の予約とフォロー業務を管理します。</p><ul><li>今日やること</li><li>予約・顧客管理</li><li>電話・店頭予約</li><li>店舗・メニュー設定</li></ul></article>
+<article class="product-role reveal"><span>iPad</span><h3>店舗スタッフ</h3><p>当日のレッスン運用をタッチ操作で進めます。</p><ul><li>本日の予約</li><li>次に対応</li><li>6段階進捗</li><li>受講記録・次回案内</li></ul></article>
+</div>
+</div>
+</section>
+
+<section class="section product-live" id="demo">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-light"><span></span>REAL SCREEN DEMO</p><h2>説明画像ではなく、<br>実際の操作デモ。</h2></div><p>初期表示では外部画面を読み込みません。「この画面を開く」を押した時だけ、モーダル内に最新のGitHub Pagesデモを生成します。閉じる操作またはEscキーでiframeを破棄します。</p></div>
+<div class="product-live-list">
+<article class="product-live-row">
+<div class="product-live-copy reveal"><span>01 / RESERVATION</span><h3>お客様用<br>LINE予約画面</h3><p>体験・通常レッスン、事前カウンセリング、メニュー、日時をスマートフォンで選択します。</p><ul><li>体験・通常予約</li><li>目的・経験・希望ペース</li><li>営業時間・休業日・上限を反映</li></ul><div class="product-live-actions"><button class="button button-line" type="button" data-yoga-demo="https://dpromstk2000-lab.github.io/liff-yoga-reserve/index.html?demo=1&amp;v=yoga-next-10" data-yoga-title="DPRO YOGA LINE お客様用予約画面">この画面を開く</button><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/liff-yoga-reserve/index.html?demo=1&amp;v=yoga-next-10" target="_blank" rel="noopener" data-demo-link="yoga-customer">別タブで体験する</a></div></div>
+<div class="live-device reveal"><div class="live-window live-window-phone"><div class="live-window-head"><span>DPRO YOGA / RESERVATION</span><i></i></div><div class="yoga-live-placeholder"><div class="yoga-live-placeholder-inner"><span>LINE RESERVATION</span><strong>体験・通常レッスンを予約</strong><p>ボタンを押した時だけ、最新のお客様用デモ画面を読み込みます。</p></div></div></div></div>
+</article>
+
+<article class="product-live-row">
+<div class="product-live-copy reveal"><span>02 / MEMBER</span><h3>LINE会員・<br>受講履歴ページ</h3><p>現在の予約、前回のレッスン、受講履歴、予約変更、同じメニューでの次回予約を確認します。</p><ul><li>現在予約・変更・キャンセル</li><li>前回レッスン・受講履歴</li><li>前回と同じ予約</li></ul><div class="product-live-actions"><button class="button button-line" type="button" data-yoga-demo="https://dpromstk2000-lab.github.io/liff-yoga-reserve/member.html?demo=1&amp;v=yoga-next-10" data-yoga-title="DPRO YOGA LINE 会員・受講履歴ページ">この画面を開く</button><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/liff-yoga-reserve/member.html?demo=1&amp;v=yoga-next-10" target="_blank" rel="noopener" data-demo-link="yoga-member">別タブで体験する</a></div></div>
+<div class="live-device reveal"><div class="live-window live-window-phone"><div class="live-window-head"><span>DPRO YOGA / MEMBER</span><i></i></div><div class="yoga-live-placeholder"><div class="yoga-live-placeholder-inner"><span>MEMBER HISTORY</span><strong>予約と受講履歴を確認</strong><p>本番ではLINE本人確認を優先し、公開デモは架空情報で動作します。</p></div></div></div></div>
+</article>
+
+<article class="product-live-row">
+<div class="product-live-copy reveal"><span>03 / OWNER PC</span><h3>オーナーPC<br>管理画面</h3><p>今日やること、本日の予約、次回案内、顧客、電話・店頭予約、店舗設定をまとめて確認します。</p><ul><li>今日やること・予約一覧</li><li>顧客・受講・フォロー確認</li><li>電話・店頭予約と店舗設定</li></ul><div class="product-live-actions"><button class="button button-line" type="button" data-yoga-demo="https://dpromstk2000-lab.github.io/liff-yoga-reserve/owner.html?demo=1&amp;v=yoga-next-10" data-yoga-title="DPRO YOGA LINE オーナーPC管理画面">この画面を開く</button><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/liff-yoga-reserve/owner.html?demo=1&amp;v=yoga-next-10" target="_blank" rel="noopener" data-demo-link="yoga-owner">別タブで体験する</a></div></div>
+<div class="live-device reveal"><div class="live-window"><div class="live-window-head"><span>DPRO YOGA / OWNER PC</span><i></i></div><div class="yoga-live-placeholder"><div class="yoga-live-placeholder-inner"><span>OWNER DASHBOARD</span><strong>今日の運用と次回案内を管理</strong><p>管理用の認証情報はこの公式紹介ページには掲載していません。</p></div></div></div></div>
+</article>
+
+<article class="product-live-row">
+<div class="product-live-copy reveal"><span>04 / STORE IPAD</span><h3>店舗・スタッフ<br>iPad画面</h3><p>本日の予約、次に対応するお客様、6段階進捗、受講記録、次回案内を現場向けの大きな操作で扱います。</p><ul><li>本日の予約・次に対応</li><li>6段階のレッスン進捗</li><li>受講記録・次回案内</li></ul><div class="product-live-actions"><button class="button button-line" type="button" data-yoga-demo="https://dpromstk2000-lab.github.io/liff-yoga-reserve/owner-ipad.html?demo=1&amp;v=yoga-next-10" data-yoga-title="DPRO YOGA LINE 店舗・スタッフiPad画面">この画面を開く</button><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/liff-yoga-reserve/owner-ipad.html?demo=1&amp;v=yoga-next-10" target="_blank" rel="noopener" data-demo-link="yoga-ipad">別タブで体験する</a></div></div>
+<div class="live-device reveal"><div class="live-window live-window-tablet"><div class="live-window-head"><span>DPRO YOGA / STORE IPAD</span><i></i></div><div class="yoga-live-placeholder"><div class="yoga-live-placeholder-inner"><span>STAFF OPERATION</span><strong>当日のレッスン進捗を更新</strong><p>PCと同じ予約・受講情報を、店舗で使いやすい画面から確認します。</p></div></div></div></div>
+</article>
+</div>
+<p class="product-live-note reveal">上記はすべてDEMO環境です。架空データを使用し、本番店舗の顧客情報とは分離されています。外部サイトの設定によりページ内表示が制限される場合は、「別タブで体験する」を使用してください。</p>
+</div>
+</section>
+
+<section class="section product-after" id="after">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>BEFORE / AFTER</p><h2>予約表をデジタル化するだけでなく、<br><em>受講後の動きまでつなぐ。</em></h2></div><p>単に予約フォームへ置き換えるのではなく、教室で発生する確認・記録・次回案内の情報移動を整理します。</p></div>
+<div class="product-after-grid">
+<div class="product-after-panel product-after-before reveal"><span>BEFORE</span><h3>予約・当日対応・受講後フォローが分かれる。</h3><ul><li>LINE、電話、店頭の予約を別々に記録</li><li>体験目的や過去の内容を都度探す</li><li>当日の進捗をスタッフ間で口頭確認</li><li>次回案内の対象と文面を個別に作る</li></ul></div>
+<div class="product-after-arrow reveal">→</div>
+<div class="product-after-panel product-after-result reveal"><span>AFTER</span><h3>予約から受講履歴、次回案内まで同じ情報で確認。</h3><ul><li>LINE・電話・店頭予約を同じ予約台帳へ</li><li>会員ページで前回内容と受講履歴を確認</li><li>PC・iPadで6段階進捗と受講記録を共有</li><li>対象者と文面を個別確認して次回案内へ</li></ul></div>
+</div>
+</div>
+</section>
+
+<section class="section product-safety" id="safety">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>SAFE OPERATION</p><h2>営業デモから本番導入まで、<br><em>安全確認を前提に。</em></h2></div><p>予約画面が動くだけで完成とはせず、本人確認、管理情報、デモ分離、保存先、公開前検査を確認してから本番運用へ進みます。</p></div>
+<div class="product-safety-grid">
+<article class="product-safety-card reveal"><span>01 / SEPARATE</span><h3>デモと本番を分離</h3><p>公開デモは架空データ、本番は契約店舗専用のGitHub・Worker・データベースとして分離します。</p></article>
+<article class="product-safety-card reveal"><span>02 / IDENTITY</span><h3>本番はLINE本人確認を優先</h3><p>会員履歴はLINE IDによる本人確認を優先し、電話番号だけで会員情報を表示する運用は避けます。</p></article>
+<article class="product-safety-card reveal"><span>03 / AUTH</span><h3>管理情報を公開URLへ含めない</h3><p>管理コードなどの認証情報をURLや公式紹介ページへ掲載せず、管理画面側で安全に扱います。</p></article>
+<article class="product-safety-card reveal"><span>04 / CHECK</span><h3>公開前検査と個別確認</h3><p>API・画面・保存・権限を確認し、LINE案内は自動一斉送信ではなく、対象と文面を個別確認して使用します。</p></article>
+</div>
+</div>
+</section>
+
+<section class="section product-pricing" id="pricing">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>DPRO OPTION PRICE</p><h2>LINE構築・運用店舗へ追加する、<br><em>DPROシステム料金。</em></h2></div><p>DPROシステムは単体販売ではなく、DPRO SHOPのLINE公式アカウント構築・運用契約店舗向けの追加サービスです。</p></div>
+<div class="product-price-grid">
+<article class="product-price-card reveal"><small>INITIAL SETUP</small><h3>DPROシステム構築費</h3><div class="product-price-value"><strong>33,000円</strong><span>税込</span></div><p>教室情報、デモ環境、基本画面、接続先、公開・操作確認など、導入に必要な初期構築を行います。</p></article>
+<article class="product-price-card product-price-card-main reveal"><small>MONTHLY SUPPORT</small><h3>DPROシステム利用・基本保守費</h3><div class="product-price-value"><strong>月額 1,100円</strong><span>税込</span></div><p>システム利用と基本保守の料金です。LINE公式アカウント構築・運用契約店舗限定の追加サービスです。</p></article>
+</div>
+<p class="product-price-note reveal"><strong>別途必要：</strong>LINE公式アカウント構築77,000円（税込）／LINE運用サポート月額3,300円（税込）。決済、会計、外部予約サービスなどとの個別連携が必要な場合は別途確認します。</p>
+</div>
+</section>
+
+<section class="section sys-faq" id="faq">
+<div class="section-inner">
+<div class="sys-center-heading reveal"><p class="eyebrow eyebrow-dark"><span></span>FAQ</p><h2>プライベートヨガ向けDPROシステムの<br>よくある質問。</h2></div>
+<div class="faq-list">
+<details class="reveal"><summary>どのくらいの規模のヨガ教室が対象ですか。</summary><p>プライベートレッスンや少人数制で、体験予約、通常予約、当日の進捗、受講記録、次回案内を一つにまとめたい教室を主な対象とします。実際の受付枠や上限は、運営人数とレッスン内容に合わせて設定します。</p></details>
+<details class="reveal"><summary>お客様はスマートフォンだけで使えますか。</summary><p>はい。予約画面と会員ページはスマートフォン向けです。店舗側はPCオーナー管理画面とiPad・タブレット向け画面を使い分けます。</p></details>
+<details class="reveal"><summary>LINEを使わないお客様の予約も登録できますか。</summary><p>はい。電話・店頭で受け付けた予約を、オーナーPCから同じ予約台帳へ登録できます。LINE会員ページの本人確認は、LINE連携者を前提に安全な導線を優先します。</p></details>
+<details class="reveal"><summary>現在の会計・決済や予約方法と併用できますか。</summary><p>併用できます。このシステムの主な対象は予約、顧客、受講履歴、当日進捗、次回案内です。会計・決済・経理を自動で置き換えるものではなく、既存業務との役割分担を導入前に整理します。</p></details>
+<details class="reveal"><summary>次回案内はLINEへ自動送信されますか。</summary><p>自動一斉送信ではありません。対象のお客様、期限、案内文面を個別に確認し、必要な文面をコピーして使用する設計です。</p></details>
+<details class="reveal"><summary>公開デモに本物のお客様情報は入っていますか。</summary><p>入りません。公開デモは架空データを使用します。本番環境は契約店舗ごとに分離し、公開デモとは別のGitHub・Worker・データベースで運用します。</p></details>
+</div>
+</div>
+</section>
+
+<section class="section product-final-cta">
+<div class="section-inner product-final-cta-inner reveal">
+<p class="eyebrow eyebrow-light"><span></span>TRY THE REAL DPRO YOGA LINE</p>
+<h2>今の予約・レッスン管理と比べながら、<br>実画面を確認しませんか。</h2>
+<p>現在の予約受付、体験対応、受講記録、次回案内を伺い、どの画面から導入すると使いやすいかを一緒に整理します。</p>
+<div class="product-final-actions">
+<a class="button button-line" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener"><span class="line-badge">LINE</span><span>無料で導入相談する</span><b>→</b></a>
+<a class="button button-ghost" href="https://dpromstk2000-lab.github.io/liff-yoga-reserve/index.html?demo=1&amp;v=yoga-next-10" target="_blank" rel="noopener" data-demo-link="yoga-final">実際の操作デモ</a>
+</div>
+</div>
+</section>
+</main>
+
+<footer class="site-footer">
+<div class="footer-inner">
+<div class="footer-brand"><a class="brand" href="../"><span class="brand-mark" aria-hidden="true">D</span><span class="brand-copy"><strong>DPRO SHOP</strong><small>LINE BUSINESS DESIGN</small></span></a><p>福岡県を中心に、LINE公式アカウント、ホームページ、<br>契約店舗限定の業種別DPROシステムを支援します。</p></div>
+<div class="footer-links">
+<div><strong>SERVICE</strong><a href="../line-build">LINE公式アカウント構築</a><a href="../line-operation">LINE運用サポート</a><a href="../website">ホームページ制作</a><a href="../pricing">料金</a></div>
+<div><strong>PRODUCT</strong><a href="./">DPROシステム一覧</a><a href="yoga">プライベートヨガ</a><a href="https://dpromstk2000-lab.github.io/liff-yoga-reserve/index.html?demo=1&amp;v=yoga-next-10" target="_blank" rel="noopener">ヨガ予約デモ</a></div>
+<div><strong>GUIDE</strong><a href="../about">DPRO SHOPについて</a><a href="../contact">お問い合わせ</a><a href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで無料相談</a></div>
+</div>
+</div>
+<div class="footer-legal-links" aria-label="法務・お問い合わせ"><a href="../privacy">プライバシーポリシー</a><a href="../terms">サービス利用上の注意事項</a><a href="../contact">お問い合わせ</a></div>
+<div class="footer-bottom"><span>© 2026 DPRO SHOP. All Rights Reserved.</span><a href="#top">PAGE TOP ↑</a></div>
+</footer>
+<div class="product-mobile-cta" aria-label="固定アクション"><a href="https://dpromstk2000-lab.github.io/liff-yoga-reserve/index.html?demo=1&amp;v=yoga-next-10" target="_blank" rel="noopener" data-demo-link="yoga-mobile">デモを体験</a><a href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで相談</a></div>
+
+<div class="yoga-demo-modal" id="yoga-demo-modal" hidden aria-hidden="true">
+<button class="yoga-demo-backdrop" type="button" data-yoga-close aria-label="実画面デモを閉じる"></button>
+<div class="yoga-demo-dialog" role="dialog" aria-modal="true" aria-labelledby="yoga-demo-title">
+<div class="yoga-demo-head"><strong id="yoga-demo-title">DPRO YOGA LINE 実画面デモ</strong><div class="yoga-demo-head-actions"><a id="yoga-demo-external" href="https://dpromstk2000-lab.github.io/liff-yoga-reserve/index.html?demo=1&amp;v=yoga-next-10" target="_blank" rel="noopener">別タブで開く</a><button class="yoga-demo-close" type="button" data-yoga-close aria-label="実画面デモを閉じる">×</button></div></div>
+<div class="yoga-demo-frame-wrap" id="yoga-demo-frame-wrap"></div>
+</div>
+</div>
+
+<script defer src="../script.js?v=17r1"></script>
+<script defer src="systems.js?v=1"></script>
+<script>
+(() => {
+  "use strict";
+  const modal = document.getElementById("yoga-demo-modal");
+  const wrap = document.getElementById("yoga-demo-frame-wrap");
+  const title = document.getElementById("yoga-demo-title");
+  const external = document.getElementById("yoga-demo-external");
+  const openers = [...document.querySelectorAll("[data-yoga-demo]")];
+  const closers = [...document.querySelectorAll("[data-yoga-close]")];
+  let lastFocus = null;
+
+  const closeDemo = () => {
+    if (!modal || modal.hidden) return;
+    wrap?.replaceChildren();
+    modal.hidden = true;
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("yoga-demo-open");
+    if (lastFocus instanceof HTMLElement) lastFocus.focus();
+  };
+
+  const openDemo = (button) => {
+    if (!modal || !wrap || !title || !external) return;
+    const url = button.getAttribute("data-yoga-demo") || "";
+    const label = button.getAttribute("data-yoga-title") || "DPRO YOGA LINE 実画面デモ";
+    if (!url) return;
+    lastFocus = button;
+    const frame = document.createElement("iframe");
+    frame.src = url;
+    frame.title = label;
+    frame.loading = "eager";
+    frame.referrerPolicy = "no-referrer";
+    frame.allow = "camera; clipboard-read; clipboard-write";
+    wrap.replaceChildren(frame);
+    title.textContent = label;
+    external.href = url;
+    modal.hidden = false;
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("yoga-demo-open");
+    modal.querySelector("[data-yoga-close]:not(.yoga-demo-backdrop)")?.focus();
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "select_content", {content_type:"dpro_demo_modal",item_id:label,link_url:url,page_location:window.location.href});
+    }
+  };
+
+  openers.forEach((button) => button.addEventListener("click", () => openDemo(button)));
+  closers.forEach((button) => button.addEventListener("click", closeDemo));
+  document.addEventListener("keydown", (event) => {
+    if (!modal || modal.hidden) return;
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeDemo();
+      return;
+    }
+    if (event.key === "Tab") {
+      const focusable = [...modal.querySelectorAll("a[href],button:not([disabled])")].filter((element) => element.offsetParent !== null);
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {event.preventDefault();last.focus();}
+      else if (!event.shiftKey && document.activeElement === last) {event.preventDefault();first.focus();}
+    }
+  });
+})();
+</script>
+</body>
+</html>
