@@ -2416,3 +2416,43 @@ linear-gradient(145deg,#06101c,#0a1b2c);
   .nail-stage-tablet{display:none}.nail-live-ipad{grid-template-columns:1fr 1fr}
   .nail-live-owner{grid-template-columns:1fr}.nail-live-owner aside{display:none}
 }
+
+/* DPRO-SYSTEMS-12 IZAKAYA PRODUCT PAGE */
+.izakaya-product-page{--izakaya:#9a3412;--izakaya-dark:#431407;--izakaya-soft:#fff7ed;--izakaya-gold:#d97706}
+.izakaya-product-page .izakaya-product-hero{
+  background:
+    radial-gradient(circle at 77% 18%,rgba(251,146,60,.22),transparent 28%),
+    radial-gradient(circle at 25% 91%,rgba(245,158,11,.18),transparent 37%),
+    linear-gradient(145deg,#050d17,#111827 50%,#07111f);
+}
+.izakaya-product-page .product-hero-copy h1 em{
+  background:linear-gradient(115deg,#fff 0%,#fdba74 50%,#fbbf24 100%);
+  background-clip:text;-webkit-background-clip:text;
+}
+.izakaya-code{background:linear-gradient(135deg,rgba(251,146,60,.20),rgba(245,158,11,.18))!important;color:#fff4df!important}
+.izakaya-monitor-ui{min-height:455px;padding:22px;display:grid;grid-template-columns:150px 1fr;background:#f5f1ed}
+.izakaya-monitor-side{padding:16px;border-radius:14px;background:linear-gradient(160deg,#292524,#431407 65%,#9a3412);color:#fff}
+.izakaya-monitor-side strong{display:block;font-size:12px}.izakaya-monitor-side span{margin-top:10px;padding:8px 9px;display:block;border-radius:8px;background:rgba(255,255,255,.09);color:rgba(255,255,255,.78);font-size:7px;font-weight:850}
+.izakaya-monitor-main{padding:6px 0 0 16px}.izakaya-monitor-head{display:flex;align-items:center;justify-content:space-between}.izakaya-monitor-head strong{font-size:16px}.izakaya-monitor-head b{padding:6px 10px;border-radius:999px;background:#dcfce7;color:#166534;font-size:9px}
+.izakaya-kpis{margin-top:15px;display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.izakaya-kpis span{padding:11px 8px;border-radius:11px;background:#fff;color:#78716c;font-size:7px;font-weight:850}.izakaya-kpis b{margin-top:5px;display:block;color:#9a3412;font-size:16px}
+.izakaya-board{margin-top:12px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.izakaya-board>div{min-height:220px;padding:10px;border-radius:12px;background:#eee7e1}.izakaya-board strong{display:block;color:#7c2d12;font-size:8px}.izakaya-board span{margin-top:8px;padding:9px 7px;display:block;border-radius:9px;background:#fff;color:#6b5b52;font-size:7px;font-weight:800;line-height:1.45}
+.izakaya-stage-phone{bottom:8px}.izakaya-phone-card{margin-top:12px;padding:11px;border:1px solid #fed7aa;border-radius:12px;background:#fff}.izakaya-phone-card small{color:#78716c;font-size:7px}.izakaya-phone-card h3{margin:8px 0;font-size:13px}.izakaya-phone-card span{margin-top:6px;padding:7px 8px;display:block;border-radius:8px;background:#fff7ed;color:#9a3412;font-size:6px;font-weight:800}.izakaya-phone-card b{margin-top:9px;padding:8px;display:block;border-radius:9px;background:#9a3412;color:#fff;font-size:7px;text-align:center}
+.izakaya-stage-tablet{bottom:4px}.izakaya-tablet-row{margin-top:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.izakaya-tablet-row span{padding:11px 4px;border-radius:9px;background:#fff7ed;color:#9a3412;font-size:6px;font-weight:900;text-align:center}
+.izakaya-live-booking{min-height:430px;padding:62px 22px 24px;background:linear-gradient(180deg,#fff7ed,#fff)}.izakaya-live-booking small{color:#9a3412;font-size:10px;font-weight:900}.izakaya-live-booking h4{margin:13px 0;font-size:24px}.izakaya-live-booking span{margin-top:9px;padding:12px;display:block;border:1px solid #fed7aa;border-radius:11px;background:#fff;color:#6b5b52;font-size:11px;font-weight:800}.izakaya-live-booking>b{margin-top:14px;padding:12px;display:block;border-radius:11px;background:#9a3412;color:#fff;text-align:center}
+.izakaya-live-owner{min-height:420px;display:grid;grid-template-columns:138px 1fr;background:#f5f1ed}.izakaya-live-owner aside{padding:21px 13px;background:#292524;color:#fff}.izakaya-live-owner aside b{display:block;font-size:11px}.izakaya-live-owner aside span{margin-top:12px;display:block;color:rgba(255,255,255,.72);font-size:8px}.izakaya-live-owner main{padding:28px}.izakaya-live-owner main>div{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.izakaya-live-owner main span{padding:13px;border-radius:11px;background:#fff;color:#78716c;font-size:8px;font-weight:850}.izakaya-live-owner main b{display:block;margin-top:7px;color:#9a3412;font-size:18px}.izakaya-live-owner h4{margin:25px 0 9px;font-size:21px}.izakaya-live-owner p{color:#71675f}
+.izakaya-live-ipad{min-height:390px;padding:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:9px;background:#f5f1ed}.izakaya-live-ipad>div{padding:13px 9px;border-radius:13px;background:#fff;border:1px solid #e7e5e4}.izakaya-live-ipad strong{display:block;color:#7c2d12;font-size:9px}.izakaya-live-ipad span{margin-top:12px;display:block;color:#9a3412;font-size:18px;font-weight:950}
+.izakaya-scope{background:linear-gradient(180deg,#f8fafc,#fff7ed)}
+.izakaya-scope-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.izakaya-scope-card{padding:27px;border-radius:23px;background:#fff;border:1px solid #e5e7eb;box-shadow:0 16px 42px rgba(15,23,42,.08)}
+.izakaya-scope-card>span{font-size:10px;font-weight:1000;letter-spacing:.13em}.izakaya-scope-card h3{margin:8px 0 0;font-size:22px}.izakaya-scope-card ul{margin:17px 0 0;padding:0;list-style:none}.izakaya-scope-card li{padding:10px 0;border-bottom:1px solid #eef0f2;font-size:13px;font-weight:800}.izakaya-scope-card.is-in>span{color:#166534}.izakaya-scope-card.is-out>span{color:#9a3412}
+.sys-product-card.is-izakaya .sys-product-visual{background:radial-gradient(circle at 82% 15%,rgba(154,52,18,.22),transparent 34%),linear-gradient(145deg,#fff7ed,#fbfcfc)}
+.sys-product-card.is-izakaya .sys-product-monitor-grid span{background:#fff7ed;color:#9a3412}
+.sys-product-card.is-izakaya .sys-product-phone-inner b,.sys-product-card.is-izakaya .sys-product-card-copy small,.sys-product-card.is-izakaya .sys-product-status{color:#9a3412}
+.sys-product-card.is-izakaya .sys-product-phone-inner span{background:#fff7ed;color:#9a3412}
+@media(max-width:760px){
+  .izakaya-monitor-ui{grid-template-columns:1fr;padding:13px}.izakaya-monitor-side{display:none}.izakaya-monitor-main{padding:4px}
+  .izakaya-kpis{grid-template-columns:1fr 1fr}.izakaya-board{grid-template-columns:1fr 1fr}.izakaya-board>div{min-height:150px}
+  .izakaya-stage-tablet{display:none}.izakaya-live-ipad{grid-template-columns:1fr 1fr}
+  .izakaya-live-owner{grid-template-columns:1fr}.izakaya-live-owner aside{display:none}
+  .izakaya-scope-grid{grid-template-columns:1fr}
+}
