@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ja">
+<head>
+<script async fetchpriority="low" src="https://www.googletagmanager.com/gtag/js?id=G-YPN3998BHG"></script>
+<script>
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments)}
+gtag('js',new Date());
+gtag('config','G-YPN3998BHG');
+</script>
+<meta charset="utf-8">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="焼肉店向けDPROシステム。30分単位の日時予約、当日の順番受付、予想待ち時間、到着連絡、呼び出し、テーブル回転、店頭受付iPad、スタッフiPad、待合表示、顧客管理を一つにつなぎます。">
+<meta name="theme-color" content="#211815">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DPRO SHOP">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="DPRO 焼肉店 予約・順番受付 LINE｜待ち時間・テーブル回転管理">
+<meta property="og:description" content="日時予約、当日順番受付、到着連絡、呼び出し、着席、テーブル清掃、店頭iPad、スタッフiPad、待合表示をつなぐ焼肉店向けシステム。">
+<meta property="og:url" content="https://dpro-shop.com/systems/yakiniku">
+<meta property="og:image" content="https://dpro-shop.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<title>DPRO 焼肉店 予約・順番受付 LINE｜待ち時間・テーブル回転管理｜DPRO SHOP</title>
+<link rel="canonical" href="https://dpro-shop.com/systems/yakiniku">
+<link rel="manifest" href="../site.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="../sitemap.xml">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="stylesheet" href="../styles.css?v=17r2">
+<link rel="stylesheet" href="systems.css?v=15">
+<script>
+document.documentElement.classList.remove('no-js');
+document.documentElement.classList.add('js');
+</script>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebPage",
+      "@id":"https://dpro-shop.com/systems/yakiniku#webpage",
+      "url":"https://dpro-shop.com/systems/yakiniku",
+      "name":"DPRO 焼肉店 予約・順番受付 LINE｜待ち時間・テーブル回転管理",
+      "description":"焼肉店の日時予約、当日順番受付、予想待ち時間、呼び出し、着席、テーブル回転、顧客管理をつなぐDPROシステム。",
+      "inLanguage":"ja",
+      "dateModified":"2026-07-30"
+    },
+    {
+      "@type":"SoftwareApplication",
+      "@id":"https://dpro-shop.com/systems/yakiniku#software",
+      "name":"DPRO 焼肉店 予約・順番受付 LINE",
+      "applicationCategory":"BusinessApplication",
+      "operatingSystem":"Web browser / LINE",
+      "url":"https://dpro-shop.com/systems/yakiniku",
+      "offers":[
+        {
+          "@type":"Offer",
+          "name":"DPROシステム構築",
+          "price":"33000",
+          "priceCurrency":"JPY"
+        },
+        {
+          "@type":"Offer",
+          "name":"DPROシステム利用・基本保守",
+          "price":"1100",
+          "priceCurrency":"JPY"
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<style>
+/* DPRO-SYSTEMS-15 YAKINIKU PAGE-ONLY DESIGN */
+.yakiniku-product-page{
+  --yk-charcoal:#211815;
+  --yk-dark:#301915;
+  --yk-red:#8c2f23;
+  --yk-ember:#d56a28;
+  --yk-gold:#b58a3b;
+  --yk-ivory:#fff8ed;
+  --yk-green:#397154;
+  --yk-line:#eadbd0;
+}
+.yakiniku-product-page .yakiniku-product-hero{
+  background:
+    radial-gradient(circle at 78% 12%,rgba(213,106,40,.28),transparent 29%),
+    radial-gradient(circle at 22% 92%,rgba(181,138,59,.18),transparent 35%),
+    linear-gradient(145deg,#120d0b,#2f1712 52%,#211815);
+}
+.yakiniku-product-page .product-hero-copy h1 em{
+  background:linear-gradient(115deg,#fff 0%,#ffd8a8 48%,#ff9d5c 100%);
+  background-clip:text;
+  -webkit-background-clip:text;
+}
+.yakiniku-product-page .yakiniku-code{
+  color:#fff1df!important;
+  background:linear-gradient(135deg,rgba(140,47,35,.28),rgba(213,106,40,.22))!important;
+}
+.yakiniku-stage-monitor{
+  min-height:452px;
+  padding:20px;
+  display:grid;
+  grid-template-columns:145px 1fr;
+  background:#f6f0e9;
+}
+.yakiniku-stage-monitor aside{
+  padding:15px;
+  border-radius:14px;
+  color:#fff;
+  background:linear-gradient(160deg,#211815,#5f211a 70%,#8c2f23);
+}
+.yakiniku-stage-monitor aside strong{display:block;font-size:11px}
+.yakiniku-stage-monitor aside span{
+  display:block;
+  margin-top:9px;
+  padding:8px;
+  border-radius:8px;
+  background:rgba(255,255,255,.08);
+  color:rgba(255,255,255,.76);
+  font-size:7px;
+  font-weight:850;
+}
+.yakiniku-monitor-main{padding:5px 0 0 15px}
+.yakiniku-monitor-head{display:flex;align-items:center;justify-content:space-between}
+.yakiniku-monitor-head strong{font-size:16px}
+.yakiniku-monitor-head b{
+  padding:6px 10px;
+  border-radius:999px;
+  color:#8c2f23;
+  background:#fff;
+  font-size:8px;
+}
+.yakiniku-kpis{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:7px;
+  margin-top:14px;
+}
+.yakiniku-kpis span{
+  padding:10px 7px;
+  border-radius:11px;
+  background:#fff;
+  color:#76655d;
+  font-size:7px;
+  font-weight:850;
+}
+.yakiniku-kpis b{display:block;margin-top:5px;color:#8c2f23;font-size:16px}
+.yakiniku-owner-grid{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  gap:8px;
+  margin-top:11px;
+}
+.yakiniku-owner-panel{
+  min-height:245px;
+  padding:11px;
+  border:1px solid #e6d9cf;
+  border-radius:12px;
+  background:#fff;
+}
+.yakiniku-owner-panel>strong{display:block;color:#5d2a21;font-size:9px}
+.yakiniku-owner-panel article{
+  margin-top:8px;
+  padding:9px;
+  border-radius:9px;
+  background:#fff7ee;
+}
+.yakiniku-owner-panel article b{display:block;color:#8c2f23;font-size:8px}
+.yakiniku-owner-panel article span{display:block;margin-top:3px;color:#6f625b;font-size:7px}
+.yakiniku-table-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:6px;
+  margin-top:9px;
+}
+.yakiniku-table-grid span{
+  padding:12px 4px;
+  border-radius:9px;
+  background:#e9f4ed;
+  color:#397154;
+  font-size:7px;
+  font-weight:900;
+  text-align:center;
+}
+.yakiniku-table-grid span.busy{background:#f8e7df;color:#8c2f23}
+.yakiniku-table-grid span.cleaning{background:#fff0cf;color:#8b6118}
+.yakiniku-stage-phone{bottom:8px}
+.yakiniku-phone-card{
+  margin-top:11px;
+  padding:11px;
+  border:1px solid #eadbd0;
+  border-radius:12px;
+  background:#fff;
+}
+.yakiniku-phone-card small{color:#8c2f23;font-size:7px;font-weight:900}
+.yakiniku-phone-card h3{margin:7px 0;font-size:13px}
+.yakiniku-phone-metrics{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.yakiniku-phone-metrics span{
+  padding:8px 5px;
+  border-radius:8px;
+  background:#fff4e5;
+  color:#8c2f23;
+  font-size:6px;
+  font-weight:900;
+  text-align:center;
+}
+.yakiniku-phone-card b{
+  display:block;
+  margin-top:8px;
+  padding:8px;
+  border-radius:9px;
+  color:#fff;
+  background:#8c2f23;
+  font-size:7px;
+  text-align:center;
+}
+.yakiniku-stage-tablet{bottom:4px}
+.yakiniku-tablet-row{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:5px;
+  margin-top:13px;
+}
+.yakiniku-tablet-row span{
+  padding:10px 3px;
+  border-radius:8px;
+  color:#6a2a20;
+  background:#fff1df;
+  font-size:5px;
+  font-weight:900;
+  text-align:center;
+}
+.yakiniku-role-strip{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:10px;
+  margin-top:20px;
+}
+.yakiniku-role-strip article{
+  padding:16px;
+  border:1px solid var(--yk-line);
+  border-radius:16px;
+  background:#fff;
+}
+.yakiniku-role-strip small{color:var(--yk-red);font-size:9px;font-weight:950}
+.yakiniku-role-strip h3{margin:6px 0 0;font-size:17px}
+.yakiniku-role-strip p{margin:7px 0 0;color:#6f625b;font-size:11px}
+.yakiniku-live-customer,.yakiniku-live-queue,.yakiniku-live-member{
+  min-height:430px;
+  padding:62px 22px 24px;
+  background:linear-gradient(180deg,#fff8ed,#f7eee7);
+}
+.yakiniku-live-customer small,.yakiniku-live-queue small,.yakiniku-live-member small{
+  color:#8c2f23;
+  font-size:9px;
+  font-weight:950;
+}
+.yakiniku-live-customer h4,.yakiniku-live-queue h4,.yakiniku-live-member h4{
+  margin:13px 0;
+  font-size:22px;
+}
+.yakiniku-live-customer span{
+  display:block;
+  margin-top:9px;
+  padding:12px;
+  border:1px solid #eadbd0;
+  border-radius:11px;
+  background:#fff;
+  color:#4f413b;
+  font-size:10px;
+  font-weight:850;
+}
+.yakiniku-live-customer b{
+  display:block;
+  margin-top:14px;
+  padding:12px;
+  border-radius:11px;
+  color:#fff;
+  background:#8c2f23;
+  text-align:center;
+}
+.yakiniku-live-queue .queue-visual{
+  padding:24px 15px;
+  border-radius:18px;
+  color:#fff;
+  background:linear-gradient(145deg,#211815,#8c2f23);
+  text-align:center;
+}
+.yakiniku-live-queue .queue-visual strong{display:block;font-size:38px}
+.yakiniku-live-queue .queue-visual span{display:block;margin-top:6px;font-size:13px}
+.yakiniku-live-queue>span{
+  display:block;
+  margin-top:10px;
+  padding:10px;
+  border-radius:10px;
+  background:#fff;
+  color:#5d4d45;
+  font-size:10px;
+  font-weight:800;
+}
+.yakiniku-live-member>b{
+  display:block;
+  padding:12px;
+  border-radius:11px;
+  color:#6f4513;
+  background:#fff0cf;
+  text-align:center;
+}
+.yakiniku-live-member>div{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:6px;
+  margin-top:14px;
+}
+.yakiniku-live-member span{
+  padding:10px 5px;
+  border-radius:9px;
+  color:#8c2f23;
+  background:#fff1df;
+  font-size:8px;
+  font-weight:850;
+  text-align:center;
+}
+.yakiniku-live-owner{
+  min-height:420px;
+  display:grid;
+  grid-template-columns:138px 1fr;
+  background:#f6f0e9;
+}
+.yakiniku-live-owner aside{
+  padding:21px 13px;
+  color:#fff;
+  background:#211815;
+}
+.yakiniku-live-owner aside b{display:block;font-size:11px}
+.yakiniku-live-owner aside span{display:block;margin-top:11px;color:rgba(255,255,255,.72);font-size:8px}
+.yakiniku-live-owner main{padding:27px}
+.yakiniku-live-owner main>div{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:7px;
+}
+.yakiniku-live-owner main span{
+  padding:12px 7px;
+  border-radius:10px;
+  color:#6f625b;
+  background:#fff;
+  font-size:7px;
+  font-weight:850;
+}
+.yakiniku-live-owner main b{display:block;margin-top:6px;color:#8c2f23;font-size:17px}
+.yakiniku-live-owner h4{margin:23px 0 9px;font-size:20px}
+.yakiniku-live-owner p{color:#6f625b}
+.yakiniku-live-ipad{
+  min-height:390px;
+  padding:23px;
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  background:#f6f0e9;
+}
+.yakiniku-live-ipad>div{
+  padding:15px;
+  border:1px solid #eadbd0;
+  border-radius:14px;
+  background:#fff;
+}
+.yakiniku-live-ipad strong{display:block;color:#8c2f23;font-size:10px}
+.yakiniku-live-ipad span{display:block;margin-top:12px;color:#5d2a21;font-size:21px;font-weight:950}
+.yakiniku-live-display{
+  min-height:390px;
+  padding:26px;
+  color:#fff;
+  background:linear-gradient(145deg,#211815,#3b2019);
+}
+.yakiniku-live-display h4{margin:0;font-size:20px}
+.yakiniku-live-display section{
+  margin-top:14px;
+  padding:14px;
+  border-radius:13px;
+  background:rgba(255,255,255,.08);
+}
+.yakiniku-live-display section strong{display:block;color:#ffd29b;font-size:9px}
+.yakiniku-ticket-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:9px}
+.yakiniku-ticket-grid span{
+  padding:12px 5px;
+  border-radius:9px;
+  background:#fff;
+  color:#8c2f23;
+  font-size:13px;
+  font-weight:950;
+  text-align:center;
+}
+.yakiniku-scope-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:18px;
+}
+.yakiniku-scope-grid article{
+  padding:20px;
+  border:1px solid var(--yk-line);
+  border-radius:18px;
+  background:#fff;
+}
+.yakiniku-scope-grid small{font-size:9px;font-weight:950;letter-spacing:.12em}
+.yakiniku-scope-grid .included small{color:#397154}
+.yakiniku-scope-grid .excluded small{color:#8c2f23}
+.yakiniku-scope-grid h3{margin:6px 0 0;font-size:19px}
+.yakiniku-scope-grid ul{margin:11px 0 0;padding-left:19px;color:#6f625b;font-size:12px}
+@media(max-width:900px){
+  .yakiniku-role-strip{grid-template-columns:1fr 1fr}
+}
+@media(max-width:760px){
+  .yakiniku-stage-monitor{grid-template-columns:1fr;padding:13px}
+  .yakiniku-stage-monitor aside{display:none}
+  .yakiniku-monitor-main{padding:4px}
+  .yakiniku-kpis{grid-template-columns:1fr 1fr}
+  .yakiniku-owner-grid{grid-template-columns:1fr}
+  .yakiniku-stage-tablet{display:none}
+  .yakiniku-live-owner{grid-template-columns:1fr}
+  .yakiniku-live-owner aside{display:none}
+  .yakiniku-live-owner main>div{grid-template-columns:1fr 1fr}
+  .yakiniku-scope-grid{grid-template-columns:1fr}
+}
+@media(max-width:520px){
+  .yakiniku-role-strip{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body class="system-product-page official-product-page yakiniku-product-page">
+<div class="sys-progress" aria-hidden="true"></div>
+<a class="skip-link" href="#main">本文へ移動</a>
+
+<header class="site-header" id="top">
+<div class="header-inner">
+<a class="brand" href="../" aria-label="DPRO SHOP トップへ">
+<span class="brand-mark" aria-hidden="true">D</span>
+<span class="brand-copy"><strong>DPRO SHOP</strong><small>LINE BUSINESS DESIGN</small></span>
+</a>
+<button class="menu-button" type="button" aria-expanded="false" aria-controls="global-nav" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+<nav class="global-nav" id="global-nav" aria-label="メインナビゲーション">
+<a href="../">トップ</a>
+<a href="../line-build">LINE構築</a>
+<a href="../line-operation">LINE運用</a>
+<a href="../website">HP制作</a>
+<a href="./">DPROシステム</a>
+<a href="../pricing">料金</a>
+<a href="../about">DPRO SHOP</a>
+<a class="nav-cta" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで無料相談</a>
+</nav>
+</div>
+</header>
+
+<main id="main">
+<section class="product-hero yakiniku-product-hero" aria-labelledby="product-title">
+<div class="product-hero-grid" aria-hidden="true"></div>
+<div class="product-hero-inner">
+<div class="product-hero-copy reveal">
+<nav class="sys-breadcrumb" aria-label="パンくずリスト">
+<a href="../">DPRO SHOP</a><span>／</span><a href="./">DPROシステム</a><span>／</span><strong>焼肉店 予約・順番受付</strong>
+</nav>
+<div class="official-product-label">
+<span>DPRO SHOP</span>
+<strong>公式製品紹介ページ</strong>
+<small>DPRO 焼肉店 予約・順番受付 LINE｜予約・待ち時間・テーブル管理型</small>
+</div>
+<div class="product-code yakiniku-code" aria-hidden="true">炭</div>
+<p class="eyebrow eyebrow-light"><span></span>RESERVATION・QUEUE・TABLE・RECEPTION</p>
+<h1 id="product-title"><span>予約と順番待ちを、</span><span><em>一つの営業画面へ。</em></span></h1>
+<p class="product-hero-lead">30分単位の日時予約と当日の順番受付を、到着連絡、呼び出し、着席、食事中、会計中、清掃完了までつなぎます。お客様はLINE、店舗はPC・iPad・待合表示を使います。</p>
+<div class="product-hero-actions">
+<a class="button button-line" href="#features"><span class="line-badge">焼肉</span><span>機能を詳しく見る</span><b>↓</b></a>
+<a class="button button-ghost" href="https://dpromstk2000-lab.github.io/dpro-yakiniku-line-liff/" target="_blank" rel="noopener">実際のデモを体験する</a>
+</div>
+<div class="product-proof-tags">
+<span>30分単位予約</span><span>当日順番受付</span><span>予想待ち時間</span><span>呼び出し・到着</span><span>テーブル回転</span><span>店頭・スタッフiPad</span>
+</div>
+</div>
+
+<div class="product-hero-stage reveal" aria-label="DPRO 焼肉店 予約・順番受付 LINEの画面イメージ">
+<div class="product-stage-label"><i></i>OFFICIAL PRODUCT GUIDE / YAKINIKU OPERATIONS PREVIEW</div>
+<div class="product-stage-monitor">
+<div class="product-browser">
+<span class="product-browser-dots"><i></i><i></i><i></i></span>
+<span>DPRO YAKINIKU / OWNER PC イメージ</span>
+<b>PREVIEW</b>
+</div>
+<div class="yakiniku-stage-monitor">
+<aside>
+<strong>DPRO 焼肉店</strong>
+<span>営業画面</span><span>予約一覧</span><span>順番受付</span><span>テーブル</span><span>顧客検索</span><span>分析・設定</span>
+</aside>
+<div class="yakiniku-monitor-main">
+<div class="yakiniku-monitor-head"><strong>本日の営業状況</strong><b>DINNER TIME</b></div>
+<div class="yakiniku-kpis">
+<span>予約<b>9組</b></span><span>順番待ち<b>5組</b></span><span>空席<b>3卓</b></span><span>使用・清掃<b>8卓</b></span>
+</div>
+<div class="yakiniku-owner-grid">
+<div class="yakiniku-owner-panel">
+<strong>呼び出し・到着</strong>
+<article><b>W-018　山田様</b><span>4名・テーブル席／呼び出し中</span></article>
+<article><b>W-019　佐藤様</b><span>3名・どこでもよい／到着済み</span></article>
+<article><b>18:30　田中様</b><span>予約・食べ放題コース／到着待ち</span></article>
+</div>
+<div class="yakiniku-owner-panel">
+<strong>テーブル稼働</strong>
+<div class="yakiniku-table-grid">
+<span>T01<br>空席</span><span class="busy">T02<br>使用中</span><span class="cleaning">T03<br>清掃中</span>
+<span class="busy">T04<br>会計中</span><span>T05<br>空席</span><span class="busy">T06<br>使用中</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="product-stage-phone yakiniku-stage-phone">
+<div class="product-phone-inner">
+<div class="product-phone-brand"><b>LINE</b>DPRO YAKINIKU</div>
+<div class="yakiniku-phone-card">
+<small>現在の待ち状況</small>
+<h3>今から順番受付</h3>
+<div class="yakiniku-phone-metrics"><span>5組待ち</span><span>約25〜40分</span></div>
+<b>人数・席希望を入力</b>
+</div>
+</div>
+</div>
+
+<div class="product-stage-tablet yakiniku-stage-tablet">
+<div class="product-tablet-inner">
+<small>IPAD / FLOOR OPERATIONS</small>
+<h3>呼び出し・着席・テーブル回転</h3>
+<div class="yakiniku-tablet-row"><span>呼び出す</span><span>到着</span><span>席へ案内</span></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<nav class="product-local-nav" aria-label="ページ内メニュー">
+<div class="product-local-nav-inner">
+<a href="#summary" class="is-active">概要</a>
+<a href="#roles">利用画面</a>
+<a href="#features">主な機能</a>
+<a href="#flow">利用の流れ</a>
+<a href="#demo">実画面</a>
+<a href="#after">導入前後</a>
+<a href="#scope">対応範囲</a>
+<a href="#safety">安心設計</a>
+<a href="#pricing">料金</a>
+<a href="#faq">よくある質問</a>
+</div>
+</nav>
+
+<section class="section product-summary" id="summary">
+<div class="section-inner">
+<div class="product-section-heading reveal">
+<div>
+<p class="eyebrow eyebrow-dark"><span></span>UNDERSTAND IN 30 SECONDS</p>
+<h2>30秒で分かる、<br><em>予約と順番受付の違い。</em></h2>
+</div>
+<p>日時を決めて来店するお客様は「予約」、今から行きたいお客様は「順番受付」。店舗はどちらも同じ営業画面で確認し、空いているテーブルへ案内します。</p>
+</div>
+<div class="product-summary-grid">
+<article class="product-summary-card reveal">
+<span>01 / RESERVATION</span>
+<h3>日時を決めて、空席から予約。</h3>
+<p>日付、コース、人数、席希望から、利用時間と清掃時間を含めて案内可能な30分枠だけを表示します。</p>
+</article>
+<article class="product-summary-card reveal">
+<span>02 / QUEUE</span>
+<h3>今から行くなら、当日の順番受付。</h3>
+<p>現在の待ち組数と予想時間を確認し、店頭・車・店舗周辺などの待機場所を選んで受付します。</p>
+</article>
+<article class="product-summary-card reveal">
+<span>03 / FLOOR</span>
+<h3>呼び出しから清掃完了まで共有。</h3>
+<p>到着、呼び出し、着席、食事中、会計中、退店、清掃完了をスタッフiPadとPCで共有します。</p>
+</article>
+</div>
+</div>
+</section>
+
+<section class="section" id="roles">
+<div class="section-inner">
+<div class="product-section-heading reveal">
+<div>
+<p class="eyebrow eyebrow-dark"><span></span>SEPARATED SCREENS</p>
+<h2>どの画面か迷わない、<br><em>4つの役割。</em></h2>
+</div>
+<p>お客様が操作する画面、入口で受付する画面、フロアスタッフが使う画面、オーナーが管理する画面を、色と役割で明確に分けています。</p>
+</div>
+<div class="yakiniku-role-strip">
+<article class="reveal"><small>CUSTOMER / LINE</small><h3>お客様画面</h3><p>日時予約、順番受付、予約・受付状況、到着連絡を行います。</p></article>
+<article class="reveal"><small>ENTRANCE / IPAD</small><h3>店頭受付</h3><p>飛び込み受付、既存顧客検索、予約済みのお客様の到着受付を行います。</p></article>
+<article class="reveal"><small>FLOOR / IPAD</small><h3>スタッフ画面</h3><p>呼び出し、保留、到着、着席、テーブル、食事中、清掃を操作します。</p></article>
+<article class="reveal"><small>OWNER / PC</small><h3>総合管理</h3><p>予約、順番、テーブル、顧客、分析、営業時間、コース、席設定を管理します。</p></article>
+</div>
+</div>
+</section>
+
+<section class="section product-features" id="features">
+<div class="section-inner">
+<div class="product-section-heading reveal">
+<div>
+<p class="eyebrow eyebrow-dark"><span></span>MAIN FEATURES</p>
+<h2>焼肉店の予約・待ち時間運用に必要な、<br><em>10の主要機能。</em></h2>
+</div>
+<p>予約フォームだけではなく、当日順番受付、店頭オペレーション、テーブル回転、顧客履歴、運用分析までを一つにつなぎます。</p>
+</div>
+<div class="product-feature-grid">
+<article class="product-feature reveal"><span class="product-feature-icon">RESERVE</span><h3>30分単位の日時予約</h3><p>人数、コース、席希望、利用時間、清掃時間、テーブル状況から予約可能な時間だけ表示します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">QUEUE</span><h3>当日の順番受付</h3><p>現在の待ち組数と予想待ち時間を見ながら、今から順番受付ができます。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">MEMBER</span><h3>予約・受付状況</h3><p>LINE会員ページで、予約の確定状況、受付番号、現在の状態、到着連絡を確認します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">CHANGE</span><h3>予約変更・取消</h3><p>受付中・確定済みの予約は、新しい日時・人数・コース・席希望へ変更できます。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">CALL</span><h3>呼び出し・再呼出</h3><p>スタッフ画面から呼び出し、再呼び出し、到着、保留、待機へ戻す操作を行います。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">SEAT</span><h3>空席への着席案内</h3><p>予約または順番受付のお客様を、案内可能なテーブルへ割り当てます。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">TABLE</span><h3>テーブル回転管理</h3><p>空席、使用中、会計中、清掃中を共有し、清掃完了で再び空席へ戻します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">RECEPTION</span><h3>店頭・電話受付</h3><p>予約なしのお客様、電話予約、予約済みのお客様の到着をPC・入口iPadから登録します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">CUSTOMER</span><h3>顧客・配慮事項</h3><p>氏名、電話番号、来店回数、希望席、子ども椅子、ベビーカー、アレルギー、内部メモを確認します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">ANALYTICS</span><h3>営業データ分析</h3><p>予約、順番受付、待ち時間、来店人数、時間帯、曜日、テーブル回転を期間別に集計します。</p></article>
+</div>
+</div>
+</section>
+
+<section class="section product-flow" id="flow">
+<div class="section-inner">
+<div class="product-section-heading reveal">
+<div>
+<p class="eyebrow eyebrow-dark"><span></span>FROM RESERVATION TO TABLE READY</p>
+<h2>受付から次のお客様を迎えるまで、<br><em>8つの流れ。</em></h2>
+</div>
+<p>予約と順番受付の入口は分けながら、店舗では同じ着席・テーブル回転へ合流します。</p>
+</div>
+<div class="product-flow-list">
+<article class="product-flow-step reveal"><span class="product-flow-number">01</span><h3>来店方法を選ぶ</h3><p>日時予約、または今から順番受付を選びます。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">02</span><h3>人数・席を入力</h3><p>大人、子ども、幼児、席希望、子ども椅子などを入力します。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">03</span><h3>予約枠・待ち時間を確認</h3><p>予約は空席時間、順番受付は待ち組数と予想時間を確認します。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">04</span><h3>受付状況をLINEで確認</h3><p>予約番号、受付番号、確定状況、現在の順番を確認します。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">05</span><h3>到着を連絡</h3><p>お客様または店頭スタッフが、店舗への到着を登録します。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">06</span><h3>呼び出し・席へ案内</h3><p>スタッフが呼び出し、空いているテーブルへ着席処理します。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">07</span><h3>食事中・会計中を共有</h3><p>利用中セッションと終了予定を確認し、退店処理へ進みます。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">08</span><h3>清掃完了で空席へ</h3><p>退店後は清掃中にし、清掃完了で次のお客様を案内可能にします。</p></article>
+</div>
+</div>
+</section>
+
+<section class="section product-live" id="demo">
+<div class="section-inner">
+<div class="product-section-heading reveal">
+<div>
+<p class="eyebrow eyebrow-light"><span></span>REAL SCREEN DEMO</p>
+<h2>お客様画面と店舗画面を、<br>実際に確認。</h2>
+</div>
+<p>公開デモは架空情報で確認してください。日時予約、順番受付、会員ページ、PC管理、店頭受付、スタッフiPad、待合表示を別タブで確認できます。</p>
+</div>
+<div class="product-live-list">
+
+<article class="product-live-row">
+<div class="product-live-copy reveal">
+<span>01 / TABLE RESERVATION</span>
+<h3>お客様用<br>日時予約</h3>
+<p>利用時間と清掃時間を含めた空席から、30分単位で予約します。</p>
+<ul><li>コース・席のみ</li><li>大人・子ども・幼児</li><li>席希望・アレルギー・要望</li></ul>
+<div class="product-live-actions"><a class="button button-line" href="https://dpromstk2000-lab.github.io/dpro-yakiniku-line-liff/reserve.html" target="_blank" rel="noopener">日時予約を体験する</a></div>
+</div>
+<div class="live-device reveal">
+<div class="live-window live-window-phone">
+<div class="live-window-head"><span>DPRO YAKINIKU / RESERVATION</span><i></i></div>
+<div class="yakiniku-live-customer">
+<small>TABLE RESERVATION</small><h4>日時を指定して予約</h4>
+<span>予約日・コース</span><span>人数・席の希望</span><span>空いている時間</span><b>予約内容を送信</b>
+</div>
+</div>
+</div>
+</article>
+
+<article class="product-live-row">
+<div class="product-live-copy reveal">
+<span>02 / SAME-DAY QUEUE</span>
+<h3>お客様用<br>今から順番受付</h3>
+<p>待ち組数と予想時間を確認し、店頭・車・店舗周辺で待てます。</p>
+<ul><li>現在の待ち組数</li><li>席希望・待機場所</li><li>到着連絡・受付取消</li></ul>
+<div class="product-live-actions"><a class="button button-line" href="https://dpromstk2000-lab.github.io/dpro-yakiniku-line-liff/wait.html" target="_blank" rel="noopener">順番受付を体験する</a></div>
+</div>
+<div class="live-device reveal">
+<div class="live-window live-window-phone">
+<div class="live-window-head"><span>DPRO YAKINIKU / QUEUE</span><i></i></div>
+<div class="yakiniku-live-queue">
+<small>SAME-DAY QUEUE</small><h4>現在の待ち状況</h4>
+<div class="queue-visual"><strong>5組</strong><span>約25〜40分</span></div>
+<span>待機場所：車で待つ</span><span>受付後はLINEで自動更新</span>
+</div>
+</div>
+</div>
+</article>
+
+<article class="product-live-row">
+<div class="product-live-copy reveal">
+<span>03 / MEMBER STATUS</span>
+<h3>お客様用<br>予約・受付確認</h3>
+<p>予約の確定状況と、本日の受付番号・呼び出し・到着を確認します。</p>
+<ul><li>予約変更・キャンセル</li><li>受付番号・現在状況</li><li>到着を店舗へ連絡</li></ul>
+<div class="product-live-actions"><a class="button button-line" href="https://dpromstk2000-lab.github.io/dpro-yakiniku-line-liff/member.html" target="_blank" rel="noopener">会員ページを体験する</a></div>
+</div>
+<div class="live-device reveal">
+<div class="live-window live-window-phone">
+<div class="live-window-head"><span>DPRO YAKINIKU / MEMBER</span><i></i></div>
+<div class="yakiniku-live-member">
+<small>MY RESERVATION</small><h4>山田 太郎 様</h4>
+<b>受付番号 W-018／呼び出し中</b>
+<div><span>到着連絡</span><span>予約変更</span><span>受付取消</span></div>
+</div>
+</div>
+</div>
+</article>
+
+<article class="product-live-row">
+<div class="product-live-copy reveal">
+<span>04 / OWNER PC</span>
+<h3>オーナーPC<br>営業・設定・分析</h3>
+<p>本日の営業から、電話予約、順番受付、顧客検索、店舗設定、分析まで管理します。</p>
+<ul><li>予約・順番・空席</li><li>テーブル・顧客</li><li>営業時間・コース・分析</li></ul>
+<div class="product-live-actions"><a class="button button-line" href="https://dpromstk2000-lab.github.io/dpro-yakiniku-line-liff/owner.html" target="_blank" rel="noopener">PC管理を体験する</a></div>
+</div>
+<div class="live-device reveal">
+<div class="live-window">
+<div class="live-window-head"><span>DPRO YAKINIKU / OWNER PC</span><i></i></div>
+<div class="yakiniku-live-owner">
+<aside><b>DPRO焼肉店</b><span>営業画面</span><span>予約一覧</span><span>順番受付</span><span>テーブル</span><span>顧客・分析・設定</span></aside>
+<main>
+<div><span>予約<b>9</b></span><span>順番<b>5</b></span><span>空席<b>3</b></span><span>使用・清掃<b>8</b></span></div>
+<h4>本日の営業をひとつの画面で</h4><p>呼び出し、到着、着席、テーブル回転を確認</p>
+</main>
+</div>
+</div>
+</div>
+</article>
+
+<article class="product-live-row">
+<div class="product-live-copy reveal">
+<span>05 / RECEPTION & FLOOR IPAD</span>
+<h3>店舗iPad<br>店頭受付・フロア操作</h3>
+<p>入口では飛び込み受付、フロアでは呼び出し・着席・テーブル回転を操作します。</p>
+<ul><li>既存顧客・予約検索</li><li>呼び出し・保留・着席</li><li>食事中・会計中・清掃</li></ul>
+<div class="product-live-actions">
+<a class="button button-line" href="https://dpromstk2000-lab.github.io/dpro-yakiniku-line-liff/reception.html" target="_blank" rel="noopener">店頭受付を体験する</a>
+<a class="button button-ghost" href="https://dpromstk2000-lab.github.io/dpro-yakiniku-line-liff/owner-ipad.html" target="_blank" rel="noopener">スタッフiPadを見る</a>
+</div>
+</div>
+<div class="live-device reveal">
+<div class="live-window live-window-tablet">
+<div class="live-window-head"><span>DPRO YAKINIKU / STORE IPAD</span><i></i></div>
+<div class="yakiniku-live-ipad">
+<div><strong>順番待ち</strong><span>5組</span></div>
+<div><strong>本日の予約</strong><span>9組</span></div>
+<div><strong>空席</strong><span>3卓</span></div>
+<div><strong>清掃中</strong><span>2卓</span></div>
+</div>
+</div>
+</div>
+</article>
+
+<article class="product-live-row">
+<div class="product-live-copy reveal">
+<span>06 / WAITING DISPLAY</span>
+<h3>待合モニター<br>受付番号表示</h3>
+<p>呼び出し中、まもなくご案内、お待ちくださいの受付番号を大画面へ表示します。</p>
+<ul><li>呼び出し番号</li><li>まもなく案内</li><li>10秒ごとに自動更新</li></ul>
+<div class="product-live-actions"><a class="button button-line" href="https://dpromstk2000-lab.github.io/dpro-yakiniku-line-liff/display.html" target="_blank" rel="noopener">待合表示を確認する</a></div>
+</div>
+<div class="live-device reveal">
+<div class="live-window live-window-tablet">
+<div class="live-window-head"><span>DPRO YAKINIKU / WAITING DISPLAY</span><i></i></div>
+<div class="yakiniku-live-display">
+<h4>受付番号をご確認ください</h4>
+<section><strong>お席の準備ができました</strong><div class="yakiniku-ticket-grid"><span>W-018</span><span>W-021</span><span>R-104</span></div></section>
+<section><strong>まもなくご案内</strong><div class="yakiniku-ticket-grid"><span>W-019</span><span>W-020</span><span>W-022</span></div></section>
+</div>
+</div>
+</div>
+</article>
+
+</div>
+</div>
+</section>
+
+<section class="section product-after" id="after">
+<div class="section-inner">
+<div class="product-section-heading reveal">
+<div>
+<p class="eyebrow eyebrow-dark"><span></span>BEFORE / AFTER</p>
+<h2>予約台帳・順番表・テーブル表を、<br><em>一つの営業フローへ。</em></h2>
+</div>
+<p>電話予約、紙の順番表、ホワイトボード、スタッフ間の声かけに分かれていた情報を、本日の営業画面へまとめます。</p>
+</div>
+<div class="product-after-grid">
+<div class="product-after-panel product-after-before reveal">
+<span>BEFORE</span>
+<h3>予約と順番待ちと空席が、別々に動く。</h3>
+<ul><li>電話予約を紙へ転記</li><li>待ち時間を感覚で案内</li><li>呼び出し状況をスタッフ間で口頭共有</li><li>空席・会計・清掃の確認に店内を移動</li></ul>
+</div>
+<div class="product-after-arrow reveal">→</div>
+<div class="product-after-panel product-after-result reveal">
+<span>AFTER</span>
+<h3>予約・待ち時間・テーブル回転を同じ画面で共有。</h3>
+<ul><li>空席に合わせて予約枠を表示</li><li>待ち組数と予想時間を案内</li><li>呼び出し・到着・着席を共有</li><li>清掃完了で次のお客様へ</li></ul>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section" id="scope">
+<div class="section-inner">
+<div class="product-section-heading reveal">
+<div>
+<p class="eyebrow eyebrow-dark"><span></span>STANDARD SCOPE</p>
+<h2>できることと、<br><em>標準外の機能。</em></h2>
+</div>
+<p>予約・順番受付・店舗オペレーションへ集中したシステムです。注文や会計システムとは明確に分けています。</p>
+</div>
+<div class="yakiniku-scope-grid">
+<article class="included reveal">
+<small>INCLUDED</small>
+<h3>標準で対応するもの</h3>
+<ul>
+<li>日時予約・予約変更・キャンセル</li>
+<li>当日の順番受付・待ち時間表示</li>
+<li>呼び出し・到着・着席・取消・復活</li>
+<li>テーブルの使用中・会計中・清掃中管理</li>
+<li>店頭受付・電話予約・顧客検索</li>
+<li>コース・営業時間・席・運用設定</li>
+</ul>
+</article>
+<article class="excluded reveal">
+<small>NOT INCLUDED</small>
+<h3>標準機能に含まれないもの</h3>
+<ul>
+<li>モバイルオーダー・店内注文</li>
+<li>厨房伝票・キッチンディスプレイ</li>
+<li>POS・レジ・キャッシュレス決済</li>
+<li>売上・原価・食材在庫管理</li>
+<li>デリバリー・配達サービス連携</li>
+<li>予約サイトとの自動在庫連携</li>
+</ul>
+</article>
+</div>
+</div>
+</section>
+
+<section class="section product-safety" id="safety">
+<div class="section-inner">
+<div class="product-section-heading reveal">
+<div>
+<p class="eyebrow eyebrow-dark"><span></span>SAFE OPERATION DESIGN</p>
+<h2>予約を重ねず、<br><em>お客様情報も見失わない。</em></h2>
+</div>
+<p>予約可能枠、受付上限、電話番号の表記ゆれ、店舗画面の管理コードなどを業務に合わせて整理します。</p>
+</div>
+<div class="product-safety-grid">
+<article class="product-safety-card reveal"><span>01 / CAPACITY</span><h3>利用時間・清掃時間・席数を反映</h3><p>コース時間と清掃時間、人数、席希望、テーブルの空きを使って予約可能枠を計算します。</p></article>
+<article class="product-safety-card reveal"><span>02 / QUEUE CONTROL</span><h3>順番受付の上限・一時停止</h3><p>受付上限、オンライン受付、呼出猶予、混雑時の一時停止を店舗側で設定できます。</p></article>
+<article class="product-safety-card reveal"><span>03 / PHONE</span><h3>電話番号の表記ゆれに対応</h3><p>ハイフン、空白、全角数字、+81形式を同一判定し、顧客検索と重複確認へ利用します。</p></article>
+<article class="product-safety-card reveal"><span>04 / ROLE</span><h3>お客様画面と店舗画面を分離</h3><p>お客様LINE、入口iPad、スタッフiPad、オーナーPC、待合表示を役割ごとに分けます。</p></article>
+</div>
+</div>
+</section>
+
+<section class="section product-pricing" id="pricing">
+<div class="section-inner">
+<div class="product-section-heading reveal">
+<div>
+<p class="eyebrow eyebrow-dark"><span></span>DPRO OPTION PRICE</p>
+<h2>LINE構築・運用店舗へ追加する、<br><em>DPROシステム料金。</em></h2>
+</div>
+<p>DPROシステムは、DPRO SHOPのLINE公式アカウント構築・運用契約事業者向け追加サービスです。</p>
+</div>
+<div class="product-price-grid">
+<article class="product-price-card reveal">
+<small>INITIAL SETUP</small>
+<h3>DPROシステム構築費</h3>
+<div class="product-price-value"><strong>33,000円</strong><span>税込</span></div>
+<p>店舗情報、営業時間、席・テーブル、コース、予約・順番設定、デモ環境、基本画面、接続先の初期設定を行います。</p>
+</article>
+<article class="product-price-card is-accent reveal">
+<small>MONTHLY USE &amp; MAINTENANCE</small>
+<h3>利用・基本保守費</h3>
+<div class="product-price-value"><strong>月額1,100円</strong><span>税込</span></div>
+<p>システム利用と基本的な保守・確認を含みます。個別機能追加や外部サービス連携は別途ご案内します。</p>
+</article>
+</div>
+<p class="product-price-note reveal"><strong>別途必要：</strong>LINE公式アカウント構築77,000円（税込）／LINE運用サポート月額3,300円（税込）。POS、決済、注文、厨房、在庫、外部予約サイト連携は標準機能に含みません。</p>
+</div>
+</section>
+
+<section class="section sys-faq" id="faq">
+<div class="section-inner">
+<div class="sys-center-heading reveal">
+<p class="eyebrow eyebrow-dark"><span></span>FAQ</p>
+<h2>焼肉店 予約・順番受付DPROシステムの<br>よくある質問。</h2>
+</div>
+<div class="faq-list">
+<details class="reveal"><summary>日時予約と順番受付はどう違いますか。</summary><p>日時予約は来店日時をあらかじめ確保する機能です。順番受付は当日に現在の待ち状況を確認して、受付番号を取得する機能です。</p></details>
+<details class="reveal"><summary>待ち時間は正確な時間ですか。</summary><p>予想待ち時間は目安です。人数、席希望、予約状況、テーブルの利用状況により前後します。</p></details>
+<details class="reveal"><summary>車で待つお客様にも対応できますか。</summary><p>はい。店頭、車、店舗周辺から待機場所を選び、LINE会員ページで受付状況と到着連絡を確認できます。</p></details>
+<details class="reveal"><summary>電話予約や飛び込みのお客様も登録できますか。</summary><p>はい。オーナーPCで電話予約、入口iPadで予約なしの順番受付を登録できます。</p></details>
+<details class="reveal"><summary>複数テーブルを結合して案内できますか。</summary><p>店舗設定でテーブル結合を許可し、案内時に複数のテーブルを選択する運用へ対応できます。</p></details>
+<details class="reveal"><summary>会計や注文もこのシステムでできますか。</summary><p>会計中というテーブル状態は管理できますが、POS、レジ決済、モバイルオーダー、厨房伝票は標準機能に含みません。</p></details>
+</div>
+</div>
+</section>
+
+<section class="section product-final-cta">
+<div class="section-inner product-final-cta-inner reveal">
+<p class="eyebrow eyebrow-light"><span></span>TRY THE REAL RESERVATION & QUEUE SYSTEM</p>
+<h2>今の予約台帳・順番表・テーブル管理と比べながら、<br>実画面を確認しませんか。</h2>
+<p>現在の営業時間、席数、テーブル構成、利用時間、清掃時間、コース、順番待ちの案内方法を伺い、実際の店舗運用に合う形へ整理します。</p>
+<div class="product-final-actions">
+<a class="button button-line" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener"><span class="line-badge">LINE</span><span>無料で導入相談する</span><b>→</b></a>
+<a class="button button-ghost" href="https://dpromstk2000-lab.github.io/dpro-yakiniku-line-liff/" target="_blank" rel="noopener">実際のデモを体験する</a>
+</div>
+</div>
+</section>
+</main>
+
+<footer class="site-footer">
+<div class="footer-inner">
+<div class="footer-brand">
+<a class="brand" href="../"><span class="brand-mark" aria-hidden="true">D</span><span class="brand-copy"><strong>DPRO SHOP</strong><small>LINE BUSINESS DESIGN</small></span></a>
+<p>福岡県を中心に、LINE公式アカウント、ホームページ、<br>契約店舗限定の業種別DPROシステムを支援します。</p>
+</div>
+<div class="footer-links">
+<div><strong>SERVICE</strong><a href="../line-build">LINE公式アカウント構築</a><a href="../line-operation">LINE運用サポート</a><a href="../website">ホームページ制作</a><a href="../pricing">料金</a></div>
+<div><strong>PRODUCT</strong><a href="./">DPROシステム一覧</a><a href="vet">動物病院</a><a href="shuttle">福祉施設送迎</a><a href="caretaxi">介護タクシー</a><a href="estate">不動産・賃貸内見</a><a href="cleaning">クリーニング</a><a href="repair">修理受付</a><a href="dayservice">デイサービス</a><a href="hair">美容室</a><a href="nail">ネイルサロン</a><a href="izakaya">居酒屋</a><a href="funeral">葬儀・法要</a><a href="chosashi">土地家屋調査士</a><a href="yakiniku">焼肉店</a></div>
+<div><strong>GUIDE</strong><a href="../about">DPRO SHOPについて</a><a href="../contact">お問い合わせ</a><a href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで無料相談</a></div>
+</div>
+</div>
+<div class="footer-legal-links" aria-label="法務・お問い合わせ"><a href="../privacy">プライバシーポリシー</a><a href="../terms">サービス利用上の注意事項</a><a href="../contact">お問い合わせ</a></div>
+<div class="footer-bottom"><span>© 2026 DPRO SHOP. All Rights Reserved.</span><a href="#top">PAGE TOP ↑</a></div>
+</footer>
+
+<div class="product-mobile-cta" aria-label="固定アクション">
+<a href="https://dpromstk2000-lab.github.io/dpro-yakiniku-line-liff/" target="_blank" rel="noopener">デモを体験</a>
+<a href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで相談</a>
+</div>
+<script defer src="../script.js?v=17r1"></script>
+<script defer src="systems.js?v=1"></script>
+</body>
+</html>
