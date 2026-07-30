@@ -2308,3 +2308,38 @@ linear-gradient(145deg,#06101c,#0a1b2c);
   .repair-kpis{grid-template-columns:1fr 1fr}.repair-stage-tablet{display:none}
   .repair-live-ipad{grid-template-columns:1fr 1fr}.repair-live-owner{grid-template-columns:1fr}.repair-live-owner aside{display:none}
 }
+
+/* DPRO-SYSTEMS-9 DAY SERVICE PRODUCT PAGE */
+.dayservice-product-page{--dayservice:#17643a;--dayservice-dark:#0e4c2a;--dayservice-soft:#eaf7ef;--dayservice-blue:#245bb8}
+.dayservice-product-page .dayservice-product-hero{
+  background:
+    radial-gradient(circle at 77% 18%,rgba(82,224,148,.18),transparent 28%),
+    radial-gradient(circle at 25% 91%,rgba(77,145,255,.16),transparent 37%),
+    linear-gradient(145deg,#05101c,#0a1d31 50%,#07111f);
+}
+.dayservice-product-page .product-hero-copy h1 em{
+  background:linear-gradient(115deg,#fff 0%,#75e7a8 47%,#91b8ff 100%);
+  background-clip:text;-webkit-background-clip:text;
+}
+.dayservice-code{background:linear-gradient(135deg,rgba(82,224,148,.17),rgba(77,145,255,.15))!important;color:#d9ffe9!important}
+.dayservice-monitor-ui{min-height:455px;padding:22px;display:grid;grid-template-columns:150px 1fr;background:#edf5f0}
+.dayservice-side{padding:16px;border-radius:14px;background:linear-gradient(160deg,#0e4c2a,#17643a);color:#fff}
+.dayservice-side strong{display:block;font-size:11px}.dayservice-side span{margin-top:10px;padding:8px 9px;display:block;border-radius:8px;background:rgba(255,255,255,.09);color:rgba(255,255,255,.78);font-size:7px;font-weight:850}
+.dayservice-main{padding:6px 0 0 16px}.dayservice-head{display:flex;align-items:center;justify-content:space-between}.dayservice-head strong{font-size:16px}.dayservice-head b{padding:6px 10px;border-radius:999px;background:#fff;color:#0e4c2a;font-size:9px}
+.dayservice-kpis{margin-top:15px;display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.dayservice-kpis span{padding:11px 8px;border-radius:11px;background:#fff;color:#697a70;font-size:7px;font-weight:850}.dayservice-kpis b{margin-top:5px;display:block;color:#17643a;font-size:16px}
+.dayservice-row{margin-top:10px;padding:12px;display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px solid #d8e6dc;border-radius:12px;background:#fff}.dayservice-row div{display:flex;flex-direction:column}.dayservice-row div b{font-size:10px}.dayservice-row div small{margin-top:3px;color:#6e8075;font-size:7px}.dayservice-row>strong{padding:6px 8px;border-radius:999px;background:#eaf7ef;color:#17643a;font-size:7px}.dayservice-row>strong.is-arrived{background:#edf4ff;color:#245bb8}.dayservice-row>strong.is-alert{background:#fff3e8;color:#a44d0f}
+.dayservice-stage-phone{bottom:8px}.dayservice-phone-card{margin-top:12px;padding:11px;border:1px solid #d6e5da;border-radius:12px;background:#fff}.dayservice-phone-card small{color:#697b70;font-size:7px}.dayservice-phone-card h3{margin:8px 0;font-size:13px}.dayservice-phone-card span{margin-top:6px;padding:7px 8px;display:block;border-radius:8px;background:#eef8f2;color:#3b5e48;font-size:6px;font-weight:800}.dayservice-phone-card b{margin-top:9px;padding:8px;display:block;border-radius:9px;background:#17643a;color:#fff;font-size:7px;text-align:center}
+.dayservice-stage-tablet{bottom:4px}.dayservice-check-row{margin-top:14px;display:grid;grid-template-columns:repeat(4,1fr);gap:5px}.dayservice-check-row span{padding:10px 3px;border-radius:9px;background:#eaf7ef;color:#185b36;font-size:6px;font-weight:900;text-align:center}
+.dayservice-live-family,.dayservice-live-member{min-height:430px;padding:62px 22px 24px;background:linear-gradient(180deg,#eef8f2,#fff)}.dayservice-live-family small,.dayservice-live-member small{color:#66796d;font-size:10px;font-weight:900}.dayservice-live-family h4,.dayservice-live-member h4{margin:13px 0;font-size:24px}.dayservice-live-family>div{display:grid;grid-template-columns:1fr 1fr;gap:8px}.dayservice-live-family span{padding:13px;border-radius:12px;background:#fff;border:1px solid #d7e5da;color:#25553a;font-size:9px;font-weight:850;text-align:center}
+.dayservice-live-member>div{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.dayservice-live-member span{padding:12px 8px;border-radius:12px;background:#fff;color:#64786c;font-size:8px;font-weight:850}.dayservice-live-member span b{display:block;margin-top:5px;color:#17643a;font-size:14px}.dayservice-live-member p{color:#60756a}
+.dayservice-live-owner{min-height:420px;display:grid;grid-template-columns:138px 1fr;background:#edf5f0}.dayservice-live-owner aside{padding:21px 13px;background:#0e4c2a;color:#fff}.dayservice-live-owner aside b{display:block;font-size:10px}.dayservice-live-owner aside span{margin-top:12px;display:block;color:rgba(255,255,255,.72);font-size:7px}.dayservice-live-owner main{padding:28px}.dayservice-live-owner main>div{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.dayservice-live-owner main span{padding:13px;border-radius:11px;background:#fff;color:#63766a;font-size:8px;font-weight:850}.dayservice-live-owner main b{display:block;margin-top:7px;color:#17643a;font-size:18px}.dayservice-live-owner h4{margin:25px 0 9px;font-size:21px}.dayservice-live-owner p{color:#60746a}
+.dayservice-live-ipad{min-height:400px;padding:26px;background:#edf5f0}.dayservice-live-ipad>div{margin-bottom:10px;padding:15px;display:grid;grid-template-columns:1fr auto;gap:8px;border:1px solid #d8e6dc;border-radius:14px;background:#fff}.dayservice-live-ipad strong{font-size:13px}.dayservice-live-ipad span{padding:6px 9px;border-radius:999px;background:#eaf7ef;color:#17643a;font-size:8px;font-weight:900}.dayservice-live-ipad small{grid-column:1/-1;color:#61746a;font-size:9px}
+.sys-product-card.is-dayservice .sys-product-visual{background:radial-gradient(circle at 82% 15%,rgba(23,100,58,.2),transparent 34%),linear-gradient(145deg,#ebf7ef,#fbfcfc)}
+.sys-product-card.is-dayservice .sys-product-monitor-grid span{background:#edf7f0;color:#315d40}
+.sys-product-card.is-dayservice .sys-product-phone-inner b,.sys-product-card.is-dayservice .sys-product-card-copy small,.sys-product-card.is-dayservice .sys-product-status{color:#17643a}
+.sys-product-card.is-dayservice .sys-product-phone-inner span{background:#edf7f0;color:#3c6048}
+@media(max-width:760px){
+  .dayservice-monitor-ui{grid-template-columns:1fr;padding:13px}.dayservice-side{display:none}.dayservice-main{padding:4px}
+  .dayservice-kpis{grid-template-columns:1fr 1fr}.dayservice-stage-tablet{display:none}
+  .dayservice-live-owner{grid-template-columns:1fr}.dayservice-live-owner aside{display:none}
+}
