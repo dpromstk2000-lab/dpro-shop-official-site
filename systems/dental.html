@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html class="no-js" lang="ja">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async fetchpriority="low" src="https://www.googletagmanager.com/gtag/js?id=G-YPN3998BHG"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-YPN3998BHG');
+</script>
+<meta charset="utf-8">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="歯科医院向けDPRO 歯科 LINE。家族対応のデジタル診察券、LINE予約、当日急患受付、変更・取消希望、来院チェックイン、受付PC・iPad、待ち列管理の機能と実画面デモを紹介します。">
+<meta name="theme-color" content="#07111f">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DPRO SHOP">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="DPRO 歯科 LINE｜LINE予約・急患受付・デジタル診察券・来院管理">
+<meta property="og:description" content="家族診察券、30分予約、当日急患受付、来院チェックイン、受付PC・iPadをつなぐ歯科医院向けDPROシステム。">
+<meta property="og:url" content="https://dpro-shop.com/systems/dental">
+<meta property="og:image" content="https://dpro-shop.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DPRO 歯科 LINE｜歯科医院向けシステム">
+<meta name="twitter:description" content="LINE診察券・予約・急患受付・来院チェックイン・待ち列を一つにつなぐ歯科医院向けシステム。">
+<meta name="twitter:image" content="https://dpro-shop.com/og-image.png">
+<title>DPRO 歯科 LINE｜LINE予約・急患受付・デジタル診察券・来院管理｜DPRO SHOP</title>
+<link rel="canonical" href="https://dpro-shop.com/systems/dental">
+<link rel="manifest" href="../site.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="../sitemap.xml">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="stylesheet" href="../styles.css?v=17r2">
+<link rel="stylesheet" href="systems.css?v=1">
+<script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
+<style>
+.dental-monitor-ui{display:grid;grid-template-columns:150px minmax(0,1fr);min-height:300px;background:#f7fbfd;color:#18313f}
+.dental-monitor-side{padding:22px 16px;display:flex;flex-direction:column;gap:11px;background:linear-gradient(180deg,#0c4560,#153250);color:#fff}
+.dental-monitor-side strong{margin-bottom:8px;font-size:13px;letter-spacing:.06em}
+.dental-monitor-side span{padding:9px 10px;border-radius:10px;background:rgba(255,255,255,.07);font-size:10px;font-weight:800}
+.dental-monitor-main{padding:20px;min-width:0}
+.dental-monitor-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:16px}
+.dental-monitor-head strong{font-size:14px}.dental-monitor-head b{padding:7px 10px;border-radius:999px;background:#e9f7f7;color:#126b70;font-size:9px}
+.dental-status-columns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.dental-status-column{min-width:0;padding:12px;border:1px solid #d9e7eb;border-radius:14px;background:#fff}
+.dental-status-column>strong{display:flex;justify-content:space-between;gap:6px;color:#274556;font-size:10px}
+.dental-status-column>strong b{color:#147a76}
+.dental-patient{margin-top:9px;padding:10px;border-radius:10px;background:#f1f7f9}
+.dental-patient b,.dental-patient span{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dental-patient b{font-size:10px}.dental-patient span{margin-top:3px;color:#68808d;font-size:8px}
+.dental-family-row{display:flex;gap:9px;align-items:center;margin-top:10px;padding:10px;border:1px solid #dce9ed;border-radius:12px;background:#fff}
+.dental-family-avatar{width:38px;height:38px;display:grid;place-items:center;flex:0 0 auto;border-radius:12px;background:linear-gradient(135deg,#44dcff,#7e6bff);color:#07111f;font-size:9px;font-weight:950}
+.dental-family-row div{min-width:0}.dental-family-row strong,.dental-family-row span{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.dental-family-row strong{font-size:11px}.dental-family-row span{margin-top:2px;color:#71808e;font-size:8px}
+.dental-demo-modal{position:fixed;z-index:3000;inset:0;padding:24px;display:grid;place-items:center;background:rgba(2,10,19,.84);backdrop-filter:blur(12px)}
+.dental-demo-modal[hidden]{display:none!important}
+.dental-demo-dialog{width:min(1180px,100%);height:min(820px,calc(100vh - 48px));display:grid;grid-template-rows:auto minmax(0,1fr);overflow:hidden;border:1px solid rgba(255,255,255,.18);border-radius:24px;background:#081725;box-shadow:0 45px 120px rgba(0,0,0,.55)}
+.dental-demo-head{padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid rgba(255,255,255,.1);color:#fff}
+.dental-demo-title{min-width:0;display:flex;flex-direction:column}.dental-demo-title strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px}.dental-demo-title small{color:rgba(255,255,255,.55);font-size:9px;letter-spacing:.08em}
+.dental-demo-actions{display:flex;gap:8px;flex:0 0 auto}.dental-demo-actions a,.dental-demo-actions button{min-height:40px;padding:9px 13px;border:1px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(255,255,255,.08);color:#fff;font:inherit;font-size:12px;font-weight:850;text-decoration:none;cursor:pointer}.dental-demo-actions button{background:#fff;color:#07111f}
+.dental-demo-stage{position:relative;min-height:0;background:#fff}.dental-demo-stage iframe{width:100%;height:100%;display:block;border:0;background:#fff}
+.dental-demo-note{margin-top:18px;padding:15px 17px;border:1px solid rgba(68,220,255,.22);border-radius:16px;background:rgba(68,220,255,.07);color:rgba(255,255,255,.72);font-size:12px;line-height:1.8}
+.dental-live-placeholder{min-height:360px;padding:28px;display:grid;align-content:center;gap:15px;background:linear-gradient(145deg,#f7fbfd,#edf5f8)}
+.dental-live-placeholder-head{display:flex;align-items:center;justify-content:space-between;gap:12px}.dental-live-placeholder-head strong{font-size:18px}.dental-live-placeholder-head span{padding:7px 10px;border-radius:999px;background:#e4f7f3;color:#147a76;font-size:10px;font-weight:900}
+.dental-live-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.dental-live-card{padding:15px;border:1px solid #d8e6eb;border-radius:15px;background:#fff}.dental-live-card b,.dental-live-card span{display:block}.dental-live-card b{font-size:12px}.dental-live-card span{margin-top:5px;color:#6c7d89;font-size:9px;line-height:1.55}
+@media(max-width:720px){.dental-monitor-ui{grid-template-columns:94px minmax(0,1fr);min-height:235px}.dental-monitor-side{padding:14px 8px;gap:7px}.dental-monitor-side strong{font-size:9px}.dental-monitor-side span{padding:7px 6px;font-size:7px}.dental-monitor-main{padding:12px 9px}.dental-status-columns{grid-template-columns:1fr;gap:6px}.dental-status-column:nth-child(n+2){display:none}.dental-demo-modal{padding:6px}.dental-demo-dialog{height:calc(100vh - 12px);border-radius:16px}.dental-demo-head{align-items:flex-start}.dental-demo-title small{display:none}.dental-demo-actions{flex-direction:column}.dental-demo-actions a,.dental-demo-actions button{min-height:36px;padding:7px 10px;font-size:10px}.dental-live-placeholder{min-height:260px;padding:16px}.dental-live-cards{grid-template-columns:1fr}.product-mobile-cta button{min-height:51px;display:grid;place-items:center;border:0;background:transparent;color:#fff;font:inherit;font-size:11px;font-weight:900;cursor:pointer}}
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://dpro-shop.com/#website",
+      "name":"DPRO SHOP",
+      "url":"https://dpro-shop.com/",
+      "inLanguage":"ja"
+    },
+    {
+      "@type":"WebPage",
+      "@id":"https://dpro-shop.com/systems/dental#webpage",
+      "url":"https://dpro-shop.com/systems/dental",
+      "name":"DPRO 歯科 LINE｜LINE予約・急患受付・デジタル診察券・来院管理",
+      "description":"歯科医院向けDPRO 歯科 LINEの機能、利用者別画面、導入前後、実画面デモを紹介します。",
+      "isPartOf":{"@id":"https://dpro-shop.com/#website"},
+      "inLanguage":"ja",
+      "dateModified":"2026-07-30",
+      "breadcrumb":{"@id":"https://dpro-shop.com/systems/dental#breadcrumb"},
+      "mainEntity":{"@id":"https://dpro-shop.com/systems/dental#software"}
+    },
+    {
+      "@type":"BreadcrumbList",
+      "@id":"https://dpro-shop.com/systems/dental#breadcrumb",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"DPRO SHOP","item":"https://dpro-shop.com/"},
+        {"@type":"ListItem","position":2,"name":"業種別DPROシステム","item":"https://dpro-shop.com/systems/"},
+        {"@type":"ListItem","position":3,"name":"歯科","item":"https://dpro-shop.com/systems/dental"}
+      ]
+    },
+    {
+      "@type":"SoftwareApplication",
+      "@id":"https://dpro-shop.com/systems/dental#software",
+      "name":"DPRO 歯科 LINE",
+      "alternateName":"DPRO 歯科デジタル診察券・予約・急患受付システム",
+      "applicationCategory":"BusinessApplication",
+      "operatingSystem":"Web browser / LINE",
+      "description":"家族対応のLINE診察券、30分単位の診療予約、当日急患受付、予約変更・取消希望、来院チェックイン、受付PC・iPad、待ち列管理をつなぐ歯科医院向け業務システム。",
+      "url":"https://dpro-shop.com/systems/dental",
+      "offers":[
+        {
+          "@type":"Offer",
+          "name":"DPROシステム構築",
+          "price":"33000",
+          "priceCurrency":"JPY",
+          "description":"LINE公式アカウント構築・運用契約店舗限定"
+        },
+        {
+          "@type":"Offer",
+          "name":"DPROシステム利用・基本保守",
+          "price":"1100",
+          "priceCurrency":"JPY",
+          "description":"月額。LINE公式アカウント構築・運用契約店舗限定"
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body class="system-product-page official-product-page">
+<div class="sys-progress" aria-hidden="true"></div>
+<a class="skip-link" href="#main">本文へ移動</a>
+<header class="site-header" id="top">
+<div class="header-inner">
+<a class="brand" href="../" aria-label="DPRO SHOP トップへ"><span class="brand-mark" aria-hidden="true">D</span><span class="brand-copy"><strong>DPRO SHOP</strong><small>LINE BUSINESS DESIGN</small></span></a>
+<button class="menu-button" type="button" aria-expanded="false" aria-controls="global-nav" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+<nav class="global-nav" id="global-nav" aria-label="メインナビゲーション">
+<a href="../">トップ</a>
+<a href="../line-build">LINE構築</a>
+<a href="../line-operation">LINE運用</a>
+<a href="../website">HP制作</a>
+<a href="./">DPROシステム</a>
+<a href="../pricing">料金</a>
+<a href="../about">DPRO SHOP</a>
+<a class="nav-cta" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで無料相談</a>
+</nav>
+</div>
+</header>
+
+<main id="main">
+<section class="product-hero" aria-labelledby="product-title">
+<div class="product-hero-grid" aria-hidden="true"></div>
+<div class="product-hero-inner">
+<div class="product-hero-copy reveal">
+<nav class="sys-breadcrumb" aria-label="パンくずリスト"><a href="../">DPRO SHOP</a><span>／</span><a href="./">DPROシステム</a><span>／</span><strong>歯科</strong></nav>
+<div class="official-product-label"><span>DPRO SHOP</span><strong>公式製品紹介ページ</strong><small>DPRO 歯科 LINE｜歯科医院向けシステム</small></div>
+<div class="product-code" aria-hidden="true">DENTAL</div>
+<p class="eyebrow eyebrow-light"><span></span>FEATURES・BENEFITS・REAL DEMO</p>
+<h1 id="product-title"><span>診察券・予約・急患・来院を、</span><span><em>LINEで一つにつなぐ。</em></span></h1>
+<p class="product-hero-lead">家族対応のデジタル診察券、30分単位の診療予約、当日急患受付、変更・取消希望、来院チェックインを、受付PC・iPad・医院設定へつなぐ歯科医院向けシステムです。</p>
+<div class="product-hero-actions">
+<a class="button button-line" href="#features"><span class="line-badge">歯科</span><span>機能を詳しく見る</span><b>↓</b></a>
+<button class="button button-ghost" type="button" data-dental-demo data-demo-url="https://dpromstk2000-lab.github.io/DEGITAL-QR/hybrid.html?t=demo-dental-patient-001" data-demo-title="DPRO 歯科 LINE 患者メニュー" aria-controls="dental-demo-modal">実際の操作デモ</button>
+</div>
+<div class="product-proof-tags"><span>家族診察券</span><span>30分予約</span><span>当日急患受付</span><span>来院チェックイン</span><span>受付PC・iPad</span><span>待ち列管理</span></div>
+</div>
+
+<div class="product-hero-stage reveal" aria-label="DPRO 歯科 LINEの画面イメージ">
+<div class="product-stage-label"><i></i>OFFICIAL PRODUCT GUIDE / SYSTEM PREVIEW</div>
+<div class="product-stage-monitor">
+<div class="product-browser"><span class="product-browser-dots"><i></i><i></i><i></i></span><span>DPRO DENTAL / 医院管理イメージ</span><b>PREVIEW</b></div>
+<div class="dental-monitor-ui">
+<div class="dental-monitor-side"><strong>DPRO DENTAL</strong><span>本日の予約</span><span>急患受付</span><span>待ち列</span><span>電話・窓口受付</span></div>
+<div class="dental-monitor-main"><div class="dental-monitor-head"><strong>本日の予約・来院状況</strong><b>待機 3名</b></div><div class="dental-status-columns">
+<div class="dental-status-column"><strong>予約確定 <b>3</b></strong><div class="dental-patient"><b>山田 花子様</b><span>定期検診／10:00</span></div><div class="dental-patient"><b>佐藤 健様</b><span>クリーニング／10:30</span></div></div>
+<div class="dental-status-column"><strong>急患確認 <b>1</b></strong><div class="dental-patient"><b>田中 由美様</b><span>強い痛み／医院確認中</span></div></div>
+<div class="dental-status-column"><strong>診療中 <b>1</b></strong><div class="dental-patient"><b>山田 太郎様</b><span>受付番号 3番</span></div></div>
+</div></div>
+</div>
+</div>
+<div class="product-stage-phone"><div class="product-phone-inner"><div class="product-phone-brand"><b>LINE</b>DPRO DENTAL</div><div class="product-phone-card"><small>家族デジタル診察券</small><h3>山田家</h3><div class="dental-family-row"><span class="dental-family-avatar">本人</span><div><strong>山田 花子様</strong><span>診察券番号 D260600001</span></div></div><div class="dental-family-row"><span class="dental-family-avatar">家族</span><div><strong>山田 太郎様</strong><span>診察券番号 D260600002</span></div></div><div class="product-qr">QR DENTAL CARD</div></div></div></div>
+<div class="product-stage-tablet"><div class="product-tablet-inner"><small>RECEPTION IPAD</small><h3>待ち列・次の予約・急患受付</h3><div class="product-scan-box">20秒ごとに最新状況へ更新</div></div></div>
+</div>
+</div>
+</section>
+
+<nav class="product-local-nav" aria-label="ページ内メニュー">
+<div class="product-local-nav-inner"><a href="#summary" class="is-active">概要</a><a href="#system-map">全体構成</a><a href="#features">主な機能</a><a href="#flow">利用の流れ</a><a href="#roles">画面別</a><a href="#demo">実画面</a><a href="#after">導入前後</a><a href="#safety">安全設計</a><a href="#pricing">料金</a><a href="#faq">よくある質問</a></div>
+</nav>
+
+<section class="section product-summary" id="summary">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>UNDERSTAND IN 30 SECONDS</p><h2>30秒で分かる、<br><em>このシステムの役割。</em></h2></div><p>電子カルテやレセプトを置き換えるのではなく、患者・家族のLINEから予約、急患受付、来院、院内の待ち列までを一つの受付情報としてつなぎます。</p></div>
+<div class="product-summary-grid">
+<article class="product-summary-card reveal"><span>01 / PATIENT &amp; FAMILY</span><h3>患者・家族はLINEで、診察券と受付入口を確認。</h3><p>本人と家族の診察券を切り替え、診療予約、当日急患受付、予約状況、来院チェックインへ進めます。</p></article>
+<article class="product-summary-card reveal"><span>02 / RECEPTION</span><h3>受付はPC・iPadで、予約・急患・待ち列を共有。</h3><p>LINE受付だけでなく、電話・窓口予約、予約なし来院、患者検索も同じ当日運用へまとめます。</p></article>
+<article class="product-summary-card reveal"><span>03 / CLINIC MANAGEMENT</span><h3>医院はスタッフ・診療台・メニュー・時間を設定。</h3><p>予約受付日数、同時間帯上限、急患受付状態、担当者、診療台、診療メニュー、曜日別診療時間を管理します。</p></article>
+</div>
+<div class="product-problem-grid">
+<article class="product-problem reveal"><div class="product-problem-before"><small>導入前</small><strong>家族分の紙の診察券と予約情報が別々になりやすい</strong></div><div class="product-problem-arrow">↓</div><div class="product-problem-after"><small>導入後</small><strong>一つのLINEで家族診察券を切り替え、予約・来院へ接続</strong></div></article>
+<article class="product-problem reveal"><div class="product-problem-before"><small>導入前</small><strong>急な痛みの電話で、症状や来院可能時間を聞き直す</strong></div><div class="product-problem-arrow">↓</div><div class="product-problem-after"><small>導入後</small><strong>症状・痛み・腫れ・希望時間を事前に受け取り医院で確認</strong></div></article>
+<article class="product-problem reveal"><div class="product-problem-before"><small>導入前</small><strong>予約・急患・窓口来院の現在地を口頭で確認</strong></div><div class="product-problem-arrow">↓</div><div class="product-problem-after"><small>導入後</small><strong>受付PC・iPadで待機・診療中・会計待ち・完了を共有</strong></div></article>
+</div>
+</div>
+</section>
+
+<section class="section product-map" id="system-map">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>ONE DATA, FOUR EXPERIENCES</p><h2>患者・受付・iPad・管理者を、<br><em>同じ受付情報でつなぐ。</em></h2></div><p>利用者全員に同じ画面を見せず、患者側と医院側で、それぞれの役割に必要な操作を表示します。</p></div>
+<div class="product-map-board reveal">
+<div class="product-map-label"><strong>DPRO 歯科 LINE 全体構成</strong><span>LINE × PC × iPad × Worker</span></div>
+<div class="product-map-flow">
+<div class="product-map-side">
+<div class="product-map-node"><b>PATIENT / LINE</b><strong>患者・家族画面</strong><p>家族診察券・予約・急患受付・状況確認・来院受付</p></div>
+<div class="product-map-node"><b>RECEPTION / IPAD</b><strong>受付・待ち列</strong><p>待ち列・次の予約・急患受付・進行更新</p></div>
+</div>
+<div class="product-map-arrow">→</div>
+<div class="product-map-core"><b>API</b><strong>Worker API・データベース</strong><span>患者・家族・予約・急患・<br>来院・待ち列・設定を保存</span></div>
+<div class="product-map-arrow">→</div>
+<div class="product-map-side">
+<div class="product-map-node"><b>RECEPTION / PC</b><strong>医院管理画面</strong><p>予約・急患・待ち列・電話窓口受付・患者検索</p></div>
+<div class="product-map-node"><b>OWNER / SETTINGS</b><strong>医院設定</strong><p>スタッフ・診療台・メニュー・診療時間・受付条件</p></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="section product-features" id="features">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>MAIN FEATURES</p><h2>歯科医院の受付前後に必要な、<br><em>10の主要機能。</em></h2></div><p>予約だけ、診察券だけではなく、患者・家族の操作から医院確認、来院、待ち列、受付方法の違いまでを実運用につなげます。</p></div>
+<div class="product-feature-grid">
+<article class="product-feature reveal"><span class="product-feature-icon">FAMILY</span><h3>家族デジタル診察券</h3><p>保護者のLINEで本人・子どもなど家族分の診察券を切り替え、QRと診察券番号を確認します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">30MIN</span><h3>LINE診療予約</h3><p>診療内容、担当者希望、日付を選び、空いている30分単位の枠から予約を申し込みます。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">URGENT</span><h3>当日急患受付</h3><p>症状、発症時期、痛みの程度、腫れ・出血・外傷・発熱、来院可能時間を医院へ送ります。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">CHANGE</span><h3>変更・取消希望</h3><p>確定済み予約を即時削除せず、変更希望や取消希望として医院へ送り、確認中の状態を表示します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">CHECK</span><h3>来院チェックイン</h3><p>予約、急患受付、デジタル診察券のいずれかから到着を知らせ、受付番号を発行します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">QUEUE</span><h3>待ち列・進行管理</h3><p>待機、呼出、診療室案内、診療中、会計待ち、完了など、院内の現在地を共有します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">PC</span><h3>医院PC管理</h3><p>本日の予約、急患受付、待ち列を確認し、担当者・診療台の割当や状態更新を行います。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">TEL</span><h3>電話・窓口・予約なし受付</h3><p>LINE未連携の患者も、患者検索、電話・窓口予約、予約なし来院として同じ運用へ追加します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">iPad</span><h3>受付iPad</h3><p>待ち列、次の予約、急患受付を大きな画面で確認し、20秒ごとの自動更新で受付業務を支えます。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">SET</span><h3>医院・予約設定</h3><p>スタッフ、診療台・設備、診療メニュー、曜日別診療時間、予約上限、急患受付状態を設定します。</p></article>
+</div>
+</div>
+</section>
+
+<section class="section product-flow" id="flow">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>FROM LINE TO CLINIC FLOW</p><h2>受付前から来院後まで、<br><em>6つの流れ。</em></h2></div><p>患者がLINEを開いてから、医院が受付内容を確認し、来院後の待ち列と診療進行を管理するまでをつなぎます。</p></div>
+<div class="product-flow-list">
+<article class="product-flow-step reveal"><span class="product-flow-number">01</span><h3>受診者を選択</h3><p>LINEで本人または家族の診察券を選び、予約・急患・来院受付へ進みます。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">02</span><h3>予約または急患受付</h3><p>通常予約は診療内容と空き枠、急患は症状と来院可能時間を送信します。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">03</span><h3>医院が内容を確認</h3><p>PC管理画面で予約確認、急患対応方針、担当者・診療台などを整理します。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">04</span><h3>変更・取消希望にも対応</h3><p>患者から届いた希望を医院側で確認し、現在の予約を管理しながら対応します。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">05</span><h3>来院チェックイン</h3><p>患者が到着を知らせ、予約・急患・予約なし来院を受付番号と待ち列へ追加します。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">06</span><h3>院内進行・完了</h3><p>受付PC・iPadで待機、診療中、会計待ち、完了までの状態を更新します。</p></article>
+</div>
+</div>
+</section>
+
+<section class="section product-roles" id="roles">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>SCREENS BY ROLE</p><h2>使う人ごとに、<br><em>必要な画面だけ。</em></h2></div><p>患者・家族、受付スタッフ、タブレット担当、医院管理者に、それぞれ必要な情報と操作を表示します。</p></div>
+<div class="product-role-grid">
+<article class="product-role reveal"><span>LINE</span><h3>患者・家族</h3><p>スマートフォンで家族診察券と受付状況を確認します。</p><ul><li>家族診察券切替</li><li>診療予約・急患受付</li><li>変更・取消希望</li><li>来院チェックイン</li></ul></article>
+<article class="product-role reveal"><span>PC</span><h3>受付スタッフ</h3><p>予約・急患・待ち列・電話窓口受付を管理します。</p><ul><li>当日一覧</li><li>患者検索</li><li>担当者・診療台割当</li><li>状態更新</li></ul></article>
+<article class="product-role reveal"><span>iPad</span><h3>受付タブレット</h3><p>受付周辺で本日の進行を大きく確認します。</p><ul><li>待ち列</li><li>次の予約</li><li>急患受付</li><li>自動更新</li></ul></article>
+<article class="product-role reveal"><span>ADMIN</span><h3>医院管理者</h3><p>医院情報と予約運用のマスタを設定します。</p><ul><li>スタッフ</li><li>診療台・設備</li><li>診療メニュー</li><li>診療時間・受付条件</li></ul></article>
+</div>
+</div>
+</section>
+
+<section class="section product-live" id="demo">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-light"><span></span>REAL SCREEN DEMO</p><h2>説明画像ではなく、<br>本物の画面を体験。</h2></div><p>初期表示では外部画面を読み込みません。「この画面を読み込む」を押した時だけモーダル内にiframeを生成し、閉じる操作またはEscキーでiframeを破棄します。</p></div>
+<div class="dental-demo-note reveal"><strong>公開デモについて：</strong> 表示される氏名・受付内容は説明用の架空データです。実際の医院へ導入する本番環境とは分離されています。</div>
+<div class="product-live-list">
+<article class="product-live-row">
+<div class="product-live-copy reveal"><span>01 / PATIENT HUB</span><h3>患者・家族用<br>LINEメニュー</h3><p>家族の診察券を選び、診療予約、当日急患受付、予約・受付状況、来院チェックインへ進みます。</p><ul><li>家族診察券切替</li><li>予約・急患の受付状態</li><li>4つの患者向け入口</li></ul><div class="product-live-actions"><button class="button button-line" type="button" data-dental-demo data-demo-url="https://dpromstk2000-lab.github.io/DEGITAL-QR/hybrid.html?t=demo-dental-patient-001" data-demo-title="DPRO 歯科 LINE 患者・家族メニュー" aria-controls="dental-demo-modal">この画面を読み込む</button><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/DEGITAL-QR/hybrid.html?t=demo-dental-patient-001" target="_blank" rel="noopener" data-demo-link="dental-hub">別タブで体験する</a></div></div>
+<div class="live-device reveal"><div class="live-window live-window-phone"><div class="live-window-head"><span>DPRO DENTAL / PATIENT HUB</span><i></i></div><div class="dental-live-placeholder"><div class="dental-live-placeholder-head"><strong>予約も、急な痛みの受付もLINEから</strong><span>患者・家族</span></div><div class="dental-live-cards"><div class="dental-live-card"><b>診療予約</b><span>空いている30分枠から選択</span></div><div class="dental-live-card"><b>当日急患受付</b><span>症状を事前に医院へ送信</span></div><div class="dental-live-card"><b>予約・受付状況</b><span>変更・取消希望も確認</span></div><div class="dental-live-card"><b>来院チェックイン</b><span>到着を受付へ知らせる</span></div></div></div></div></div>
+</article>
+
+<article class="product-live-row">
+<div class="product-live-copy reveal"><span>02 / RESERVATION</span><h3>患者用<br>診療予約画面</h3><p>受診者、診療内容、担当者希望、日付を選び、取得した空き枠から30分単位で予約を申し込みます。</p><ul><li>家族・初診入力</li><li>メニュー・担当者選択</li><li>残り枠表示</li></ul><div class="product-live-actions"><button class="button button-line" type="button" data-dental-demo data-demo-url="https://dpromstk2000-lab.github.io/DEGITAL-QR/reservation.html?t=demo-dental-patient-001" data-demo-title="DPRO 歯科 LINE 診療予約" aria-controls="dental-demo-modal">この画面を読み込む</button><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/DEGITAL-QR/reservation.html?t=demo-dental-patient-001" target="_blank" rel="noopener" data-demo-link="dental-reservation">別タブで体験する</a></div></div>
+<div class="live-device reveal"><div class="live-window"><div class="live-window-head"><span>DPRO DENTAL / RESERVATION</span><i></i></div><div class="dental-live-placeholder"><div class="dental-live-placeholder-head"><strong>診療予約</strong><span>30分単位</span></div><div class="dental-live-cards"><div class="dental-live-card"><b>1. 受診する方</b><span>本人・家族・初診を選択</span></div><div class="dental-live-card"><b>2. 診療内容</b><span>検診・治療・相談など</span></div><div class="dental-live-card"><b>3. 担当者</b><span>希望またはおまかせ</span></div><div class="dental-live-card"><b>4. 空き時間</b><span>残り枠を確認して申込</span></div></div></div></div></div>
+</article>
+
+<article class="product-live-row">
+<div class="product-live-copy reveal"><span>03 / URGENT</span><h3>患者用<br>当日急患受付</h3><p>強い痛み、腫れ、詰め物の脱落などを選び、症状の詳細、痛みの程度、来院可能時間を医院へ送ります。</p><ul><li>症状カテゴリー</li><li>痛み・腫れ・出血など</li><li>来院可能時間</li></ul><div class="product-live-actions"><button class="button button-line" type="button" data-dental-demo data-demo-url="https://dpromstk2000-lab.github.io/DEGITAL-QR/urgent.html?t=demo-dental-patient-001" data-demo-title="DPRO 歯科 LINE 当日急患受付" aria-controls="dental-demo-modal">この画面を読み込む</button><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/DEGITAL-QR/urgent.html?t=demo-dental-patient-001" target="_blank" rel="noopener" data-demo-link="dental-urgent">別タブで体験する</a></div></div>
+<div class="live-device reveal"><div class="live-window live-window-phone"><div class="live-window-head"><span>DPRO DENTAL / URGENT</span><i></i></div><div class="dental-live-placeholder"><div class="dental-live-placeholder-head"><strong>当日急患受付</strong><span>医院確認制</span></div><div class="dental-live-cards"><div class="dental-live-card"><b>主な症状</b><span>痛み・腫れ・脱落・破折など</span></div><div class="dental-live-card"><b>詳しい内容</b><span>発症時期・痛み0〜10</span></div><div class="dental-live-card"><b>確認項目</b><span>腫れ・出血・外傷・発熱</span></div><div class="dental-live-card"><b>来院可能時間</b><span>医院が確認して案内</span></div></div></div></div></div>
+</article>
+
+<article class="product-live-row">
+<div class="product-live-copy reveal"><span>04 / CLINIC PC</span><h3>医院PC<br>管理画面</h3><p>本日の予約、急患受付、待ち列、電話・窓口受付をタブで切り替え、患者検索や状態更新を行います。</p><ul><li>予約・急患・待ち列</li><li>電話・窓口予約</li><li>担当者・診療台割当</li></ul><div class="product-live-actions"><button class="button button-line" type="button" data-dental-demo data-demo-url="https://dpromstk2000-lab.github.io/DEGITAL-QR/hybrid-owner.html?demo=1" data-demo-title="DPRO 歯科 LINE 医院PC管理" aria-controls="dental-demo-modal">この画面を読み込む</button><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/DEGITAL-QR/hybrid-owner.html?demo=1" target="_blank" rel="noopener" data-demo-link="dental-owner">別タブで体験する</a></div></div>
+<div class="live-device reveal"><div class="live-window"><div class="live-window-head"><span>DPRO DENTAL / CLINIC PC</span><i></i></div><div class="dental-live-placeholder"><div class="dental-live-placeholder-head"><strong>予約・急患・来院受付 管理</strong><span>医院PC</span></div><div class="dental-live-cards"><div class="dental-live-card"><b>本日の予約</b><span>確認待ち・確定・到着・完了</span></div><div class="dental-live-card"><b>急患受付</b><span>症状と来院案内を確認</span></div><div class="dental-live-card"><b>待ち列</b><span>呼出・診療・会計待ち</span></div><div class="dental-live-card"><b>電話・窓口</b><span>患者検索・空き枠・予約なし</span></div></div></div></div></div>
+</article>
+
+<article class="product-live-row">
+<div class="product-live-copy reveal"><span>05 / RECEPTION IPAD</span><h3>受付iPad<br>待ち列画面</h3><p>受付付近で待ち列、次の予約、急患受付を確認し、必要な進行操作を行います。画面は20秒ごとに自動更新します。</p><ul><li>待ち列を大きく表示</li><li>次の予約・急患確認</li><li>20秒自動更新</li></ul><div class="product-live-actions"><button class="button button-line" type="button" data-dental-demo data-demo-url="https://dpromstk2000-lab.github.io/DEGITAL-QR/hybrid-owner-ipad.html?demo=1" data-demo-title="DPRO 歯科 LINE 受付iPad" aria-controls="dental-demo-modal">この画面を読み込む</button><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/DEGITAL-QR/hybrid-owner-ipad.html?demo=1" target="_blank" rel="noopener" data-demo-link="dental-ipad">別タブで体験する</a></div></div>
+<div class="live-device reveal"><div class="live-window live-window-tablet"><div class="live-window-head"><span>DPRO DENTAL / RECEPTION IPAD</span><i></i></div><div class="dental-live-placeholder"><div class="dental-live-placeholder-head"><strong>受付・待ち列 iPad</strong><span>AUTO UPDATE</span></div><div class="dental-live-cards"><div class="dental-live-card"><b>3番 山田 太郎様</b><span>待機中 → 呼出 → 診療開始</span></div><div class="dental-live-card"><b>次の予約</b><span>10:30 佐藤 健様</span></div><div class="dental-live-card"><b>急患受付</b><span>確認中 1件</span></div><div class="dental-live-card"><b>本日の件数</b><span>予約・急患・待機・診療中</span></div></div></div></div></div>
+</article>
+</div>
+</div>
+</section>
+
+<section class="section product-after" id="after">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>BEFORE / AFTER</p><h2>予約フォームを増やすだけでなく、<br><em>受付の前後をつなぐ。</em></h2></div><p>電話や窓口をなくすのではなく、LINE利用者と未連携者を同じ当日運用へまとめ、医院内の確認を減らします。</p></div>
+<div class="product-after-grid">
+<div class="product-after-panel product-after-before reveal"><span>BEFORE</span><h3>診察券・予約・急患・窓口来院が、別々に動く。</h3><ul><li>家族分の紙の診察券を探す</li><li>急患の症状を電話で聞き直す</li><li>変更・取消希望を口頭で伝達</li><li>予約・急患・来院状況を別々に確認</li></ul></div>
+<div class="product-after-arrow reveal">→</div>
+<div class="product-after-panel product-after-result reveal"><span>AFTER</span><h3>LINEから院内待ち列まで、同じ受付情報で確認。</h3><ul><li>家族診察券から予約・急患へ進む</li><li>症状と来院可能時間を事前受信</li><li>変更・取消希望を確認中として管理</li><li>PC・iPadで予約・急患・待ち列を共有</li></ul></div>
+</div>
+</div>
+</section>
+
+<section class="section product-safety" id="safety">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>SAFE OPERATION</p><h2>公開デモから本番導入まで、<br><em>分離と検査を前提に。</em></h2></div><p>患者情報を扱うため、公開デモ、本番環境、医院ごとの保存先、管理操作、公開設定を分けて確認します。</p></div>
+<div class="product-safety-grid">
+<article class="product-safety-card reveal"><span>01 / SEPARATE</span><h3>デモと本番を分離</h3><p>公開デモは架空データを使用し、本番は契約医院専用のGitHub・Worker・データベースとして分離します。</p></article>
+<article class="product-safety-card reveal"><span>02 / CLINIC</span><h3>医院ごとの環境分離</h3><p>医院コードと接続先を医院ごとに設定し、他院の患者・予約・設定と混在しない構成を前提にします。</p></article>
+<article class="product-safety-card reveal"><span>03 / AUTH</span><h3>管理操作を患者画面から分離</h3><p>医院PC・設定画面は管理用認証を通して利用し、認証情報を公開URLへ埋め込まない設計です。</p></article>
+<article class="product-safety-card reveal"><span>04 / SAVE</span><h3>API・DBへ保存して再取得</h3><p>画面上だけの見せかけ更新ではなく、Worker APIから保存し、PC・iPad・患者画面で再取得します。</p></article>
+<article class="product-safety-card reveal"><span>05 / PRIVACY</span><h3>公開設定に秘密情報を置かない</h3><p>公開HTML・設定ファイルへAPI秘密鍵やLINE Channel Secretなどを掲載しない運用を行います。</p></article>
+<article class="product-safety-card reveal"><span>06 / CHECK</span><h3>導入前の一括検査</h3><p>保存先、設定、認証、公開状態などは、DPRO SHOP側の検査画面と実機確認を経て本番運用へ進みます。</p></article>
+</div>
+</div>
+</section>
+
+<section class="section product-pricing" id="pricing">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>DPRO OPTION PRICE</p><h2>LINE構築・運用店舗へ追加する、<br><em>DPROシステム料金。</em></h2></div><p>DPROシステムは単体販売ではなく、DPRO SHOPのLINE公式アカウント構築・運用契約店舗向けの追加サービスです。</p></div>
+<div class="product-price-grid">
+<article class="product-price-card reveal"><small>INITIAL SETUP</small><h3>DPROシステム構築費</h3><div class="product-price-value"><strong>33,000円</strong><span>税込</span></div><p>医院情報、デモ環境、基本画面、接続先、公開・操作確認など、導入に必要な初期設定を行います。</p></article>
+<article class="product-price-card is-accent reveal"><small>MONTHLY USE &amp; MAINTENANCE</small><h3>利用・基本保守費</h3><div class="product-price-value"><strong>月額1,100円</strong><span>税込</span></div><p>システム利用と基本的な保守・確認を含みます。大規模な機能追加や個別開発は、事前に内容と費用をご案内します。</p></article>
+</div>
+<p class="product-price-note reveal"><strong>別途必要：</strong>LINE公式アカウント構築77,000円（税込）／LINE運用サポート月額3,300円（税込）。電子カルテ・レセプト・決済・予約台帳など、外部サービスとの個別連携が必要な場合は別途確認します。</p>
+</div>
+</section>
+
+<section class="section sys-faq" id="faq">
+<div class="section-inner">
+<div class="sys-center-heading reveal"><p class="eyebrow eyebrow-dark"><span></span>FAQ</p><h2>歯科医院向けDPROシステムの<br>よくある質問。</h2></div>
+<div class="faq-list">
+<details class="reveal"><summary>電子カルテやレセプトを置き換えるシステムですか。</summary><p>置き換えるものではありません。主な対象は、家族デジタル診察券、診療予約、当日急患受付、変更・取消希望、来院チェックイン、受付PC・iPad、待ち列管理です。電子カルテ、レセプト、会計、決済との個別連携は別途確認します。</p></details>
+<details class="reveal"><summary>スマートフォンだけで利用できますか。</summary><p>患者・家族側はLINEまたはWebブラウザから利用できます。医院側はPC管理画面と受付iPad画面を用意しており、役割に合わせて使い分けます。</p></details>
+<details class="reveal"><summary>LINE未連携の患者にも対応できますか。</summary><p>はい。初診・診察券なしの患者は予約・急患画面で氏名と電話番号を入力できます。医院側でも電話・窓口予約、予約なし来院、既存患者検索から同じ当日運用へ追加できます。</p></details>
+<details class="reveal"><summary>既存の電話予約や受付方法と併用できますか。</summary><p>併用できます。LINE予約だけに限定せず、電話・窓口予約や予約なし来院も医院PCから登録できるため、段階的に運用を移行できます。</p></details>
+<details class="reveal"><summary>当日急患受付は診断や救急判定を行いますか。</summary><p>行いません。症状情報を医院へ事前送信する受付機能です。診断、救急判定、治療方針の決定は医療従事者が行います。緊急性が高い症状では救急要請などを検討する注意表示も患者画面に設けています。</p></details>
+<details class="reveal"><summary>医院ごとに予約条件や診療メニューを変えられますか。</summary><p>はい。予約受付日数、締切、同時間帯上限、急患受付状態、スタッフ、診療台・設備、診療メニュー、曜日別診療時間などを医院設定画面で管理します。</p></details>
+<details class="reveal"><summary>公開デモに本物の患者情報は入っていますか。</summary><p>入りません。公開デモは架空データを使用します。本番環境は契約医院ごとに分離し、公開デモとは別のGitHub・Worker・データベースで運用します。</p></details>
+</div>
+</div>
+</section>
+
+<section class="section product-final-cta">
+<div class="section-inner product-final-cta-inner reveal">
+<p class="eyebrow eyebrow-light"><span></span>TRY THE REAL DPRO DENTAL</p>
+<h2>今の予約・急患・来院受付と比べながら、<br>実画面を確認しませんか。</h2>
+<p>現在の診察券、予約方法、電話対応、急患受付、院内の待ち列を伺い、どの画面から導入すると使いやすいかを一緒に整理します。</p>
+<div class="product-final-actions">
+<a class="button button-line" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener"><span class="line-badge">LINE</span><span>無料で導入相談する</span><b>→</b></a>
+<button class="button button-ghost" type="button" data-dental-demo data-demo-url="https://dpromstk2000-lab.github.io/DEGITAL-QR/hybrid.html?t=demo-dental-patient-001" data-demo-title="DPRO 歯科 LINE 患者メニュー" aria-controls="dental-demo-modal">実際の操作デモ</button>
+</div>
+</div>
+</section>
+</main>
+
+<footer class="site-footer">
+<div class="footer-inner">
+<div class="footer-brand"><a class="brand" href="../"><span class="brand-mark" aria-hidden="true">D</span><span class="brand-copy"><strong>DPRO SHOP</strong><small>LINE BUSINESS DESIGN</small></span></a><p>福岡県を中心に、LINE公式アカウント、ホームページ、<br>契約店舗限定の業種別DPROシステムを支援します。</p></div>
+<div class="footer-links">
+<div><strong>SERVICE</strong><a href="../line-build">LINE公式アカウント構築</a><a href="../line-operation">LINE運用サポート</a><a href="../website">ホームページ制作</a><a href="../pricing">料金</a></div>
+<div><strong>PRODUCT</strong><a href="./">DPROシステム一覧</a><a href="dental">歯科</a><a href="https://dpromstk2000-lab.github.io/DEGITAL-QR/hybrid.html?t=demo-dental-patient-001" target="_blank" rel="noopener">歯科デモ</a></div>
+<div><strong>GUIDE</strong><a href="../about">DPRO SHOPについて</a><a href="../contact">お問い合わせ</a><a href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで無料相談</a></div>
+</div>
+</div>
+<div class="footer-legal-links" aria-label="法務・お問い合わせ"><a href="../privacy">プライバシーポリシー</a><a href="../terms">サービス利用上の注意事項</a><a href="../contact">お問い合わせ</a></div>
+<div class="footer-bottom"><span>© 2026 DPRO SHOP. All Rights Reserved.</span><a href="#top">PAGE TOP ↑</a></div>
+</footer>
+<div class="product-mobile-cta" aria-label="固定アクション"><button type="button" data-dental-demo data-demo-url="https://dpromstk2000-lab.github.io/DEGITAL-QR/hybrid.html?t=demo-dental-patient-001" data-demo-title="DPRO 歯科 LINE 患者メニュー" aria-controls="dental-demo-modal">デモを体験</button><a href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで相談</a></div>
+
+<div class="dental-demo-modal" id="dental-demo-modal" hidden aria-hidden="true">
+<div class="dental-demo-dialog" role="dialog" aria-modal="true" aria-labelledby="dental-demo-title">
+<div class="dental-demo-head">
+<div class="dental-demo-title"><strong id="dental-demo-title">DPRO 歯科 LINE 実際の操作デモ</strong><small>DEMO ENVIRONMENT / SAMPLE DATA</small></div>
+<div class="dental-demo-actions"><a id="dental-demo-external" href="https://dpromstk2000-lab.github.io/DEGITAL-QR/hybrid.html?t=demo-dental-patient-001" target="_blank" rel="noopener">別タブで開く</a><button id="dental-demo-close" type="button" aria-label="操作デモを閉じる">閉じる</button></div>
+</div>
+<div class="dental-demo-stage" id="dental-demo-stage" aria-live="polite"></div>
+</div>
+</div>
+
+<script defer src="../script.js?v=17r1"></script>
+<script defer src="systems.js?v=1"></script>
+<script>
+(() => {
+  "use strict";
+  const modal = document.getElementById("dental-demo-modal");
+  const stage = document.getElementById("dental-demo-stage");
+  const title = document.getElementById("dental-demo-title");
+  const external = document.getElementById("dental-demo-external");
+  const closeButton = document.getElementById("dental-demo-close");
+  const triggers = [...document.querySelectorAll("[data-dental-demo]")];
+  let lastFocus = null;
+  let previousOverflow = "";
+
+  const focusableElements = () => [...modal.querySelectorAll('a[href],button:not([disabled]),iframe,[tabindex]:not([tabindex="-1"])')]
+    .filter((element) => !element.hidden);
+
+  const closeDemo = () => {
+    if (modal.hidden) return;
+    stage.replaceChildren();
+    modal.hidden = true;
+    modal.setAttribute("aria-hidden", "true");
+    triggers.forEach((trigger) => trigger.setAttribute("aria-expanded", "false"));
+    document.body.style.overflow = previousOverflow;
+    if (lastFocus instanceof HTMLElement) lastFocus.focus();
+  };
+
+  const openDemo = (trigger) => {
+    const url = trigger.dataset.demoUrl || "";
+    const demoTitle = trigger.dataset.demoTitle || "DPRO 歯科 LINE 実際の操作デモ";
+    if (!url) return;
+    lastFocus = trigger;
+    previousOverflow = document.body.style.overflow;
+    title.textContent = demoTitle;
+    external.href = url;
+    const frame = document.createElement("iframe");
+    frame.src = url;
+    frame.title = demoTitle;
+    frame.loading = "eager";
+    frame.referrerPolicy = "no-referrer";
+    frame.setAttribute("allow", "camera; clipboard-read; clipboard-write");
+    stage.replaceChildren(frame);
+    modal.hidden = false;
+    modal.setAttribute("aria-hidden", "false");
+    triggers.forEach((item) => item.setAttribute("aria-expanded", String(item === trigger)));
+    document.body.style.overflow = "hidden";
+    closeButton.focus();
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "select_content", {
+        content_type: "dpro_demo_modal",
+        item_id: demoTitle,
+        link_url: url,
+        page_location: window.location.href
+      });
+    }
+  };
+
+  triggers.forEach((trigger) => {
+    trigger.setAttribute("aria-haspopup", "dialog");
+    trigger.setAttribute("aria-expanded", "false");
+    trigger.addEventListener("click", () => openDemo(trigger));
+  });
+  closeButton.addEventListener("click", closeDemo);
+  modal.addEventListener("mousedown", (event) => { if (event.target === modal) closeDemo(); });
+  document.addEventListener("keydown", (event) => {
+    if (modal.hidden) return;
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeDemo();
+      return;
+    }
+    if (event.key !== "Tab") return;
+    const focusable = focusableElements();
+    if (!focusable.length) return;
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  });
+})();
+</script>
+</body>
+</html>
