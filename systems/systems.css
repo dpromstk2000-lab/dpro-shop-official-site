@@ -2479,3 +2479,25 @@ linear-gradient(145deg,#06101c,#0a1b2c);
 .sys-product-card.is-funeral .sys-product-phone-inner b,.sys-product-card.is-funeral .sys-product-card-copy small,.sys-product-card.is-funeral .sys-product-status{color:#2f4b42}
 .sys-product-card.is-funeral .sys-product-phone-inner span{background:#e8f0ec;color:#2f4b42}
 @media(max-width:760px){.funeral-monitor-ui{grid-template-columns:1fr;padding:13px}.funeral-monitor-side{display:none}.funeral-monitor-main{padding:4px}.funeral-kpis{grid-template-columns:1fr 1fr}.funeral-board{grid-template-columns:1fr 1fr}.funeral-board>div{min-height:150px}.funeral-stage-tablet{display:none}.funeral-live-ipad{grid-template-columns:1fr 1fr}.funeral-live-owner{grid-template-columns:1fr}.funeral-live-owner aside{display:none}}
+
+/* STEP DPRO-SYSTEMS-FINAL-2 / 44-system catalog integration */
+.sys-catalog-meta{
+  margin:18px 0 12px;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  gap:10px 18px;
+  color:var(--sys-muted);
+  font-size:13px;
+}
+.sys-catalog-meta p{margin:0}
+.sys-result-count{
+  color:var(--sys-dark);
+  font-weight:900;
+}
+.sys-filter [data-filter-count]{
+  font-variant-numeric:tabular-nums;
+}
+@media(max-width:760px){
+  .sys-catalog-meta{display:grid}
+}
