@@ -7,8 +7,8 @@
   const EXPECTED_ORIGIN = "https://dpro-shop.com";
   const LINE_URL = "https://lin.ee/YxJGXV6D";
   const MEASUREMENT_ID = "G-YPN3998BHG";
-  const SYSTEM_SLUGS = ["vet", "pet-salon", "dental", "osteopathic", "dayservice", "home-nursing", "homecare", "senior-meal-delivery", "houkago-dayservice", "btype", "sodan", "welfare-equipment", "shuttle", "caretaxi", "hair", "salon", "nail", "eye-salon", "esthe", "gym", "yoga", "bakery", "cake", "takeout", "izakaya", "yakiniku", "buyback", "cosmetics", "flower-shop", "photo-studio", "repair", "car-service", "used-car", "estate", "reform", "disposal", "school", "stay", "cleaning", "housekeep", "gyosei", "shiho", "sharoushi", "tax-accounting", "chosashi", "funeral"];
-  const SYSTEM_NAMES = {"vet": "動物病院", "pet-salon": "ペットサロン", "dental": "歯科医院", "osteopathic": "整骨院・整体", "dayservice": "デイサービス", "home-nursing": "訪問看護", "homecare": "訪問介護・家族連絡", "senior-meal-delivery": "高齢者配食サービス", "houkago-dayservice": "放課後等デイ", "btype": "就労継続支援B型", "sodan": "相談支援事業所", "welfare-equipment": "福祉用具", "shuttle": "福祉施設送迎", "caretaxi": "介護タクシー", "hair": "美容室", "salon": "美容サロン", "nail": "ネイルサロン", "eye-salon": "まつげ・眉サロン", "esthe": "エステ・リラク", "gym": "パーソナルジム", "yoga": "プライベートヨガ", "bakery": "ベーカリー", "cake": "ケーキ・洋菓子", "takeout": "テイクアウト", "izakaya": "居酒屋", "yakiniku": "焼肉店", "buyback": "買取・査定", "cosmetics": "化粧品店", "flower-shop": "フラワーショップ", "photo-studio": "写真館", "repair": "修理受付", "car-service": "車検・整備工場", "used-car": "中古車買取・販売", "estate": "不動産・賃貸内見", "reform": "リフォーム・工務店", "disposal": "不用品回収・遺品整理", "school": "学習塾・習い事", "stay": "宿泊・民泊", "cleaning": "クリーニング", "housekeep": "家事代行", "gyosei": "行政書士", "shiho": "司法書士・相続登記", "sharoushi": "社労士", "tax-accounting": "税理士・会計", "chosashi": "土地家屋調査士", "funeral": "葬儀・法要"};
+  const SYSTEM_SLUGS = ["vet", "pet-salon", "dental", "osteopathic", "dayservice", "home-nursing", "homecare", "careplan", "senior-meal-delivery", "houkago-dayservice", "btype", "sodan", "welfare-equipment", "shuttle", "caretaxi", "hair", "salon", "nail", "eye-salon", "esthe", "gym", "yoga", "bakery", "cake", "takeout", "izakaya", "yakiniku", "buyback", "cosmetics", "flower-shop", "photo-studio", "repair", "car-service", "used-car", "estate", "reform", "disposal", "school", "stay", "cleaning", "housekeep", "gyosei", "shiho", "sharoushi", "tax-accounting", "chosashi", "funeral"];
+  const SYSTEM_NAMES = {"vet": "動物病院", "pet-salon": "ペットサロン", "dental": "歯科医院", "osteopathic": "整骨院・整体", "dayservice": "デイサービス", "home-nursing": "訪問看護", "homecare": "訪問介護・家族連絡", "careplan": "居宅介護支援・ケアマネ", "senior-meal-delivery": "高齢者配食サービス", "houkago-dayservice": "放課後等デイ", "btype": "就労継続支援B型", "sodan": "相談支援事業所", "welfare-equipment": "福祉用具", "shuttle": "福祉施設送迎", "caretaxi": "介護タクシー", "hair": "美容室", "salon": "美容サロン", "nail": "ネイルサロン", "eye-salon": "まつげ・眉サロン", "esthe": "エステ・リラク", "gym": "パーソナルジム", "yoga": "プライベートヨガ", "bakery": "ベーカリー", "cake": "ケーキ・洋菓子", "takeout": "テイクアウト", "izakaya": "居酒屋", "yakiniku": "焼肉店", "buyback": "買取・査定", "cosmetics": "化粧品店", "flower-shop": "フラワーショップ", "photo-studio": "写真館", "repair": "修理受付", "car-service": "車検・整備工場", "used-car": "中古車買取・販売", "estate": "不動産・賃貸内見", "reform": "リフォーム・工務店", "disposal": "不用品回収・遺品整理", "school": "学習塾・習い事", "stay": "宿泊・民泊", "cleaning": "クリーニング", "housekeep": "家事代行", "gyosei": "行政書士", "shiho": "司法書士・相続登記", "sharoushi": "社労士", "tax-accounting": "税理士・会計", "chosashi": "土地家屋調査士", "funeral": "葬儀・法要"};
 
   const corePages = [
     { name: "トップ", path: "/", canonical: `${EXPECTED_ORIGIN}/` },
@@ -229,17 +229,17 @@
       const positions = Array.isArray(itemList?.itemListElement)
         ? itemList.itemListElement.map((item) => Number(item.position))
         : [];
-      const sequential = positions.length === 46 && positions.every((value, index) => value === index + 1);
-      const ok = response.ok && cards.length === 46 && unique.size === 46 && !missing.length &&
-        !extra.length && filters.length === 12 && itemList?.numberOfItems === 46 && sequential;
+      const sequential = positions.length === 47 && positions.every((value, index) => value === index + 1);
+      const ok = response.ok && cards.length === 47 && unique.size === 47 && !missing.length &&
+        !extra.length && filters.length === 12 && itemList?.numberOfItems === 47 && sequential;
       addResult(
         "一覧統合",
-        "46カード・11カテゴリ・ItemList",
+        "47カード・11カテゴリ・ItemList",
         ok ? "pass" : "fail",
         `HTTP ${response.status} / カード ${cards.length} / 重複 ${cards.length - unique.size} / 不足 ${missing.length} / 余分 ${extra.length} / フィルター ${Math.max(0, filters.length - 1)} / numberOfItems ${itemList?.numberOfItems ?? "なし"} / 連番 ${sequential ? "正常" : "不正"}`
       );
     } catch (error) {
-      addResult("一覧統合", "46カード・11カテゴリ・ItemList", "fail", error.message);
+      addResult("一覧統合", "47カード・11カテゴリ・ItemList", "fail", error.message);
     }
   };
 
@@ -254,16 +254,16 @@
       const missing = expected.filter((url) => !unique.has(url));
       const unexpectedHtml = locs.filter((url) => url.endsWith(".html"));
       const includesCheck = locs.some((url) => url.includes("system-check"));
-      const ok = response.ok && !parserError && locs.length === 56 && unique.size === 56 &&
+      const ok = response.ok && !parserError && locs.length === 57 && unique.size === 57 &&
         !missing.length && !unexpectedHtml.length && !includesCheck;
       addResult(
         "検索エンジン",
-        "sitemap.xml 56URL",
+        "sitemap.xml 57URL",
         ok ? "pass" : "fail",
         `HTTP ${response.status} / URL ${locs.length} / 重複 ${locs.length - unique.size} / 不足 ${missing.length} / .html ${unexpectedHtml.length} / 検査ページ ${includesCheck ? "混入" : "除外"}`
       );
     } catch (error) {
-      addResult("検索エンジン", "sitemap.xml 56URL", "fail", error.message);
+      addResult("検索エンジン", "sitemap.xml 57URL", "fail", error.message);
     }
   };
 
@@ -326,7 +326,7 @@
     elements.save.disabled = true;
     elements.body.innerHTML = "";
     updateCounts();
-    setProgress("検査を開始します", `主要10ページ＋システム46ページ`);
+    setProgress("検査を開始します", `主要10ページ＋システム47ページ`);
 
     for (const page of pages) await inspectPage(page);
     await inspectCatalog();
@@ -349,7 +349,7 @@
 
   const exportText = () => {
     const lines = [
-      "DPRO SHOP 全56ページ公開後検査",
+      "DPRO SHOP 全57ページ公開後検査",
       `対象: ${window.location.origin}`,
       `実行: ${elements.lastRun.textContent}`,
       ""
