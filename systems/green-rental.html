@@ -173,8 +173,42 @@ gtag('config', 'G-YPN3998BHG');
 .green-detail-visual.phone{width:min(390px,100%);margin:auto;border:9px solid #25342d;border-radius:39px}.green-detail-visual.phone .green-visual-head{display:none}.green-detail-visual.phone iframe{width:100%;height:690px;transform:none}
 
 /* live demo */
-.green-demo-shell{margin-top:48px;display:grid;grid-template-columns:270px minmax(0,1fr);gap:20px}.green-demo-tabs{display:grid;gap:9px;align-content:start}.green-demo-tab{padding:17px 18px;border:1px solid #d4e4d8;border-radius:16px;background:#fff;color:#315a45;text-align:left;font:inherit;font-weight:900;cursor:pointer;transition:.2s ease}.green-demo-tab:hover{transform:translateX(3px)}.green-demo-tab small{display:block;margin-top:5px;color:#809185;font-size:9px;font-weight:700}.green-demo-tab.is-active{border-color:#2e7c55;background:#e8f3ea;color:#14472f;box-shadow:0 12px 27px rgba(7,52,31,.08)}
-.green-demo-stage{overflow:hidden;border:1px solid #d4e4d8;border-radius:26px;background:#fff;box-shadow:var(--shadow)}.green-demo-head{min-height:60px;padding:0 18px;display:flex;align-items:center;justify-content:space-between;gap:15px;border-bottom:1px solid #e0e9e2}.green-demo-head strong{font-size:16px}.green-demo-head a{color:#23734c;font-size:12px;font-weight:900;text-decoration:none}.green-demo-frame{height:720px;background:#f5f9f6}.green-demo-frame iframe{width:100%;height:100%;border:0;background:#fff}.green-demo-note{margin-top:17px;color:#64776b;font-size:12px;line-height:1.8}
+.green-demo-shell{margin-top:48px;display:grid;grid-template-columns:270px minmax(0,1fr);gap:20px}
+.green-demo-tabs{display:grid;gap:9px;align-content:start}
+.green-demo-tab{padding:17px 18px;border:1px solid #d4e4d8;border-radius:16px;background:#fff;color:#315a45;text-align:left;font:inherit;font-weight:900;cursor:pointer;transition:.2s ease}
+.green-demo-tab:hover{transform:translateX(3px)}
+.green-demo-tab small{display:block;margin-top:5px;color:#607568;font-size:12px;font-weight:700;line-height:1.6}
+.green-demo-tab.is-active{border-color:#2e7c55;background:#e8f3ea;color:#14472f;box-shadow:0 12px 27px rgba(7,52,31,.08)}
+.green-demo-stage{overflow:hidden;border:1px solid #d4e4d8;border-radius:26px;background:#fff;box-shadow:var(--shadow)}
+.green-demo-head{min-height:74px;padding:11px 16px 11px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px solid #e0e9e2}
+.green-demo-head>strong{font-size:18px;line-height:1.5}
+.green-demo-actions{display:flex;align-items:center;justify-content:flex-end;gap:9px;flex-wrap:wrap}
+.green-demo-open,.green-demo-external{min-height:46px;padding:0 16px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;font:inherit;font-size:14px;font-weight:900;text-decoration:none;cursor:pointer}
+.green-demo-open{border:0;background:#176342;color:#fff;box-shadow:0 10px 24px rgba(23,99,66,.18)}
+.green-demo-external{border:1px solid #9fc4ac;background:#fff;color:#176342}
+.green-demo-open:hover,.green-demo-external:hover{transform:translateY(-1px)}
+.green-demo-frame{height:720px;background:#f5f9f6}
+.green-demo-frame iframe{width:100%;height:100%;border:0;background:#fff}
+.green-demo-note{margin-top:17px;padding:16px 18px;border:1px solid #d5e4d9;border-radius:15px;background:#fff;color:#40594b;font-size:14px;line-height:1.85}
+.green-demo-direct{margin-top:20px;display:flex;justify-content:center;gap:11px;flex-wrap:wrap}
+
+/* full-screen demo modal */
+.green-demo-modal[hidden]{display:none}
+.green-demo-modal{position:fixed;z-index:2600;inset:0;display:grid;place-items:center;padding:20px;background:rgba(2,16,10,.84);backdrop-filter:blur(10px)}
+.green-demo-dialog{width:min(1420px,100%);height:min(920px,95vh);display:flex;flex-direction:column;overflow:hidden;border:1px solid rgba(255,255,255,.18);border-radius:25px;background:#071c14;box-shadow:0 45px 130px rgba(0,0,0,.55)}
+.green-demo-modal-head{min-height:70px;padding:12px 14px 12px 21px;display:flex;align-items:center;gap:14px;border-bottom:1px solid rgba(255,255,255,.13);color:#fff}
+.green-demo-modal-title{min-width:0;flex:1}
+.green-demo-modal-title strong{display:block;font-size:19px;line-height:1.45}
+.green-demo-modal-title small{display:block;margin-top:3px;color:rgba(255,255,255,.78);font-size:13px}
+.green-demo-modal-external{min-height:46px;padding:0 16px;display:inline-flex;align-items:center;border:1px solid rgba(255,255,255,.35);border-radius:12px;color:#fff;font-size:14px;font-weight:900;text-decoration:none}
+.green-demo-modal-close{width:46px;height:46px;display:grid;place-items:center;border:1px solid rgba(255,255,255,.35);border-radius:12px;background:rgba(255,255,255,.08);color:#fff;font-size:25px;cursor:pointer}
+.green-demo-modal-frame{position:relative;min-height:0;flex:1;background:#fff}
+.green-demo-modal-frame iframe{width:100%;height:100%;display:block;border:0;background:#fff}
+.green-demo-loading{position:absolute;inset:0;display:grid;place-items:center;background:#fff;color:#173d2b;font-size:17px;font-weight:900}
+.green-demo-modal-note{padding:10px 16px;background:#0b2a1e;color:rgba(255,255,255,.82);font-size:13px;line-height:1.7;text-align:center}
+
+/* mobile fixed demo CTA */
+.green-mobile-cta{display:none}
 
 /* safety / target / pricing */
 .green-security-grid{margin-top:44px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.green-security-card{padding:27px;border:1px solid rgba(255,255,255,.11);border-radius:20px;background:rgba(255,255,255,.055)}.green-security-card span{color:#bfe892;font-size:11px;font-weight:900;letter-spacing:.1em}.green-security-card h3{margin:14px 0 0;font-size:19px}.green-security-card p{margin:9px 0 0;color:rgba(255,255,255,.61);font-size:13px;line-height:1.8}
@@ -194,6 +228,31 @@ gtag('config', 'G-YPN3998BHG');
   .green-wrap{width:min(100% - 28px,1180px)}.green-hero{min-height:auto;padding-top:110px}.green-hero h1{font-size:clamp(45px,13vw,65px)}.green-stage{min-height:390px}.green-monitor{inset:20px -40px 50px 28px;border-width:6px;border-radius:18px}.green-browser{display:none}.green-phone{left:0;width:115px;height:230px;border-width:5px;border-radius:25px}.green-tablet{right:-7px;width:155px;height:123px;border-width:5px;border-radius:17px}.green-live-badge{right:0;padding:9px 11px}.green-value-grid,.green-grid-4,.green-grid-3,.green-ba-grid,.green-security-grid,.green-fit-grid,.green-price-grid{grid-template-columns:1fr}.green-value-grid article{border-right:0;border-bottom:1px solid #e1e9e3}.green-value-grid article:last-child{border-bottom:0}.green-problem-card{min-height:0}.green-arch-flow,.green-arch-roles{grid-template-columns:1fr 1fr}.green-detail-visual iframe{height:520px}.green-detail-visual.phone iframe{height:630px}.green-demo-tabs{grid-template-columns:1fr 1fr}.green-demo-frame{height:620px}.green-final-actions{width:100%}.green-final-actions .green-button{width:100%}.green-final{padding:70px 0}
 }
 @media(max-width:430px){.green-arch-flow,.green-arch-roles,.green-demo-tabs{grid-template-columns:1fr}.green-demo-frame{height:570px}.green-card,.green-ba-card,.green-fit-card,.green-price-card{padding:24px}.green-title{font-size:35px}}
+
+@media(max-width:760px){
+  .green-demo-head{align-items:flex-start;flex-direction:column;padding:15px}
+  .green-demo-actions{width:100%;justify-content:stretch}
+  .green-demo-open,.green-demo-external{flex:1;min-width:0}
+  .green-demo-modal{padding:7px}
+  .green-demo-dialog{height:97vh;border-radius:17px}
+  .green-demo-modal-head{padding:10px}
+  .green-demo-modal-title strong{font-size:16px}
+  .green-demo-modal-title small{display:none}
+  .green-demo-modal-external{width:46px;padding:0;font-size:0;justify-content:center}
+  .green-demo-modal-external:before{content:"↗";font-size:20px}
+  .green-mobile-cta{position:fixed;z-index:1400;left:10px;right:10px;bottom:10px;display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:8px;border:1px solid rgba(255,255,255,.14);border-radius:17px;background:rgba(7,28,20,.94);box-shadow:0 18px 48px rgba(0,0,0,.28);backdrop-filter:blur(14px)}
+  .green-mobile-cta button,.green-mobile-cta a{min-height:48px;display:flex;align-items:center;justify-content:center;border:0;border-radius:12px;font:inherit;font-size:14px;font-weight:900;text-decoration:none}
+  .green-mobile-cta button{background:#ff9f2f;color:#161008}
+  .green-mobile-cta a{background:#176342;color:#fff}
+  .site-footer{padding-bottom:88px}
+}
+@media(max-width:430px){
+  .green-demo-actions{grid-template-columns:1fr}
+  .green-demo-open,.green-demo-external{width:100%}
+  .green-demo-modal{padding:0}
+  .green-demo-dialog{height:100vh;border-radius:0}
+  .green-demo-modal-note{font-size:12px}
+}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 </style>
 </head>
@@ -218,7 +277,11 @@ gtag('config', 'G-YPN3998BHG');
 <p class="green-eyebrow">GREEN RENTAL OPERATIONS</p>
 <h1 id="green-title"><span>植物を設置して、</span><em>終わりにしない。</em></h1>
 <p>写真相談、顧客・拠点、植物・鉢、設置、定期巡回、作業写真、交換、回収・養生・再利用、お客様報告まで。観葉植物レンタルの日常業務を、同じ顧客・植物・訪問履歴へつなぎます。</p>
-<div class="green-hero-actions"><a class="green-button green-button-primary" href="#demo">ログイン後の実画面を見る →</a><a class="green-button green-button-secondary" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで導入相談</a></div>
+<div class="green-hero-actions">
+<button class="green-button green-button-primary" type="button" data-green-demo-src="https://dpromstk2000-lab.github.io/dpro-green-rental-line/owner.html?demo=1&view=dashboard&v=GREEN-OFFICIAL-DEMO-R2" data-green-demo-title="管理PC・ダッシュボード">実際の操作デモ</button>
+<a class="green-button green-button-secondary" href="https://dpromstk2000-lab.github.io/dpro-green-rental-line/owner.html?demo=1&view=dashboard&v=GREEN-OFFICIAL-DEMO-R2" target="_blank" rel="noopener" data-demo-link="green-hero">別タブで体験する ↗</a>
+<a class="green-button green-button-secondary" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで導入相談</a>
+</div>
 <div class="green-proof"><span>植物・鉢・現在地</span><span>担当・訪問順・作業</span><span>公開写真・社内メモ分離</span><span>交換・養生・再利用</span></div>
 </div>
 <div class="green-stage" aria-label="GREENログイン後画面プレビュー">
@@ -331,21 +394,37 @@ gtag('config', 'G-YPN3998BHG');
 
 <section class="green-section green-section-deep" id="demo">
 <div class="green-wrap">
-<div class="green-heading"><div><p class="green-eyebrow">LIVE PRODUCT EXPERIENCE</p><h2 class="green-title">説明用画像ではなく、<br>ログイン後の実画面を確認。</h2></div><p class="green-lead">タブを押すと、GREENデモ環境へ自動ログインした画面へ切り替わります。内部検査画面やログイン情報は営業ページへ表示しません。</p></div>
+<div class="green-heading">
+<div><p class="green-eyebrow">LIVE PRODUCT EXPERIENCE</p><h2 class="green-title">説明画像ではなく、<br>本物の画面を体験。</h2></div>
+<p class="green-lead">左のタブで画面を選び、「この画面を大きく表示」または「別タブで体験する」を押してください。GREENデモ環境へ自動ログインした、ログイン後の画面を確認できます。</p>
+</div>
 <div class="green-demo-shell">
 <div class="green-demo-tabs" role="tablist" aria-label="GREEN実画面デモ">
-<button class="green-demo-tab is-active" type="button" data-demo-title="管理PC・ダッシュボード" data-demo-url="https://dpromstk2000-lab.github.io/dpro-green-rental-line/owner.html?demo=1&view=dashboard&v=GREEN-OFFICIAL-FULL">管理PC<small>問い合わせ・顧客・訪問・交換・警告</small></button>
-<button class="green-demo-tab" type="button" data-demo-title="植物・鉢台帳" data-demo-url="https://dpromstk2000-lab.github.io/dpro-green-rental-line/owner.html?demo=1&view=assets&v=GREEN-OFFICIAL-FULL">植物台帳<small>植物・鉢・現在地・移動・棚卸</small></button>
-<button class="green-demo-tab" type="button" data-demo-title="巡回・訪問管理" data-demo-url="https://dpromstk2000-lab.github.io/dpro-green-rental-line/owner.html?demo=1&view=visits&v=GREEN-OFFICIAL-FULL">定期巡回<small>担当・順番・状態・再訪問</small></button>
-<button class="green-demo-tab" type="button" data-demo-title="作業報告・写真管理" data-demo-url="https://dpromstk2000-lab.github.io/dpro-green-rental-line/owner.html?demo=1&view=reports&v=GREEN-OFFICIAL-FULL">作業報告<small>作業・状態・写真・公開</small></button>
-<button class="green-demo-tab" type="button" data-demo-title="交換・回収・養生管理" data-demo-url="https://dpromstk2000-lab.github.io/dpro-green-rental-line/owner.html?demo=1&view=replacements&v=GREEN-OFFICIAL-FULL">交換・養生<small>代替・積込・回収・再利用</small></button>
-<button class="green-demo-tab" type="button" data-demo-title="管理iPad・本日の運用ボード" data-demo-url="https://dpromstk2000-lab.github.io/dpro-green-rental-line/owner-ipad.html?demo=1&v=GREEN-OFFICIAL-FULL">管理iPad<small>本日の訪問・担当・交換予定</small></button>
-<button class="green-demo-tab" type="button" data-demo-title="スタッフ・本日の巡回" data-demo-url="https://dpromstk2000-lab.github.io/dpro-green-rental-line/staff.html?demo=1&v=GREEN-OFFICIAL-FULL">スタッフ<small>到着・作業・写真・完了</small></button>
-<button class="green-demo-tab" type="button" data-demo-title="お客様マイページ" data-demo-url="https://dpromstk2000-lab.github.io/dpro-green-rental-line/member.html?demo=1&tab=reports&v=GREEN-OFFICIAL-FULL">お客様<small>設置植物・次回訪問・公開報告</small></button>
+<button class="green-demo-tab is-active" type="button" data-demo-title="管理PC・ダッシュボード" data-demo-url="https://dpromstk2000-lab.github.io/dpro-green-rental-line/owner.html?demo=1&view=dashboard&v=GREEN-OFFICIAL-DEMO-R2">管理PC<small>問い合わせ・顧客・訪問・交換・警告</small></button>
+<button class="green-demo-tab" type="button" data-demo-title="植物・鉢台帳" data-demo-url="https://dpromstk2000-lab.github.io/dpro-green-rental-line/owner.html?demo=1&view=assets&v=GREEN-OFFICIAL-DEMO-R2">植物台帳<small>植物・鉢・現在地・移動・棚卸</small></button>
+<button class="green-demo-tab" type="button" data-demo-title="巡回・訪問管理" data-demo-url="https://dpromstk2000-lab.github.io/dpro-green-rental-line/owner.html?demo=1&view=visits&v=GREEN-OFFICIAL-DEMO-R2">定期巡回<small>担当・順番・状態・再訪問</small></button>
+<button class="green-demo-tab" type="button" data-demo-title="作業報告・写真管理" data-demo-url="https://dpromstk2000-lab.github.io/dpro-green-rental-line/owner.html?demo=1&view=reports&v=GREEN-OFFICIAL-DEMO-R2">作業報告<small>作業・状態・写真・公開</small></button>
+<button class="green-demo-tab" type="button" data-demo-title="交換・回収・養生管理" data-demo-url="https://dpromstk2000-lab.github.io/dpro-green-rental-line/owner.html?demo=1&view=replacements&v=GREEN-OFFICIAL-DEMO-R2">交換・養生<small>代替・積込・回収・再利用</small></button>
+<button class="green-demo-tab" type="button" data-demo-title="管理iPad・本日の運用ボード" data-demo-url="https://dpromstk2000-lab.github.io/dpro-green-rental-line/owner-ipad.html?demo=1&v=GREEN-OFFICIAL-DEMO-R2">管理iPad<small>本日の訪問・担当・交換予定</small></button>
+<button class="green-demo-tab" type="button" data-demo-title="スタッフ・本日の巡回" data-demo-url="https://dpromstk2000-lab.github.io/dpro-green-rental-line/staff.html?demo=1&v=GREEN-OFFICIAL-DEMO-R2">スタッフ<small>到着・作業・写真・完了</small></button>
+<button class="green-demo-tab" type="button" data-demo-title="お客様マイページ" data-demo-url="https://dpromstk2000-lab.github.io/dpro-green-rental-line/member.html?demo=1&tab=reports&v=GREEN-OFFICIAL-DEMO-R2">お客様<small>設置植物・次回訪問・公開報告</small></button>
 </div>
-<div class="green-demo-stage"><div class="green-demo-head"><strong data-demo-heading>管理PC・ダッシュボード</strong><a data-demo-external href="https://dpromstk2000-lab.github.io/dpro-green-rental-line/owner.html?demo=1&view=dashboard&v=GREEN-OFFICIAL-FULL" target="_blank" rel="noopener">別画面で開く ↗</a></div><div class="green-demo-frame"><iframe data-demo-frame title="管理PC・ダッシュボード" loading="lazy" src="https://dpromstk2000-lab.github.io/dpro-green-rental-line/owner.html?demo=1&view=dashboard&v=GREEN-OFFICIAL-FULL"></iframe></div></div>
+<div class="green-demo-stage">
+<div class="green-demo-head">
+<strong data-demo-heading>管理PC・ダッシュボード</strong>
+<div class="green-demo-actions">
+<button class="green-demo-open" type="button" data-green-open-selected data-green-demo-src="https://dpromstk2000-lab.github.io/dpro-green-rental-line/owner.html?demo=1&view=dashboard&v=GREEN-OFFICIAL-DEMO-R2" data-green-demo-title="管理PC・ダッシュボード">この画面を大きく表示</button>
+<a class="green-demo-external" data-demo-external href="https://dpromstk2000-lab.github.io/dpro-green-rental-line/owner.html?demo=1&view=dashboard&v=GREEN-OFFICIAL-DEMO-R2" target="_blank" rel="noopener" data-demo-link="green-selected">別タブで体験する ↗</a>
 </div>
-<p class="green-demo-note">デモ環境は表示専用のサンプルデータです。実際の導入時は、顧客数、設置鉢数、巡回方法、担当者数、写真報告、交換後の管理方法に合わせて必要な機能を整理します。</p>
+</div>
+<div class="green-demo-frame"><iframe data-demo-frame title="管理PC・ダッシュボード" loading="lazy" src="https://dpromstk2000-lab.github.io/dpro-green-rental-line/owner.html?demo=1&view=dashboard&v=GREEN-OFFICIAL-DEMO-R2"></iframe></div>
+</div>
+</div>
+<p class="green-demo-note"><strong>操作方法：</strong>画面内で操作しにくい場合は「別タブで体験する」をお使いください。公開デモは架空データだけを使用し、本番環境や実在するお客様情報には接続しません。</p>
+<div class="green-demo-direct">
+<button class="green-button green-button-primary" type="button" data-green-demo-src="https://dpromstk2000-lab.github.io/dpro-green-rental-line/owner.html?demo=1&view=dashboard&v=GREEN-OFFICIAL-DEMO-R2" data-green-demo-title="管理PC・ダッシュボード">実際の操作デモを大きく表示</button>
+<a class="green-button green-button-outline" href="https://dpromstk2000-lab.github.io/dpro-green-rental-line/owner.html?demo=1&view=dashboard&v=GREEN-OFFICIAL-DEMO-R2" target="_blank" rel="noopener" data-demo-link="green-demo-bottom">別タブで体験する ↗</a>
+</div>
 </div>
 </section>
 
@@ -413,29 +492,147 @@ gtag('config', 'G-YPN3998BHG');
 </section>
 
 <section class="green-final">
-<div class="green-wrap green-final-inner"><div><h2>現在の巡回・植物管理を、<br>一度整理してみませんか。</h2><p>顧客数、拠点数、設置鉢数、巡回方法、担当人数、写真報告、交換後の管理方法を伺い、必要な機能と導入順を整理します。</p></div><div class="green-final-actions"><a class="green-button green-button-primary" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで無料相談 →</a><a class="green-button green-button-secondary" href="#demo">実画面をもう一度見る</a></div></div>
+<div class="green-wrap green-final-inner"><div><h2>現在の巡回・植物管理を、<br>一度整理してみませんか。</h2><p>顧客数、拠点数、設置鉢数、巡回方法、担当人数、写真報告、交換後の管理方法を伺い、必要な機能と導入順を整理します。</p></div><div class="green-final-actions">
+<a class="green-button green-button-primary" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで無料相談 →</a>
+<button class="green-button green-button-secondary" type="button" data-green-demo-src="https://dpromstk2000-lab.github.io/dpro-green-rental-line/owner.html?demo=1&view=dashboard&v=GREEN-OFFICIAL-DEMO-R2" data-green-demo-title="管理PC・ダッシュボード">デモを大きく表示</button>
+<a class="green-button green-button-secondary" href="https://dpromstk2000-lab.github.io/dpro-green-rental-line/owner.html?demo=1&view=dashboard&v=GREEN-OFFICIAL-DEMO-R2" target="_blank" rel="noopener" data-demo-link="green-final">別タブで体験する ↗</a>
+</div></div>
 </section>
 </main>
 
 <footer class="site-footer">
 <div class="footer-inner">
 <div class="footer-brand"><a class="brand" href="../"><span class="brand-mark" aria-hidden="true">D</span><span class="brand-copy"><strong>DPRO SHOP</strong><small>LINE BUSINESS DESIGN</small></span></a><p>福岡県を中心に、LINE公式アカウント、ホームページ、<br>契約店舗限定の業種別DPROシステムを支援します。</p></div>
-<div class="footer-links"><div><strong>SERVICE</strong><a href="../line-build">LINE公式アカウント構築</a><a href="../line-operation">LINE運用サポート</a><a href="../website">ホームページ制作</a><a href="../pricing">料金</a></div><div><strong>PRODUCT</strong><a href="./">DPROシステム一覧</a><a href="green-rental">グリーンレンタル</a></div><div><strong>GUIDE</strong><a href="../about">DPRO SHOPについて</a><a href="../contact">お問い合わせ</a><a href="https://lin.ee/YxJGXV6D" rel="noopener" target="_blank">LINEで無料相談</a></div></div>
+<div class="footer-links"><div><strong>SERVICE</strong><a href="../line-build">LINE公式アカウント構築</a><a href="../line-operation">LINE運用サポート</a><a href="../website">ホームページ制作</a><a href="../pricing">料金</a></div><div><strong>PRODUCT</strong><a href="./">DPROシステム一覧</a><a href="green-rental">グリーンレンタル</a><a href="https://dpromstk2000-lab.github.io/dpro-green-rental-line/owner.html?demo=1&view=dashboard&v=GREEN-OFFICIAL-DEMO-R2" target="_blank" rel="noopener">GREENデモを体験</a></div><div><strong>GUIDE</strong><a href="../about">DPRO SHOPについて</a><a href="../contact">お問い合わせ</a><a href="https://lin.ee/YxJGXV6D" rel="noopener" target="_blank">LINEで無料相談</a></div></div>
 </div>
 <div class="footer-bottom"><span>© 2026 DPRO SHOP. All Rights Reserved.</span><a href="#top">PAGE TOP ↑</a></div>
 </footer>
+<div class="green-mobile-cta" aria-label="固定アクション">
+<button type="button" data-green-demo-src="https://dpromstk2000-lab.github.io/dpro-green-rental-line/owner.html?demo=1&view=dashboard&v=GREEN-OFFICIAL-DEMO-R2" data-green-demo-title="管理PC・ダッシュボード">デモを体験</button>
+<a href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで相談</a>
+</div>
+
+<div class="green-demo-modal" id="green-demo-modal" hidden aria-hidden="true">
+<div class="green-demo-dialog" role="dialog" aria-modal="true" aria-labelledby="green-demo-modal-title">
+<div class="green-demo-modal-head">
+<div class="green-demo-modal-title"><strong id="green-demo-modal-title">GREEN実際の操作デモ</strong><small>架空データを使用したデモ環境です</small></div>
+<a class="green-demo-modal-external" id="green-demo-modal-external" href="https://dpromstk2000-lab.github.io/dpro-green-rental-line/owner.html?demo=1&view=dashboard&v=GREEN-OFFICIAL-DEMO-R2" target="_blank" rel="noopener">別タブで開く</a>
+<button class="green-demo-modal-close" id="green-demo-modal-close" type="button" aria-label="デモ画面を閉じる">×</button>
+</div>
+<div class="green-demo-modal-frame" id="green-demo-modal-frame"><div class="green-demo-loading">実画面を読み込んでいます…</div></div>
+<div class="green-demo-modal-note">表示しにくい場合は「別タブで開く」をお使いください。閉じると読み込んだ画面を破棄します。</div>
+</div>
+</div>
+
 <script defer src="../script.js?v=17r1"></script>
 <script>
 document.addEventListener('DOMContentLoaded',()=>{
-  const menuButton=document.querySelector('.menu-button');
-  const nav=document.querySelector('#global-nav');
-  if(menuButton&&nav){menuButton.addEventListener('click',()=>{const open=menuButton.getAttribute('aria-expanded')==='true';menuButton.setAttribute('aria-expanded',String(!open));menuButton.classList.toggle('open',!open);nav.classList.toggle('open',!open)})}
+  'use strict';
+
   const tabs=[...document.querySelectorAll('.green-demo-tab')];
   const frame=document.querySelector('[data-demo-frame]');
   const heading=document.querySelector('[data-demo-heading]');
   const external=document.querySelector('[data-demo-external]');
-  tabs.forEach(tab=>tab.addEventListener('click',()=>{tabs.forEach(item=>item.classList.remove('is-active'));tab.classList.add('is-active');const url=tab.dataset.demoUrl;const title=tab.dataset.demoTitle||'GREEN実画面';if(frame){frame.src=url;frame.title=title}if(heading)heading.textContent=title;if(external)external.href=url}));
-  document.querySelectorAll('.green-faq-question').forEach(button=>button.addEventListener('click',()=>{const item=button.closest('.green-faq-item');const open=item.classList.toggle('is-open');button.setAttribute('aria-expanded',String(open))}));
+  const selectedOpen=document.querySelector('[data-green-open-selected]');
+
+  const selectDemo=(tab)=>{
+    tabs.forEach(item=>{
+      item.classList.toggle('is-active',item===tab);
+      item.setAttribute('aria-selected',String(item===tab));
+    });
+    const url=tab.dataset.demoUrl||'';
+    const title=tab.dataset.demoTitle||'GREEN実画面';
+    if(frame){frame.src=url;frame.title=title}
+    if(heading)heading.textContent=title;
+    if(external)external.href=url;
+    if(selectedOpen){
+      selectedOpen.dataset.greenDemoSrc=url;
+      selectedOpen.dataset.greenDemoTitle=title;
+    }
+  };
+
+  tabs.forEach(tab=>tab.addEventListener('click',()=>selectDemo(tab)));
+
+  const modal=document.getElementById('green-demo-modal');
+  const modalFrame=document.getElementById('green-demo-modal-frame');
+  const modalTitle=document.getElementById('green-demo-modal-title');
+  const modalExternal=document.getElementById('green-demo-modal-external');
+  const modalClose=document.getElementById('green-demo-modal-close');
+  const openButtons=[...document.querySelectorAll('[data-green-demo-src]')];
+  let opener=null;
+
+  const resetModalFrame=()=>{
+    modalFrame.replaceChildren();
+    const loading=document.createElement('div');
+    loading.className='green-demo-loading';
+    loading.textContent='実画面を読み込んでいます…';
+    modalFrame.appendChild(loading);
+  };
+
+  const closeModal=()=>{
+    if(!modal||modal.hidden)return;
+    modal.hidden=true;
+    modal.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+    resetModalFrame();
+    if(opener instanceof HTMLElement)opener.focus();
+  };
+
+  const openModal=(button)=>{
+    const src=button.dataset.greenDemoSrc||'';
+    if(!src||!modal)return;
+    opener=button;
+    const title=button.dataset.greenDemoTitle||'GREEN実際の操作デモ';
+    modalTitle.textContent=title;
+    modalExternal.href=src;
+    modal.hidden=false;
+    modal.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+    resetModalFrame();
+
+    const iframe=document.createElement('iframe');
+    iframe.src=src;
+    iframe.title=title;
+    iframe.loading='eager';
+    iframe.referrerPolicy='no-referrer';
+    iframe.addEventListener('load',()=>{
+      const loading=modalFrame.querySelector('.green-demo-loading');
+      if(loading)loading.remove();
+    },{once:true});
+    modalFrame.appendChild(iframe);
+    window.requestAnimationFrame(()=>modalClose.focus());
+  };
+
+  openButtons.forEach(button=>button.addEventListener('click',()=>openModal(button)));
+  modalClose?.addEventListener('click',closeModal);
+  modal?.addEventListener('click',event=>{if(event.target===modal)closeModal()});
+
+  document.addEventListener('keydown',event=>{
+    if(!modal||modal.hidden)return;
+    if(event.key==='Escape'){
+      event.preventDefault();
+      closeModal();
+      return;
+    }
+    if(event.key==='Tab'){
+      const focusable=[modalExternal,modalClose].filter(Boolean);
+      const first=focusable[0];
+      const last=focusable[focusable.length-1];
+      if(event.shiftKey&&document.activeElement===first){
+        event.preventDefault();
+        last.focus();
+      }else if(!event.shiftKey&&document.activeElement===last){
+        event.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
+  document.querySelectorAll('.green-faq-question').forEach(button=>button.addEventListener('click',()=>{
+    const item=button.closest('.green-faq-item');
+    const open=item.classList.toggle('is-open');
+    button.setAttribute('aria-expanded',String(open));
+  }));
 });
 </script>
 </body>
