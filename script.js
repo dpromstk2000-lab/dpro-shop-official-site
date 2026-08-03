@@ -1,192 +1,228 @@
 (() => {
   "use strict";
 
-  document.documentElement.classList.remove("no-js");
-  document.documentElement.classList.add("js");
+  const READABILITY_STYLE_ID = "dpro-site-readability-r1";
+  const ORIGINAL_SCRIPT_SOURCES = [
+    "https://cdn.jsdelivr.net/gh/dpromstk2000-lab/dpro-shop-official-site@c4df1ea58c5f5fc4fa2dd2057a5b45e31216bfca/script.js",
+    "https://raw.githack.com/dpromstk2000-lab/dpro-shop-official-site/c4df1ea58c5f5fc4fa2dd2057a5b45e31216bfca/script.js"
+  ];
 
-  const sendAnalyticsEvent = (eventName, parameters = {}) => {
-    if (typeof window.gtag !== "function") return;
-    window.gtag("event", eventName, parameters);
+  const addReadabilityStyle = () => {
+    if (document.getElementById(READABILITY_STYLE_ID)) return;
+
+    const style = document.createElement("style");
+    style.id = READABILITY_STYLE_ID;
+    style.textContent = `
+      /*
+       * DPRO SHOP SITE-WIDE READABILITY R1
+       * 小さい本文・補足・ナビ・カード説明を一段読みやすくする。
+       * 画面モック内の細かな文字は、レイアウトを守るため対象外。
+       */
+      html {
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+      }
+
+      body {
+        font-size: 16px;
+        line-height: 1.75;
+      }
+
+      .global-nav a {
+        font-size: 14px !important;
+        font-weight: 750 !important;
+      }
+
+      .brand-copy strong {
+        font-size: 13px !important;
+      }
+
+      .brand-copy small {
+        font-size: 9px !important;
+        line-height: 1.35 !important;
+      }
+
+      .eyebrow,
+      .green-eyebrow,
+      .sys-product-card-copy small,
+      .catalog-card-copy small,
+      .product-feature > span,
+      .live-copy > span,
+      .feature-showcase-copy > span,
+      .phase-live-copy > span {
+        font-size: 12px !important;
+        line-height: 1.45 !important;
+        letter-spacing: .12em !important;
+        font-weight: 900 !important;
+      }
+
+      .hero-lead,
+      .phase-hero-lead,
+      .sys-hero-lead,
+      .product-hero-copy > p:not(.eyebrow),
+      .green-lead {
+        font-size: clamp(16px, 1.25vw, 19px) !important;
+        line-height: 1.95 !important;
+      }
+
+      .section-heading > p:last-child,
+      .sys-section-head > p,
+      .green-heading > p,
+      .green-detail-copy > p,
+      .green-final-inner > div > p,
+      .catalog-note-inner > p,
+      .product-proof-inner > p {
+        font-size: 15px !important;
+        line-height: 1.9 !important;
+      }
+
+      .service-card p,
+      .experience-card p,
+      .system-card small,
+      .product-feature p,
+      .live-copy p,
+      .live-copy li,
+      .feature-showcase-copy p,
+      .feature-showcase-copy li,
+      .phase-number p,
+      .industry-panel p,
+      .phase-live-copy p,
+      .phase-principles p,
+      .owner-problem-card p,
+      .sales-summary-card li,
+      .sales-problem-before strong,
+      .sales-problem-after strong,
+      .catalog-card-copy p,
+      .sys-product-card-copy p,
+      .green-card p,
+      .green-card li,
+      .green-problem-card p,
+      .green-detail-list li,
+      .green-ba-before,
+      .green-ba-after,
+      .green-security-card p,
+      .green-fit-card p,
+      .green-faq-answer,
+      .green-price-card p,
+      .green-price-card li,
+      .green-price-note {
+        font-size: 14px !important;
+        line-height: 1.85 !important;
+      }
+
+      .sys-product-card-link,
+      .catalog-card-cta,
+      .text-link,
+      .green-demo-note,
+      .green-proof span,
+      .green-role-chip,
+      .green-value-strip span,
+      .sys-publish-note {
+        font-size: 13px !important;
+        line-height: 1.7 !important;
+      }
+
+      .button,
+      .green-button,
+      .nav-cta,
+      button {
+        font-size: 14px;
+      }
+
+      .site-footer p,
+      .site-footer a,
+      .footer-bottom,
+      .footer-legal-links a {
+        font-size: 13px !important;
+        line-height: 1.75 !important;
+      }
+
+      .faq-list summary,
+      .green-faq-question {
+        font-size: 16px !important;
+        line-height: 1.65 !important;
+      }
+
+      input,
+      select,
+      textarea {
+        font-size: 16px;
+      }
+
+      @media (max-width: 760px) {
+        body {
+          font-size: 16px;
+        }
+
+        .global-nav a {
+          font-size: 15px !important;
+        }
+
+        .hero-lead,
+        .phase-hero-lead,
+        .sys-hero-lead,
+        .product-hero-copy > p:not(.eyebrow),
+        .green-lead,
+        .section-heading > p:last-child,
+        .sys-section-head > p,
+        .green-heading > p {
+          font-size: 15px !important;
+          line-height: 1.9 !important;
+        }
+
+        .service-card p,
+        .experience-card p,
+        .system-card small,
+        .product-feature p,
+        .live-copy p,
+        .live-copy li,
+        .feature-showcase-copy p,
+        .feature-showcase-copy li,
+        .catalog-card-copy p,
+        .sys-product-card-copy p,
+        .green-card p,
+        .green-card li,
+        .green-problem-card p,
+        .green-detail-list li,
+        .green-faq-answer {
+          font-size: 14px !important;
+        }
+
+        .site-footer p,
+        .site-footer a {
+          font-size: 13px !important;
+        }
+      }
+    `;
+    document.head.appendChild(style);
   };
 
-  document.addEventListener("click", (event) => {
-    const link = event.target.closest("a[href]");
-    if (!link) return;
+  const loadScript = (src) =>
+    new Promise((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.async = false;
+      script.onload = () => resolve(src);
+      script.onerror = () => reject(new Error(`読み込み失敗: ${src}`));
+      document.head.appendChild(script);
+    });
 
-    const href = link.href || "";
-    if (href.includes("lin.ee/YxJGXV6D")) {
-      sendAnalyticsEvent("generate_lead", {
-        event_category: "contact",
-        event_label: "LINE無料相談",
-        link_url: href,
-        page_location: window.location.href
-      });
-    }
-  });
-
-  const header = document.querySelector(".site-header");
-  const menuButton = document.querySelector(".menu-button");
-  const nav = document.querySelector(".global-nav");
-  const navLinks = nav ? [...nav.querySelectorAll("a")] : [];
-  let lastFocusedElement = null;
-  let lockedScrollY = 0;
-
-  const isMenuOpen = () => Boolean(menuButton && menuButton.getAttribute("aria-expanded") === "true");
-
-  const lockPage = () => {
-    lockedScrollY = window.scrollY;
-    document.body.classList.add("menu-open");
-    document.body.style.position = "fixed";
-    document.body.style.top = `-${lockedScrollY}px`;
-    document.body.style.left = "0";
-    document.body.style.right = "0";
-    document.body.style.width = "100%";
-  };
-
-  const unlockPage = () => {
-    document.body.classList.remove("menu-open");
-    document.body.style.position = "";
-    document.body.style.top = "";
-    document.body.style.left = "";
-    document.body.style.right = "";
-    document.body.style.width = "";
-    window.scrollTo(0, lockedScrollY);
-  };
-
-  const closeMenu = ({ restoreFocus = false } = {}) => {
-    if (!menuButton || !nav) return;
-    const wasOpen = isMenuOpen();
-    menuButton.setAttribute("aria-expanded", "false");
-    menuButton.setAttribute("aria-label", "サイト案内を開く");
-    nav.classList.remove("is-open");
-    header?.classList.remove("menu-active");
-    nav.scrollTop = 0;
-    if (wasOpen) unlockPage();
-    if (restoreFocus && lastFocusedElement instanceof HTMLElement) lastFocusedElement.focus();
-  };
-
-  const openMenu = () => {
-    if (!menuButton || !nav) return;
-    lastFocusedElement = document.activeElement;
-    menuButton.setAttribute("aria-expanded", "true");
-    menuButton.setAttribute("aria-label", "サイト案内を閉じる");
-    nav.classList.add("is-open");
-    header?.classList.add("menu-active");
-    nav.scrollTop = 0;
-    lockPage();
-    window.requestAnimationFrame(() => navLinks[0]?.focus());
-  };
-
-  if (menuButton && nav) {
-    menuButton.setAttribute("aria-label", "サイト案内を開く");
-    menuButton.addEventListener("click", () => isMenuOpen() ? closeMenu({ restoreFocus: true }) : openMenu());
-    navLinks.forEach((link) => link.addEventListener("click", () => closeMenu()));
-
-    document.addEventListener("keydown", (event) => {
-      if (!isMenuOpen()) return;
-      if (event.key === "Escape") {
-        event.preventDefault();
-        closeMenu({ restoreFocus: true });
+  const loadOriginalScript = async () => {
+    let lastError = null;
+    for (const src of ORIGINAL_SCRIPT_SOURCES) {
+      try {
+        await loadScript(src);
         return;
+      } catch (error) {
+        lastError = error;
       }
-      if (event.key === "Tab") {
-        const focusable = [menuButton, ...navLinks].filter((el) => el && !el.hasAttribute("disabled"));
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-        if (event.shiftKey && document.activeElement === first) {
-          event.preventDefault(); last.focus();
-        } else if (!event.shiftKey && document.activeElement === last) {
-          event.preventDefault(); first.focus();
-        }
-      }
-    });
+    }
+    throw lastError || new Error("DPRO SHOP共通処理を読み込めませんでした。");
+  };
 
-    window.addEventListener("resize", () => {
-      if (window.innerWidth > 960 && isMenuOpen()) closeMenu();
-    });
-  }
+  addReadabilityStyle();
 
-  const updateHeader = () => header?.classList.toggle("scrolled", window.scrollY > 20);
-  updateHeader();
-  window.addEventListener("scroll", updateHeader, { passive: true });
-
-  const normalizePath = (pathname) => pathname.replace(/\/index\.html$/, "/");
-  const currentPath = normalizePath(window.location.pathname);
-  document.querySelectorAll(".global-nav a, .footer-links a, .footer-legal-links a").forEach((link) => {
-    try {
-      const url = new URL(link.href, window.location.href);
-      if (url.origin !== window.location.origin || url.hash) return;
-      if (normalizePath(url.pathname) === currentPath) link.setAttribute("aria-current", "page");
-    } catch {}
+  loadOriginalScript().catch((error) => {
+    console.error("[DPRO SHOP] 共通処理の読み込みに失敗しました。", error);
   });
-
-  const reveals = document.querySelectorAll(".reveal");
-  if ("IntersectionObserver" in window) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: "0px 0px -35px 0px" });
-    reveals.forEach((element) => observer.observe(element));
-  } else {
-    reveals.forEach((element) => element.classList.add("is-visible"));
-  }
-
-
-  const demoButtons = [...document.querySelectorAll("[data-load-demo]")];
-
-  demoButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const group = button.getAttribute("data-load-demo");
-      sendAnalyticsEvent("select_content", {
-        content_type: "dpro_demo",
-        item_id: group || "unknown",
-        page_location: window.location.href
-      });
-      const holders = [...document.querySelectorAll(`[data-demo-group="${group}"]`)]
-        .filter((holder) => !holder.classList.contains("is-live"));
-
-      if (!holders.length) return;
-
-      button.disabled = true;
-      button.textContent = "実画面を読み込み中…";
-
-      let loadedCount = 0;
-      holders.forEach((holder) => {
-        const frame = document.createElement("iframe");
-        frame.src = holder.dataset.liveSrc || "";
-        frame.title = holder.dataset.liveTitle || "DPRO実画面デモ";
-        frame.loading = "eager";
-        frame.referrerPolicy = "no-referrer";
-        frame.tabIndex = -1;
-
-        frame.addEventListener("load", () => {
-          loadedCount += 1;
-          holder.classList.add("is-live");
-          if (loadedCount >= holders.length) {
-            button.textContent = "実画面を表示中";
-            button.hidden = true;
-          }
-        }, { once: true });
-
-        holder.replaceChildren(frame);
-      });
-
-      window.setTimeout(() => {
-        if (!button.hidden) {
-          button.disabled = false;
-          button.textContent = "実画面を再読み込み";
-        }
-      }, 10000);
-    });
-  });
-
-  const details = [...document.querySelectorAll(".faq-list details")];
-  details.forEach((item) => item.addEventListener("toggle", () => {
-    if (!item.open) return;
-    details.forEach((other) => { if (other !== item) other.removeAttribute("open"); });
-  }));
 })();
