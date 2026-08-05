@@ -38,4 +38,17 @@
       }, 650);
     });
   });
+
+  document.querySelectorAll('[data-or-bridge-stage]').forEach(stage => {
+    const update = (event) => {
+      const rect = stage.getBoundingClientRect();
+      stage.style.setProperty('--mx', `${((event.clientX - rect.left) / rect.width) * 100}%`);
+      stage.style.setProperty('--my', `${((event.clientY - rect.top) / rect.height) * 100}%`);
+    };
+    stage.addEventListener('pointermove', update, { passive: true });
+    stage.addEventListener('pointerleave', () => {
+      stage.style.setProperty('--mx', '50%');
+      stage.style.setProperty('--my', '50%');
+    });
+  });
 })();
