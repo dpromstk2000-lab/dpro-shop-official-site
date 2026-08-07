@@ -240,3 +240,47 @@
 .example-visual.pet-visual span{
   color:#425166;
 }
+
+/* DPRO OFFICIAL HERO TEXT OVERLAP FIX V1 — 2026-08-07 */
+@media (min-width:1101px) and (max-width:1279px){
+  .official-refresh .or-hero__grid{
+    grid-template-columns:1fr !important;
+    gap:36px !important;
+  }
+  .official-refresh .or-hero__copy{
+    position:relative;
+    z-index:6;
+    max-width:900px;
+  }
+  .official-refresh .or-hero__copy h1{
+    max-width:900px !important;
+    font-size:clamp(54px,5.1vw,64px) !important;
+  }
+  .official-refresh .or-hero__visual{
+    min-height:520px !important;
+  }
+}
+@media (min-width:1280px){
+  .official-refresh .or-hero__grid{
+    grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr) !important;
+    gap:3vw !important;
+  }
+  .official-refresh .or-hero__copy{
+    position:relative;
+    z-index:6;
+    min-width:0;
+  }
+  .official-refresh .or-hero__copy h1{
+    max-width:100% !important;
+    font-size:clamp(54px,4.4vw,70px) !important;
+    line-height:1.04 !important;
+  }
+  .official-refresh .or-hero__copy h1 em{
+    font-size:.86em !important;
+    letter-spacing:-.06em !important;
+  }
+  .official-refresh .or-hero__visual{
+    z-index:2;
+    min-width:0;
+  }
+}
