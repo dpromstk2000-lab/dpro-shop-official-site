@@ -91,6 +91,9 @@
     style.id = 'dpro-official-wangan-samples-style';
     style.textContent = `
       #case .or-case-card{margin-bottom:34px}
+      .or-green-case-number{display:flex;align-items:center;gap:10px;margin:0 0 12px;color:#0b1621;font-size:11px;font-weight:1000;letter-spacing:.11em}
+      .or-green-case-number span{display:inline-flex;padding:6px 9px;background:#0d1713;color:#7cff95;border:1px solid #21382b}
+      .or-green-case-number b{font-size:11px;letter-spacing:.08em}
       .or-wangan-samples{margin-top:32px}
       .or-wangan-samples__head{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:20px}
       .or-wangan-samples__head small{display:block;color:#8b6200;font-size:11px;font-weight:900;letter-spacing:.14em}
@@ -133,6 +136,14 @@
       }
     `;
     document.head.appendChild(style);
+
+    if (!section.querySelector('[data-green-case-number]')) {
+      const greenNumber = document.createElement('div');
+      greenNumber.className = 'or-green-case-number';
+      greenNumber.dataset.greenCaseNumber = '';
+      greenNumber.innerHTML = '<span>01 / BUSINESS WEBSITE SAMPLE</span><b>DPRO GREEN</b>';
+      greenCard.insertAdjacentElement('beforebegin', greenNumber);
+    }
 
     const wrap = document.createElement('div');
     wrap.className = 'or-wangan-samples or-reveal';
