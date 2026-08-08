@@ -1,0 +1,304 @@
+/* DPRO SHOP / WEBSITE PRODUCTION SAMPLES
+   STATIC STYLE R1 / 2026-08-08
+   JS内の動的styleに依存せず、比較制作例を確実に大きく表示する。 */
+
+#case .or-green-case-number{
+  display:flex!important;
+  align-items:center!important;
+  gap:10px!important;
+  margin:0 0 14px!important;
+  color:#0b1621!important;
+  font-size:11px!important;
+  font-weight:900!important;
+  letter-spacing:.11em!important;
+}
+
+#case .or-green-case-number span{
+  display:inline-flex!important;
+  padding:7px 10px!important;
+  background:#0d1713!important;
+  color:#7cff95!important;
+  border:1px solid #21382b!important;
+}
+
+#case .or-wangan-samples{
+  display:block!important;
+  width:100%!important;
+  max-width:none!important;
+  margin:48px 0 0!important;
+}
+
+#case .or-wangan-samples__head{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(300px,.72fr)!important;
+  gap:38px!important;
+  align-items:end!important;
+  width:100%!important;
+  margin:0 0 28px!important;
+  padding:0 0 24px!important;
+  border-bottom:1px solid #dfe4e8!important;
+}
+
+#case .or-wangan-samples__head small{
+  display:block!important;
+  color:#8b6200!important;
+  font-size:11px!important;
+  font-weight:900!important;
+  letter-spacing:.14em!important;
+}
+
+#case .or-wangan-samples__head h3{
+  margin:8px 0 0!important;
+  color:#0b1621!important;
+  font-size:clamp(30px,3.3vw,44px)!important;
+  line-height:1.16!important;
+  letter-spacing:-.04em!important;
+}
+
+#case .or-wangan-samples__head p{
+  max-width:560px!important;
+  margin:0!important;
+  color:#67727d!important;
+  font-size:14px!important;
+  line-height:1.9!important;
+}
+
+#case .or-wangan-samples__grid{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  gap:26px!important;
+  width:100%!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:0!important;
+}
+
+#case .or-wangan-sample{
+  position:relative!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1.75fr) minmax(300px,.68fr)!important;
+  width:100%!important;
+  max-width:none!important;
+  min-width:0!important;
+  min-height:500px!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+  border:1px solid #dfe4e8!important;
+  border-radius:26px!important;
+  background:#fff!important;
+  box-shadow:0 22px 58px rgba(8,20,30,.10)!important;
+}
+
+#case .or-wangan-sample.is-business{
+  background:#0c131b!important;
+  color:#fff!important;
+  border-color:#24313e!important;
+  box-shadow:0 28px 70px rgba(7,15,24,.20)!important;
+}
+
+#case .or-wangan-sample__preview{
+  position:relative!important;
+  display:block!important;
+  width:100%!important;
+  max-width:none!important;
+  min-width:0!important;
+  min-height:500px!important;
+  height:500px!important;
+  margin:0!important;
+  padding:0!important;
+  overflow:hidden!important;
+  background:#090e13!important;
+  border-right:1px solid #e4e8eb!important;
+}
+
+#case .or-wangan-sample.is-business .or-wangan-sample__preview{
+  border-right-color:#24313e!important;
+}
+
+#case .or-wangan-sample__preview iframe{
+  position:absolute!important;
+  inset:0!important;
+  display:block!important;
+  width:100%!important;
+  max-width:none!important;
+  height:100%!important;
+  min-height:500px!important;
+  margin:0!important;
+  padding:0!important;
+  border:0!important;
+  transform:none!important;
+  transform-origin:initial!important;
+  pointer-events:none!important;
+  background:#fff!important;
+}
+
+#case .or-wangan-sample__copy{
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  width:auto!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:34px 34px 32px!important;
+}
+
+#case .or-wangan-sample__copy>small{
+  color:#8b6200!important;
+  font-size:10px!important;
+  font-weight:900!important;
+  letter-spacing:.13em!important;
+}
+
+#case .or-wangan-sample.is-business .or-wangan-sample__copy>small{
+  color:#ffd633!important;
+}
+
+#case .or-wangan-sample h4{
+  margin:10px 0 0!important;
+  font-size:clamp(23px,2.2vw,31px)!important;
+  line-height:1.35!important;
+}
+
+#case .or-wangan-sample__price{
+  display:block!important;
+  margin:14px 0 0!important;
+  font-size:clamp(29px,2.6vw,37px)!important;
+  line-height:1!important;
+  font-weight:900!important;
+}
+
+#case .or-wangan-sample__price small{
+  margin-left:3px!important;
+  font-size:13px!important;
+}
+
+#case .or-wangan-sample p{
+  margin:16px 0 0!important;
+  color:#64707a!important;
+  font-size:13px!important;
+  line-height:1.85!important;
+}
+
+#case .or-wangan-sample.is-business p{
+  color:#b8c1cb!important;
+}
+
+#case .or-wangan-sample ul{
+  display:grid!important;
+  gap:9px!important;
+  margin:20px 0 24px!important;
+  padding:0!important;
+  list-style:none!important;
+}
+
+#case .or-wangan-sample li{
+  position:relative!important;
+  padding-left:18px!important;
+  font-size:13px!important;
+  line-height:1.6!important;
+}
+
+#case .or-wangan-sample li:before{
+  content:"✓"!important;
+  position:absolute!important;
+  left:0!important;
+  color:#a77b00!important;
+  font-weight:900!important;
+}
+
+#case .or-wangan-sample.is-business li:before{
+  color:#ffd633!important;
+}
+
+#case .or-wangan-sample .or-button{
+  width:100%!important;
+  min-height:52px!important;
+  margin-top:auto!important;
+  justify-content:center!important;
+}
+
+#case .or-wangan-sample__badge{
+  position:absolute!important;
+  z-index:3!important;
+  left:18px!important;
+  top:18px!important;
+  padding:8px 11px!important;
+  border-radius:999px!important;
+  background:#ffd633!important;
+  color:#111!important;
+  box-shadow:0 8px 24px rgba(0,0,0,.18)!important;
+  font-size:9px!important;
+  font-weight:900!important;
+  letter-spacing:.08em!important;
+}
+
+#case .or-wangan-samples__note{
+  width:100%!important;
+  margin:22px 0 0!important;
+  padding:15px 17px!important;
+  border-left:3px solid #c79600!important;
+  background:#f7f3e8!important;
+  color:#666f76!important;
+  font-size:11px!important;
+  line-height:1.8!important;
+}
+
+@media(max-width:980px){
+  #case .or-wangan-samples__head{
+    grid-template-columns:1fr!important;
+    gap:12px!important;
+  }
+
+  #case .or-wangan-sample{
+    grid-template-columns:1fr!important;
+    min-height:0!important;
+  }
+
+  #case .or-wangan-sample__preview{
+    height:360px!important;
+    min-height:360px!important;
+    border-right:0!important;
+    border-bottom:1px solid #e4e8eb!important;
+  }
+
+  #case .or-wangan-sample__preview iframe{
+    min-height:360px!important;
+  }
+
+  #case .or-wangan-sample__copy{
+    padding:28px!important;
+  }
+}
+
+@media(max-width:680px){
+  #case .or-wangan-samples{
+    margin-top:36px!important;
+  }
+
+  #case .or-wangan-samples__head{
+    margin-bottom:20px!important;
+    padding-bottom:18px!important;
+  }
+
+  #case .or-wangan-samples__head h3{
+    font-size:30px!important;
+  }
+
+  #case .or-wangan-sample{
+    border-radius:20px!important;
+  }
+
+  #case .or-wangan-sample__preview{
+    height:280px!important;
+    min-height:280px!important;
+  }
+
+  #case .or-wangan-sample__preview iframe{
+    min-height:280px!important;
+  }
+
+  #case .or-wangan-sample__copy{
+    padding:22px 20px 21px!important;
+  }
+}
