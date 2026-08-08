@@ -1,3 +1,46 @@
+/* DPRO SHOP OFFICIAL / REVEAL FAILSAFE R1 / 20260808
+   Site-wide safety net: sections must never remain invisible when legacy CDN loading fails. */
+(() => {
+  "use strict";
+
+  const installRevealFailsafe = () => {
+    const reveals = [...document.querySelectorAll(".reveal")];
+    if (!reveals.length) return;
+
+    if (!("IntersectionObserver" in window)) {
+      reveals.forEach((el) => el.classList.add("is-visible"));
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.06, rootMargin: "0px 0px -20px 0px" });
+
+    reveals.forEach((el) => observer.observe(el));
+
+    // First-view safety: anything already in/near the viewport is shown immediately.
+    requestAnimationFrame(() => {
+      reveals.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight + 120 && rect.bottom > -120) {
+          el.classList.add("is-visible");
+          observer.unobserve(el);
+        }
+      });
+    });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", installRevealFailsafe, { once: true });
+  } else {
+    installRevealFailsafe();
+  }
+})();
+
 (() => {
   "use strict";
   const legacySources = [
