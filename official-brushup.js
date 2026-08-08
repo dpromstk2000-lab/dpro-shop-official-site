@@ -1,5 +1,5 @@
 /* DPRO SHOP OFFICIAL BRUSHUP
- * WEBSITE SAMPLE SIZE FIX R2
+ * WEBSITE SAMPLE SIZE FIX R3
  * 2026-08-08
  */
 (() => {
@@ -197,10 +197,11 @@
 
       .or-wangan-sample{
         position:relative;
+        width:100%;
         min-width:0;
-        min-height:470px;
+        min-height:500px;
         display:grid;
-        grid-template-columns:minmax(0,1.34fr) minmax(330px,.66fr);
+        grid-template-columns:minmax(0,1.7fr) minmax(300px,.72fr);
         overflow:hidden;
         border:1px solid #dfe4e8;
         border-radius:26px;
@@ -218,7 +219,7 @@
       .or-wangan-sample__preview{
         position:relative;
         min-width:0;
-        min-height:470px;
+        min-height:500px;
         height:100%;
         overflow:hidden;
         background:#090e13;
@@ -229,15 +230,17 @@
         border-right-color:#24313e;
       }
 
-      /* 200% × 0.5 = 表示幅100%。カード幅に合わせて大きく見せる */
+      /* R3: iframeを縮小表示しない。
+         プレビュー枠そのものの幅でレスポンシブ表示させるため、
+         サイト内容・文字・写真が小さくなりすぎない。 */
       .or-wangan-sample__preview iframe{
         position:absolute;
-        inset:0 auto auto 0;
-        width:200%;
-        height:980px;
+        inset:0;
+        width:100%;
+        height:100%;
+        min-height:500px;
         border:0;
-        transform:scale(.5);
-        transform-origin:0 0;
+        transform:none;
         pointer-events:none;
         background:#fff;
       }
@@ -384,8 +387,10 @@
         }
 
         .or-wangan-sample__preview iframe{
-          width:250%;
-          transform:scale(.4);
+          width:100%;
+          height:100%;
+          min-height:340px;
+          transform:none;
         }
 
         .or-wangan-sample__copy{
@@ -417,9 +422,10 @@
         }
 
         .or-wangan-sample__preview iframe{
-          width:333.333%;
-          height:900px;
-          transform:scale(.30);
+          width:100%;
+          height:100%;
+          min-height:250px;
+          transform:none;
         }
 
         .or-wangan-sample__copy{
