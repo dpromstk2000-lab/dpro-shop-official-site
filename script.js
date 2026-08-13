@@ -1,17 +1,20 @@
-/* DPRO SHOP OFFICIAL / REVEAL FAILSAFE R1 / 20260808
-   Site-wide safety net: sections must never remain invisible when legacy CDN loading fails. */
+/* DPRO SHOP OFFICIAL / FINAL SITE-WIDE SAFETY + IDENTITY R1 / 20260813 */
 (() => {
   "use strict";
+
+  const PRODUCT_SITE = "https://dpromstk2000-lab.github.io/dpro-line-systems-site/";
+  const LEGACY_SOURCES = [
+    "https://cdn.jsdelivr.net/gh/dpromstk2000-lab/dpro-shop-official-site@648871083f6b96bf0678441b683140d2edfc514b/script.js",
+    "https://raw.githack.com/dpromstk2000-lab/dpro-shop-official-site/648871083f6b96bf0678441b683140d2edfc514b/script.js"
+  ];
 
   const installRevealFailsafe = () => {
     const reveals = [...document.querySelectorAll(".reveal")];
     if (!reveals.length) return;
-
     if (!("IntersectionObserver" in window)) {
       reveals.forEach((el) => el.classList.add("is-visible"));
       return;
     }
-
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (!entry.isIntersecting) return;
@@ -19,10 +22,7 @@
         observer.unobserve(entry.target);
       });
     }, { threshold: 0.06, rootMargin: "0px 0px -20px 0px" });
-
     reveals.forEach((el) => observer.observe(el));
-
-    // First-view safety: anything already in/near the viewport is shown immediately.
     requestAnimationFrame(() => {
       reveals.forEach((el) => {
         const rect = el.getBoundingClientRect();
@@ -34,47 +34,106 @@
     });
   };
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", installRevealFailsafe, { once: true });
-  } else {
-    installRevealFailsafe();
-  }
-})();
+  const ensureFinalCss = () => {
+    if (document.querySelector('link[href*="official-final.css"]')) return;
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href = "official-final.css?v=3.3-final";
+    document.head.appendChild(link);
+  };
 
-(() => {
-  "use strict";
-  const legacySources = [
-    "https://cdn.jsdelivr.net/gh/dpromstk2000-lab/dpro-shop-official-site@648871083f6b96bf0678441b683140d2edfc514b/script.js",
-    "https://raw.githack.com/dpromstk2000-lab/dpro-shop-official-site/648871083f6b96bf0678441b683140d2edfc514b/script.js"
-  ];
-  const systemSite = "https://dpromstk2000-lab.github.io/dpro-line-systems-site/";
-  const load = (src) => new Promise((resolve,reject) => {
-    const s=document.createElement("script"); s.src=src; s.async=false;
-    s.onload=resolve; s.onerror=()=>reject(new Error(`読み込み失敗: ${src}`)); document.head.appendChild(s);
-  });
-  const inject = () => {
-    if (!document.getElementById("dpro-cross-site-style")) {
-      const style=document.createElement("style"); style.id="dpro-cross-site-style";
-      style.textContent=`.dpro-system-site-link{padding:9px 14px!important;border:1px solid rgba(168,255,42,.34)!important;border-radius:999px!important;color:#b6ff3b!important;background:rgba(168,255,42,.06)!important;font-weight:900!important;white-space:nowrap}.dpro-system-site-link:hover{background:rgba(168,255,42,.14)!important}@media(max-width:960px){.dpro-system-site-link{display:block!important;margin-top:8px!important;text-align:center!important;border-radius:12px!important}}`;
-      document.head.appendChild(style);
-    }
-    const nav=document.querySelector(".global-nav,.or-nav");
-    if(nav && !nav.querySelector("[data-system-site-link]")){
-      const a=document.createElement("a"); a.href=systemSite; a.target="_blank"; a.rel="noopener"; a.className="dpro-system-site-link"; a.dataset.systemSiteLink=""; a.textContent="実画面・49製品 ↗";
-      const cta=nav.querySelector(".nav-cta,.or-nav__cta"); cta?nav.insertBefore(a,cta):nav.appendChild(a);
-    }
-    document.querySelectorAll(".site-footer nav,.or-footer nav").forEach(nav=>{
-      if(nav.querySelector("[data-system-site-link]")) return;
-      const a=document.createElement("a"); a.href=systemSite; a.target="_blank"; a.rel="noopener"; a.dataset.systemSiteLink=""; a.textContent="実際に動く49製品 ↗"; nav.appendChild(a);
+  const enhanceLegacyOfficial = () => {
+    const body = document.body;
+    if (!body) return;
+    if (body.classList.contains("official-v33") || body.classList.contains("official-v32")) return;
+    if (location.pathname.includes("/systems/") || location.pathname.includes("/system-check")) return; // dedicated system layers own these pages.
+
+    ensureFinalCss();
+    body.classList.add("dpro-legacy-official");
+
+    document.querySelectorAll(".brand-copy small").forEach((node) => {
+      node.textContent = "OFFICIAL SITE";
     });
+
+    const nav = document.querySelector(".global-nav,.or-nav");
+    if (nav?.classList.contains("global-nav")) {
+      nav.innerHTML = `
+        <a href="line-build">LINE構築</a>
+        <a href="line-operation">LINE運用</a>
+        <a href="website">HP制作</a>
+        <a href="systems/">DPROシステム</a>
+        <a href="pricing">料金</a>
+        <a href="about">DPRO SHOP</a>
+        <a class="dpro-system-site-link" data-system-site-link href="${PRODUCT_SITE}" target="_blank" rel="noopener">PRODUCT SITE / 50製品を触る ↗</a>
+        <a class="nav-cta" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで無料相談</a>`;
+    } else if (nav && !nav.querySelector("[data-system-site-link]")) {
+      const a = document.createElement("a");
+      a.href = PRODUCT_SITE;
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.className = "dpro-system-site-link";
+      a.dataset.systemSiteLink = "";
+      a.textContent = "PRODUCT SITE / 50製品を触る ↗";
+      const cta = nav.querySelector(".nav-cta,.or-nav__cta");
+      cta ? nav.insertBefore(a, cta) : nav.appendChild(a);
+    }
+
+    document.querySelectorAll(`a[href^="${PRODUCT_SITE}"]`).forEach((a) => {
+      if (a.closest(".global-nav,.or-nav")) return;
+      a.classList.add("dpro-system-site-link");
+      if (/49製品|DPRO製品サイト|実際に動く49製品/.test(a.textContent || "")) {
+        a.textContent = "PRODUCT SITE / 50製品を実際に触る ↗";
+      }
+    });
+
+    if (body.classList.contains("error-page")) {
+      const links = document.querySelector(".error-links");
+      if (links && !links.querySelector(".dpro-error-product")) {
+        const a = document.createElement("a");
+        a.href = PRODUCT_SITE;
+        a.target = "_blank";
+        a.rel = "noopener";
+        a.className = "dpro-error-product dpro-system-site-link";
+        a.textContent = "50システムを実際に触る ↗";
+        links.appendChild(a);
+      }
+    }
   };
-  const run=async()=>{
-    let last;
-    for(const src of legacySources){try{await load(src);last=null;break;}catch(e){last=e;}}
-    if(last)console.warn("[DPRO SHOP] 既存処理の読込確認",last);
-    inject();
+
+  const load = (src) => new Promise((resolve, reject) => {
+    const s = document.createElement("script");
+    s.src = src;
+    s.async = false;
+    s.onload = resolve;
+    s.onerror = () => reject(new Error(`読み込み失敗: ${src}`));
+    document.head.appendChild(s);
+  });
+
+  const runLegacyCompat = async () => {
+    let lastError = null;
+    for (const src of LEGACY_SOURCES) {
+      try {
+        await load(src);
+        lastError = null;
+        break;
+      } catch (error) {
+        lastError = error;
+      }
+    }
+    if (lastError) console.warn("[DPRO SHOP] 既存処理の読込確認", lastError);
   };
-  if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",run,{once:true}); else run();
+
+  const run = () => {
+    installRevealFailsafe();
+    enhanceLegacyOfficial();
+    runLegacyCompat();
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", run, { once: true });
+  } else {
+    run();
+  }
 })();
 
 (() => {
@@ -112,35 +171,20 @@
   const send = (eventName, detail = {}) => {
     if (!EVENT_NAMES.has(eventName)) return;
     const payload = {
-      eventId: randomId(),
-      eventName,
-      anonymousId,
-      sessionKey,
-      pageUrl: location.href,
-      referrerUrl: document.referrer || '',
-      source: attribution.source,
-      medium: attribution.medium,
-      campaign: attribution.campaign,
-      targetUrl: detail.targetUrl || '',
-      linkText: detail.linkText || '',
-      placement: detail.placement || '',
+      eventId: randomId(), eventName, anonymousId, sessionKey,
+      pageUrl: location.href, referrerUrl: document.referrer || '',
+      source: attribution.source, medium: attribution.medium, campaign: attribution.campaign,
+      targetUrl: detail.targetUrl || '', linkText: detail.linkText || '', placement: detail.placement || '',
     };
     if (typeof window.gtag === 'function') {
       window.gtag('event', eventName, {
-        page_location: location.href,
-        link_url: payload.targetUrl,
-        link_text: payload.linkText,
-        placement: payload.placement,
-        transport_type: 'beacon',
+        page_location: location.href, link_url: payload.targetUrl,
+        link_text: payload.linkText, placement: payload.placement, transport_type: 'beacon',
       });
     }
     fetch(API, {
-      method: 'POST',
-      mode: 'cors',
-      credentials: 'omit',
-      keepalive: true,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
+      method: 'POST', mode: 'cors', credentials: 'omit', keepalive: true,
+      headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload),
     }).catch(() => {});
   };
 

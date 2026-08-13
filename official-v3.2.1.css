@@ -318,3 +318,10 @@
 .v321-res-name{font-style:normal}
 .v321-mobile-merge>b:nth-of-type(2){animation-name:v321MergePacketRight}
 @keyframes v321MergePacketRight{0%{opacity:0;transform:translateY(0)}25%{opacity:1}75%{opacity:1}100%{opacity:0;transform:translate(-85px,34px)}}
+
+
+/* V3.3 FINAL — OFFICIAL EXPLANATION / PRODUCT EXPERIENCE ROLE LOCK */
+.v32-product-actions .v321-official-systems{border:1px solid rgba(104,173,255,.48);background:linear-gradient(135deg,var(--v32-blue),var(--v32-blue-dark));color:#fff;box-shadow:0 12px 28px rgba(47,128,237,.16)}
+.v32-product-actions .v321-product-cta{border:1px solid rgba(255,111,159,.32);background:linear-gradient(135deg,#d3376b,#9b1e49);color:#fff;box-shadow:0 12px 28px rgba(194,44,93,.16)}
+.official-v321 .or-footer .or-product-link{color:#ff7da9!important}
+@media(max-width:430px){.v32-product-actions .v321-official-systems,.v32-product-actions .v321-product-cta{width:100%;text-align:center}}
