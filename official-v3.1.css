@@ -17,3 +17,12 @@
 @media(max-width:760px){.v31-hero{padding-top:105px}.v31-hero h1{font-size:clamp(40px,11vw,58px);line-height:1.08}.v31-hero h1 em,.v31-hero h1 span{display:inline}.v31-lead{font-size:15px;text-align:left}.v31-actions{display:grid}.v31-proof{grid-template-columns:1fr 1fr}.v31-proof b{font-size:18px}.v31-mobile-story{padding:76px 0}.v31-step{grid-template-columns:58px 1fr;gap:14px;min-height:0;padding:18px 0 30px}.v31-step__rail{grid-row:1/3}.v31-step__rail b{width:42px;height:42px}.v31-step__rail i{top:42px;bottom:-42px}.v31-step__copy h3{font-size:24px}.v31-mini{grid-column:2;margin-top:4px}.v31-product-panel{padding:24px 20px}.v31-product-panel strong{font-size:23px}.v31-mobile-cta .or-button{width:100%}}
 @media(max-width:430px){.v31-badge{font-size:10px}.v31-hero h1{font-size:clamp(38px,10.8vw,48px)}.v31-lead{line-height:1.75}.v31-proof{gap:7px}.v31-proof span{padding:12px 9px;font-size:9px}.v31-proof b{font-size:17px}.v31-step{grid-template-columns:48px 1fr}.v31-step__copy h3{font-size:22px;line-height:1.4}.v31-step__copy p{font-size:13px}.v31-mini{min-height:130px;padding:15px}.v31-product-panel{border-radius:22px}.or-nav__product span{display:inline}}
 @media(prefers-reduced-motion:reduce){.v31-gridfx:after,.v31-data-bridge span,.v31-data-bridge i,.v31-data-bridge b{animation:none!important}.v31-step__rail i{box-shadow:none}}
+
+/* SITE IDENTITY LOCK — OFFICIAL SITE = BLUE / 2026-08-13 */
+:root{--dpro-official-blue:#2f80ed;--dpro-official-blue-dark:#174ea6;--dpro-system-red:#c22c5d}
+.official-v31 .or-header{box-shadow:inset 0 -2px 0 rgba(47,128,237,.42)}
+.official-v31 .or-brand>span{border-color:rgba(104,173,255,.48)!important;background:linear-gradient(145deg,var(--dpro-official-blue),var(--dpro-official-blue-dark))!important;box-shadow:0 0 30px rgba(47,128,237,.28),inset 0 1px rgba(255,255,255,.28)!important}
+.official-v31 .or-brand small{font-size:0;color:#7fbbff!important;letter-spacing:.16em!important}
+.official-v31 .or-brand small::after{content:"OFFICIAL SITE";font-size:8px;font-weight:900;letter-spacing:.18em}
+.official-v31 .or-nav__product{border-color:rgba(194,44,93,.42)!important;background:rgba(194,44,93,.07)!important;color:#ff6f9f!important}
+.official-v31 .or-nav__product:hover{background:rgba(194,44,93,.14)!important;box-shadow:0 0 28px rgba(194,44,93,.12)!important}
