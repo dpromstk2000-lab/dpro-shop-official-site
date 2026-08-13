@@ -156,3 +156,62 @@
   .v33-street-head{padding:32px 0 20px}
   .v33-street-head h3{font-size:30px}
 }
+
+
+/* V3.3.3 — 33,000 yen Google Sites sample */
+.v33-web-example--google .v33-web-example__copy>small{color:#3774c7}
+.v33-google-frame-wrap{
+  position:relative;
+  width:100%;
+  height:458px;
+  overflow:hidden;
+  background:linear-gradient(135deg,#edf3fb,#fff);
+}
+.v33-google-frame-wrap iframe{
+  position:relative;
+  z-index:2;
+  display:block;
+  width:100%;
+  height:100%;
+  border:0;
+  background:transparent;
+}
+.v33-google-frame-fallback{
+  position:absolute;
+  z-index:1;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:50px;
+  background:
+    linear-gradient(90deg,rgba(255,255,255,.92),rgba(255,255,255,.65)),
+    linear-gradient(135deg,#dfeaf9,#f7fbff);
+  color:#19324d;
+}
+.v33-google-frame-fallback small{
+  color:#3774c7;
+  font-size:10px;
+  font-weight:950;
+  letter-spacing:.16em;
+}
+.v33-google-frame-fallback strong{
+  margin-top:12px;
+  font-size:clamp(32px,4vw,58px);
+  line-height:1.04;
+  letter-spacing:-.05em;
+}
+.v33-google-frame-fallback span{
+  margin-top:18px;
+  color:#667b91;
+  font-size:13px;
+  font-weight:800;
+}
+@media(max-width:980px){
+  .v33-google-frame-wrap{height:338px}
+}
+@media(max-width:640px){
+  .v33-google-frame-wrap{height:246px}
+  .v33-google-frame-fallback{padding:28px}
+  .v33-google-frame-fallback strong{font-size:34px}
+}
