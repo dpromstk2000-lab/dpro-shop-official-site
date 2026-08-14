@@ -23,8 +23,8 @@
   const rightRoute = document.querySelector('[data-v32-route="right"]');
 
   const scenarios = [
-    { status: 'LINE予約 → DPROへ自動反映', left: true, leftDirection: 'in', right: false, rightDirection: 'in' },
-    { status: 'WEB予約 → DPROへ自動反映', left: false, leftDirection: 'in', right: true, rightDirection: 'in' },
+    { status: 'LINE予約 → DPROへ連携', left: true, leftDirection: 'in', right: false, rightDirection: 'in' },
+    { status: 'WEB予約 → DPROへ連携', left: false, leftDirection: 'in', right: true, rightDirection: 'in' },
     { status: 'LINE・WEB両方の予約をDPROで一元管理', left: true, leftDirection: 'in', right: true, rightDirection: 'in' },
     { status: 'DPROから店舗PC / iPadへ予約状況を共有', left: false, leftDirection: 'in', right: false, rightDirection: 'in' },
     { status: 'DPROの顧客情報からLINE通知・再来店フォロー', left: true, leftDirection: 'out', right: false, rightDirection: 'in' }

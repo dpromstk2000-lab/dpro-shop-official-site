@@ -86,6 +86,28 @@
       }
     });
 
+    /* V3.3.5: legal pages stay accurate while avoiding developer-only service names. */
+    if (body.classList.contains("privacy-page")) {
+      document.querySelectorAll(".legal-document p").forEach((node) => {
+        if ((node.textContent || "").includes("Cloudflare Pagesによるホスティング")) {
+          node.textContent = "本サイトは、ホスティングサービス、Google Analytics、LINE公式アカウント、外部サイトへのリンク等を利用しています。これらの提供者が技術情報等を取り扱う場合は、各提供者の規約・プライバシーポリシーが適用されます。";
+        }
+      });
+    }
+
+    if (body.classList.contains("terms-page")) {
+      document.querySelectorAll(".legal-document li").forEach((node) => {
+        if ((node.textContent || "").includes("LINE、GitHub、Supabase等")) {
+          node.textContent = "外部サービスや管理アカウント等、店舗側の権限でのみ可能な操作";
+        }
+      });
+      document.querySelectorAll(".legal-document p").forEach((node) => {
+        if ((node.textContent || "").includes("LINE、GitHub、Cloudflare、メールサービス")) {
+          node.textContent = "LINE、公開環境、メールサービス、ドメイン管理、アクセス解析、問い合わせフォームなどの外部サービスを利用する場合があります。保守、障害、緊急のセキュリティ対応、外部サービス停止、災害、通信障害等により、サービスの全部または一部を一時停止する場合があります。";
+        }
+      });
+    }
+
     if (body.classList.contains("error-page")) {
       const links = document.querySelector(".error-links");
       if (links && !links.querySelector(".dpro-error-product")) {
