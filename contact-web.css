@@ -1,0 +1,60 @@
+/* DPRO SHOP / WEB CONTACT FORM
+ * Additive styles only. Existing official-v3.3 classes are not overridden.
+ */
+.dpro-web-contact{background:linear-gradient(180deg,#f5f8fb 0%,#ffffff 100%);border-top:1px solid #e2e8ef;border-bottom:1px solid #e2e8ef}
+.dpro-web-contact__layout{display:grid;grid-template-columns:minmax(0,.78fr) minmax(0,1.22fr);gap:clamp(28px,5vw,64px);align-items:start}
+.dpro-web-contact__intro{position:sticky;top:92px}
+.dpro-web-contact__intro .v33-eyebrow{margin-bottom:12px}
+.dpro-web-contact__intro h2{margin:0;color:#07111f;font-size:clamp(30px,4vw,50px);line-height:1.12;letter-spacing:-.04em}
+.dpro-web-contact__intro h2 em{color:#0b67c2;font-style:normal}
+.dpro-web-contact__intro>p{margin:18px 0 0;color:#546273;font-size:14px;line-height:1.9}
+.dpro-web-contact__points{display:grid;gap:10px;margin-top:24px}
+.dpro-web-contact__points span{display:flex;align-items:center;gap:10px;color:#253244;font-size:13px;font-weight:800}
+.dpro-web-contact__points span::before{content:"✓";width:24px;height:24px;display:grid;place-items:center;border-radius:50%;background:#e6f2ff;color:#0b67c2;font-size:12px;font-weight:900}
+.dpro-web-contact__line-note{margin-top:26px;padding:18px;border:1px solid #dbe5ef;border-radius:18px;background:#fff;box-shadow:0 14px 34px rgba(26,57,88,.06)}
+.dpro-web-contact__line-note strong,.dpro-web-contact__line-note small{display:block}
+.dpro-web-contact__line-note strong{color:#07111f;font-size:14px}
+.dpro-web-contact__line-note small{margin-top:6px;color:#6a7887;line-height:1.65}
+.dpro-web-contact__line-note a{display:inline-flex;margin-top:12px;color:#0b67c2;font-size:12px;font-weight:900;text-decoration:none}
+
+.dpro-web-form{padding:clamp(22px,4vw,38px);border:1px solid #dbe5ef;border-radius:24px;background:#fff;box-shadow:0 22px 58px rgba(21,53,84,.10)}
+.dpro-web-form__head{margin-bottom:24px;padding-bottom:18px;border-bottom:1px solid #e7ecf1}
+.dpro-web-form__head span{display:inline-flex;padding:5px 9px;border-radius:999px;background:#edf5ff;color:#0b67c2;font-size:10px;font-weight:900;letter-spacing:.08em}
+.dpro-web-form__head h3{margin:10px 0 0;color:#07111f;font-size:24px;line-height:1.35}
+.dpro-web-form__head p{margin:8px 0 0;color:#667485;font-size:12px;line-height:1.7}
+.dpro-web-form__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.dpro-web-form__field{display:grid;gap:7px;min-width:0}
+.dpro-web-form__field--full{grid-column:1/-1}
+.dpro-web-form__field label{color:#172536;font-size:12px;font-weight:900}
+.dpro-web-form__field label .required{margin-left:6px;color:#c43d52;font-size:9px}
+.dpro-web-form__field input,.dpro-web-form__field select,.dpro-web-form__field textarea{width:100%;border:1px solid #ccd7e2;border-radius:12px;background:#fff;color:#102033;font:inherit;font-size:14px;outline:none;transition:border-color .16s,box-shadow .16s,background .16s}
+.dpro-web-form__field input,.dpro-web-form__field select{height:48px;padding:0 13px}
+.dpro-web-form__field textarea{min-height:160px;padding:13px;resize:vertical;line-height:1.7}
+.dpro-web-form__field input:focus,.dpro-web-form__field select:focus,.dpro-web-form__field textarea:focus{border-color:#4b8fd4;box-shadow:0 0 0 4px rgba(40,116,190,.10)}
+.dpro-web-form__field input:disabled,.dpro-web-form__field select:disabled,.dpro-web-form__field textarea:disabled{background:#f2f5f7;color:#8a96a2;cursor:not-allowed}
+.dpro-web-form__help{color:#7a8795;font-size:10px;line-height:1.6}
+.dpro-web-form__honeypot{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important;opacity:0!important;pointer-events:none!important}
+.dpro-web-form__turnstile{grid-column:1/-1;min-height:65px;padding-top:2px}
+.dpro-web-form__turnstile-note{margin-top:7px;color:#7a8795;font-size:10px;line-height:1.5}
+.dpro-web-form__footer{grid-column:1/-1;margin-top:2px}
+.dpro-web-form__submit{width:100%;min-height:52px;border:0;border-radius:14px;background:linear-gradient(135deg,#116fc9,#0754a0);color:#fff;font-size:14px;font-weight:900;cursor:pointer;box-shadow:0 14px 30px rgba(11,103,194,.22);transition:transform .15s,opacity .15s}
+.dpro-web-form__submit:hover:not(:disabled){transform:translateY(-1px)}
+.dpro-web-form__submit:disabled{opacity:.55;cursor:not-allowed;box-shadow:none}
+.dpro-web-form__status{display:none;margin:12px 0 0;padding:12px 14px;border-radius:12px;font-size:12px;font-weight:800;line-height:1.65}
+.dpro-web-form__status.is-show{display:block}
+.dpro-web-form__status.is-info{background:#eef5fc;color:#315877}
+.dpro-web-form__status.is-success{background:#eaf8f0;color:#17643d}
+.dpro-web-form__status.is-error{background:#fff0f2;color:#9d3043}
+.dpro-web-form__privacy{margin:12px 0 0;color:#788594;font-size:10px;line-height:1.7;text-align:center}
+.dpro-web-form__privacy a{color:#4f647a;text-decoration:underline}
+
+@media(max-width:860px){
+  .dpro-web-contact__layout{grid-template-columns:1fr}
+  .dpro-web-contact__intro{position:static}
+}
+@media(max-width:620px){
+  .dpro-web-form{padding:20px 16px;border-radius:18px}
+  .dpro-web-form__grid{grid-template-columns:1fr;gap:14px}
+  .dpro-web-form__field--full,.dpro-web-form__turnstile,.dpro-web-form__footer{grid-column:1}
+  .dpro-web-contact__intro h2{font-size:32px}
+}
