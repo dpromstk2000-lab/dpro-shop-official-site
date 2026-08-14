@@ -1,22 +1,18 @@
 (() => {
   "use strict";
 
-  const VERSION = "DPRO-CONTACT-WEB-FORM-20260814-R1";
+  const VERSION = "DPRO-CONTACT-WEB-FORM-20260814-R2";
   const API_BASE = "https://dpro-shop-contact-v1-api.dpromstk2000.workers.dev";
   const CONFIG_URL = `${API_BASE}/api/public/contact/web-config`;
   const SUBMIT_URL = `${API_BASE}/api/public/contact/web`;
-  const TURNSTILE_SRC = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
 
   const form = document.getElementById("dproWebContactForm");
   if (!form) return;
 
   const submitButton = document.getElementById("dproWebContactSubmit");
   const statusBox = document.getElementById("dproWebContactStatus");
-  const turnstileMount = document.getElementById("dproWebTurnstile");
 
   let publicConfig = null;
-  let turnstileWidgetId = null;
-  let turnstileToken = "";
   let busy = false;
 
   function setStatus(message, kind = "info") {
@@ -39,58 +35,6 @@
     if (submitButton) submitButton.disabled = !enabled || busy;
   }
 
-  function loadTurnstile() {
-    if (window.turnstile?.render) return Promise.resolve();
-    return new Promise((resolve, reject) => {
-      const existing = document.querySelector('script[data-dpro-web-turnstile="true"]');
-      if (existing) {
-        existing.addEventListener("load", resolve, { once: true });
-        existing.addEventListener("error", () => reject(new Error("turnstile_load_failed")), { once: true });
-        return;
-      }
-      const script = document.createElement("script");
-      script.src = TURNSTILE_SRC;
-      script.async = true;
-      script.defer = true;
-      script.dataset.dproWebTurnstile = "true";
-      script.addEventListener("load", resolve, { once: true });
-      script.addEventListener("error", () => reject(new Error("turnstile_load_failed")), { once: true });
-      document.head.appendChild(script);
-    });
-  }
-
-  function renderTurnstile() {
-    if (!window.turnstile?.render || !turnstileMount || !publicConfig?.siteKey) {
-      throw new Error("turnstile_not_ready");
-    }
-    turnstileMount.innerHTML = "";
-    turnstileToken = "";
-    turnstileWidgetId = window.turnstile.render(turnstileMount, {
-      sitekey: publicConfig.siteKey,
-      action: publicConfig.action || "dpro_contact_web",
-      language: "ja",
-      callback(token) {
-        turnstileToken = String(token || "");
-        clearStatus();
-      },
-      "expired-callback"() {
-        turnstileToken = "";
-        setStatus("確認の有効期限が切れました。もう一度チェックしてください。", "info");
-      },
-      "error-callback"() {
-        turnstileToken = "";
-        setStatus("送信確認を読み込めませんでした。ページを再読み込みしてください。", "error");
-      },
-    });
-  }
-
-  function resetTurnstile() {
-    turnstileToken = "";
-    if (window.turnstile?.reset && turnstileWidgetId != null) {
-      window.turnstile.reset(turnstileWidgetId);
-    }
-  }
-
   function uuidV4() {
     if (crypto.randomUUID) return crypto.randomUUID();
     const bytes = new Uint8Array(16);
@@ -103,6 +47,25 @@
 
   function value(name) {
     return String(form.elements[name]?.value || "").trim();
+  }
+
+  function getTurnstileToken() {
+    const hidden = form.querySelector('input[name="cf-turnstile-response"]');
+    const hiddenValue = String(hidden?.value || "").trim();
+    if (hiddenValue) return hiddenValue;
+
+    try {
+      if (window.turnstile?.getResponse) {
+        return String(window.turnstile.getResponse() || "").trim();
+      }
+    } catch {}
+    return "";
+  }
+
+  function resetTurnstile() {
+    try {
+      if (window.turnstile?.reset) window.turnstile.reset();
+    } catch {}
   }
 
   function validateClient(data) {
@@ -120,7 +83,7 @@
     for (const [label, text, max] of checks) {
       if (text.length > max) return `${label}は${max}文字以内で入力してください。`;
     }
-    if (!turnstileToken) return "「私は人間です」の確認を完了してください。";
+    if (!data.turnstileToken) return "迷惑送信防止の送信確認を完了してください。";
     return "";
   }
 
@@ -144,6 +107,7 @@
   async function boot() {
     setFormEnabled(false);
     setStatus("WEB問い合わせフォームを準備しています…", "info");
+
     try {
       const response = await fetch(CONFIG_URL, {
         method: "GET",
@@ -151,11 +115,17 @@
         cache: "no-store",
       });
       const data = await response.json().catch(() => ({}));
+
       if (!response.ok) throw new Error(data.error || `config_http_${response.status}`);
       if (!data.enabled || !data.siteKey) throw new Error("web_disabled");
+
       publicConfig = data;
-      await loadTurnstile();
-      renderTurnstile();
+
+      const widget = document.getElementById("dproWebTurnstile");
+      if (widget && widget.dataset.sitekey !== data.siteKey) {
+        console.warn("DPRO_WEB_CONTACT_SITEKEY_MISMATCH", VERSION);
+      }
+
       clearStatus();
       setFormEnabled(true);
     } catch (error) {
@@ -179,7 +149,7 @@
       message: value("message"),
       website: value("website"),
       submissionId: uuidV4(),
-      turnstileToken,
+      turnstileToken: getTurnstileToken(),
     };
 
     const validationError = validateClient(payload);
@@ -203,6 +173,7 @@
         cache: "no-store",
       });
       const data = await response.json().catch(() => ({}));
+
       if (!response.ok || data.ok !== true) {
         throw new Error(data.error || `submit_http_${response.status}`);
       }
