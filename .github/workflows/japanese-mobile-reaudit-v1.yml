@@ -183,7 +183,7 @@ jobs:
                 const splitTokens = [
                   'から','まで','ので','ため','なら','けれど','けど','です','ます','でした','ました',
                   'として','について','によって','による','できる','できます','できない','ありません',
-                  'ホームページ','受付システム','システム','お客様','店舗運営','LINE公式','一続き'
+                  'ホームページ','受付システム','システム','お客様','店舗運営','LINE公式','一続き','つなぐ','取り置き','ケーキ','カルテ','マグネット','メニュー','診察券QR','集中する','向け','システム料金'
                 ];
 
                 function charRects(el) {
@@ -271,8 +271,13 @@ jobs:
                     if (token) reasons.push({type:'SPLIT_TOKEN', severity:'HIGH', boundary:i, token, prev, next});
                     if (badStart.test(next)) reasons.push({type:'BAD_LINE_START', severity:'HIGH', boundary:i, prev, next});
                     const clean = next.replace(/[、。！？!?）」』】）》〉〕］）)]/g,'');
-                    if (full.length >= 8 && clean.length <= 1) reasons.push({type:'ORPHAN_LINE', severity:'HIGH', boundary:i, prev, next});
-                    else if (full.length >= 10 && i === lines.length-1 && clean.length <= 2) reasons.push({type:'SHORT_LAST_LINE', severity:'MEDIUM', boundary:i, prev, next});
+                    if (full.length >= 8 && jp.test(clean) && clean.length <= 1) {
+                    const severity = ['SUMMARY','BUTTON'].includes(el.tagName) ? 'MEDIUM' : 'HIGH';
+                    reasons.push({type:'ORPHAN_LINE', severity, boundary:i, prev, next});
+                  }
+                  else if (full.length >= 10 && jp.test(clean) && i === lines.length-1 && clean.length <= 2) {
+                    reasons.push({type:'SHORT_LAST_LINE', severity:'MEDIUM', boundary:i, prev, next});
+                  }
                   }
                   if (!reasons.length) continue;
                   const id = `dpro-wrap-${++issueId}`;

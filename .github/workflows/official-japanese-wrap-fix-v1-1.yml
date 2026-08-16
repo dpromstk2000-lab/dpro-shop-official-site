@@ -1,0 +1,262 @@
+name: OFFICIAL Japanese heading wrap fix V1.1
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/official-japanese-wrap-fix-v1-1.yml'
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout OFFICIAL
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Protect natural Japanese phrases inside headings
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from collections import Counter
+          import re
+          import subprocess
+
+          phrases = [
+              "システム料金。",
+              "ホームページ",
+              "いちごケーキ",
+              "シンプルマグネット",
+              "診察券QR",
+              "取り置き",
+              "準備・撮影",
+              "集中する。",
+              "追加する、",
+              "だけでなく、",
+              "システムの",
+              "について",
+              "つなぐ。",
+              "として",
+              "ひとつ。",
+              "まで、",
+              "まで。",
+              "から、",
+              "カルテ",
+              "向け",
+              "ですか？",
+              "メニュー",
+              "ませんか。",
+          ]
+
+          tracked = subprocess.check_output(
+              ["git","ls-files","*.html"],
+              text=True,
+          ).splitlines()
+
+          pages = [
+              Path(p) for p in tracked
+              if not p.startswith((".github/", ".dpro/", ".dpro-next/"))
+          ]
+
+          def links(html):
+              vals = []
+              for attr in ("href","src","data-src","action","formaction"):
+                  vals += re.findall(
+                      rf'\b{attr}\s*=\s*["\']([^"\']+)["\']',
+                      html,
+                      flags=re.I,
+                  )
+              return Counter(vals)
+
+          def prices(html):
+              return Counter(
+                  re.findall(r'(?:\d{1,3}(?:,\d{3})+|\d+)円', html)
+              )
+
+          heading_re = re.compile(
+              r'(<h([1-4])\b[^>]*>)(.*?)(</h\2>)',
+              flags=re.I | re.S,
+          )
+
+          replacement_count = 0
+          changed = []
+
+          def protect_text_parts(inner):
+              nonlocal replacement_count
+              parts = re.split(r'(<[^>]+>)', inner)
+              for idx in range(0, len(parts), 2):
+                  text = parts[idx]
+                  if not text:
+                      continue
+                  for phrase in phrases:
+                      if phrase not in text:
+                          continue
+                      count = text.count(phrase)
+                      text = text.replace(
+                          phrase,
+                          f'<span class="dpro-jp-keep">{phrase}</span>'
+                      )
+                      replacement_count += count
+                  parts[idx] = text
+              return "".join(parts)
+
+          for path in pages:
+              before = path.read_text(encoding="utf-8")
+              before_links = links(before)
+              before_prices = prices(before)
+
+              def repl(match):
+                  inner = match.group(3)
+                  if 'class="dpro-jp-keep"' in inner:
+                      return match.group(0)
+                  return (
+                      match.group(1)
+                      + protect_text_parts(inner)
+                      + match.group(4)
+                  )
+
+              after = heading_re.sub(repl, before)
+
+              if links(after) != before_links:
+                  raise SystemExit(f"{path}: link target changed")
+              if prices(after) != before_prices:
+                  raise SystemExit(f"{path}: price strings changed")
+
+              if after != before:
+                  path.write_text(after, encoding="utf-8")
+                  changed.append(path)
+
+          css_patch = """
+          /* DPRO JAPANESE MOBILE WRAP V1.1 / PHRASE KEEP */
+          @media(max-width:760px){
+            .dpro-jp-keep{
+              white-space:nowrap!important;
+              display:inline;
+            }
+          }
+          """
+
+          for path in (Path("styles.css"), Path("systems/systems.css")):
+              css = path.read_text(encoding="utf-8")
+              if "DPRO JAPANESE MOBILE WRAP V1.1 / PHRASE KEEP" not in css:
+                  path.write_text(
+                      css.rstrip() + "\n\n" + css_patch.strip() + "\n",
+                      encoding="utf-8",
+                  )
+
+          print("HTML changed:", len(changed))
+          print("Protected phrase occurrences:", replacement_count)
+
+          if replacement_count < 35:
+              raise SystemExit(
+                  f"Too few heading phrase protections: {replacement_count}"
+              )
+
+          Path("/tmp/official-jp-v11-changed.txt").write_text(
+              "\n".join(str(p) for p in changed),
+              encoding="utf-8",
+          )
+
+          print("OFFICIAL JAPANESE WRAP V1.1 PREP PASS")
+          PY
+
+      - name: Static safety QA
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          changed = [
+              Path(x)
+              for x in Path("/tmp/official-jp-v11-changed.txt")
+              .read_text(encoding="utf-8").splitlines()
+              if x
+          ]
+
+          total = sum(
+              p.read_text(encoding="utf-8").count(
+                  'class="dpro-jp-keep"'
+              )
+              for p in changed
+          )
+
+          if len(changed) < 20:
+              raise SystemExit(
+                  f"Expected multiple pages to change, got {len(changed)}"
+              )
+          if total < 35:
+              raise SystemExit(
+                  f"Expected at least 35 protected phrases, got {total}"
+              )
+
+          assert "DPRO JAPANESE MOBILE WRAP V1.1 / PHRASE KEEP" in Path(
+              "styles.css"
+          ).read_text(encoding="utf-8")
+          assert "DPRO JAPANESE MOBILE WRAP V1.1 / PHRASE KEEP" in Path(
+              "systems/systems.css"
+          ).read_text(encoding="utf-8")
+          assert Path(
+              ".github/workflows/japanese-mobile-reaudit-v1.yml"
+          ).exists()
+
+          print("Changed HTML:", len(changed))
+          print("Protected spans:", total)
+          print("OFFICIAL JAPANESE WRAP V1.1 STATIC QA PASS")
+          PY
+
+      - name: Commit V1.1 and remove one-shot workflow
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git rm -f .github/workflows/official-japanese-wrap-fix-v1-1.yml
+          git add -u
+          git add styles.css systems/systems.css
+
+          echo "Changed paths:"
+          git diff --cached --name-only
+
+          if git diff --cached --name-only | grep -E '\.js$'; then
+            echo "ERROR: JavaScript was unexpectedly staged"
+            exit 1
+          fi
+
+          git commit -m "Fix remaining OFFICIAL Japanese heading wraps V1.1"
+          git push origin HEAD:main
+
+      - name: Wait for live V1.1 CSS
+        shell: bash
+        run: |
+          set -e
+
+          URL="https://dpro-shop.com/styles.css?qa=${GITHUB_SHA}-${GITHUB_RUN_ID}"
+
+          for i in $(seq 1 60); do
+            css="$(curl -fsSL "$URL" 2>/dev/null || true)"
+            if printf '%s' "$css" | grep -q "DPRO JAPANESE MOBILE WRAP V1.1 / PHRASE KEEP"; then
+              echo "OFFICIAL Japanese wrap V1.1 is live"
+              exit 0
+            fi
+            echo "Waiting for V1.1 live CSS... ${i}/60"
+            sleep 5
+          done
+
+          exit 1
+
+      - name: Dispatch Japanese mobile reaudit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          gh workflow run japanese-mobile-reaudit-v1.yml --ref main
+          echo "Japanese mobile reaudit dispatched after V1.1"
