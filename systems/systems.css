@@ -2586,3 +2586,18 @@ body.system-product-page .product-flow-list{
     max-width:100%;
   }
 }
+
+/* DPRO JAPANESE MOBILE WRAP V1.0 / SYSTEMS */
+@media(max-width:760px){
+  body.system-product-page :where(h1,h2,h3,h4){
+    line-break:strict!important;
+    word-break:normal!important;
+    overflow-wrap:normal!important;
+    text-wrap:balance!important;
+  }
+  @supports (word-break:auto-phrase){
+    body.system-product-page :where(h1,h2,h3,h4){
+      word-break:auto-phrase!important;
+    }
+  }
+}

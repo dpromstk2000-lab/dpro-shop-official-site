@@ -311,3 +311,18 @@ h3{
 main h3{
   text-wrap:balance;
 }
+
+/* DPRO JAPANESE MOBILE WRAP V1.0 / GLOBAL */
+@media(max-width:680px){
+  body :where(main h1,main h2,main h3,main h4){
+    line-break:strict!important;
+    word-break:normal!important;
+    overflow-wrap:normal!important;
+    text-wrap:balance!important;
+  }
+  @supports (word-break:auto-phrase){
+    body :where(main h1,main h2,main h3,main h4){
+      word-break:auto-phrase!important;
+    }
+  }
+}
