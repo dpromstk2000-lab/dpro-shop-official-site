@@ -1,0 +1,535 @@
+name: FINAL visual QA official + product
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/final-visual-qa.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  visual-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout OFFICIAL
+        uses: actions/checkout@v4
+        with:
+          path: official
+          fetch-depth: 1
+
+      - name: Checkout PRODUCT
+        uses: actions/checkout@v4
+        with:
+          repository: dpromstk2000-lab/dpro-line-systems-site
+          ref: main
+          path: product
+          fetch-depth: 1
+
+      - name: Build public URL inventory
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json, subprocess
+
+          def tracked_html(repo):
+              rows = subprocess.check_output(
+                  ["git", "-C", repo, "ls-files", "*.html"],
+                  text=True
+              ).splitlines()
+              out = []
+              for p in rows:
+                  if p.startswith((".github/", ".dpro/", ".dpro-next/")):
+                      continue
+                  out.append(p)
+              return out
+
+          def make_url(base, path, clean=False):
+              if path == "index.html":
+                  return base
+              if path.endswith("/index.html"):
+                  return base + path[:-10]
+              if clean and path.endswith(".html"):
+                  # We deliberately use the physical .html URL for rendering.
+                  # It is the same deployed page and avoids rewrite ambiguity.
+                  return base + path
+              return base + path
+
+          official_paths = tracked_html("official")
+          product_paths = tracked_html("product")
+
+          inventory = []
+          for p in official_paths:
+              inventory.append({
+                  "site": "OFFICIAL",
+                  "path": p,
+                  "url": make_url("https://dpro-shop.com/", p, clean=True),
+              })
+          for p in product_paths:
+              inventory.append({
+                  "site": "PRODUCT",
+                  "path": p,
+                  "url": make_url(
+                      "https://dpromstk2000-lab.github.io/dpro-line-systems-site/",
+                      p
+                  ),
+              })
+
+          Path("qa-output").mkdir(exist_ok=True)
+          Path("qa-output/urls.json").write_text(
+              json.dumps(inventory, ensure_ascii=False, indent=2),
+              encoding="utf-8"
+          )
+          print("OFFICIAL HTML:", len(official_paths))
+          print("PRODUCT HTML:", len(product_paths))
+          print("TOTAL PUBLIC HTML:", len(inventory))
+          if len(official_paths) < 55:
+              raise SystemExit("Official public HTML count unexpectedly low")
+          if len(product_paths) < 55:
+              raise SystemExit("Product public HTML count unexpectedly low")
+          PY
+
+      - name: Install Playwright
+        shell: bash
+        run: |
+          npm init -y >/dev/null 2>&1
+          npm install playwright@1.55.0 --silent
+          npx playwright install --with-deps chromium
+
+      - name: Run PC + mobile visual QA
+        shell: bash
+        run: |
+          cat > visual-qa.js <<'NODE'
+          const { chromium } = require('playwright');
+          const fs = require('fs');
+          const path = require('path');
+
+          const inventory = JSON.parse(fs.readFileSync('qa-output/urls.json', 'utf8'));
+          const outDir = path.resolve('qa-output');
+          const shotDir = path.join(outDir, 'screenshots');
+          fs.mkdirSync(shotDir, { recursive: true });
+
+          const viewports = [
+            { name: 'desktop', width: 1440, height: 900, isMobile: false },
+            { name: 'mobile', width: 390, height: 844, isMobile: true },
+          ];
+
+          const keyPatterns = [
+            /^https:\/\/dpro-shop\.com\/$/,
+            /\/pricing(?:\.html)?$/,
+            /\/about(?:\.html)?$/,
+            /\/website(?:\.html)?$/,
+            /\/contact(?:\.html)?$/,
+            /\/systems\/(?:index\.html)?$/,
+            /\/systems\/(?:hair|vet|gakudo)(?:\.html)?$/,
+            /^https:\/\/dpromstk2000-lab\.github\.io\/dpro-line-systems-site\/$/,
+            /\/systems\.html$/,
+            /\/proposal\.html$/,
+            /\/dpro-system\.html$/,
+            /\/line\.html$/,
+            /\/website\.html$/,
+            /\/systems\/(?:pet-care|hair-salon|dental|gakudo|cake)\.html$/,
+          ];
+
+          const ignoreFailedHosts = [
+            'googletagmanager.com',
+            'google-analytics.com',
+            'fonts.googleapis.com',
+            'fonts.gstatic.com',
+          ];
+
+          function slug(s) {
+            return s
+              .replace(/^https?:\/\//, '')
+              .replace(/[?#].*$/, '')
+              .replace(/[^a-zA-Z0-9._-]+/g, '_')
+              .replace(/^_+|_+$/g, '')
+              .slice(0, 150) || 'root';
+          }
+
+          function isKeyUrl(url) {
+            return keyPatterns.some(r => r.test(url));
+          }
+
+          function isIgnoredFailure(url) {
+            return ignoreFailedHosts.some(h => url.includes(h));
+          }
+
+          async function auditOne(browser, item, vp, representativeSignatures) {
+            const context = await browser.newContext({
+              viewport: { width: vp.width, height: vp.height },
+              deviceScaleFactor: 1,
+              isMobile: vp.isMobile,
+              hasTouch: vp.isMobile,
+            });
+            const page = await context.newPage();
+
+            const pageErrors = [];
+            const requestFailures = [];
+            page.on('pageerror', err => pageErrors.push(String(err.message || err)));
+            page.on('requestfailed', req => {
+              const u = req.url();
+              const t = req.resourceType();
+              if (!isIgnoredFailure(u) && ['document', 'stylesheet', 'script'].includes(t)) {
+                requestFailures.push({
+                  type: t,
+                  url: u,
+                  error: req.failure()?.errorText || 'failed'
+                });
+              }
+            });
+
+            let status = null;
+            let gotoError = null;
+            try {
+              const response = await page.goto(item.url, {
+                waitUntil: 'domcontentloaded',
+                timeout: 30000,
+              });
+              status = response ? response.status() : null;
+              await page.addStyleTag({
+                content: `
+                  *,*::before,*::after{
+                    animation:none!important;
+                    transition:none!important;
+                    scroll-behavior:auto!important;
+                    caret-color:transparent!important;
+                  }
+                `
+              }).catch(() => {});
+              await page.evaluate(() => document.fonts?.ready).catch(() => {});
+              await page.waitForTimeout(450);
+            } catch (err) {
+              gotoError = String(err.message || err);
+            }
+
+            let dom = {
+              title: '',
+              overflowPx: 0,
+              clippedInteractive: [],
+              clippedText: [],
+              suspiciousHeadings: [],
+              stylesheetSignature: 'unavailable',
+              bodyClass: '',
+              documentHeight: 0,
+            };
+
+            if (!gotoError) {
+              dom = await page.evaluate(() => {
+                const visible = (el) => {
+                  const cs = getComputedStyle(el);
+                  if (cs.display === 'none' || cs.visibility === 'hidden' || Number(cs.opacity || 1) < 0.03) return false;
+                  if (el.closest('[aria-hidden="true"]')) return false;
+                  const r = el.getBoundingClientRect();
+                  return r.width > 2 && r.height > 2;
+                };
+
+                const de = document.documentElement;
+                const body = document.body;
+                const overflowPx = Math.max(de.scrollWidth, body?.scrollWidth || 0) - innerWidth;
+
+                const interactive = [...document.querySelectorAll('a,button,input,select,textarea,summary,[role="button"]')]
+                  .filter(visible)
+                  .map(el => {
+                    const r = el.getBoundingClientRect();
+                    const intersects = r.right > 0 && r.left < innerWidth && r.bottom > 0;
+                    if (!intersects) return null;
+                    const overflowLeft = Math.max(0, -r.left);
+                    const overflowRight = Math.max(0, r.right - innerWidth);
+                    if (overflowLeft <= 6 && overflowRight <= 6) return null;
+                    return {
+                      tag: el.tagName,
+                      text: (el.innerText || el.getAttribute('aria-label') || '').trim().replace(/\s+/g, ' ').slice(0, 100),
+                      left: Math.round(r.left),
+                      right: Math.round(r.right),
+                      width: Math.round(r.width),
+                    };
+                  })
+                  .filter(Boolean)
+                  .slice(0, 20);
+
+                const clipSelectors = 'h1,h2,h3,h4,button,summary,a[class*="button"],a[class*="btn"],[class*="cta"] a';
+                const clippedText = [...document.querySelectorAll(clipSelectors)]
+                  .filter(visible)
+                  .map(el => {
+                    const cs = getComputedStyle(el);
+                    const xClip = ['hidden','clip'].includes(cs.overflowX) && el.scrollWidth > el.clientWidth + 4;
+                    const yClip = ['hidden','clip'].includes(cs.overflowY) && el.scrollHeight > el.clientHeight + 4;
+                    if (!xClip && !yClip) return null;
+                    return {
+                      tag: el.tagName,
+                      text: (el.innerText || '').trim().replace(/\s+/g, ' ').slice(0, 120),
+                      client: [el.clientWidth, el.clientHeight],
+                      scroll: [el.scrollWidth, el.scrollHeight],
+                      overflow: [cs.overflowX, cs.overflowY],
+                    };
+                  })
+                  .filter(Boolean)
+                  .slice(0, 20);
+
+                function headingLineStats(el) {
+                  const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+                  const chars = [];
+                  let node;
+                  while ((node = walker.nextNode())) {
+                    const text = node.nodeValue || '';
+                    for (let i = 0; i < text.length; i++) {
+                      if (!text[i].trim()) continue;
+                      const range = document.createRange();
+                      range.setStart(node, i);
+                      range.setEnd(node, i + 1);
+                      const rect = range.getBoundingClientRect();
+                      if (rect.width > 0 && rect.height > 0) chars.push({ ch: text[i], top: Math.round(rect.top) });
+                    }
+                  }
+                  const lines = [];
+                  for (const c of chars) {
+                    let line = lines.find(l => Math.abs(l.top - c.top) <= 2);
+                    if (!line) { line = { top: c.top, chars: [] }; lines.push(line); }
+                    line.chars.push(c.ch);
+                  }
+                  lines.sort((a,b) => a.top - b.top);
+                  return lines.map(l => l.chars.join(''));
+                }
+
+                const suspiciousHeadings = [...document.querySelectorAll('h1,h2,h3')]
+                  .filter(visible)
+                  .map(el => {
+                    const lines = headingLineStats(el);
+                    if (lines.length < 2) return null;
+                    const last = (lines.at(-1) || '').replace(/\s+/g,'');
+                    const full = lines.join('').replace(/\s+/g,'');
+                    if (full.length >= 10 && last.length <= 1) {
+                      return {
+                        tag: el.tagName,
+                        text: (el.innerText || '').trim().replace(/\s+/g, ' ').slice(0, 140),
+                        lines,
+                      };
+                    }
+                    return null;
+                  })
+                  .filter(Boolean)
+                  .slice(0, 12);
+
+                const styles = [...document.querySelectorAll('link[rel="stylesheet"]')]
+                  .map(x => {
+                    try {
+                      const u = new URL(x.href, location.href);
+                      return u.pathname.split('/').pop()?.replace(/\?.*$/,'') || u.pathname;
+                    } catch { return x.getAttribute('href') || ''; }
+                  })
+                  .filter(Boolean)
+                  .sort();
+
+                return {
+                  title: document.title,
+                  overflowPx: Math.max(0, Math.round(overflowPx)),
+                  clippedInteractive: interactive,
+                  clippedText,
+                  suspiciousHeadings,
+                  stylesheetSignature: styles.join('|') || 'no-external-css',
+                  bodyClass: document.body?.className || '',
+                  documentHeight: Math.max(document.documentElement.scrollHeight, document.body?.scrollHeight || 0),
+                };
+              });
+            }
+
+            const firstPartyFailures = requestFailures.filter(x => {
+              try { return new URL(x.url).origin === new URL(item.url).origin; }
+              catch { return true; }
+            });
+
+            const failures = [];
+            const warnings = [];
+            if (gotoError) failures.push(`navigation: ${gotoError}`);
+            if (status !== null && status >= 400) failures.push(`HTTP ${status}`);
+            if (dom.overflowPx > 6) failures.push(`horizontal overflow ${dom.overflowPx}px`);
+            if (dom.clippedInteractive.length) failures.push(`interactive viewport clipping ${dom.clippedInteractive.length}`);
+            if (dom.clippedText.length) failures.push(`text/button clipping ${dom.clippedText.length}`);
+            if (firstPartyFailures.length) warnings.push(`first-party resource failures ${firstPartyFailures.length}`);
+            if (pageErrors.length) warnings.push(`page errors ${pageErrors.length}`);
+            if (dom.suspiciousHeadings.length) warnings.push(`possible 1-character heading wrap ${dom.suspiciousHeadings.length}`);
+
+            const signature = `${item.site}|${vp.name}|${dom.stylesheetSignature}|${dom.bodyClass}`;
+            const shouldRepresentative = !representativeSignatures.has(signature);
+            if (shouldRepresentative) representativeSignatures.add(signature);
+
+            const shouldShot = failures.length || warnings.length || isKeyUrl(item.url) || shouldRepresentative;
+            let screenshot = null;
+            if (!gotoError && shouldShot) {
+              screenshot = `${item.site.toLowerCase()}_${vp.name}_${slug(item.url)}.jpg`;
+              try {
+                await page.screenshot({
+                  path: path.join(shotDir, screenshot),
+                  fullPage: true,
+                  type: 'jpeg',
+                  quality: 55,
+                });
+              } catch (e) {
+                warnings.push(`screenshot failed: ${String(e.message || e)}`);
+                screenshot = null;
+              }
+            }
+
+            await context.close();
+
+            return {
+              ...item,
+              viewport: vp.name,
+              width: vp.width,
+              height: vp.height,
+              status,
+              gotoError,
+              ...dom,
+              pageErrors,
+              requestFailures: firstPartyFailures,
+              failures,
+              warnings,
+              screenshot,
+              representative: shouldRepresentative,
+            };
+          }
+
+          async function main() {
+            const browser = await chromium.launch({ headless: true });
+            const representativeSignatures = new Set();
+            const results = [];
+            const concurrency = 4;
+            let cursor = 0;
+
+            async function worker() {
+              while (true) {
+                const idx = cursor++;
+                const total = inventory.length * viewports.length;
+                if (idx >= total) return;
+                const item = inventory[Math.floor(idx / viewports.length)];
+                const vp = viewports[idx % viewports.length];
+                process.stdout.write(`[${idx + 1}/${total}] ${item.site} ${vp.name} ${item.url}\n`);
+                try {
+                  results[idx] = await auditOne(browser, item, vp, representativeSignatures);
+                } catch (err) {
+                  results[idx] = {
+                    ...item,
+                    viewport: vp.name,
+                    failures: [`audit exception: ${String(err.message || err)}`],
+                    warnings: [],
+                    screenshot: null,
+                  };
+                }
+              }
+            }
+
+            await Promise.all(Array.from({ length: concurrency }, () => worker()));
+            await browser.close();
+
+            const cleanResults = results.filter(Boolean);
+            const failed = cleanResults.filter(r => r.failures?.length);
+            const warned = cleanResults.filter(r => r.warnings?.length);
+            const pages = new Set(cleanResults.map(r => `${r.site}|${r.path}`));
+            const officialPages = new Set(cleanResults.filter(r => r.site === 'OFFICIAL').map(r => r.path));
+            const productPages = new Set(cleanResults.filter(r => r.site === 'PRODUCT').map(r => r.path));
+
+            const summary = {
+              auditedPages: pages.size,
+              auditedViewportCases: cleanResults.length,
+              officialPages: officialPages.size,
+              productPages: productPages.size,
+              failureCases: failed.length,
+              warningCases: warned.length,
+              representativeScreenshots: cleanResults.filter(r => r.representative && r.screenshot).length,
+              allScreenshots: cleanResults.filter(r => r.screenshot).length,
+              status: failed.length ? 'FAIL' : 'PASS',
+            };
+
+            fs.writeFileSync(path.join(outDir, 'report.json'), JSON.stringify({ summary, results: cleanResults }, null, 2));
+
+            let md = `# OFFICIAL + PRODUCT FINAL VISUAL QA\n\n`;
+            md += `**Status:** ${summary.status}\n\n`;
+            md += `- Public HTML pages audited: ${summary.auditedPages}\n`;
+            md += `- OFFICIAL pages: ${summary.officialPages}\n`;
+            md += `- PRODUCT pages: ${summary.productPages}\n`;
+            md += `- Desktop/mobile cases: ${summary.auditedViewportCases}\n`;
+            md += `- Failure cases: ${summary.failureCases}\n`;
+            md += `- Warning cases: ${summary.warningCases}\n`;
+            md += `- Screenshots saved: ${summary.allScreenshots}\n\n`;
+
+            if (failed.length) {
+              md += `## Failures\n\n`;
+              for (const r of failed) {
+                md += `### ${r.site} / ${r.viewport} / ${r.url}\n`;
+                for (const x of r.failures) md += `- FAIL: ${x}\n`;
+                if (r.clippedInteractive?.length) md += `- Interactive: \`${JSON.stringify(r.clippedInteractive)}\`\n`;
+                if (r.clippedText?.length) md += `- Clipped text: \`${JSON.stringify(r.clippedText)}\`\n`;
+                if (r.screenshot) md += `- Screenshot: screenshots/${r.screenshot}\n`;
+                md += `\n`;
+              }
+            }
+
+            if (warned.length) {
+              md += `## Warnings\n\n`;
+              for (const r of warned.slice(0, 100)) {
+                md += `### ${r.site} / ${r.viewport} / ${r.url}\n`;
+                for (const x of r.warnings) md += `- WARN: ${x}\n`;
+                if (r.suspiciousHeadings?.length) md += `- Headings: \`${JSON.stringify(r.suspiciousHeadings)}\`\n`;
+                if (r.requestFailures?.length) md += `- Resource failures: \`${JSON.stringify(r.requestFailures)}\`\n`;
+                if (r.screenshot) md += `- Screenshot: screenshots/${r.screenshot}\n`;
+                md += `\n`;
+              }
+            }
+
+            md += `## Representative screenshots\n\n`;
+            for (const r of cleanResults.filter(r => r.representative && r.screenshot)) {
+              md += `- ${r.site} / ${r.viewport} / ${r.url} → screenshots/${r.screenshot}\n`;
+            }
+
+            fs.writeFileSync(path.join(outDir, 'report.md'), md);
+            fs.writeFileSync(path.join(outDir, 'qa-status.txt'), summary.status + '\n');
+            console.log(JSON.stringify(summary, null, 2));
+          }
+
+          main().catch(err => {
+            console.error(err);
+            fs.mkdirSync('qa-output', { recursive: true });
+            fs.writeFileSync('qa-output/qa-status.txt', 'FAIL\n');
+            fs.writeFileSync('qa-output/fatal.txt', String(err.stack || err));
+            process.exit(0);
+          });
+          NODE
+
+          node visual-qa.js
+
+      - name: Upload visual QA artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: final-visual-qa
+          path: qa-output/
+          retention-days: 7
+          compression-level: 6
+
+      - name: Enforce QA result
+        shell: bash
+        run: |
+          echo "QA status:"
+          cat qa-output/qa-status.txt
+          if grep -q '^FAIL' qa-output/qa-status.txt; then
+            echo "Visual QA found critical issues. See artifact final-visual-qa."
+            exit 1
+          fi
+          echo "FINAL VISUAL QA PASS"
+
+      - name: Remove one-shot workflow after PASS
+        if: success()
+        shell: bash
+        working-directory: official
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm -f .github/workflows/final-visual-qa.yml
+          git commit -m "Remove completed final visual QA workflow"
+          git push origin HEAD:main
