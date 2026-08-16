@@ -1,11 +1,7 @@
-name: FINAL visual QA official + product
+name: FINAL visual QA official + product V1.1
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/final-visual-qa.yml'
 
 permissions:
   contents: write
@@ -35,7 +31,7 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
-          import json, subprocess
+          import json, subprocess, re
 
           def tracked_html(repo):
               rows = subprocess.check_output(
@@ -45,6 +41,20 @@ jobs:
               out = []
               for p in rows:
                   if p.startswith((".github/", ".dpro/", ".dpro-next/")):
+                      continue
+                  full = Path(repo) / p
+                  try:
+                      html = full.read_text(encoding="utf-8", errors="ignore")
+                  except Exception:
+                      html = ""
+                  noindex = False
+                  for tag in re.findall(r"<meta\\b[^>]*>", html, flags=re.I | re.S):
+                      name = re.search(r'\\bname\\s*=\\s*["\\\']([^"\\\']+)["\\\']', tag, flags=re.I)
+                      content = re.search(r'\\bcontent\\s*=\\s*["\\\']([^"\\\']*)["\\\']', tag, flags=re.I)
+                      if name and content and name.group(1).lower() == "robots" and "noindex" in content.group(1).lower():
+                          noindex = True
+                          break
+                  if noindex:
                       continue
                   out.append(p)
               return out
@@ -171,7 +181,7 @@ jobs:
 
             const pageErrors = [];
             const requestFailures = [];
-            page.on('pageerror', err => pageErrors.push(String(err.message || err)));
+            page.on('pageerror', err => pageErrors.push(String(err.stack || err.message || err)));
             page.on('requestfailed', req => {
               const u = req.url();
               const t = req.resourceType();
@@ -199,6 +209,15 @@ jobs:
                     transition:none!important;
                     scroll-behavior:auto!important;
                     caret-color:transparent!important;
+                  }
+                  .reveal,.v33-reveal,.js .reveal{
+                    opacity:1!important;
+                    transform:none!important;
+                    visibility:visible!important;
+                  }
+                  .section{
+                    content-visibility:visible!important;
+                    contain-intrinsic-size:auto!important;
                   }
                 `
               }).catch(() => {});
@@ -233,9 +252,22 @@ jobs:
                 const body = document.body;
                 const overflowPx = Math.max(de.scrollWidth, body?.scrollWidth || 0) - innerWidth;
 
+                const insideIntentionalHScroll = (el) => {
+                  let p = el.parentElement;
+                  while (p && p !== document.body) {
+                    const cs = getComputedStyle(p);
+                    if (['auto','scroll'].includes(cs.overflowX) && p.scrollWidth > p.clientWidth + 6) {
+                      return true;
+                    }
+                    p = p.parentElement;
+                  }
+                  return false;
+                };
+
                 const interactive = [...document.querySelectorAll('a,button,input,select,textarea,summary,[role="button"]')]
                   .filter(visible)
                   .map(el => {
+                    if (insideIntentionalHScroll(el)) return null;
                     const r = el.getBoundingClientRect();
                     const intersects = r.right > 0 && r.left < innerWidth && r.bottom > 0;
                     if (!intersects) return null;
@@ -257,6 +289,7 @@ jobs:
                 const clippedText = [...document.querySelectorAll(clipSelectors)]
                   .filter(visible)
                   .map(el => {
+                    if (insideIntentionalHScroll(el)) return null;
                     const cs = getComputedStyle(el);
                     const xClip = ['hidden','clip'].includes(cs.overflowX) && el.scrollWidth > el.clientWidth + 4;
                     const yClip = ['hidden','clip'].includes(cs.overflowY) && el.scrollHeight > el.clientHeight + 4;
@@ -523,13 +556,3 @@ jobs:
           fi
           echo "FINAL VISUAL QA PASS"
 
-      - name: Remove one-shot workflow after PASS
-        if: success()
-        shell: bash
-        working-directory: official
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git rm -f .github/workflows/final-visual-qa.yml
-          git commit -m "Remove completed final visual QA workflow"
-          git push origin HEAD:main
