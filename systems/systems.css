@@ -2525,3 +2525,64 @@ linear-gradient(145deg,#06101c,#0a1b2c);
     box-sizing:border-box;
   }
 }
+
+/* FINAL VISUAL QA FIX V1.2 / SYSTEM PAGE OVERFLOW GUARD */
+html{
+  overflow-x:clip;
+  max-width:100%;
+}
+body.system-product-page{
+  overflow-x:clip!important;
+  max-width:100%;
+}
+body.system-product-page main,
+body.system-product-page .product-hero,
+body.system-product-page .section,
+body.system-product-page .product-local-nav,
+body.system-product-page .site-footer{
+  max-width:100%;
+  overflow-x:clip;
+}
+body.system-product-page .product-hero-inner,
+body.system-product-page .product-hero-stage,
+body.system-product-page .product-stage-monitor,
+body.system-product-page .product-live-row,
+body.system-product-page .product-live-copy,
+body.system-product-page .product-live-stage,
+body.system-product-page .product-map-board,
+body.system-product-page .product-map-flow,
+body.system-product-page .product-map-core,
+body.system-product-page .product-feature-grid,
+body.system-product-page .product-role-grid,
+body.system-product-page .product-safety-grid,
+body.system-product-page .product-price-grid,
+body.system-product-page .product-after-grid,
+body.system-product-page .product-flow-list{
+  min-width:0;
+  max-width:100%;
+}
+@media(max-width:760px){
+  body.system-product-page .product-stage-phone{
+    max-width:min(150px,42vw)!important;
+  }
+  body.system-product-page .product-stage-tablet{
+    right:0!important;
+    max-width:min(190px,52vw)!important;
+  }
+  body.system-product-page .product-stage-phone,
+  body.system-product-page .product-stage-tablet{
+    box-sizing:border-box;
+  }
+  body.system-product-page [class*="-live-"],
+  body.system-product-page [class*="-monitor-"]{
+    min-width:0;
+    max-width:100%;
+  }
+  body.system-product-page img,
+  body.system-product-page iframe,
+  body.system-product-page video,
+  body.system-product-page canvas,
+  body.system-product-page svg{
+    max-width:100%;
+  }
+}
