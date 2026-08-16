@@ -2501,3 +2501,27 @@ linear-gradient(145deg,#06101c,#0a1b2c);
 @media(max-width:760px){
   .sys-catalog-meta{display:grid}
 }
+
+/* FINAL VISUAL QA FIX V1.0 / OFFICIAL SYSTEM HERO */
+@media(max-width:960px){
+  body.system-product-page .product-hero-inner,
+  body.system-product-page .product-hero-inner > *,
+  body.system-product-page .product-hero-copy,
+  body.system-product-page .product-hero-copy > *,
+  body.system-product-page .product-hero-actions,
+  body.system-product-page .product-hero-actions > *{
+    min-width:0!important;
+    max-width:100%!important;
+  }
+}
+@media(max-width:760px){
+  body.system-product-page .product-hero-actions .button{
+    width:100%!important;
+    min-width:0!important;
+    max-width:100%!important;
+    white-space:normal!important;
+    overflow-wrap:anywhere;
+    text-align:center;
+    box-sizing:border-box;
+  }
+}
