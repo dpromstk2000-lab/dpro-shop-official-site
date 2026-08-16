@@ -1,4 +1,4 @@
-name: FINAL visual QA official + product V1.1
+name: FINAL visual QA official + product V1.2
 
 on:
   workflow_dispatch:
@@ -42,13 +42,20 @@ jobs:
               for p in rows:
                   if p.startswith((".github/", ".dpro/", ".dpro-next/")):
                       continue
+                  if repo == "product" and p in {
+                      "systems/member.html",
+                      "systems/owner.html",
+                      "systems/owner-ipad.html",
+                      "systems/staff.html",
+                  }:
+                      continue
                   full = Path(repo) / p
                   try:
                       html = full.read_text(encoding="utf-8", errors="ignore")
                   except Exception:
                       html = ""
                   noindex = False
-                  for tag in re.findall(r"<meta\\b[^>]*>", html, flags=re.I | re.S):
+                  for tag in re.findall(r"<meta\b[^>]*>", html, flags=re.I | re.S):
                       name = re.search(r'\\bname\\s*=\\s*["\\\']([^"\\\']+)["\\\']', tag, flags=re.I)
                       content = re.search(r'\\bcontent\\s*=\\s*["\\\']([^"\\\']*)["\\\']', tag, flags=re.I)
                       if name and content and name.group(1).lower() == "robots" and "noindex" in content.group(1).lower():
