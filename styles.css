@@ -307,3 +307,7 @@ h3{
     overflow-wrap:anywhere;
   }
 }
+/* FINAL VISUAL QA V1.3 / HEADING BALANCE */
+main h3{
+  text-wrap:balance;
+}
