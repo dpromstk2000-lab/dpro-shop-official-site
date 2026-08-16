@@ -49,7 +49,7 @@
 <div class="or-hero__glow"></div>
 <div class="or-shell or-hero__grid">
 <div class="or-hero__copy or-reveal">
-<p class="or-eyebrow">DPRO SHOP × CONNECTED STORE OPERATION</p>
+<p class="or-eyebrow">DPRO SHOP × CONNECTED 店舗運用</p>
 <h1><span>LINE公式も、</span><span>DPROシステムも、</span><span>ホームページも。</span><em>店舗運営を、ひとつに。</em></h1>
 <p>LINEを作るだけ、ホームページを公開するだけで終わらせません。お客様の入口から、予約・受付・顧客管理、店舗情報の更新まで、同じ仕組みでつなぎます。</p>
 <div class="or-actions"><a class="or-button or-button--line" href="https://lin.ee/YxJGXV6D" rel="noopener" target="_blank">LINEで無料相談</a><a class="or-button or-button--ghost" href="#connected">連携の仕組みを見る</a></div>

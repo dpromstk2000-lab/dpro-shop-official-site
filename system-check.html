@@ -1,93 +1,93 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="robots" content="noindex,nofollow,noarchive">
-  <meta name="googlebot" content="noindex,nofollow,noarchive">
-  <meta name="referrer" content="no-referrer">
-  <meta name="theme-color" content="#07111f">
-  <title>全58ページ公開後動作検査｜DPRO SHOP</title>
-  <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="system-check.css?v=19">
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1">
+ <meta name="robots" content="noindex,nofollow,noarchive">
+ <meta name="googlebot" content="noindex,nofollow,noarchive">
+ <meta name="referrer" content="no-referrer">
+ <meta name="theme-color" content="#07111f">
+ <title>全58ページ公開後動作検査｜DPRO SHOP</title>
+ <link rel="icon" href="favicon.svg" type="image/svg+xml">
+ <link rel="stylesheet" href="system-check.css?v=19">
 </head>
 <body>
-  <a class="skip-link" href="#main">検査画面へ移動</a>
-  <header class="check-header">
-    <div>
-      <p class="check-eyebrow">DPRO SHOP / 48 SYSTEMS RELEASE CHECK</p>
-      <h1>全ページ最終動作検査</h1>
-      <p>主要10ページと業種別48システムを、公開ドメインから一括検査します。</p>
-    </div>
-    <a class="back-link" href="/">公開サイトへ戻る</a>
-  </header>
+ <a class="skip-link" href="#main">検査画面へ移動</a>
+ <header class="check-header">
+ <div>
+ <p class="check-eyebrow">DPRO SHOP / 48 SYSTEMS RELEASE CHECK</p>
+ <h1>全ページ最終動作検査</h1>
+ <p>主要10ページと業種別48システムを、公開ドメインから一括検査します。</p>
+ </div>
+ <a class="back-link" href="/">公開サイトへ戻る</a>
+ </header>
 
-  <main id="main" class="check-main" data-system-check>
-    <section class="environment-panel" aria-labelledby="environment-title">
-      <div><span class="panel-label">検査対象</span><strong id="check-origin">確認中…</strong></div>
-      <div><span class="panel-label">対象ページ</span><strong>主要10＋システム48</strong></div>
-      <div><span class="panel-label">最終実行</span><strong id="last-run">未実行</strong></div>
-      <div class="environment-actions">
-        <button class="primary-button" id="run-checks" type="button">全58ページを検査</button>
-        <button class="secondary-button" id="copy-results" type="button" disabled>結果をコピー</button>
-        <button class="secondary-button" id="save-results" type="button" disabled>結果TXTを保存</button>
-      </div>
-    </section>
+ <main id="main" class="check-main" data-system-check>
+ <section class="environment-panel" aria-labelledby="environment-title">
+ <div><span class="panel-label">検査対象</span><strong id="check-origin">確認中…</strong></div>
+ <div><span class="panel-label">対象ページ</span><strong>主要10＋システム48</strong></div>
+ <div><span class="panel-label">最終実行</span><strong id="last-run">未実行</strong></div>
+ <div class="environment-actions">
+ <button class="primary-button" id="run-checks" type="button">全58ページを検査</button>
+ <button class="secondary-button" id="copy-results" type="button" disabled>結果をコピー</button>
+ <button class="secondary-button" id="save-results" type="button" disabled>結果TXTを保存</button>
+ </div>
+ </section>
 
-    <section class="summary-grid" aria-label="検査集計">
-      <article class="summary-card summary-pass"><span>正常</span><strong id="count-pass">0</strong></article>
-      <article class="summary-card summary-warning"><span>要確認</span><strong id="count-warning">0</strong></article>
-      <article class="summary-card summary-fail"><span>不合格</span><strong id="count-fail">0</strong></article>
-      <article class="summary-card summary-pending"><span>検査中</span><strong id="count-pending">0</strong></article>
-    </section>
+ <section class="summary-grid" aria-label="検査集計">
+ <article class="summary-card summary-pass"><span>正常</span><strong id="count-pass">0</strong></article>
+ <article class="summary-card summary-warning"><span>要確認</span><strong id="count-warning">0</strong></article>
+ <article class="summary-card summary-fail"><span>不合格</span><strong id="count-fail">0</strong></article>
+ <article class="summary-card summary-pending"><span>検査中</span><strong id="count-pending">0</strong></article>
+ </section>
 
-    <section class="progress-panel" aria-live="polite">
-      <div class="progress-copy"><strong id="progress-title">検査待機中</strong><span id="progress-detail">「全58ページを検査」を押してください。</span></div>
-      <div class="progress-track" aria-hidden="true"><span id="progress-bar"></span></div>
-    </section>
+ <section class="progress-panel" aria-live="polite">
+ <div class="progress-copy"><strong id="progress-title">検査待機中</strong><span id="progress-detail">「全58ページを検査」を押してください。</span></div>
+ <div class="progress-track" aria-hidden="true"><span id="progress-bar"></span></div>
+ </section>
 
-    <section class="results-panel" aria-labelledby="results-title">
-      <div class="section-heading">
-        <div><span class="panel-label">AUTOMATED CHECK</span><h2 id="results-title">自動検査結果</h2></div>
-        <select id="result-filter" aria-label="結果の絞り込み">
-          <option value="all">すべて表示</option><option value="pass">正常のみ</option><option value="warning">要確認のみ</option><option value="fail">不合格のみ</option>
-        </select>
-      </div>
-      <div class="result-table-wrap">
-        <table class="result-table"><thead><tr><th>状態</th><th>分類</th><th>検査項目</th><th>結果</th></tr></thead>
-        <tbody id="result-body"><tr class="empty-row"><td colspan="4">まだ検査を実行していません。</td></tr></tbody></table>
-      </div>
-    </section>
+ <section class="results-panel" aria-labelledby="results-title">
+ <div class="section-heading">
+ <div><span class="panel-label">AUTOMATED CHECK</span><h2 id="results-title">自動検査結果</h2></div>
+ <select id="result-filter" aria-label="結果の絞り込み">
+ <option value="all">すべて表示</option><option value="pass">正常のみ</option><option value="warning">要確認のみ</option><option value="fail">不合格のみ</option>
+ </select>
+ </div>
+ <div class="result-table-wrap">
+ <table class="result-table"><thead><tr><th>状態</th><th>分類</th><th>検査項目</th><th>結果</th></tr></thead>
+ <tbody id="result-body"><tr class="empty-row"><td colspan="4">まだ検査を実行していません。</td></tr></tbody></table>
+ </div>
+ </section>
 
-    <section class="manual-panel" aria-labelledby="manual-title">
-      <div class="section-heading"><div><span class="panel-label">REAL DEVICE CHECK</span><h2 id="manual-title">実機で確認する項目</h2></div><button class="text-button" id="reset-manual" type="button">チェックをリセット</button></div>
-      <div class="manual-list">
-        <label><input type="checkbox" data-manual-check="pc-pages"><span><strong>PC表示</strong>トップ・一覧・全48個別ページの主要セクションが崩れない</span></label>
-        <label><input type="checkbox" data-manual-check="tablet-pages"><span><strong>タブレット表示</strong>一覧カード・固定ナビ・iPadプレビューが重ならない</span></label>
-        <label><input type="checkbox" data-manual-check="mobile-menu"><span><strong>390pxスマートフォン</strong>横スクロール、文字切れ、ボタン重なりがない</span></label>
-        <label><input type="checkbox" data-manual-check="catalog-filter"><span><strong>カテゴリ絞り込み</strong>11カテゴリの件数と表示カードが一致する</span></label>
-        <label><input type="checkbox" data-manual-check="demo-links"><span><strong>全デモURL</strong>GitHub Pages・Worker・役割別画面が正しいシステムとして開く</span></label>
-        <label><input type="checkbox" data-manual-check="line-open"><span><strong>LINE導線</strong>無料相談ボタンが正しいLINEアカウントを開く</span></label>
-        <label><input type="checkbox" data-manual-check="search-console"><span><strong>Search Console</strong>sitemap.xmlが58URLを正常に読み取る</span></label>
-      </div>
-    </section>
+ <section class="manual-panel" aria-labelledby="manual-title">
+ <div class="section-heading"><div><span class="panel-label">REAL DEVICE CHECK</span><h2 id="manual-title">実機で確認する項目</h2></div><button class="text-button" id="reset-manual" type="button">チェックをリセット</button></div>
+ <div class="manual-list">
+ <label><input type="checkbox" data-manual-check="pc-pages"><span><strong>PC表示</strong>トップ・一覧・全48個別ページの主要セクションが崩れない</span></label>
+ <label><input type="checkbox" data-manual-check="tablet-pages"><span><strong>タブレット表示</strong>一覧カード・固定ナビ・iPadプレビューが重ならない</span></label>
+ <label><input type="checkbox" data-manual-check="mobile-menu"><span><strong>390pxスマートフォン</strong>横スクロール、文字切れ、ボタン重なりがない</span></label>
+ <label><input type="checkbox" data-manual-check="catalog-filter"><span><strong>カテゴリ絞り込み</strong>11カテゴリの件数と表示カードが一致する</span></label>
+ <label><input type="checkbox" data-manual-check="demo-links"><span><strong>全デモURL</strong>GitHub Pages・Worker・役割別画面が正しいシステムとして開く</span></label>
+ <label><input type="checkbox" data-manual-check="line-open"><span><strong>LINE導線</strong>無料相談ボタンが正しいLINEアカウントを開く</span></label>
+ <label><input type="checkbox" data-manual-check="search-console"><span><strong>Search Console</strong>sitemap.xmlが58URLを正常に読み取る</span></label>
+ </div>
+ </section>
 
-    <section class="quick-links" aria-labelledby="quick-links-title">
-      <div class="section-heading"><div><span class="panel-label">QUICK ACCESS</span><h2 id="quick-links-title">確認用リンク</h2></div></div>
-      <div class="link-grid">
-        <a href="/" target="_blank" rel="noopener">トップページ</a>
-        <a href="/systems/" target="_blank" rel="noopener">48システム一覧</a>
-        <a href="/pricing" target="_blank" rel="noopener">料金</a>
-        <a href="/contact" target="_blank" rel="noopener">お問い合わせ</a>
-        <a href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINE無料相談</a>
-        <a href="/sitemap.xml" target="_blank" rel="noopener">サイトマップ</a>
-      </div>
-    </section>
+ <section class="quick-links" aria-labelledby="quick-links-title">
+ <div class="section-heading"><div><span class="panel-label">QUICK ACCESS</span><h2 id="quick-links-title">確認用リンク</h2></div></div>
+ <div class="link-grid">
+ <a href="/" target="_blank" rel="noopener">トップページ</a>
+ <a href="/systems/" target="_blank" rel="noopener">48システム一覧</a>
+ <a href="/pricing" target="_blank" rel="noopener">料金</a>
+ <a href="/contact" target="_blank" rel="noopener">お問い合わせ</a>
+ <a href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINE無料相談</a>
+ <a href="/sitemap.xml" target="_blank" rel="noopener">サイトマップ</a>
+ </div>
+ </section>
 
-    <aside class="notice-panel"><strong>このページについて</strong><p>検索結果とサイトマップには掲載しません。外部デモの最終動作はCORS制限があるため、実機確認項目として分離しています。</p></aside>
-  </main>
+ <aside class="notice-panel"><strong>このページについて</strong><p>検索結果とサイトマップには掲載しません。外部デモの最終動作はCORS制限があるため、実機確認項目として分離しています。</p></aside>
+ </main>
 
-  <footer class="check-footer"><span>© 2026 DPRO SHOP</span><span>STEP DPRO-SYSTEMS-GAKUDO-48</span></footer>
-  <script defer src="system-check.js?v=21"></script>
+ <footer class="check-footer"><span>© 2026 DPRO SHOP</span><span>STEP DPRO-SYSTEMS-GAKUDO-48</span></footer>
+ <script defer src="system-check.js?v=21"></script>
 </body>
 </html>
