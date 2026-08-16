@@ -1,7 +1,11 @@
-name: FINAL visual QA official + product V1.3
+name: FINAL visual QA official + product V1.4 FAST
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/final-visual-qa.yml'
 
 permissions:
   contents: write
@@ -186,14 +190,6 @@ jobs:
             });
             const page = await context.newPage();
 
-            await page.route('**/*', async route => {
-              const u = route.request().url();
-              if (ignoreFailedHosts.some(h => u.includes(h))) {
-                await route.abort();
-                return;
-              }
-              await route.continue();
-            });
 
             const pageErrors = [];
             const requestFailures = [];
@@ -248,11 +244,11 @@ jobs:
                 const step = Math.max(500, Math.floor(innerHeight * 0.8));
                 for (let y = 0; y < maxY; y += step) {
                   scrollTo(0, y);
-                  await new Promise(resolve => setTimeout(resolve, 20));
+                  await new Promise(resolve => setTimeout(resolve, 8));
                 }
                 scrollTo(0, 0);
               }).catch(() => {});
-              await page.waitForTimeout(250);
+              await page.waitForTimeout(180);
             } catch (err) {
               gotoError = String(err.message || err);
             }
