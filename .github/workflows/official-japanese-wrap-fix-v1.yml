@@ -1,0 +1,160 @@
+name: OFFICIAL Japanese heading wrap fix V1.0
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/official-japanese-wrap-fix-v1.yml'
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+
+    steps:
+      - name: Checkout OFFICIAL
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Apply Japanese mobile heading line-break rules
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import textwrap
+
+          targets = [
+              (
+                  Path("styles.css"),
+                  "/* DPRO JAPANESE MOBILE WRAP V1.0 / GLOBAL */",
+                  r"""
+                  /* DPRO JAPANESE MOBILE WRAP V1.0 / GLOBAL */
+                  @media(max-width:680px){
+                    body :where(main h1,main h2,main h3,main h4){
+                      line-break:strict!important;
+                      word-break:normal!important;
+                      overflow-wrap:normal!important;
+                      text-wrap:balance!important;
+                    }
+                    @supports (word-break:auto-phrase){
+                      body :where(main h1,main h2,main h3,main h4){
+                        word-break:auto-phrase!important;
+                      }
+                    }
+                  }
+                  """
+              ),
+              (
+                  Path("systems/systems.css"),
+                  "/* DPRO JAPANESE MOBILE WRAP V1.0 / SYSTEMS */",
+                  r"""
+                  /* DPRO JAPANESE MOBILE WRAP V1.0 / SYSTEMS */
+                  @media(max-width:760px){
+                    body.system-product-page :where(h1,h2,h3,h4){
+                      line-break:strict!important;
+                      word-break:normal!important;
+                      overflow-wrap:normal!important;
+                      text-wrap:balance!important;
+                    }
+                    @supports (word-break:auto-phrase){
+                      body.system-product-page :where(h1,h2,h3,h4){
+                        word-break:auto-phrase!important;
+                      }
+                    }
+                  }
+                  """
+              ),
+          ]
+
+          for path, marker, patch in targets:
+              if not path.exists():
+                  raise SystemExit(f"Required CSS missing: {path}")
+              css = path.read_text(encoding="utf-8")
+              if marker not in css:
+                  css = css.rstrip() + "\n\n" + textwrap.dedent(patch).strip() + "\n"
+                  path.write_text(css, encoding="utf-8")
+                  print("UPDATED", path)
+              else:
+                  print("ALREADY PRESENT", path)
+
+          print("Japanese heading wrap rules prepared")
+          PY
+
+      - name: Static safety QA
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          global_css = Path("styles.css").read_text(encoding="utf-8")
+          system_css = Path("systems/systems.css").read_text(encoding="utf-8")
+
+          assert "DPRO JAPANESE MOBILE WRAP V1.0 / GLOBAL" in global_css
+          assert "DPRO JAPANESE MOBILE WRAP V1.0 / SYSTEMS" in system_css
+          assert "word-break:auto-phrase" in global_css
+          assert "word-break:auto-phrase" in system_css
+          assert "line-break:strict" in global_css
+          assert "text-wrap:balance" in system_css
+          assert Path(".github/workflows/japanese-mobile-reaudit-v1.yml").exists()
+
+          print("OFFICIAL JAPANESE WRAP STATIC QA PASS")
+          PY
+
+      - name: Commit OFFICIAL wrap fix and remove one-shot workflow
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git rm -f .github/workflows/official-japanese-wrap-fix-v1.yml
+          git add styles.css systems/systems.css
+
+          echo "Changed paths:"
+          git diff --cached --name-only
+
+          if git diff --cached --name-only | grep -E '\.(html|js)$'; then
+            echo "ERROR: HTML/JS was unexpectedly staged"
+            exit 1
+          fi
+
+          git commit -m "Fix OFFICIAL Japanese mobile heading wraps V1.0"
+          git push origin HEAD:main
+
+      - name: Wait for live CSS
+        shell: bash
+        run: |
+          set -e
+
+          GLOBAL_URL="https://dpro-shop.com/styles.css?qa=${GITHUB_SHA}-${GITHUB_RUN_ID}"
+          SYSTEM_URL="https://dpro-shop.com/systems/systems.css?qa=${GITHUB_SHA}-${GITHUB_RUN_ID}"
+
+          for i in $(seq 1 60); do
+            global_css="$(curl -fsSL "$GLOBAL_URL" 2>/dev/null || true)"
+            system_css="$(curl -fsSL "$SYSTEM_URL" 2>/dev/null || true)"
+
+            if printf '%s' "$global_css" | grep -q "DPRO JAPANESE MOBILE WRAP V1.0 / GLOBAL" \
+              && printf '%s' "$system_css" | grep -q "DPRO JAPANESE MOBILE WRAP V1.0 / SYSTEMS"; then
+              echo "OFFICIAL Japanese wrap CSS is live"
+              exit 0
+            fi
+
+            echo "Waiting for live CSS... ${i}/60"
+            sleep 5
+          done
+
+          echo "Source committed, but live CSS propagation was not confirmed in time."
+          exit 1
+
+      - name: Dispatch Japanese mobile reaudit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          gh workflow run japanese-mobile-reaudit-v1.yml --ref main
+          echo "JAPANESE mobile visual reaudit V1.0 dispatched"
