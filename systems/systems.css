@@ -2601,3 +2601,11 @@ body.system-product-page .product-flow-list{
     }
   }
 }
+
+/* DPRO JAPANESE MOBILE WRAP V1.1 / PHRASE KEEP */
+@media(max-width:760px){
+  .dpro-jp-keep{
+    white-space:nowrap!important;
+    display:inline;
+  }
+}
