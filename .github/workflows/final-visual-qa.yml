@@ -1,4 +1,4 @@
-name: FINAL visual QA official + product V1.2
+name: FINAL visual QA official + product V1.3
 
 on:
   workflow_dispatch:
@@ -186,6 +186,15 @@ jobs:
             });
             const page = await context.newPage();
 
+            await page.route('**/*', async route => {
+              const u = route.request().url();
+              if (ignoreFailedHosts.some(h => u.includes(h))) {
+                await route.abort();
+                return;
+              }
+              await route.continue();
+            });
+
             const pageErrors = [];
             const requestFailures = [];
             page.on('pageerror', err => pageErrors.push(String(err.stack || err.message || err)));
@@ -204,11 +213,16 @@ jobs:
             let status = null;
             let gotoError = null;
             try {
-              const response = await page.goto(item.url, {
-                waitUntil: 'domcontentloaded',
-                timeout: 30000,
-              });
-              status = response ? response.status() : null;
+              let response = null;
+              for (let attempt = 1; attempt <= 3; attempt += 1) {
+                response = await page.goto(item.url, {
+                  waitUntil: 'domcontentloaded',
+                  timeout: 30000,
+                });
+                status = response ? response.status() : null;
+                if (!status || status < 500 || attempt === 3) break;
+                await page.waitForTimeout(700 * attempt);
+              }
               await page.addStyleTag({
                 content: `
                   *,*::before,*::after{
@@ -229,7 +243,16 @@ jobs:
                 `
               }).catch(() => {});
               await page.evaluate(() => document.fonts?.ready).catch(() => {});
-              await page.waitForTimeout(450);
+              await page.evaluate(async () => {
+                const maxY = Math.max(document.body?.scrollHeight || 0, document.documentElement.scrollHeight || 0);
+                const step = Math.max(500, Math.floor(innerHeight * 0.8));
+                for (let y = 0; y < maxY; y += step) {
+                  scrollTo(0, y);
+                  await new Promise(resolve => setTimeout(resolve, 20));
+                }
+                scrollTo(0, 0);
+              }).catch(() => {});
+              await page.waitForTimeout(250);
             } catch (err) {
               gotoError = String(err.message || err);
             }
