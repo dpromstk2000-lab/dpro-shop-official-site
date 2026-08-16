@@ -1,4 +1,4 @@
-name: OFFICIAL Japanese heading wrap fix V1.3R3
+name: OFFICIAL Japanese heading wrap fix V1.3R4
 
 on:
   workflow_dispatch:
@@ -320,7 +320,7 @@ jobs:
                   f"{stats['button_elements']}"
               )
 
-          Path("/tmp/official-jp-v13r1-stats.txt").write_text(
+          Path("/tmp/official-jp-v13r4-stats.txt").write_text(
               "\n".join(f"{k}={v}" for k, v in stats.items())
               + f"\nunique_heading_rules={len(HEADING_RULES)}"
               + f"\nmatched_heading_rules={len(seen_heading_rules)}"
@@ -328,7 +328,7 @@ jobs:
               encoding="utf-8",
           )
 
-          print("OFFICIAL JAPANESE WRAP V1.3R3 PREP PASS")
+          print("OFFICIAL JAPANESE WRAP V1.3R4 PREP PASS")
           PY
 
       - name: Static safety QA
@@ -338,7 +338,7 @@ jobs:
           from pathlib import Path
 
           stats = Path(
-              "/tmp/official-jp-v13r1-stats.txt"
+              "/tmp/official-jp-v13r4-stats.txt"
           ).read_text(encoding="utf-8")
           print(stats)
 
@@ -347,9 +347,18 @@ jobs:
           assert "button_elements=1" in stats
 
           # Cross-tag regression check:
+          # WORD JOINER is intentionally present in raw HTML, so compare the
+          # customer-visible text after removing the invisible joiner entity.
           about = Path("about.html").read_text(encoding="utf-8")
-          assert "店舗で使える形" in about
-          assert "にする。" in about
+          about_visible = (
+              about
+              .replace("&#8288;", "")
+              .replace("&#x2060;", "")
+              .replace("&#X2060;", "")
+              .replace("\u2060", "")
+          )
+          assert "店舗で使える形" in about_visible
+          assert "にする。" in about_visible
           assert "&#8288;" in about
 
           # Remaining HIGH regression checks:
@@ -379,10 +388,10 @@ jobs:
               ".github/workflows/japanese-mobile-reaudit-v1.yml"
           ).exists()
 
-          print("OFFICIAL JAPANESE WRAP V1.3R3 STATIC QA PASS")
+          print("OFFICIAL JAPANESE WRAP V1.3R4 STATIC QA PASS")
           PY
 
-      - name: Commit V1.3R3 and remove one-shot workflow
+      - name: Commit V1.3R4 and remove one-shot workflow
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
@@ -397,15 +406,15 @@ jobs:
           git diff --cached --name-only
 
           if git diff --cached --name-only | grep -E '\.(js|css)$'; then
-            echo "ERROR: V1.3R3 must not change JavaScript or CSS"
+            echo "ERROR: V1.3R4 must not change JavaScript or CSS"
             exit 1
           fi
 
           git commit -m \
-            "Finish OFFICIAL Japanese mobile wraps V1.3R3"
+            "Finish OFFICIAL Japanese mobile wraps V1.3R4"
           git push origin HEAD:main
 
-      - name: Wait for public V1.3R3 HTML
+      - name: Wait for public V1.3R4 HTML
         shell: bash
         run: |
           set -e
@@ -414,14 +423,14 @@ jobs:
           for i in $(seq 1 60); do
             page="$(curl -fsSL "$URL" 2>/dev/null || true)"
             if printf '%s' "$page" | grep -q "&#8288;"; then
-              echo "OFFICIAL Japanese wrap V1.3R3 is live"
+              echo "OFFICIAL Japanese wrap V1.3R4 is live"
               exit 0
             fi
-            echo "Waiting for V1.3R3 HTML... ${i}/60"
+            echo "Waiting for V1.3R4 HTML... ${i}/60"
             sleep 5
           done
 
-          echo "V1.3R3 source committed, but public HTML not confirmed."
+          echo "V1.3R4 source committed, but public HTML not confirmed."
           exit 1
 
       - name: Dispatch Japanese mobile reaudit V1.1
@@ -430,4 +439,4 @@ jobs:
         shell: bash
         run: |
           gh workflow run japanese-mobile-reaudit-v1.yml --ref main
-          echo "Japanese mobile reaudit V1.1 dispatched after V1.3R3"
+          echo "Japanese mobile reaudit V1.1 dispatched after V1.3R4"
