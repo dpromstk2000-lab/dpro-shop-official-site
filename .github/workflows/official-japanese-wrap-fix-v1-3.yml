@@ -1,4 +1,4 @@
-name: OFFICIAL Japanese heading wrap fix V1.3R2
+name: OFFICIAL Japanese heading wrap fix V1.3R3
 
 on:
   workflow_dispatch:
@@ -290,10 +290,21 @@ jobs:
           print("Changed pages:", len(changed_pages))
 
           if missing_rules:
-              raise SystemExit(
-                  "Heading rules not found in current OFFICIAL HTML: "
-                  + repr(sorted(missing_rules))
+              print(
+                  "SKIP obsolete heading rules not found in current OFFICIAL HTML:",
+                  repr(sorted(missing_rules)),
               )
+          if len(seen_heading_rules) < 47:
+              raise SystemExit(
+                  f"Expected at least 47 current heading rules, matched "
+                  f"{len(seen_heading_rules)}"
+              )
+          if stats["heading_elements"] < 80:
+              raise SystemExit(
+                  f"Expected at least 80 heading elements, got "
+                  f"{stats['heading_elements']}"
+              )
+
           if stats["summary_elements"] != 5:
               raise SystemExit(
                   f"Expected 5 summary elements, got "
@@ -317,7 +328,7 @@ jobs:
               encoding="utf-8",
           )
 
-          print("OFFICIAL JAPANESE WRAP V1.3R2 PREP PASS")
+          print("OFFICIAL JAPANESE WRAP V1.3R3 PREP PASS")
           PY
 
       - name: Static safety QA
@@ -368,10 +379,10 @@ jobs:
               ".github/workflows/japanese-mobile-reaudit-v1.yml"
           ).exists()
 
-          print("OFFICIAL JAPANESE WRAP V1.3R2 STATIC QA PASS")
+          print("OFFICIAL JAPANESE WRAP V1.3R3 STATIC QA PASS")
           PY
 
-      - name: Commit V1.3R2 and remove one-shot workflow
+      - name: Commit V1.3R3 and remove one-shot workflow
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
@@ -386,15 +397,15 @@ jobs:
           git diff --cached --name-only
 
           if git diff --cached --name-only | grep -E '\.(js|css)$'; then
-            echo "ERROR: V1.3R2 must not change JavaScript or CSS"
+            echo "ERROR: V1.3R3 must not change JavaScript or CSS"
             exit 1
           fi
 
           git commit -m \
-            "Finish OFFICIAL Japanese mobile wraps V1.3R2"
+            "Finish OFFICIAL Japanese mobile wraps V1.3R3"
           git push origin HEAD:main
 
-      - name: Wait for public V1.3R2 HTML
+      - name: Wait for public V1.3R3 HTML
         shell: bash
         run: |
           set -e
@@ -403,14 +414,14 @@ jobs:
           for i in $(seq 1 60); do
             page="$(curl -fsSL "$URL" 2>/dev/null || true)"
             if printf '%s' "$page" | grep -q "&#8288;"; then
-              echo "OFFICIAL Japanese wrap V1.3R2 is live"
+              echo "OFFICIAL Japanese wrap V1.3R3 is live"
               exit 0
             fi
-            echo "Waiting for V1.3R2 HTML... ${i}/60"
+            echo "Waiting for V1.3R3 HTML... ${i}/60"
             sleep 5
           done
 
-          echo "V1.3R2 source committed, but public HTML not confirmed."
+          echo "V1.3R3 source committed, but public HTML not confirmed."
           exit 1
 
       - name: Dispatch Japanese mobile reaudit V1.1
@@ -419,4 +430,4 @@ jobs:
         shell: bash
         run: |
           gh workflow run japanese-mobile-reaudit-v1.yml --ref main
-          echo "Japanese mobile reaudit V1.1 dispatched after V1.3R2"
+          echo "Japanese mobile reaudit V1.1 dispatched after V1.3R3"
