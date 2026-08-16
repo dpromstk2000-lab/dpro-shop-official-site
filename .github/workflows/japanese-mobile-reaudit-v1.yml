@@ -1,11 +1,7 @@
-name: JAPANESE mobile visual reaudit V1.0
+name: JAPANESE mobile visual reaudit V1.1
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/japanese-mobile-reaudit-v1.yml'
 
 permissions:
   contents: read
@@ -183,7 +179,7 @@ jobs:
                 const splitTokens = [
                   'から','まで','ので','ため','なら','けれど','けど','です','ます','でした','ました',
                   'として','について','によって','による','できる','できます','できない','ありません',
-                  'ホームページ','受付システム','システム','お客様','店舗運営','LINE公式','一続き','つなぐ','取り置き','ケーキ','カルテ','マグネット','メニュー','診察券QR','集中する','向け','システム料金'
+                  'ホームページ','受付システム','システム','お客様','店舗運営','LINE公式','一続き','つなぐ','取り置き','ケーキ','カルテ','マグネット','メニュー','診察券QR','集中する','向け','システム料金','分かりやすく','まとめる','高機能','読取'
                 ];
 
                 function charRects(el) {
@@ -252,6 +248,8 @@ jobs:
                   if (!visible(el)) return false;
                   const text = (el.innerText || el.textContent || '').trim().replace(/\s+/g,' ');
                   if (!jp.test(text)) return false;
+                  if (el.tagName === 'A' && text.includes('機能を詳しく見る')) return false;
+                  if (el.tagName === 'BUTTON' && text.includes('＋') && /[？?]/.test(text)) return false;
                   if (text.length < 4 || text.length > 180) return false;
                   const fs = parseFloat(getComputedStyle(el).fontSize || '0');
                   if (/^(P|DIV|SPAN)$/i.test(el.tagName) && fs < 20) return false;

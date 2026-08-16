@@ -1,0 +1,234 @@
+name: OFFICIAL Japanese heading wrap fix V1.3
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/official-japanese-wrap-fix-v1-3.yml'
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout OFFICIAL
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fix remaining OFFICIAL Japanese mobile wraps
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from collections import Counter
+          import html
+          import re
+          import subprocess
+
+          HEADING_RULES = {'難しい仕組みを、店舗で使える形にする。': ['形にする。'], '休日を登録する。ホームページにも出る。': ['にも出る。'], 'パンの魅力を写真で伝え、そのままLINEで取り置きへ。': ['取り置きへ。'], '30秒で分かる、このシステムの役割。': ['システムの役割。'], 'ここまでが公式説明。次は完成システムを実際に操作。': ['実際に操作。'], '利用相談から、通所・送迎・作業・支援・工賃まで。': ['作業・支援・工賃まで。', '利用相談から、'], '説明画像ではなく、実際の操作デモを体験。': ['操作デモを体験。'], '利用者・家族・現場・管理を、同じ利用者情報で確認。': ['利用者情報で確認。'], '説明画像ではなく、実際の操作デモを確認。': ['操作デモを確認。'], '介護の相談から、ケアプランと家族連携まで。': ['介護の相談から、', '家族連携まで。'], '説明画像ではなく、完成した実画面を体験。': ['実画面を体験。'], '送迎依頼の受付から、配車・運行・請求まで。': ['配車・運行・請求まで。', '送迎依頼の受付から、'], '30秒で分かる、介護タクシー業務の流れ。': ['業務の流れ。'], 'お預かりの受付から、仕上がり・受け渡しまで。': ['お預かりの受付から、', '受け渡しまで。'], '30秒で分かる、受付から受け渡しまでの流れ。': ['までの流れ。'], 'ご家族との連絡から、送迎・今日の利用状況まで。': ['ご家族との連絡から、', '利用状況まで。'], '待ち列・次の予約・急患受付': ['予約・急患受付'], '片付けのお困りごとを相談': ['お困りごとを相談'], '内見予約の受付から、追客・申込・契約準備まで。': ['内見予約の受付から、', '契約準備まで。'], '来店から施術完了まで': ['施術完了まで'], '説明画像ではなく、実際に動く7つの画面。': ['7つの画面。'], '大切な情報を扱うから、急ぎ・日時・連絡先・権限に配慮。': ['権限に配慮。'], '植物と鉢を、「いまどこにあるか」まで。': ['あるか」まで。'], '作業前後を、お客様へ分かりやすく。': ['分かりやすく。'], '説明画像ではなく、本物の5画面を体験。': ['5画面を体験。'], 'LINE予約から施術後の再来店フォローまで。': ['再来店フォローまで。'], '訪問予定から、ご家族への報告まで。': ['ご家族への報告まで。', '訪問予定から、'], '訪問予定から、実施記録・家族報告まで。': ['家族報告まで。', '訪問予定から、'], '電話・LINE・予約帳に分かれた確認を、今日の営業画面へまとめる。': ['営業画面へまとめる。'], 'デザイン選びから、次回来店の提案まで。': ['次回来店の提案まで。', 'デザイン選びから、'], '説明画像だけでなく、実際の操作デモを確認。': ['操作デモを確認。'], '予約からお渡し、次回希望まで、同じペット情報で確認。': ['ペット情報で確認。'], '受付・準備・撮影を更新': ['準備・撮影を更新'], '30秒で分かる、写真館システムの役割。': ['写真館システムの役割。'], '修理相談の受付から、見積・進捗・引き渡しまで。': ['修理相談の受付から、', '引き渡しまで。'], '「どこへ行ったか」ではなく、次に何をするかまで残す。': ['するかまで残す。'], '説明の次は、実際の営業ナビを触る。': ['営業ナビを触る。'], '予約の入口はシンプルに、店舗側は必要なだけ高機能に。': ['だけ高機能に。'], '担当者と希望日を選択': ['希望日を選択'], '汎用版でできることと、専門版へ分けるもの。': ['専門版へ分けるもの。'], '注文受付から、厨房・配達・家族連絡まで。': ['注文受付から、', '家族連絡まで。'], '事業所・利用者・厨房・配達を、実際の完成画面で確認。': ['完成画面で確認。'], 'ご家族の連絡から、配車・乗降・引渡しまで。': ['ご家族の連絡から、', '引渡しまで。'], '初回相談から、計画・提出・モニタリングまで。': ['モニタリングまで。', '初回相談から、'], '宿泊前の連絡から、清掃・忘れ物対応まで。': ['宿泊前の連絡から、', '忘れ物対応まで。'], '連絡手段を増やすのではなく、宿泊情報へまとめる。': ['宿泊情報へまとめる。'], 'カメラで診察券QRを読取': ['診察券QRを読取'], '30秒で分かる、予約と順番受付の違い。': ['順番受付の違い。']}
+          SUMMARY_EXACT_RULES = {
+              "現在の電子申請・給与計算・勤怠システムと併用できますか。": ["勤怠システム"],
+              "送迎車の現在地を地図で追跡するシステムですか。": ["追跡するシステム"],
+              "今使っている販売管理や整備システムと併用できますか。": ["整備システム"],
+              "どのDPROシステムが合うか分かりません。": ["分かりません。"],
+              "LINE運用契約店舗のHP保守1,100円とは？": ["1,100円とは？"],
+          }
+          H4_EXACT_RULES = {"写真から、贈るお花を選ぶ": ["写真から、"]}
+          BUTTON_EXACT_RULES = {"この画面を大きく表示": ["大きく表示"]}
+          WJ_ENTITIES = ("&#8288;", "&#x2060;", "&#X2060;")
+
+          def normalized_visible(inner):
+              s = re.sub(r'<[^>]+>', '', inner)
+              s = html.unescape(s).replace("\u2060", "")
+              return re.sub(r'\s+', '', s)
+
+          def strip_old_keep(inner):
+              pattern = re.compile(
+                  r'<span\s+class=["\']dpro-jp-keep["\']>(.*?)</span>',
+                  flags=re.I | re.S,
+              )
+              previous = None
+              while previous != inner:
+                  previous = inner
+                  inner = pattern.sub(r'\1', inner)
+              for entity in WJ_ENTITIES:
+                  inner = inner.replace(entity, "")
+              return inner.replace("\u2060", "")
+
+          def wrap_text_segment(text, phrases):
+              for entity in WJ_ENTITIES:
+                  text = text.replace(entity, "")
+              text = text.replace("\u2060", "")
+              intervals = []
+              for phrase in sorted(set(phrases), key=len, reverse=True):
+                  start = 0
+                  while True:
+                      idx = text.find(phrase, start)
+                      if idx < 0:
+                          break
+                      end = idx + len(phrase)
+                      if not any(not (end <= a or idx >= b) for a, b in intervals):
+                          intervals.append((idx, end))
+                      start = end
+              if not intervals:
+                  return text, 0
+              for start, end in sorted(intervals, reverse=True):
+                  text = text[:start] + '<span class="dpro-jp-keep">' + text[start:end] + '</span>' + text[end:]
+              return text, len(intervals)
+
+          def apply_rules_to_inner(inner, phrases):
+              inner = strip_old_keep(inner)
+              parts = re.split(r'(<[^>]+>)', inner)
+              applied = 0
+              for idx in range(0, len(parts), 2):
+                  parts[idx], count = wrap_text_segment(parts[idx], phrases)
+                  applied += count
+              return "".join(parts), applied
+
+          def links(source):
+              vals = []
+              for attr in ("href", "src", "data-src", "action", "formaction"):
+                  vals += re.findall(rf'\b{attr}\s*=\s*["\']([^"\']+)["\']', source, flags=re.I)
+              return Counter(vals)
+
+          def prices(source):
+              return Counter(re.findall(r'(?:\d{1,3}(?:,\d{3})+|\d+)円', source))
+
+          def visible_document(source):
+              s = re.sub(r'<script\b.*?</script>', '', source, flags=re.I | re.S)
+              s = re.sub(r'<style\b.*?</style>', '', s, flags=re.I | re.S)
+              s = re.sub(r'<[^>]+>', '', s)
+              s = html.unescape(s).replace("\u2060", "")
+              return re.sub(r'\s+', ' ', s).strip()
+
+          tracked = [Path(p) for p in subprocess.check_output(["git", "ls-files", "*.html"], text=True).splitlines()
+                     if not p.startswith((".github/", ".dpro/", ".dpro-next/"))]
+          element_re = re.compile(r'(<(?P<tag>h[1-4]|summary|button)\b[^>]*>)(?P<inner>.*?)(</(?P=tag)>)', flags=re.I | re.S)
+          stats = {"heading_matches":0,"heading_phrase_wraps":0,"summary_matches":0,"h4_matches":0,"button_matches":0}
+          changed_pages = set()
+
+          for path in tracked:
+              before = path.read_text(encoding="utf-8")
+              before_links, before_prices, before_visible = links(before), prices(before), visible_document(before)
+              local_changed = [False]
+
+              def repl(match):
+                  tag = match.group("tag").upper()
+                  inner = match.group("inner")
+                  compact = normalized_visible(inner)
+                  if tag in ("H1","H2","H3"):
+                      rules, kind = HEADING_RULES.get(compact), "heading"
+                  elif tag == "H4":
+                      rules, kind = H4_EXACT_RULES.get(compact), "h4"
+                  elif tag == "SUMMARY":
+                      rules, kind = SUMMARY_EXACT_RULES.get(compact), "summary"
+                  elif tag == "BUTTON":
+                      rules, kind = BUTTON_EXACT_RULES.get(compact), "button"
+                  else:
+                      rules, kind = None, None
+                  if not rules:
+                      return match.group(0)
+                  updated, applied = apply_rules_to_inner(inner, rules)
+                  if applied != len(rules):
+                      raise SystemExit(f"{path}: {kind} '{compact}' expected {len(rules)} wraps, got {applied}: {rules}")
+                  local_changed[0] = True
+                  if kind == "heading":
+                      stats["heading_matches"] += 1
+                      stats["heading_phrase_wraps"] += applied
+                  else:
+                      stats[f"{kind}_matches"] += 1
+                  return match.group(1) + updated + match.group(4)
+
+              after = element_re.sub(repl, before)
+              if local_changed[0]:
+                  if links(after) != before_links: raise SystemExit(f"{path}: link target changed")
+                  if prices(after) != before_prices: raise SystemExit(f"{path}: price strings changed")
+                  if visible_document(after) != before_visible: raise SystemExit(f"{path}: visible customer text changed")
+                  path.write_text(after, encoding="utf-8")
+                  changed_pages.add(str(path))
+
+          print("Heading issue elements matched:", stats["heading_matches"])
+          print("Heading phrases wrapped:", stats["heading_phrase_wraps"])
+          print("Summary items fixed:", stats["summary_matches"])
+          print("H4 items fixed:", stats["h4_matches"])
+          print("Button items fixed:", stats["button_matches"])
+          print("Changed pages:", len(changed_pages))
+          if stats["heading_matches"] < 120: raise SystemExit(f"Expected >=120 heading targets, matched {stats['heading_matches']}")
+          if stats["summary_matches"] != 5: raise SystemExit(f"Expected 5 summary targets, matched {stats['summary_matches']}")
+          if stats["h4_matches"] != 1: raise SystemExit("Expected exactly 1 H4 target")
+          if stats["button_matches"] != 1: raise SystemExit("Expected exactly 1 button target")
+          Path("/tmp/official-jp-v13-stats.txt").write_text("\n".join(f"{k}={v}" for k,v in stats.items()) + f"\nchanged_pages={len(changed_pages)}\n", encoding="utf-8")
+          print("OFFICIAL JAPANESE WRAP V1.3 PREP PASS")
+          PY
+
+      - name: Static safety QA
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          stats = Path("/tmp/official-jp-v13-stats.txt").read_text(encoding="utf-8")
+          print(stats)
+          assert "summary_matches=5" in stats
+          assert "h4_matches=1" in stats
+          assert "button_matches=1" in stats
+          assert "DPRO JAPANESE MOBILE WRAP V1.1 / PHRASE KEEP" in Path("styles.css").read_text(encoding="utf-8")
+          assert "DPRO JAPANESE MOBILE WRAP V1.1 / PHRASE KEEP" in Path("systems/systems.css").read_text(encoding="utf-8")
+          checks = {
+              "systems/btype.html": ['<span class="dpro-jp-keep">利用相談から、</span>', '<span class="dpro-jp-keep">作業・支援・工賃まで。</span>'],
+              "systems/sharoushi.html": ['<span class="dpro-jp-keep">勤怠システム</span>'],
+              "systems/shuttle.html": ['<span class="dpro-jp-keep">追跡するシステム</span>'],
+              "systems/used-car.html": ['<span class="dpro-jp-keep">整備システム</span>'],
+          }
+          for name, needles in checks.items():
+              source = Path(name).read_text(encoding="utf-8")
+              for needle in needles: assert needle in source, f"{needle} missing in {name}"
+          assert Path(".github/workflows/japanese-mobile-reaudit-v1.yml").exists()
+          print("OFFICIAL JAPANESE WRAP V1.3 STATIC QA PASS")
+          PY
+
+      - name: Commit V1.3 and remove one-shot workflow
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm -f .github/workflows/official-japanese-wrap-fix-v1-3.yml
+          git add -u
+          echo "Changed paths:"
+          git diff --cached --name-only
+          if git diff --cached --name-only | grep -E '\.(js|css)$'; then
+            echo "ERROR: V1.3 must not change JavaScript or CSS"
+            exit 1
+          fi
+          git commit -m "Finish OFFICIAL Japanese mobile wraps V1.3"
+          git push origin HEAD:main
+
+      - name: Wait for public V1.3 HTML
+        shell: bash
+        run: |
+          set -e
+          URL="https://dpro-shop.com/systems/btype.html?qa=${GITHUB_SHA}-${GITHUB_RUN_ID}"
+          for i in $(seq 1 60); do
+            page="$(curl -fsSL "$URL" 2>/dev/null || true)"
+            if printf '%s' "$page" | grep -q 'dpro-jp-keep">作業・支援・工賃まで。'; then
+              echo "OFFICIAL Japanese wrap V1.3 is live"
+              exit 0
+            fi
+            echo "Waiting for V1.3 HTML... ${i}/60"
+            sleep 5
+          done
+          exit 1
+
+      - name: Dispatch Japanese mobile reaudit V1.1
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          gh workflow run japanese-mobile-reaudit-v1.yml --ref main
+          echo "Japanese mobile reaudit V1.1 dispatched after V1.3"
