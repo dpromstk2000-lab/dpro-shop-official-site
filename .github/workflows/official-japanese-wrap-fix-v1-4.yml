@@ -1,7 +1,8 @@
-name: OFFICIAL Japanese heading wrap fix V1.4
+name: OFFICIAL Japanese heading wrap fix V1.4R1
 
 on:
   push:
+    branches: [main]
     paths:
       - '.github/workflows/official-japanese-wrap-fix-v1-4.yml'
   workflow_dispatch:
@@ -11,7 +12,7 @@ permissions:
   actions: write
 
 concurrency:
-  group: official-japanese-wrap-fix-v1-4
+  group: official-japanese-wrap-fix-v1-4r1
   cancel-in-progress: false
 
 jobs:
@@ -25,316 +26,129 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Fix final OFFICIAL Japanese mobile wraps
+      - name: Apply final runtime and page-specific Japanese wrap fixes
         shell: bash
         run: |
+          set -euo pipefail
           python - <<'PY'
           from pathlib import Path
-          import re, html, json
           from collections import Counter
+          import html
+          import re
+          import json
 
-          WJ = "&#8288;"
-          WJ_TEXT = "\u2060"
-          WJ_ENTITIES = ("&#8288;", "&#x2060;", "&#X2060;")
-
-          EXPECTED_COMMON = {
-              "bakery.html",
-              "btype.html",
-              "buyback.html",
-              "cake.html",
-              "car-service.html",
-              "careplan.html",
-              "caretaxi.html",
-              "chosashi.html",
-              "cleaning.html",
-              "cosmetics.html",
-              "dayservice.html",
-              "dental.html",
-              "disposal.html",
-              "estate.html",
-              "esthe.html",
-              "eye-salon.html",
-              "flower-shop.html",
-              "funeral.html",
-              "gakudo.html",
-              "gym.html",
-              "gyosei.html",
-              "hair.html",
-              "home-nursing.html",
-              "homecare.html",
-              "houkago-dayservice.html",
-              "housekeep.html",
-              "izakaya.html",
-              "nail.html",
-              "osteopathic.html",
-              "pet-salon.html",
-              "photo-studio.html",
-              "reform.html",
-              "repair.html",
-              "salon.html",
-              "school.html",
-              "senior-meal-delivery.html",
-              "sharoushi.html",
-              "shiho.html",
-              "shuttle.html",
-              "sodan.html",
-              "stay.html",
-              "takeout.html",
-              "tax-accounting.html",
-              "used-car.html",
-              "vet.html",
-              "welfare-equipment.html",
-              "yakiniku.html",
-              "yoga.html",
+          targets = {
+              "systems/systems.js": {
+                  "old": '<h2>ここまでが公式説明。<br>次は完成システムを実際に操作。</h2>',
+                  "new": '<h2>ここまでが公式説明。<br>次は完成システムを<span class="dpro-jp-keep">実際に操作。</span></h2>',
+              },
+              "systems/salon.html": {
+                  "old": '<h3>担当者と希&#8288;望&#8288;日&#8288;を&#8288;選&#8288;択</h3>',
+                  "new": '<h3>担当者と<span class="dpro-jp-keep">希望日を選択</span></h3>',
+              },
+              "systems/bakery.html": {
+                  "old": '<h1 id="product-title"><span>パンの魅力を写真で伝え、</span><span><em>そのままLINEで<span class="dpro-jp-keep">取&#8288;り&#8288;置&#8288;き&#8288;</span>へ&#8288;。</em></span></h1>',
+                  "new": '<h1 id="product-title"><span>パンの魅力を写真で伝え、</span><span><em>そのままLINEで<span class="dpro-jp-keep">取り置きへ。</span></em></span></h1>',
+              },
+              "systems/esthe.html": {
+                  "old": '<h3>来店から施&#8288;術&#8288;完&#8288;了&#8288;ま&#8288;で</h3>',
+                  "new": '<h3>来店から<span class="dpro-jp-keep">施術完了まで</span></h3>',
+              },
           }
 
-          COMMON_TEXT = "ここまでが公式説明。次は完成システムを実際に操作。"
-          SALON_TEXT = "担当者と希望日を選択"
-          BAKERY_TEXT = "パンの魅力を写真で伝え、そのままLINEで取り置きへ。"
-          ESTHE_TEXT = "来店から施術完了まで"
-
-          ELEMENT_RE = re.compile(
-              r'(<(?P<tag>h[1-4])\b[^>]*>)(?P<inner>.*?)(</(?P=tag)>)',
+          WJ_ENTITIES = ("&#8288;", "&#x2060;", "&#X2060;")
+          TAG_RE = re.compile(r"<[^>]+>", re.S)
+          PRICE_RE = re.compile(r"(?:\d{1,3}(?:,\d{3})+|\d+)円")
+          URL_RE = re.compile(
+              r'''(?:href|src|data-src|data-demo-url|data-demo-src|data-live-url|data-live-src)\s*=\s*(["'])(.*?)\1''',
               re.I | re.S,
           )
-          TAG_RE = re.compile(r'<[^>]+>', re.S)
-          URL_ATTR_RE = re.compile(
-              r'''\b(?:href|src|action|data-demo-url|data-demo-src|data-live-url|data-live-src)\s*=\s*(["'])(.*?)\1''',
-              re.I | re.S,
-          )
-          PRICE_RE = re.compile(r'(?:\d{1,3}(?:,\d{3})+|\d+)円')
 
-          def strip_joiners(s):
+          def customer_text(source):
               for entity in WJ_ENTITIES:
-                  s = s.replace(entity, "")
-              return s.replace(WJ_TEXT, "")
-
-          def visible_text(inner):
-              s = strip_joiners(inner)
-              s = TAG_RE.sub("", s)
-              s = html.unescape(s)
-              s = s.replace(WJ_TEXT, "")
-              return re.sub(r'\s+', '', s)
-
-          def visible_document(source):
-              return visible_text(source)
-
-          def visible_map(inner):
-              chars = []
-              raw_ends = []
-              i = 0
-              n = len(inner)
-
-              while i < n:
-                  ch = inner[i]
-
-                  if ch == "<":
-                      j = inner.find(">", i + 1)
-                      i = (j + 1) if j >= 0 else (i + 1)
-                      continue
-
-                  if ch == "&":
-                      j = inner.find(";", i + 1, min(n, i + 20))
-                      if j > i:
-                          entity = inner[i:j + 1]
-                          decoded = html.unescape(entity)
-                          if decoded == WJ_TEXT:
-                              i = j + 1
-                              continue
-                          if len(decoded) == 1:
-                              if not decoded.isspace():
-                                  chars.append(decoded)
-                                  raw_ends.append(j + 1)
-                              i = j + 1
-                              continue
-
-                  if ch == WJ_TEXT:
-                      i += 1
-                      continue
-
-                  if not ch.isspace():
-                      chars.append(ch)
-                      raw_ends.append(i + 1)
-
-                  i += 1
-
-              return "".join(chars), raw_ends
-
-          def join_visible_phrase(inner, phrase):
-              target = re.sub(r'\s+', '', phrase)
-              visible, raw_ends = visible_map(inner)
-              start = visible.find(target)
-
-              if start < 0:
-                  return inner, False
-
-              positions = []
-              for offset in range(len(target) - 1):
-                  raw_pos = raw_ends[start + offset]
-                  tail = inner[raw_pos:raw_pos + 16]
-
-                  if any(tail.startswith(entity) for entity in WJ_ENTITIES):
-                      continue
-                  if tail.startswith(WJ_TEXT):
-                      continue
-
-                  positions.append(raw_pos)
-
-              out = inner
-              for raw_pos in sorted(positions, reverse=True):
-                  out = out[:raw_pos] + WJ + out[raw_pos:]
-
-              return out, True
-
-          def rebuild(inner, protections):
-              out = strip_joiners(inner)
-              for phrase in protections:
-                  out, ok = join_visible_phrase(out, phrase)
-                  if not ok:
-                      raise RuntimeError(
-                          f"Could not protect phrase {phrase!r} in heading "
-                          f"{visible_text(inner)!r}"
-                      )
-              return out
-
-          def urls(source):
-              return Counter(m.group(2) for m in URL_ATTR_RE.finditer(source))
+                  source = source.replace(entity, "")
+              source = source.replace("\u2060", "")
+              source = TAG_RE.sub("", source)
+              source = html.unescape(source)
+              return re.sub(r"\s+", " ", source).strip()
 
           def prices(source):
-              return Counter(PRICE_RE.findall(strip_joiners(source)))
+              cleaned = source
+              for entity in WJ_ENTITIES:
+                  cleaned = cleaned.replace(entity, "")
+              cleaned = cleaned.replace("\u2060", "")
+              return Counter(PRICE_RE.findall(cleaned))
 
-          def structural_counts(source):
-              low = source.lower()
-              return {
-                  "script": low.count("<script"),
-                  "style": low.count("<style"),
-                  "iframe": low.count("<iframe"),
-                  "a": len(re.findall(r'<a\b', low)),
-                  "form": len(re.findall(r'<form\b', low)),
+          def urls(source):
+              return Counter(m.group(2) for m in URL_RE.finditer(source))
+
+          stats = {}
+
+          for filename, rule in targets.items():
+              path = Path(filename)
+              if not path.exists():
+                  raise SystemExit(f"Missing required target: {filename}")
+
+              before = path.read_text(encoding="utf-8")
+              old_count = before.count(rule["old"])
+              new_count_before = before.count(rule["new"])
+
+              if old_count != 1:
+                  raise SystemExit(
+                      f"{filename}: expected exactly 1 current target, got {old_count}"
+                  )
+              if new_count_before:
+                  raise SystemExit(
+                      f"{filename}: V1.4R1 replacement already present before rewrite"
+                  )
+
+              before_text = customer_text(before)
+              before_prices = prices(before)
+              before_urls = urls(before)
+
+              after = before.replace(rule["old"], rule["new"], 1)
+
+              if customer_text(after) != before_text:
+                  raise SystemExit(f"{filename}: customer-visible text changed")
+              if prices(after) != before_prices:
+                  raise SystemExit(f"{filename}: price strings changed")
+              if urls(after) != before_urls:
+                  raise SystemExit(f"{filename}: URL attributes changed")
+              if after.count(rule["new"]) != 1:
+                  raise SystemExit(f"{filename}: replacement verification failed")
+
+              path.write_text(after, encoding="utf-8")
+              stats[filename] = {
+                  "target_count": old_count,
+                  "replacement_count": after.count(rule["new"]),
               }
 
-          def rewrite_file(path):
-              source = path.read_text(encoding="utf-8")
-              before_visible = visible_document(source)
-              before_urls = urls(source)
-              before_prices = prices(source)
-              before_structure = structural_counts(source)
-
-              stats = {
-                  "common": 0,
-                  "salon": 0,
-                  "bakery": 0,
-                  "esthe": 0,
-              }
-
-              def repl(match):
-                  opening = match.group(1)
-                  inner = match.group("inner")
-                  closing = match.group(4)
-                  text = visible_text(inner)
-                  new_inner = inner
-
-                  if text == COMMON_TEXT:
-                      new_inner = rebuild(new_inner, ["実際に操作。"])
-                      stats["common"] += 1
-
-                  if path.name == "salon.html" and SALON_TEXT in text:
-                      new_inner = rebuild(new_inner, ["希望日", "を選択"])
-                      stats["salon"] += 1
-
-                  if path.name == "bakery.html" and BAKERY_TEXT in text:
-                      new_inner = rebuild(new_inner, ["取り置きへ。"])
-                      stats["bakery"] += 1
-
-                  if path.name == "esthe.html" and ESTHE_TEXT in text:
-                      new_inner = rebuild(new_inner, ["来店から", "施術完了", "まで"])
-                      stats["esthe"] += 1
-
-                  return opening + new_inner + closing
-
-              updated = ELEMENT_RE.sub(repl, source)
-
-              if visible_document(updated) != before_visible:
-                  raise SystemExit(f"{path}: visible customer text changed")
-              if urls(updated) != before_urls:
-                  raise SystemExit(f"{path}: URL attributes changed")
-              if prices(updated) != before_prices:
-                  raise SystemExit(f"{path}: price strings changed")
-              if structural_counts(updated) != before_structure:
-                  raise SystemExit(f"{path}: structural tag counts changed")
-
-              if updated != source:
-                  path.write_text(updated, encoding="utf-8")
-
-              return stats, (updated != source)
-
-          totals = Counter()
-          changed = []
-
-          for path in sorted(Path("systems").glob("*.html")):
-              stats, did_change = rewrite_file(path)
-              totals.update(stats)
-              if did_change:
-                  changed.append(path.name)
-
-          changed_set = set(changed)
-
-          if totals["common"] != 48:
-              raise SystemExit(
-                  f"Expected 48 common headings, got {totals['common']}"
-              )
-          if totals["salon"] != 1:
-              raise SystemExit(
-                  f"Expected 1 salon target, got {totals['salon']}"
-              )
-          if totals["bakery"] != 1:
-              raise SystemExit(
-                  f"Expected 1 bakery target, got {totals['bakery']}"
-              )
-          if totals["esthe"] != 1:
-              raise SystemExit(
-                  f"Expected 1 esthe target, got {totals['esthe']}"
-              )
-          if changed_set != EXPECTED_COMMON:
-              missing = sorted(EXPECTED_COMMON - changed_set)
-              extra = sorted(changed_set - EXPECTED_COMMON)
-              raise SystemExit(
-                  f"Changed-page set mismatch. missing={missing} extra={extra}"
-              )
+          # Shared runtime fix must remain a single source of truth.
+          systems_js = Path("systems/systems.js").read_text(encoding="utf-8")
+          assert systems_js.count(
+              '<span class="dpro-jp-keep">実際に操作。</span>'
+          ) == 1
 
           salon = Path("systems/salon.html").read_text(encoding="utf-8")
           bakery = Path("systems/bakery.html").read_text(encoding="utf-8")
           esthe = Path("systems/esthe.html").read_text(encoding="utf-8")
 
-          assert "希&#8288;望&#8288;日&#8288;を&#8288;選&#8288;択" not in salon
-          assert "施&#8288;術&#8288;完&#8288;了&#8288;ま&#8288;で" not in esthe
+          assert '<span class="dpro-jp-keep">希望日を選択</span>' in salon
+          assert '<span class="dpro-jp-keep">取り置きへ。</span>' in bakery
+          assert '<span class="dpro-jp-keep">施術完了まで</span>' in esthe
 
-          assert "希&#8288;望&#8288;日" in salon
-          assert "を&#8288;選&#8288;択" in salon
-          assert "ま&#8288;で" in esthe
+          # Existing shared nowrap rule must be present; do not add a second CSS system.
+          systems_css = Path("systems/systems.css").read_text(encoding="utf-8")
+          if ".dpro-jp-keep" not in systems_css:
+              raise SystemExit("systems/systems.css: dpro-jp-keep rule missing")
 
-          bakery_visible = visible_document(bakery)
-          assert BAKERY_TEXT in bakery_visible
-
-          stats_path = Path("/tmp/official-jp-v14-stats.json")
-          stats_path.write_text(
-              json.dumps(
-                  {
-                      "common_headings": totals["common"],
-                      "salon_targets": totals["salon"],
-                      "bakery_targets": totals["bakery"],
-                      "esthe_targets": totals["esthe"],
-                      "changed_pages": len(changed),
-                      "changed_files": sorted(changed),
-                  },
-                  ensure_ascii=False,
-                  indent=2,
-              ),
+          Path("/tmp/official-v14r1.json").write_text(
+              json.dumps(stats, ensure_ascii=False, indent=2),
               encoding="utf-8",
           )
 
-          print("OFFICIAL Japanese wrap V1.4 PREP PASS")
-          print(stats_path.read_text(encoding="utf-8"))
+          print("OFFICIAL V1.4R1 PREP PASS")
+          print(Path("/tmp/official-v14r1.json").read_text(encoding="utf-8"))
           PY
 
       - name: Static safety QA
@@ -344,60 +158,46 @@ jobs:
 
           git diff --check
 
-          echo "Changed HTML files:"
-          git diff --name-only -- 'systems/*.html'
+          changed="$(git diff --name-only)"
+          echo "$changed"
 
-          changed_count="$(git diff --name-only -- 'systems/*.html' | wc -l | tr -d ' ')"
-          test "$changed_count" = "48"
+          expected="$(printf '%s\n' \
+            systems/bakery.html \
+            systems/esthe.html \
+            systems/salon.html \
+            systems/systems.js | sort)"
+          actual="$(printf '%s\n' "$changed" | sed '/^$/d' | sort)"
 
-          test -f /tmp/official-jp-v14-stats.json
+          test "$actual" = "$expected"
 
           python - <<'PY'
           from pathlib import Path
-          import json, subprocess
+          import json
 
           stats = json.loads(
-              Path("/tmp/official-jp-v14-stats.json").read_text(encoding="utf-8")
+              Path("/tmp/official-v14r1.json").read_text(encoding="utf-8")
           )
+          assert set(stats) == {
+              "systems/systems.js",
+              "systems/salon.html",
+              "systems/bakery.html",
+              "systems/esthe.html",
+          }
 
-          assert stats["common_headings"] == 48
-          assert stats["salon_targets"] == 1
-          assert stats["bakery_targets"] == 1
-          assert stats["esthe_targets"] == 1
-          assert stats["changed_pages"] == 48
+          js = Path("systems/systems.js").read_text(encoding="utf-8")
+          salon = Path("systems/salon.html").read_text(encoding="utf-8")
+          bakery = Path("systems/bakery.html").read_text(encoding="utf-8")
+          esthe = Path("systems/esthe.html").read_text(encoding="utf-8")
 
-          diff = subprocess.check_output(
-              ["git", "diff", "--unified=0", "--", "systems"],
-              text=True,
-          )
+          assert '完成システムを<span class="dpro-jp-keep">実際に操作。</span>' in js
+          assert '<span class="dpro-jp-keep">希望日を選択</span>' in salon
+          assert '<span class="dpro-jp-keep">取り置きへ。</span>' in bakery
+          assert '<span class="dpro-jp-keep">施術完了まで</span>' in esthe
 
-          assert "8288" in diff
-
-          added_removed = "\n".join(
-              line for line in diff.splitlines()
-              if (line.startswith("+") or line.startswith("-"))
-              and not line.startswith(("+++", "---"))
-          )
-
-          clean = (
-              added_removed
-              .replace("&#8288;", "")
-              .replace("&#x2060;", "")
-              .replace("&#X2060;", "")
-              .replace("\u2060", "")
-          )
-
-          assert "ここまでが公式説明。" in clean
-          assert "実際に操作。" in clean
-          assert "担当者と希望日を選択" in clean
-          assert "取り置きへ。" in clean
-          assert "来店から施術完了まで" in clean
-
-          print("OFFICIAL Japanese wrap V1.4 STATIC QA PASS")
-          print(json.dumps(stats, ensure_ascii=False, indent=2))
+          print("OFFICIAL V1.4R1 STATIC QA PASS")
           PY
 
-      - name: Commit V1.4 and remove one-shot workflow
+      - name: Commit V1.4R1 and remove one-shot workflow
         shell: bash
         run: |
           set -euo pipefail
@@ -405,13 +205,18 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add systems/*.html
+          git add \
+            systems/systems.js \
+            systems/salon.html \
+            systems/bakery.html \
+            systems/esthe.html
+
           git rm .github/workflows/official-japanese-wrap-fix-v1-4.yml
 
-          git commit -m "Finish OFFICIAL Japanese mobile wraps V1.4"
-          git push origin main
+          git commit -m "Finish OFFICIAL Japanese mobile wraps V1.4R1"
+          git push origin HEAD:main
 
-      - name: Wait for public V1.4 HTML
+      - name: Wait for public deployment
         shell: bash
         run: |
           echo "Waiting for GitHub Pages deployment..."
@@ -424,5 +229,6 @@ jobs:
         run: |
           set -euo pipefail
           gh workflow run japanese-mobile-reaudit-v1.yml \
-            --repo dpromstk2000-lab/dpro-shop-official-site
+            --repo dpromstk2000-lab/dpro-shop-official-site \
+            --ref main
           echo "Dispatched JAPANESE mobile visual reaudit V1.1"
