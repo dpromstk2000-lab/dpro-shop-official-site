@@ -1,0 +1,124 @@
+name: Fix Japanese mobile reaudit V1.2
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/official-japanese-reaudit-fix-v1-2.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: official-japanese-reaudit-fix-v1-2
+  cancel-in-progress: false
+
+jobs:
+  fix-auditor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+
+    steps:
+      - name: Checkout OFFICIAL
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Patch reaudit to wait for CSS and network idle
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path(".github/workflows/japanese-mobile-reaudit-v1.yml")
+          text = path.read_text(encoding="utf-8")
+
+          replacements = [
+              (
+                  "name: JAPANESE mobile visual reaudit V1.1",
+                  "name: JAPANESE mobile visual reaudit V1.2",
+              ),
+              (
+                  "response = await page.goto(item.url, { waitUntil: 'domcontentloaded', timeout: 22000 });\n"
+                  "                status = response ? response.status() : null;",
+                  "response = await page.goto(item.url, { waitUntil: 'domcontentloaded', timeout: 22000 });\n"
+                  "                await page.waitForLoadState('networkidle', { timeout: 5000 }).catch(()=>{});\n"
+                  "                status = response ? response.status() : null;",
+              ),
+              (
+                  "await page.evaluate(() => document.fonts?.ready).catch(()=>{});\n"
+                  "              await page.evaluate(async () => {",
+                  "await page.waitForFunction(() => {\n"
+                  "                const links = [...document.querySelectorAll('link[rel=\"stylesheet\"]')];\n"
+                  "                return links.every(link => !!link.sheet);\n"
+                  "              }, { timeout: 5000 }).catch(()=>{});\n"
+                  "              await page.evaluate(() => document.fonts?.ready).catch(()=>{});\n"
+                  "              await page.waitForTimeout(120);\n"
+                  "              await page.evaluate(async () => {",
+              ),
+          ]
+
+          for old, new in replacements:
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f"Expected exactly 1 patch target, got {count}: {old[:80]!r}")
+              text = text.replace(old, new, 1)
+
+          path.write_text(text, encoding="utf-8")
+
+          # Hard assertions: auditor only, no production-site files touched here.
+          check = path.read_text(encoding="utf-8")
+          assert "JAPANESE mobile visual reaudit V1.2" in check
+          assert "waitForLoadState('networkidle'" in check
+          assert "link[rel=\"stylesheet\"]" in check
+          assert "await page.waitForTimeout(120);" in check
+          print("REAUDIT V1.2 PATCH PASS")
+          PY
+
+      - name: Static QA
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --check
+
+          changed="$(git diff --name-only)"
+          echo "$changed"
+          test "$changed" = ".github/workflows/japanese-mobile-reaudit-v1.yml"
+
+          grep -F "name: JAPANESE mobile visual reaudit V1.2" \
+            .github/workflows/japanese-mobile-reaudit-v1.yml
+          grep -F "waitForLoadState('networkidle'" \
+            .github/workflows/japanese-mobile-reaudit-v1.yml
+          grep -F 'link[rel="stylesheet"]' \
+            .github/workflows/japanese-mobile-reaudit-v1.yml
+
+          echo "REAUDIT V1.2 STATIC QA PASS"
+
+      - name: Commit auditor V1.2 and remove one-shot workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add .github/workflows/japanese-mobile-reaudit-v1.yml
+          git rm .github/workflows/official-japanese-reaudit-fix-v1-2.yml
+
+          git commit -m "Fix Japanese mobile reaudit CSS timing V1.2"
+          git push origin HEAD:main
+
+      - name: Dispatch corrected Japanese mobile reaudit V1.2
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          sleep 5
+          gh workflow run japanese-mobile-reaudit-v1.yml \
+            --repo dpromstk2000-lab/dpro-shop-official-site \
+            --ref main
+          echo "Dispatched JAPANESE mobile visual reaudit V1.2"
