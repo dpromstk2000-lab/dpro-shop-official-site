@@ -86,7 +86,7 @@
     const main=document.querySelector("main");
     if (main) main.insertAdjacentHTML("beforebegin", `<div class="v33sys-runtime-role"><div class="v33sys-runtime-role__inner"><a class="v33sys-runtime-role__blue" href="./">BLUE / OFFICIAL GUIDE</a><span>このページで仕組み・機能・導入条件を詳しく確認</span><a class="v33sys-runtime-role__red" href="${productDetailUrl()}" target="_blank" rel="noopener">RED / PRODUCT SITEで実際に触る ↗</a></div></div>`);
     const target=document.querySelector(".product-final-cta") || document.querySelector("main > section:last-of-type");
-    if (target) target.insertAdjacentHTML("beforebegin", `<section class="v33sys-experience-bridge"><div><small>RED / PRODUCT EXPERIENCE</small><h2>ここまでが公式説明。<br>次は完成システムを実際に操作。</h2><p>PRODUCT SITEでは、PC・スマホ・iPadの実画面や公開デモを、製品ごとに確認できます。</p></div><a href="${productDetailUrl()}" target="_blank" rel="noopener">PRODUCT SITEでこのシステムを触る ↗</a></section>`);
+    if (target) target.insertAdjacentHTML("beforebegin", `<section class="v33sys-experience-bridge"><div><small>RED / PRODUCT EXPERIENCE</small><h2>ここまでが公式説明。<br>次は完成システムを<span class="dpro-jp-keep">実際に操作。</span></h2><p>PRODUCT SITEでは、PC・スマホ・iPadの実画面や公開デモを、製品ごとに確認できます。</p></div><a href="${productDetailUrl()}" target="_blank" rel="noopener">PRODUCT SITEでこのシステムを触る ↗</a></section>`);
     const oldFooter=document.querySelector(".site-footer");
     if (oldFooter) oldFooter.insertAdjacentHTML("afterend",sharedFooter()); else document.body.insertAdjacentHTML("beforeend",sharedFooter());
   };
