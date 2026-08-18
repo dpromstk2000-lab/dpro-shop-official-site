@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="DPRO MEDICALの公式説明ページ。医療機関向けに予約、WEB問診、来院受付、院内進行、待ち状況、医院管理PC、受付iPad、医院HPを一つにつなぐ仕組みを紹介します。">
+<title>DPRO MEDICAL｜医療機関向けDPROシステム｜DPRO SHOP</title>
+<link rel="stylesheet" href="../styles.css?v=17r2">
+<style>
+:root{--ink:#142d42;--muted:#607488;--line:#d6e3ec;--blue:#1769aa;--navy:#0b2940;--soft:#eff7fc}
+*{box-sizing:border-box}body{margin:0;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;background:#fff}
+a{color:inherit}.shell{width:min(1100px,calc(100% - 28px));margin:auto}.hero{padding:68px 0 56px;background:linear-gradient(135deg,#081e30,#103b5a);color:#fff}
+.chip{display:inline-block;padding:7px 10px;border-radius:999px;background:#fff;color:#12354f;font-weight:900;font-size:12px}.hero h1{font-size:clamp(37px,7vw,70px);line-height:1.06;margin:16px 0}.hero p{font-size:clamp(17px,2.2vw,22px);line-height:1.75;color:#d7e8f3;max-width:890px}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}.btn{display:inline-flex;min-height:50px;align-items:center;padding:0 18px;border-radius:13px;text-decoration:none;font-weight:900;background:#fff;color:#12354f}.btn.blue{background:#2182c0;color:#fff}
+.section{padding:48px 0}.head h2{font-size:clamp(27px,4vw,42px);margin:0 0 10px}.head p{color:var(--muted);line-height:1.7}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
+.card{border:1px solid var(--line);border-radius:18px;padding:18px;background:#fff}.card b{display:block;font-size:18px;margin-bottom:7px}.card p{margin:0;color:var(--muted);line-height:1.6}
+.soft{background:var(--soft)}.preset{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.preset div{padding:16px;background:#fff;border:1px solid var(--line);border-radius:15px}.preset b{display:block;margin-bottom:3px}.note{padding:18px;border-radius:16px;background:#fff7e4;border:1px solid #ead7a8;line-height:1.7}
+.foot{padding:28px 0;text-align:center;color:var(--muted);font-size:13px}
+@media(max-width:760px){.grid,.preset{grid-template-columns:1fr 1fr}}@media(max-width:500px){.grid,.preset{grid-template-columns:1fr}}
+</style></head>
+<body>
+<section class="hero"><div class="shell">
+<span class="chip">DPRO SHOP / OFFICIAL SYSTEM GUIDE</span>
+<h1>DPRO MEDICAL</h1>
+<p>予約・WEB問診・来院受付・待ち状況・院内進行・医院管理・医院HPまで。医療機関の患者導線と院内運用を、ONE COREでつなぐDPROシステムです。</p>
+<div class="actions">
+<a class="btn blue" href="https://dpromstk2000-lab.github.io/dpro-medical-standard/medical-public-demo.html" target="_blank" rel="noopener">公開LIVE DEMOを見る ↗</a>
+<a class="btn" href="https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/medical.html" target="_blank" rel="noopener">PRODUCT SITEを見る ↗</a>
+<a class="btn" href="../contact">導入を相談する</a>
+</div></div></section>
+
+<section class="section"><div class="shell"><div class="head">
+<h2>受付だけ、予約だけではありません。</h2>
+<p>DPRO MEDICALは、来院前から院内運用、来院後のフォローまでを一つの流れとして設計しています。</p>
+</div><div class="grid">
+<article class="card"><b>予約・当日受付</b><p>WEB予約、日時予約、当日順番受付などを医院設定に合わせて利用。</p></article>
+<article class="card"><b>WEB問診</b><p>来院前に必要な情報を安全な導線で確認し、院内業務につなげます。</p></article>
+<article class="card"><b>院内進行</b><p>受付、待合、検査、診察、処置、会計待ちなどを必要な工程だけ表示。</p></article>
+<article class="card"><b>患者スマホ</b><p>予約・診察券・受付・待ち状況・問診をスマートフォン中心で操作。</p></article>
+<article class="card"><b>医院PC / iPad</b><p>管理者、受付、スタッフの役割に合わせて必要な情報と操作を分離。</p></article>
+<article class="card"><b>医院ホームページ</b><p>診療時間、休診、お知らせ、待ち状況、予約導線を同じCOREと連携。</p></article>
+</div></div></section>
+
+<section class="section soft"><div class="shell"><div class="head"><h2>診療科に合わせる6PRESET</h2><p>診療科ごとに別システムを作るのではなく、必要な機能を組み合わせます。</p></div>
+<div class="preset">
+<div><b>STANDARD</b>一般・内科</div><div><b>EYE</b>眼科</div><div><b>PEDIATRIC</b>小児科</div>
+<div><b>ORTHO</b>整形外科</div><div><b>BEAUTY</b>美容医療</div><div><b>WOMEN</b>婦人科・女性医療</div>
+</div></div></section>
+
+<section class="section"><div class="shell"><div class="head"><h2>医療情報を扱う前提の安全設計</h2></div>
+<div class="note">患者認証とスタッフ認証を分離し、tenant / clinic / role / patient scopeをサーバー側で確認する設計です。公開LIVE DEMOは架空データのみを使用し、実患者情報や秘密鍵を公開しません。</div>
+</div></section>
+<div class="foot">DPRO SHOP / DPRO MEDICAL OFFICIAL GUIDE</div>
+</body></html>
