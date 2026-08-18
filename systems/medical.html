@@ -3,52 +3,129 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="description" content="DPRO MEDICALの公式説明ページ。医療機関向けに予約、WEB問診、来院受付、院内進行、待ち状況、医院管理PC、受付iPad、医院HPを一つにつなぐ仕組みを紹介します。">
-<title>DPRO MEDICAL｜医療機関向けDPROシステム｜DPRO SHOP</title>
+<meta name="description" content="DPRO MEDICAL公式ページ。予約だけでなく、WEB問診、来院受付、院内進行、待ち状況、患者スマホ、医院管理PC、受付iPad、スタッフ、医院HP、次回フォローまでをONE COREでつなぐ医療機関向けDPROシステム。6診療PRESETと公開LIVE DEMOをご案内します。">
+<meta name="theme-color" content="#0b2940">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DPRO SHOP">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="DPRO MEDICAL｜予約だけで終わらない医療機関向けDPROシステム｜DPRO SHOP">
+<meta property="og:description" content="患者スマホから医院管理PC・受付iPad・スタッフ・医院HPまでをONE COREへ。6診療PRESET、30秒LIVE DEMO、導入の考え方を公式ページで確認できます。">
+<meta property="og:url" content="https://dpro-shop.com/systems/medical">
+<link rel="canonical" href="https://dpro-shop.com/systems/medical">
+<title>DPRO MEDICAL｜予約だけで終わらない医療機関向けDPROシステム｜DPRO SHOP</title>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="../styles.css?v=17r2">
 <style>
-:root{--ink:#142d42;--muted:#607488;--line:#d6e3ec;--blue:#1769aa;--navy:#0b2940;--soft:#eff7fc}
-*{box-sizing:border-box}body{margin:0;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;background:#fff}
-a{color:inherit}.shell{width:min(1100px,calc(100% - 28px));margin:auto}.hero{padding:68px 0 56px;background:linear-gradient(135deg,#081e30,#103b5a);color:#fff}
-.chip{display:inline-block;padding:7px 10px;border-radius:999px;background:#fff;color:#12354f;font-weight:900;font-size:12px}.hero h1{font-size:clamp(37px,7vw,70px);line-height:1.06;margin:16px 0}.hero p{font-size:clamp(17px,2.2vw,22px);line-height:1.75;color:#d7e8f3;max-width:890px}
-.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}.btn{display:inline-flex;min-height:50px;align-items:center;padding:0 18px;border-radius:13px;text-decoration:none;font-weight:900;background:#fff;color:#12354f}.btn.blue{background:#2182c0;color:#fff}
-.section{padding:48px 0}.head h2{font-size:clamp(27px,4vw,42px);margin:0 0 10px}.head p{color:var(--muted);line-height:1.7}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px}
-.card{border:1px solid var(--line);border-radius:18px;padding:18px;background:#fff}.card b{display:block;font-size:18px;margin-bottom:7px}.card p{margin:0;color:var(--muted);line-height:1.6}
-.soft{background:var(--soft)}.preset{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.preset div{padding:16px;background:#fff;border:1px solid var(--line);border-radius:15px}.preset b{display:block;margin-bottom:3px}.note{padding:18px;border-radius:16px;background:#fff7e4;border:1px solid #ead7a8;line-height:1.7}
-.foot{padding:28px 0;text-align:center;color:var(--muted);font-size:13px}
-@media(max-width:760px){.grid,.preset{grid-template-columns:1fr 1fr}}@media(max-width:500px){.grid,.preset{grid-template-columns:1fr}}
-</style></head>
+:root{--ink:#102c42;--muted:#60778a;--line:#d7e4ec;--blue:#1672b3;--blue2:#0f5f98;--navy:#08283f;--navy2:#0d3b5b;--soft:#edf6fb;--white:#fff;--red:#a51743;--green:#187a63;--shadow:0 20px 55px rgba(11,41,64,.12)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans JP",sans-serif;background:#fff}a{color:inherit}.shell{width:min(1120px,calc(100% - 28px));margin:auto}
+.topbar{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.topbar .shell{min-height:66px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{text-decoration:none;display:flex;align-items:center;gap:10px;font-weight:950}.brand-mark{width:35px;height:35px;display:grid;place-items:center;border-radius:10px;background:var(--blue);color:#fff}.brand small{display:block;font-size:9px;color:var(--muted);letter-spacing:.13em;margin-top:1px}.nav{display:flex;gap:5px;align-items:center;flex-wrap:wrap}.nav a{text-decoration:none;font-size:12px;font-weight:900;padding:9px 10px;border-radius:10px}.nav .product{background:#fcecf2;color:var(--red)}.nav .consult{background:var(--blue);color:#fff}
+.hero{padding:72px 0 60px;background:radial-gradient(circle at 84% 20%,rgba(61,151,211,.25),transparent 28%),linear-gradient(135deg,#061d2e 0%,#0b3654 60%,#0e5077 100%);color:#fff}.hero-grid{display:grid;grid-template-columns:minmax(0,1.18fr) minmax(310px,.82fr);gap:38px;align-items:center}.chip{display:inline-flex;padding:7px 11px;border-radius:999px;background:#fff;color:var(--blue2);font-weight:950;font-size:11px;letter-spacing:.07em}.hero-kicker{font-size:12px;font-weight:950;letter-spacing:.12em;color:#8bd2ff;margin:16px 0 0}.hero h1{font-size:clamp(39px,6.7vw,70px);line-height:1.04;margin:10px 0 20px;letter-spacing:-.04em}.hero h1 em{font-style:normal;color:#8bd2ff}.hero-lead{font-size:clamp(17px,2vw,21px);line-height:1.8;color:#d9ecf7;max-width:820px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:25px}.btn{display:inline-flex;min-height:52px;align-items:center;justify-content:center;padding:0 18px;border-radius:13px;text-decoration:none;font-weight:950;border:1px solid rgba(255,255,255,.22);background:#fff;color:var(--ink)}.btn.blue{background:#1681c5;border-color:#1681c5;color:#fff}.btn.red{background:var(--red);border-color:var(--red);color:#fff}.btn.ghost{background:rgba(255,255,255,.08);color:#fff}.btn:hover{transform:translateY(-1px)}
+.hero-card{background:#fff;color:var(--ink);border-radius:24px;padding:21px;box-shadow:0 30px 80px rgba(0,0,0,.22)}.hero-card small{font-size:10px;font-weight:950;letter-spacing:.11em;color:var(--red)}.hero-card h2{font-size:25px;line-height:1.25;margin:7px 0 5px}.quick{display:grid;grid-template-columns:36px 1fr;gap:10px;padding:12px 0;border-bottom:1px solid #e8f0f5}.quick:last-child{border-bottom:0}.quick b{width:31px;height:31px;border-radius:50%;display:grid;place-items:center;background:var(--soft);color:var(--blue)}.quick strong{display:block;font-size:14px}.quick span{display:block;font-size:12px;line-height:1.55;color:var(--muted);margin-top:2px}
+.section{padding:58px 0}.section.soft{background:var(--soft)}.section.dark{background:var(--navy);color:#fff}.head{max-width:850px}.eyebrow{margin:0 0 7px;color:var(--blue);font-size:11px;font-weight:950;letter-spacing:.12em}.dark .eyebrow{color:#84cfff}.head h2{font-size:clamp(29px,4vw,44px);line-height:1.18;margin:0 0 12px;letter-spacing:-.025em}.head p{color:var(--muted);line-height:1.75;margin:0}.dark .head p{color:#d6e7f1}
+.role-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:16px;margin-top:25px}.role-main,.role-side{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px}.role-main{box-shadow:var(--shadow)}.role-main strong{display:block;font-size:clamp(24px,3vw,34px);line-height:1.35}.role-main em{font-style:normal;color:var(--blue)}.role-main p,.role-side p{color:var(--muted);line-height:1.7;margin:10px 0 0}.role-side b{display:block;color:var(--green);font-size:14px}
+.journey{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:25px}.journey article{position:relative;background:#fff;border:1px solid var(--line);border-radius:16px;padding:15px 10px;text-align:center;min-height:118px}.journey article:not(:last-child)::after{content:"→";position:absolute;right:-13px;top:46%;color:var(--blue);font-weight:950;z-index:2}.journey small{font-size:9px;color:var(--blue);font-weight:950}.journey strong{display:block;font-size:14px;margin-top:7px}.journey span{display:block;font-size:11px;line-height:1.45;color:var(--muted);margin-top:5px}
+.screen-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:11px;margin-top:25px}.screen{background:#fff;border:1px solid var(--line);border-radius:17px;padding:17px;min-height:190px}.screen i{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:var(--soft);font-style:normal;font-size:20px}.screen strong{display:block;font-size:16px;margin-top:12px}.screen p{font-size:12px;color:var(--muted);line-height:1.65;margin:7px 0 0}.screen small{display:block;margin-top:10px;color:var(--blue);font-weight:900}
+.preset{display:grid;grid-template-columns:repeat(3,1fr);gap:11px;margin-top:25px}.preset article{background:rgba(255,255,255,.075);border:1px solid rgba(255,255,255,.13);border-radius:17px;padding:17px}.preset small{color:#85cefb;font-weight:950}.preset strong{display:block;font-size:18px;margin-top:5px}.preset p{font-size:12px;line-height:1.55;color:#d7e7f1;margin:6px 0 0}
+.demo-box{margin-top:25px;background:linear-gradient(135deg,#0d3c5d,#0a2d46);border:1px solid rgba(255,255,255,.11);border-radius:23px;padding:24px}.demo-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin-top:17px}.demo-steps article{background:rgba(255,255,255,.08);border-radius:15px;padding:14px}.demo-steps b{width:28px;height:28px;display:grid;place-items:center;border-radius:50%;background:#fff;color:var(--navy);font-size:12px}.demo-steps strong{display:block;font-size:13px;margin-top:9px}.demo-steps p{font-size:11px;line-height:1.5;color:#d6e7f1;margin:5px 0 0}.demo-note{font-size:11px;color:#bdd4e2;line-height:1.6;margin-top:12px}
+.intro-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:25px}.intro{border:1px solid var(--line);border-radius:18px;padding:18px;background:#fff}.intro b{display:grid;place-items:center;width:32px;height:32px;border-radius:50%;background:var(--blue);color:#fff}.intro strong{display:block;margin-top:11px;font-size:16px}.intro p{margin:7px 0 0;font-size:12px;line-height:1.65;color:var(--muted)}
+.safety{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-top:25px}.safe-card{border:1px solid var(--line);border-radius:19px;padding:20px;background:#fff}.safe-card b{display:block;font-size:18px}.safe-card p{font-size:13px;line-height:1.7;color:var(--muted);margin:8px 0 0}.safe-card.public{background:#f7fbfe}.safe-card.live{background:#f7fffc;border-color:#c7e3da}.safe-card.live b{color:var(--green)}
+.final{padding:60px 0;background:linear-gradient(135deg,#eef7fc,#fff)}.final-card{background:var(--navy);color:#fff;border-radius:25px;padding:29px;display:grid;grid-template-columns:1fr auto;gap:26px;align-items:center;box-shadow:var(--shadow)}.final-card h2{font-size:clamp(28px,4vw,42px);margin:0 0 8px}.final-card p{margin:0;color:#d6e7f1;line-height:1.7}.footer{padding:28px 0;background:#071b2a;color:#b9ccda;font-size:12px}.footer-grid{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}.footer a{color:#d8edf8;text-decoration:none}.mobile-cta{display:none}
+@media(max-width:920px){.hero-grid,.role-grid,.safety,.final-card{grid-template-columns:1fr}.journey{grid-template-columns:repeat(2,1fr)}.journey article:not(:last-child)::after{display:none}.screen-grid{grid-template-columns:repeat(2,1fr)}.preset{grid-template-columns:repeat(2,1fr)}.demo-steps{grid-template-columns:repeat(2,1fr)}.intro-grid{grid-template-columns:repeat(2,1fr)}.nav a:not(.consult){display:none}}
+@media(max-width:560px){body{padding-bottom:68px}.topbar .shell{min-height:58px}.hero{padding:44px 0 40px}.hero h1{font-size:40px}.section{padding:44px 0}.journey,.screen-grid,.preset,.demo-steps,.intro-grid{grid-template-columns:1fr}.actions .btn{width:100%}.hero-card{padding:17px}.final-card{padding:22px}.mobile-cta{display:grid;position:fixed;left:0;right:0;bottom:0;z-index:40;grid-template-columns:1fr 1fr;gap:7px;padding:8px;background:#fff;border-top:1px solid var(--line)}.mobile-cta a{min-height:48px;display:grid;place-items:center;border-radius:11px;text-decoration:none;font-size:13px;font-weight:950}.mobile-cta .demo{background:var(--red);color:#fff}.mobile-cta .consult{background:var(--blue);color:#fff}}
+</style>
+</head>
 <body>
-<section class="hero"><div class="shell">
-<span class="chip">DPRO SHOP / OFFICIAL SYSTEM GUIDE</span>
-<h1>DPRO MEDICAL</h1>
-<p>予約・WEB問診・来院受付・待ち状況・院内進行・医院管理・医院HPまで。医療機関の患者導線と院内運用を、ONE COREでつなぐDPROシステムです。</p>
+<header class="topbar"><div class="shell">
+<a class="brand" href="../"><span class="brand-mark">D</span><span>DPRO SHOP<small>OFFICIAL SITE / DPRO MEDICAL</small></span></a>
+<nav class="nav" aria-label="ページナビゲーション"><a href="./">システム一覧</a><a href="#screens">5画面</a><a href="#presets">6 PRESET</a><a class="product" href="https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/medical.html" target="_blank" rel="noopener">PRODUCT SITE ↗</a><a class="consult" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで無料相談</a></nav>
+</div></header>
+
+<main>
+<section class="hero"><div class="shell hero-grid">
+<div>
+<span class="chip">DPRO MEDICAL / OFFICIAL SITE V1.2</span>
+<p class="hero-kicker">MEDICAL OPERATIONS / ONE CORE / 6 PRESET</p>
+<h1>医療の運用を、<br><em>患者側から医院側まで。</em></h1>
+<p class="hero-lead">DPRO MEDICALは「予約だけ」のシステムではありません。予約・WEB問診・来院受付・待ち状況・院内進行・医院管理・医院HP・次回フォローまで、患者と医院の流れを同じ医療COREにつなぎます。</p>
 <div class="actions">
-<a class="btn blue" href="https://dpromstk2000-lab.github.io/dpro-medical-standard/medical-public-demo.html" target="_blank" rel="noopener">公開LIVE DEMOを見る ↗</a>
-<a class="btn" href="https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/medical.html" target="_blank" rel="noopener">PRODUCT SITEを見る ↗</a>
-<a class="btn" href="../contact">導入を相談する</a>
-</div></div></section>
-
-<section class="section"><div class="shell"><div class="head">
-<h2>受付だけ、予約だけではありません。</h2>
-<p>DPRO MEDICALは、来院前から院内運用、来院後のフォローまでを一つの流れとして設計しています。</p>
-</div><div class="grid">
-<article class="card"><b>予約・当日受付</b><p>WEB予約、日時予約、当日順番受付などを医院設定に合わせて利用。</p></article>
-<article class="card"><b>WEB問診</b><p>来院前に必要な情報を安全な導線で確認し、院内業務につなげます。</p></article>
-<article class="card"><b>院内進行</b><p>受付、待合、検査、診察、処置、会計待ちなどを必要な工程だけ表示。</p></article>
-<article class="card"><b>患者スマホ</b><p>予約・診察券・受付・待ち状況・問診をスマートフォン中心で操作。</p></article>
-<article class="card"><b>医院PC / iPad</b><p>管理者、受付、スタッフの役割に合わせて必要な情報と操作を分離。</p></article>
-<article class="card"><b>医院ホームページ</b><p>診療時間、休診、お知らせ、待ち状況、予約導線を同じCOREと連携。</p></article>
-</div></div></section>
-
-<section class="section soft"><div class="shell"><div class="head"><h2>診療科に合わせる6PRESET</h2><p>診療科ごとに別システムを作るのではなく、必要な機能を組み合わせます。</p></div>
-<div class="preset">
-<div><b>STANDARD</b>一般・内科</div><div><b>EYE</b>眼科</div><div><b>PEDIATRIC</b>小児科</div>
-<div><b>ORTHO</b>整形外科</div><div><b>BEAUTY</b>美容医療</div><div><b>WOMEN</b>婦人科・女性医療</div>
-</div></div></section>
-
-<section class="section"><div class="shell"><div class="head"><h2>医療情報を扱う前提の安全設計</h2></div>
-<div class="note">患者認証とスタッフ認証を分離し、tenant / clinic / role / patient scopeをサーバー側で確認する設計です。公開LIVE DEMOは架空データのみを使用し、実患者情報や秘密鍵を公開しません。</div>
+<a class="btn blue" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">医院での導入をLINEで相談 ↗</a>
+<a class="btn red" href="https://dpromstk2000-lab.github.io/dpro-medical-standard/medical-public-demo.html" target="_blank" rel="noopener">30秒LIVE DEMOを体験 ↗</a>
+<a class="btn ghost" href="https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/medical.html" target="_blank" rel="noopener">PRODUCT SITEで詳しく見る ↗</a>
+</div>
+</div>
+<aside class="hero-card">
+<small>30 SECOND EXPERIENCE</small>
+<h2>導入前に、実際のつながりを確認。</h2>
+<div class="quick"><b>1</b><div><strong>患者スマホで来院受付</strong><span>患者側の操作を体験。</span></div></div>
+<div class="quick"><b>2</b><div><strong>医院管理PCへ切替</strong><span>受付済・待ち人数への反映を見る。</span></div></div>
+<div class="quick"><b>3</b><div><strong>診療PRESETを変更</strong><span>同じCOREのまま診療科差分を確認。</span></div></div>
+</aside>
 </div></section>
-<div class="foot">DPRO SHOP / DPRO MEDICAL OFFICIAL GUIDE</div>
-</body></html>
+
+<section class="section"><div class="shell"><div class="head"><p class="eyebrow">OFFICIAL GUIDE</p><h2>「何ができるか」だけでなく、<br>「どう医院運用につながるか」を。</h2><p>OFFICIAL SITEでは、導入を検討する医療機関向けに、患者側・医院側の役割、診療PRESET、公開DEMOと本番環境の違いまで整理してご案内します。</p></div>
+<div class="role-grid"><article class="role-main"><strong>患者が操作した情報を、<em>医院側の運用へつなげる。</em></strong><p>患者スマホ、医院管理PC、受付iPad、スタッフ、医院HPを別々の仕組みに分断せず、医院設定と同じCOREのルールでつなぎます。</p></article><article class="role-side"><b>医院ごとに必要な範囲を選ぶ</b><p>診療科ごとに別COREを増やさず、正式な機能設定・医院設定・6 PRESETを組み合わせて医院ごとの運用へ合わせます。</p></article></div>
+</div></section>
+
+<section class="section soft"><div class="shell"><div class="head"><p class="eyebrow">PATIENT JOURNEY</p><h2>来院前から、来院後まで。</h2><p>必要な機能を医院ごとに組み合わせ、患者の行動と院内業務を一連の流れとして扱います。</p></div>
+<div class="journey">
+<article><small>01</small><strong>医院HP</strong><span>診療案内・予約入口・待ち状況</span></article>
+<article><small>02</small><strong>予約</strong><span>WEB / LINEなど医院構成に合わせる</span></article>
+<article><small>03</small><strong>WEB問診</strong><span>来院前の必要情報</span></article>
+<article><small>04</small><strong>来院受付</strong><span>患者スマホ / 受付iPad</span></article>
+<article><small>05</small><strong>院内進行</strong><span>受付から診療・処置・会計まで</span></article>
+<article><small>06</small><strong>待ち状況</strong><span>患者・医院に必要な表示</span></article>
+<article><small>07</small><strong>次回フォロー</strong><span>再来院への導線</span></article>
+</div></div></section>
+
+<section class="section" id="screens"><div class="shell"><div class="head"><p class="eyebrow">5 CONNECTED SURFACES</p><h2>利用者ごとに画面を分けても、<br>システムは分断しない。</h2><p>患者・受付・スタッフ・管理・公開HP、それぞれに必要な情報と操作を用意します。</p></div>
+<div class="screen-grid">
+<article class="screen"><i>📱</i><strong>患者スマホ</strong><p>予約、予約確認、WEB問診、当日受付、待ち状況、デジタル診察券など。</p><small>PATIENT</small></article>
+<article class="screen"><i>🖥️</i><strong>医院管理PC</strong><p>本日の患者、予約、受付、院内進行、問診、患者、医師、医院設定など。</p><small>CLINIC ADMIN</small></article>
+<article class="screen"><i>▣</i><strong>受付iPad</strong><p>受付現場で必要な来院・受付操作を、共有端末向けの範囲で提供。</p><small>RECEPTION</small></article>
+<article class="screen"><i>👥</i><strong>スタッフ</strong><p>役割に応じて、院内で必要な患者・受付・進行情報を操作。</p><small>STAFF</small></article>
+<article class="screen"><i>🌐</i><strong>医院HP</strong><p>診療案内、診療時間、休診、お知らせ、予約導線、待ち状況など。</p><small>PUBLIC HP</small></article>
+</div></div></section>
+
+<section class="section dark" id="presets"><div class="shell"><div class="head"><p class="eyebrow">6 MEDICAL PRESETS</p><h2>診療科に合わせる。<br>COREは増やさない。</h2><p>6つの正式PRESETを基準に、医院ごとの必要機能・設定・ワークフローを構成します。</p></div>
+<div class="preset">
+<article><small>STANDARD</small><strong>一般・内科</strong><p>標準的な予約・受付・問診・院内進行を基準に構成。</p></article>
+<article><small>EYE</small><strong>眼科</strong><p>眼科の運用差分を同じCORE内の設定で吸収。</p></article>
+<article><small>PEDIATRIC</small><strong>小児科</strong><p>家族・予防接種等を含む医院運用に合わせて構成。</p></article>
+<article><small>ORTHO</small><strong>整形外科</strong><p>診察・リハビリ等の流れを医院設定に合わせて構成。</p></article>
+<article><small>BEAUTY</small><strong>美容医療</strong><p>美容医療で必要な導線を正式機能と設定で構成。</p></article>
+<article><small>WOMEN</small><strong>婦人科・女性医療</strong><p>プライバシーに配慮した表示境界を維持して構成。</p></article>
+</div></div></section>
+
+<section class="section dark"><div class="shell"><div class="head"><p class="eyebrow">LIVE DEMO</p><h2>説明を読んだら、30秒だけ実際に。</h2><p>患者側の操作が医院側へ反映される流れと、同じCOREのまま診療PRESETが切り替わる構造を公開DEMOで確認できます。</p></div>
+<div class="demo-box">
+<div class="demo-steps">
+<article><b>1</b><strong>患者スマホ</strong><p>来院受付を操作。</p></article>
+<article><b>2</b><strong>医院管理PC</strong><p>医院側へ切替。</p></article>
+<article><b>3</b><strong>受付反映</strong><p>受付済・待ち人数を見る。</p></article>
+<article><b>4</b><strong>PRESET変更</strong><p>診療科を切り替える。</p></article>
+<article><b>5</b><strong>ONE CORE</strong><p>画面と機能差分を比較。</p></article>
+</div>
+<div class="actions"><a class="btn red" href="https://dpromstk2000-lab.github.io/dpro-medical-standard/medical-public-demo.html" target="_blank" rel="noopener">DPRO MEDICAL LIVE DEMOを開く ↗</a><a class="btn" href="https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/medical.html" target="_blank" rel="noopener">PRODUCT SITEを見る ↗</a></div>
+<p class="demo-note">公開LIVE DEMOは営業用の架空患者・架空医院による環境です。本番患者情報・秘密鍵・本番DB書込みはありません。</p>
+</div></div></section>
+
+<section class="section"><div class="shell"><div class="head"><p class="eyebrow">INTRODUCTION FLOW</p><h2>実医院への導入は、<br>受注後に医院専用環境を準備。</h2><p>公開DEMOをそのまま本番利用するのではなく、実医院ごとに設定・認証・本番環境・外部連携・端末を確認してGO LIVEします。</p></div>
+<div class="intro-grid">
+<article class="intro"><b>1</b><strong>現在の運用を確認</strong><p>予約・受付・問診・院内進行・HP・LINEなど、現在の医院運用を整理。</p></article>
+<article class="intro"><b>2</b><strong>PRESET・機能を選定</strong><p>診療科と必要な機能範囲、医院設定を決定。</p></article>
+<article class="intro"><b>3</b><strong>医院専用環境を構築</strong><p>tenant / clinic、スタッフ、本番DB、Worker、LINE / LIFF、domain等を設定。</p></article>
+<article class="intro"><b>4</b><strong>本番LIVE VERIFY</strong><p>Cloudflare Binding、live API、production E2E、実端末を確認して本番開始。</p></article>
+</div></div></section>
+
+<section class="section soft"><div class="shell"><div class="head"><p class="eyebrow">SECURITY & BOUNDARY</p><h2>医療情報を扱う前提で、<br>公開DEMOと本番を分離。</h2><p>患者認証とスタッフ認証を分け、tenant / clinic / role / patient scopeをサーバー側で確認する設計を維持します。</p></div>
+<div class="safety"><article class="safe-card public"><b>PUBLIC DEMO</b><p>営業用の架空環境。実在患者情報、本番DB書込み、秘密鍵を使用しません。公開DEMO完成は実顧客本番稼働を意味しません。</p></article><article class="safe-card live"><b>REAL CUSTOMER LIVE</b><p>実医院受注後に医院専用設定・本番Supabase・Cloudflare Binding・Worker・LINE / LIFF・domain・E2E・実端末を正式確認します。</p></article></div>
+</div></section>
+
+<section class="final"><div class="shell"><div class="final-card"><div><h2>医院でどう使うか、一緒に整理します。</h2><p>まず公開DEMOで操作感を確認し、現在の医院運用に必要な範囲をLINEでご相談ください。</p></div><div class="actions"><a class="btn blue" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで無料相談 ↗</a><a class="btn red" href="https://dpromstk2000-lab.github.io/dpro-medical-standard/medical-public-demo.html" target="_blank" rel="noopener">LIVE DEMO ↗</a></div></div></div></section>
+</main>
+
+<footer class="footer"><div class="shell footer-grid"><span>DPRO SHOP / DPRO MEDICAL OFFICIAL SITE V1.2 / PUBLIC DEMO SALES FINAL V1.1</span><span><a href="./">DPROシステム一覧</a> · <a href="../pricing">料金</a> · <a href="../contact">お問い合わせ</a></span></div></footer>
+<nav class="mobile-cta" aria-label="スマホ固定メニュー"><a class="consult" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで相談</a><a class="demo" href="https://dpromstk2000-lab.github.io/dpro-medical-standard/medical-public-demo.html" target="_blank" rel="noopener">LIVE DEMO ↗</a></nav>
+</body>
+</html>

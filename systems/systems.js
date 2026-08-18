@@ -1,4 +1,4 @@
-/* DPRO SHOP OFFICIAL / DPRO MEDICAL HUB ADDON V1.0
+/* DPRO SHOP OFFICIAL / DPRO MEDICAL HUB ADDON V1.2
  * Loads the current stable systems runtime from commit 8dea80228bbd7b0a2863605f0bb8425e1203f453.
  * On the systems hub only, injects DPRO MEDICAL BEFORE the stable runtime scans cards,
  * so existing category filters and counts natively include the 51st system.
