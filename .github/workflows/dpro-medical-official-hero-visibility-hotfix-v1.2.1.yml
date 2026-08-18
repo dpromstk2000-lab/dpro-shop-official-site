@@ -1,0 +1,91 @@
+name: DPRO MEDICAL OFFICIAL HERO VISIBILITY HOTFIX V1.2.1
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/dpro-medical-official-hero-visibility-hotfix-v1.2.1.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  hotfix:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Fix MEDICAL hero CSS collision
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          p = Path("systems/medical.html")
+          text = p.read_text(encoding="utf-8")
+          marker = "DPRO MEDICAL OFFICIAL HERO VISIBILITY HOTFIX V1.2.1"
+
+          css = '''
+          /* DPRO MEDICAL OFFICIAL HERO VISIBILITY HOTFIX V1.2.1
+           * Isolate MEDICAL hero layout from legacy OFFICIAL .hero-grid effect rules.
+           */
+          body .hero{min-height:0}
+          body .hero .hero-grid{
+            position:relative;
+            inset:auto;
+            opacity:1;
+            background-image:none;
+            background-size:auto;
+            -webkit-mask-image:none;
+            mask-image:none;
+          }
+          .topbar .brand{color:var(--ink)}
+          '''
+
+          if marker not in text:
+              if "</style>" not in text:
+                  raise SystemExit("QA FAILED: </style> not found")
+              text = text.replace("</style>", css + "\n</style>", 1)
+              text = text.replace(
+                  "DPRO MEDICAL / OFFICIAL SITE V1.2</span>",
+                  "DPRO MEDICAL / OFFICIAL SITE V1.2.1</span>",
+                  1
+              )
+              text = text.replace(
+                  "DPRO SHOP / DPRO MEDICAL OFFICIAL SITE V1.2 / PUBLIC DEMO SALES FINAL V1.1",
+                  "DPRO SHOP / DPRO MEDICAL OFFICIAL SITE V1.2.1 / PUBLIC DEMO SALES FINAL V1.1"
+              )
+              p.write_text(text, encoding="utf-8")
+
+          check = p.read_text(encoding="utf-8")
+          assert marker in check
+          assert "body .hero .hero-grid" in check
+          assert "opacity:1" in check
+          assert "mask-image:none" in check
+          assert "min-height:0" in check
+          assert ".topbar .brand{color:var(--ink)}" in check
+          assert "OFFICIAL SITE V1.2.1" in check
+
+          # Remove this one-shot workflow after successful application.
+          wf = Path(".github/workflows/dpro-medical-official-hero-visibility-hotfix-v1.2.1.yml")
+          if wf.exists():
+              wf.unlink()
+
+          print("QA PASS: DPRO MEDICAL OFFICIAL HERO VISIBILITY HOTFIX V1.2.1")
+          PY
+
+      - name: Commit hotfix
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "Fix DPRO MEDICAL OFFICIAL hero visibility V1.2.1"
+          git push
