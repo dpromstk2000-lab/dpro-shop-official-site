@@ -33,6 +33,22 @@
 .final{padding:60px 0;background:linear-gradient(135deg,#eef7fc,#fff)}.final-card{background:var(--navy);color:#fff;border-radius:25px;padding:29px;display:grid;grid-template-columns:1fr auto;gap:26px;align-items:center;box-shadow:var(--shadow)}.final-card h2{font-size:clamp(28px,4vw,42px);margin:0 0 8px}.final-card p{margin:0;color:#d6e7f1;line-height:1.7}.footer{padding:28px 0;background:#071b2a;color:#b9ccda;font-size:12px}.footer-grid{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}.footer a{color:#d8edf8;text-decoration:none}.mobile-cta{display:none}
 @media(max-width:920px){.hero-grid,.role-grid,.safety,.final-card{grid-template-columns:1fr}.journey{grid-template-columns:repeat(2,1fr)}.journey article:not(:last-child)::after{display:none}.screen-grid{grid-template-columns:repeat(2,1fr)}.preset{grid-template-columns:repeat(2,1fr)}.demo-steps{grid-template-columns:repeat(2,1fr)}.intro-grid{grid-template-columns:repeat(2,1fr)}.nav a:not(.consult){display:none}}
 @media(max-width:560px){body{padding-bottom:68px}.topbar .shell{min-height:58px}.hero{padding:44px 0 40px}.hero h1{font-size:40px}.section{padding:44px 0}.journey,.screen-grid,.preset,.demo-steps,.intro-grid{grid-template-columns:1fr}.actions .btn{width:100%}.hero-card{padding:17px}.final-card{padding:22px}.mobile-cta{display:grid;position:fixed;left:0;right:0;bottom:0;z-index:40;grid-template-columns:1fr 1fr;gap:7px;padding:8px;background:#fff;border-top:1px solid var(--line)}.mobile-cta a{min-height:48px;display:grid;place-items:center;border-radius:11px;text-decoration:none;font-size:13px;font-weight:950}.mobile-cta .demo{background:var(--red);color:#fff}.mobile-cta .consult{background:var(--blue);color:#fff}}
+
+/* DPRO MEDICAL OFFICIAL HERO VISIBILITY HOTFIX V1.2.1
+ * Isolate MEDICAL hero layout from legacy OFFICIAL .hero-grid effect rules.
+ */
+body .hero{min-height:0}
+body .hero .hero-grid{
+  position:relative;
+  inset:auto;
+  opacity:1;
+  background-image:none;
+  background-size:auto;
+  -webkit-mask-image:none;
+  mask-image:none;
+}
+.topbar .brand{color:var(--ink)}
+
 </style>
 </head>
 <body>
@@ -44,7 +60,7 @@
 <main>
 <section class="hero"><div class="shell hero-grid">
 <div>
-<span class="chip">DPRO MEDICAL / OFFICIAL SITE V1.2</span>
+<span class="chip">DPRO MEDICAL / OFFICIAL SITE V1.2.1</span>
 <p class="hero-kicker">MEDICAL OPERATIONS / ONE CORE / 6 PRESET</p>
 <h1>医療の運用を、<br><em>患者側から医院側まで。</em></h1>
 <p class="hero-lead">DPRO MEDICALは「予約だけ」のシステムではありません。予約・WEB問診・来院受付・待ち状況・院内進行・医院管理・医院HP・次回フォローまで、患者と医院の流れを同じ医療COREにつなぎます。</p>
@@ -125,7 +141,7 @@
 <section class="final"><div class="shell"><div class="final-card"><div><h2>医院でどう使うか、一緒に整理します。</h2><p>まず公開DEMOで操作感を確認し、現在の医院運用に必要な範囲をLINEでご相談ください。</p></div><div class="actions"><a class="btn blue" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで無料相談 ↗</a><a class="btn red" href="https://dpromstk2000-lab.github.io/dpro-medical-standard/medical-public-demo.html" target="_blank" rel="noopener">LIVE DEMO ↗</a></div></div></div></section>
 </main>
 
-<footer class="footer"><div class="shell footer-grid"><span>DPRO SHOP / DPRO MEDICAL OFFICIAL SITE V1.2 / PUBLIC DEMO SALES FINAL V1.1</span><span><a href="./">DPROシステム一覧</a> · <a href="../pricing">料金</a> · <a href="../contact">お問い合わせ</a></span></div></footer>
+<footer class="footer"><div class="shell footer-grid"><span>DPRO SHOP / DPRO MEDICAL OFFICIAL SITE V1.2.1 / PUBLIC DEMO SALES FINAL V1.1</span><span><a href="./">DPROシステム一覧</a> · <a href="../pricing">料金</a> · <a href="../contact">お問い合わせ</a></span></div></footer>
 <nav class="mobile-cta" aria-label="スマホ固定メニュー"><a class="consult" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで相談</a><a class="demo" href="https://dpromstk2000-lab.github.io/dpro-medical-standard/medical-public-demo.html" target="_blank" rel="noopener">LIVE DEMO ↗</a></nav>
 </body>
 </html>
