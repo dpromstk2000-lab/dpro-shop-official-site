@@ -1,0 +1,171 @@
+name: PET SALON WEBSITE COMPARISON LAYOUT FIX V1.3
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/pet-salon-website-comparison-layout-fix-v13.yml'
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  fix:
+    if: "!contains(github.event.head_commit.message, '[PET-SALON-WEBSITE-V1.3-FIXED]')"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fix PET SALON comparison layout
+        shell: python
+        run: |
+          from pathlib import Path
+
+          p = Path('website.html')
+          s = p.read_text(encoding='utf-8')
+
+          old_class = 'class="v33-web-example v33-web-example--business v33-reveal pet-salon-hp-case"'
+          new_class = 'class="v33-web-example v33-reveal pet-salon-hp-case"'
+          if old_class in s:
+              s = s.replace(old_class, new_class, 1)
+
+          marker = '/* PET SALON COMPARISON V1.3 LAYOUT FIX */'
+          if marker not in s:
+              css = '''
+          <style id="pet-salon-hp-compare-v13-fix">
+          /* PET SALON COMPARISON V1.3 LAYOUT FIX */
+          .v33-web-example.pet-salon-hp-case{
+            display:block!important;
+            grid-template-columns:none!important;
+            min-height:0!important;
+            overflow:hidden!important;
+            color:#101419!important;
+            background:linear-gradient(155deg,#fbfaf7,#fff)!important;
+          }
+          .pet-salon-hp-case .pet-salon-hp-case__intro{
+            width:100%!important;
+            max-width:980px!important;
+            margin:0 0 28px!important;
+            padding-top:10px;
+            color:#101419!important;
+          }
+          .pet-salon-hp-case .pet-salon-hp-case__intro h3{
+            color:#101419!important;
+            font-size:clamp(30px,4vw,52px)!important;
+            line-height:1.18!important;
+            letter-spacing:-.04em!important;
+          }
+          .pet-salon-hp-case .pet-salon-hp-case__intro p{
+            max-width:900px;
+            color:#566677!important;
+            font-size:15px;
+            line-height:1.9;
+          }
+          .pet-salon-hp-case .pet-salon-hp-case__grid{
+            width:100%!important;
+            display:grid!important;
+            grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+            gap:22px!important;
+          }
+          .pet-salon-hp-case .pet-salon-hp-case__card{
+            min-width:0!important;
+            width:100%!important;
+          }
+          .pet-salon-hp-case .pet-salon-hp-case__frame{
+            width:100%!important;
+            height:420px!important;
+            overflow:hidden!important;
+          }
+          .pet-salon-hp-case .pet-salon-hp-case__frame iframe{
+            display:block!important;
+            width:100%!important;
+            height:100%!important;
+            min-width:0!important;
+            border:0!important;
+          }
+          .pet-salon-hp-case .pet-salon-hp-case__common{
+            width:100%!important;
+            margin-top:22px!important;
+          }
+          .pet-salon-hp-case .pet-salon-hp-case__actions{
+            width:100%!important;
+            margin-top:18px!important;
+          }
+          .pet-salon-hp-case .v33-button--ghost{
+            color:#101419;
+            border-color:#ccd4dc;
+          }
+          .pet-salon-hp-case .pet-salon-hp-case__card.business .v33-button--primary{
+            background:#b7ff24;
+            color:#102014;
+          }
+          @media(max-width:900px){
+            .pet-salon-hp-case .pet-salon-hp-case__grid{
+              grid-template-columns:1fr!important;
+            }
+            .pet-salon-hp-case .pet-salon-hp-case__frame{
+              height:380px!important;
+            }
+          }
+          @media(max-width:640px){
+            .v33-web-example.pet-salon-hp-case{
+              padding:56px 18px 24px!important;
+            }
+            .pet-salon-hp-case .pet-salon-hp-case__intro h3{
+              font-size:30px!important;
+            }
+            .pet-salon-hp-case .pet-salon-hp-case__frame{
+              height:320px!important;
+            }
+            .pet-salon-hp-case .pet-salon-hp-case__actions{
+              display:grid!important;
+              grid-template-columns:1fr!important;
+            }
+            .pet-salon-hp-case .pet-salon-hp-case__actions .v33-button{
+              width:100%!important;
+            }
+          }
+          </style>
+          '''
+              if '</head>' not in s:
+                  raise SystemExit('website.html head close not found')
+              s = s.replace('</head>', css + '\n</head>', 1)
+
+          p.write_text(s, encoding='utf-8')
+
+      - name: QA V1.3
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q 'PET SALON COMPARISON V1.3 LAYOUT FIX' website.html
+          grep -q 'display:block!important' website.html
+          grep -q 'grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important' website.html
+          grep -q 'class="v33-web-example v33-reveal pet-salon-hp-case"' website.html
+          ! grep -q 'class="v33-web-example v33-web-example--business v33-reveal pet-salon-hp-case"' website.html
+          echo 'PET SALON WEBSITE COMPARISON V1.3 QA PASS'
+
+      - name: Commit V1.3
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add website.html
+          git diff --cached --quiet && exit 0
+          git commit -m 'fix: PET SALON website comparison layout [PET-SALON-WEBSITE-V1.3-FIXED]'
+          git push
+
+      - name: Request GitHub Pages rebuild
+        continue-on-error: true
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set +e
+          code=$(curl -sS -o /tmp/pages-build.json -w '%{http_code}'             -L -X POST             -H "Accept: application/vnd.github+json"             -H "Authorization: Bearer ${GH_TOKEN}"             -H "X-GitHub-Api-Version: 2022-11-28"             "https://api.github.com/repos/${GITHUB_REPOSITORY}/pages/builds")
+          echo "Pages rebuild request HTTP ${code}"
+          cat /tmp/pages-build.json || true
+          exit 0
