@@ -1,0 +1,195 @@
+name: PET SALON OFFICIAL + WEBSITE PROMOTION V1.2
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/pet-salon-official-website-promotion-v12-apply.yml'
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  apply:
+    if: "!contains(github.event.head_commit.message, '[PET-SALON-OFFICIAL-WEBSITE-V1.2-APPLIED]')"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Strengthen PET SALON product page and website production page
+        shell: python
+        run: |
+          from pathlib import Path
+
+          # 1) PET SALON product page
+          p = Path('systems/pet-salon.html')
+          s = p.read_text(encoding='utf-8')
+
+          if 'id="hp-class"' not in s:
+              css = """
+          .pet-hp-class{background:linear-gradient(180deg,#f7f7f9,#fff)}
+          .pet-hp-class-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:30px}
+          .pet-hp-plan{min-height:330px;padding:30px;border:1px solid #dce2ea;border-radius:24px;background:#fff;box-shadow:0 18px 45px rgba(15,27,42,.08);display:flex;flex-direction:column}
+          .pet-hp-plan.business{color:#fff;border-color:#293127;background:radial-gradient(circle at 85% 10%,rgba(206,175,114,.25),transparent 34%),linear-gradient(145deg,#111813,#303b31)}
+          .pet-hp-plan small{font-weight:950;letter-spacing:.13em;color:#6579f7}.pet-hp-plan.business small{color:#e4c98d}.pet-hp-plan h3{margin:9px 0 10px;font-size:28px;line-height:1.35}.pet-hp-plan p{margin:0;color:#667383}.pet-hp-plan.business p{color:rgba(255,255,255,.72)}
+          .pet-hp-plan ul{margin:17px 0 20px;padding-left:1.2em}.pet-hp-plan li{margin:5px 0}.pet-hp-plan .button{margin-top:auto;align-self:flex-start}
+          .pet-hp-common{margin-top:18px;padding:20px 22px;border:1px solid #dce2ea;border-radius:18px;background:#eef3ff;text-align:center;font-weight:900;color:#22324a}.pet-hp-common a{margin-left:8px;color:#354cc5}
+          @media(max-width:760px){.pet-hp-class-grid{grid-template-columns:1fr}.pet-hp-plan{min-height:0;padding:24px}.pet-hp-common{text-align:left}.pet-hp-common a{display:block;margin:8px 0 0}}
+          """
+              if '</style>' not in s:
+                  raise SystemExit('PET SALON style close not found')
+              s = s.replace('</style>', css + '\n</style>', 1)
+
+              section = """
+          <section class="section pet-hp-class" id="hp-class">
+          <div class="section-inner">
+          <div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>WEBSITE CLASS × DPRO SYSTEM</p><h2>HPも、お店に合わせて選べる。<br><em>裏側のシステムは、同じDPRO。</em></h2></div><p>DPRO SHOPはシステムだけではなく、ホームページ・予約・LINE・日々の店舗運用まで一体で設計します。店舗規模、予算、ブランド戦略に合わせてHPのクラスを選べます。</p></div>
+          <div class="pet-hp-class-grid">
+          <article class="pet-hp-plan reveal"><small>MIDDLE CLASS / 実用重視</small><h3>きれい・使いやすい・必要十分。</h3><p>予約、LINE、ホテル、管理システムへの導線を分かりやすくまとめ、コストと運用性のバランスを重視。</p><ul><li>予約・LINE導線</li><li>DPRO本体リアルタイム連携</li><li>必要十分なページ構成</li><li>導入しやすい実用型</li></ul><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/DPRO-PET-SALON-HP-DEMO/" target="_blank" rel="noopener noreferrer">中間クラスHPを見る</a></article>
+          <article class="pet-hp-plan business reveal"><small>BUSINESS CLASS / ブランド重視</small><h3>店舗ブランドそのものを設計するHP。</h3><p>大判写真、余白、多ページ、コンセプト、スタッフ、スタイル、ホテルまで「選ばれる理由」として作り込みます。</p><ul><li>高級ブランド型HERO</li><li>CONCEPT / STYLE / STAFF</li><li>多ページ・SEO拡張余地</li><li>同じDPROシステムへ接続</li></ul><a class="button button-line" href="https://dpromstk2000-lab.github.io/DPRO-PET-SALON-HP-DEMO-BUSINESS/" target="_blank" rel="noopener noreferrer">BUSINESS CLASSを見る</a></article>
+          </div>
+          <div class="pet-hp-common reveal">HPのクラスが違っても、予約・LINE・顧客／ペット管理・ホテル連携は共通です。<a href="https://dpromstk2000-lab.github.io/DPRO-PET-SALON-HP-DEMO-BUSINESS/compare.html" target="_blank" rel="noopener noreferrer">2クラスを実画面で比較する →</a></div>
+          </div>
+          </section>
+          """
+              anchor = '<section class="section product-summary" id="summary">'
+              if anchor not in s:
+                  raise SystemExit('PET SALON summary anchor not found')
+              s = s.replace(anchor, section + '\n' + anchor, 1)
+              s = s.replace('<a href="#summary" class="is-active">概要</a>', '<a href="#hp-class">HPクラス</a><a href="#summary" class="is-active">概要</a>', 1)
+              s = s.replace('<span>次回予約希望</span></div>', '<span>次回予約希望</span><span>HPクラス選択</span></div>', 1)
+              s = s.replace('<p class="eyebrow eyebrow-light"><span></span>RESERVATION・GROOMING・REBOOK</p>', '<p class="eyebrow eyebrow-light"><span></span>HP・RESERVATION・LINE・STORE OPERATION</p>', 1)
+              s = s.replace('<h1 id="product-title"><span>予約・施術・お迎え・</span><span><em>次回予約<span class="dpro-jp-keep">まで、</span>LINEで。</em></span></h1>', '<h1 id="product-title"><span>HP・予約・LINE・店舗運用まで、</span><span><em>ペットサロンをひとつに。</em></span></h1>', 1)
+              s = s.replace('<p class="product-hero-lead">お客様のLINE予約と写真付きペット会員証、店舗のPC・iPad管理、施術進捗、写真付きカルテ、QR来店受付、次回予約希望を一つにつなぐ、ペットサロン向け業務システムです。</p>', '<p class="product-hero-lead">店舗の見せ方を整えるホームページから、WEB・LINE予約、顧客・ペット管理、施術進捗、ホテル運用、次回来店まで。DPRO SHOPはペットサロンの集客入口と日々の店舗運用を、ひとつの流れとして設計します。</p>', 1)
+
+          s = s.replace('"dateModified":"2026-07-30"', '"dateModified":"2026-08-22"', 1)
+          s = s.replace('"dateModified":"2026-08-21"', '"dateModified":"2026-08-22"', 1)
+          p.write_text(s, encoding='utf-8')
+
+          # 2) Official WEBSITE production page
+          wp = Path('website.html')
+          w = wp.read_text(encoding='utf-8')
+
+          if 'id="pet-salon-hp-compare"' not in w:
+              website_css = """
+          <style id="pet-salon-hp-compare-style">
+          .pet-salon-hp-case{padding:clamp(24px,4vw,48px)!important;border:1px solid rgba(18,31,48,.12)!important;background:linear-gradient(155deg,#fbfaf7,#fff)!important}
+          .pet-salon-hp-case__intro{max-width:840px;margin-bottom:24px}
+          .pet-salon-hp-case__intro small{display:block;color:#8a6a3d;font-weight:950;letter-spacing:.13em}
+          .pet-salon-hp-case__intro h3{margin:10px 0 12px;font-size:clamp(1.8rem,3vw,3rem);line-height:1.28}
+          .pet-salon-hp-case__intro p{margin:0;color:#657080;line-height:1.9}
+          .pet-salon-hp-case__grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+          .pet-salon-hp-case__card{overflow:hidden;border:1px solid rgba(18,31,48,.13);border-radius:20px;background:#fff;box-shadow:0 18px 45px rgba(15,27,42,.08)}
+          .pet-salon-hp-case__card.business{background:#172019;color:#fff;border-color:#2e382f}
+          .pet-salon-hp-case__head{padding:16px 18px}
+          .pet-salon-hp-case__head small{display:block;font-weight:950;letter-spacing:.1em;color:#6579f7}
+          .pet-salon-hp-case__card.business .pet-salon-hp-case__head small{color:#e4c98d}
+          .pet-salon-hp-case__head strong{display:block;margin-top:5px;font-size:18px}
+          .pet-salon-hp-case__frame{height:330px;background:#eef1f4}
+          .pet-salon-hp-case__frame iframe{width:100%;height:100%;border:0;background:#fff}
+          .pet-salon-hp-case__foot{padding:16px 18px 18px}
+          .pet-salon-hp-case__card.business .pet-salon-hp-case__foot p{color:rgba(255,255,255,.72)}
+          .pet-salon-hp-case__foot p{margin:0 0 14px;color:#657080;line-height:1.75}
+          .pet-salon-hp-case__actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+          .pet-salon-hp-case__common{margin-top:18px;padding:16px 18px;border-radius:15px;background:#edf2ff;color:#253755;font-weight:850;line-height:1.7}
+          @media(max-width:820px){.pet-salon-hp-case__grid{grid-template-columns:1fr}.pet-salon-hp-case__frame{height:290px}}
+          @media(max-width:520px){.pet-salon-hp-case__frame{height:235px}}
+          </style>
+          """
+              if '</head>' not in w:
+                  raise SystemExit('website head close not found')
+              w = w.replace('</head>', website_css + '\n</head>', 1)
+
+              old_intro = '<p>実際に公開している制作実績に加え、同じ自動車整備店「STREET HOUSE湾岸通り」を題材にした4つの制作サンプルを縦に並べます。価格だけでなく、ホームページに何を任せるかの違いまで確認できます。</p>'
+              new_intro = '<p>公開中の制作実績に加え、PET SALONでは同じDPROシステムに「実用型HP」と「BUSINESS CLASS」をつないだ実例を比較できます。さらに自動車整備店の4つの制作サンプルで、価格だけでなくホームページに何を任せるかの違いまで確認できます。</p>'
+              if old_intro in w:
+                  w = w.replace(old_intro, new_intro, 1)
+
+              pet_case = """
+          <article class="v33-web-example v33-web-example--business v33-reveal pet-salon-hp-case" id="pet-salon-hp-compare">
+          <div class="v33-web-example__badge">PET SALON / HP CLASS COMPARISON</div>
+          <div class="pet-salon-hp-case__intro">
+          <small>REAL DPRO CONNECTED WEBSITE EXAMPLE</small>
+          <h3>同じPET SALONシステムで、<br>HPの「見せ方」を選べます。</h3>
+          <p>予約・LINE・顧客／ペット管理・ホテル連携など、裏側のDPROシステムは共通。違うのは、店舗ブランドをホームページでどこまで表現するかです。</p>
+          </div>
+          <div class="pet-salon-hp-case__grid">
+          <div class="pet-salon-hp-case__card">
+          <div class="pet-salon-hp-case__head"><small>MIDDLE CLASS / 実用重視</small><strong>必要十分で、運用しやすいHP</strong></div>
+          <div class="pet-salon-hp-case__frame"><iframe loading="lazy" src="https://dpromstk2000-lab.github.io/DPRO-PET-SALON-HP-DEMO/?compare=1" title="PET SALON 中間クラスHP制作例"></iframe></div>
+          <div class="pet-salon-hp-case__foot"><p>予約・LINE・ホテル・管理システムへの導線を分かりやすくまとめた実用型。</p><a class="v33-button v33-button--ghost" href="https://dpromstk2000-lab.github.io/DPRO-PET-SALON-HP-DEMO/" target="_blank" rel="noopener">実用型HPを見る ↗</a></div>
+          </div>
+          <div class="pet-salon-hp-case__card business">
+          <div class="pet-salon-hp-case__head"><small>BUSINESS CLASS / ブランド重視</small><strong>店舗ブランドまで設計する多ページHP</strong></div>
+          <div class="pet-salon-hp-case__frame"><iframe loading="lazy" src="https://dpromstk2000-lab.github.io/DPRO-PET-SALON-HP-DEMO-BUSINESS/?compare=1" title="PET SALON BUSINESS CLASS HP制作例"></iframe></div>
+          <div class="pet-salon-hp-case__foot"><p>大判写真、CONCEPT、STYLE、STAFF、HOTELまで「選ばれる理由」として作り込むブランド型。</p><a class="v33-button v33-button--primary" href="https://dpromstk2000-lab.github.io/DPRO-PET-SALON-HP-DEMO-BUSINESS/" target="_blank" rel="noopener">BUSINESS CLASSを見る ↗</a></div>
+          </div>
+          </div>
+          <div class="pet-salon-hp-case__common">どちらを選んでも、予約・LINE・顧客／ペット管理・ホテル連携のDPRO PET SALON SYSTEMは共通です。</div>
+          <div class="pet-salon-hp-case__actions">
+          <a class="v33-button v33-button--primary" href="https://dpromstk2000-lab.github.io/DPRO-PET-SALON-HP-DEMO-BUSINESS/compare.html" target="_blank" rel="noopener">2クラスを実画面で比較する ↗</a>
+          <a class="v33-button v33-button--ghost" href="systems/pet-salon">PET SALONシステムを見る</a>
+          </div>
+          </article>
+          """
+              anchor = '<div class="v33-web-example-list">'
+              if anchor not in w:
+                  raise SystemExit('website examples list anchor not found')
+              w = w.replace(anchor, anchor + '\n' + pet_case, 1)
+
+              plan_anchor = '<li>予約・相談・会員画面連携</li></ul></article>'
+              if plan_anchor in w and 'PET SALON BUSINESS CLASS実例' not in w:
+                  w = w.replace(
+                      plan_anchor,
+                      '<li>予約・相談・会員画面連携</li></ul><a class="v33-button v33-button--ghost" href="#pet-salon-hp-compare">PET SALON BUSINESS CLASS実例を見る ↓</a></article>',
+                      1
+                  )
+
+          wp.write_text(w, encoding='utf-8')
+
+      - name: QA OFFICIAL + WEBSITE promotion V1.2
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q 'id="hp-class"' systems/pet-salon.html
+          grep -q '中間クラスHPを見る' systems/pet-salon.html
+          grep -q 'BUSINESS CLASSを見る' systems/pet-salon.html
+          grep -q '2クラスを実画面で比較する' systems/pet-salon.html
+          grep -q '"dateModified":"2026-08-22"' systems/pet-salon.html
+          grep -q 'id="pet-salon-hp-compare"' website.html
+          grep -q 'PET SALON / HP CLASS COMPARISON' website.html
+          grep -q 'DPRO-PET-SALON-HP-DEMO-BUSINESS/compare.html' website.html
+          grep -q 'PET SALONシステムを見る' website.html
+          grep -q 'PET SALON BUSINESS CLASS実例を見る' website.html
+          echo 'PET SALON OFFICIAL + WEBSITE PROMOTION V1.2 QA PASS'
+
+      - name: Commit OFFICIAL + WEBSITE promotion V1.2
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add systems/pet-salon.html website.html
+          git diff --cached --quiet && exit 0
+          git commit -m 'feat: PET SALON official and website class promotion [PET-SALON-OFFICIAL-WEBSITE-V1.2-APPLIED]'
+          git push
+
+      - name: Request GitHub Pages rebuild
+        continue-on-error: true
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set +e
+          code=$(curl -sS -o /tmp/pages-build.json -w '%{http_code}' \
+            -L -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/pages/builds")
+          echo "Pages rebuild request HTTP ${code}"
+          cat /tmp/pages-build.json || true
+          exit 0
