@@ -55,7 +55,7 @@ gtag('config', 'G-YPN3998BHG');
       "description":"ペットサロン向けDPROシステムの機能、利用者別画面、導入前後、実際の操作デモを紹介します。",
       "isPartOf":{"@id":"https://dpro-shop.com/#website"},
       "inLanguage":"ja",
-      "dateModified":"2026-07-30",
+      "dateModified":"2026-08-22",
       "breadcrumb":{"@id":"https://dpro-shop.com/systems/pet-salon#breadcrumb"},
       "mainEntity":{"@id":"https://dpro-shop.com/systems/pet-salon#software"}
     },
@@ -464,6 +464,16 @@ body.pet-demo-open{overflow:hidden}
 @media(prefers-reduced-motion:reduce){
   .pet-demo-modal *{scroll-behavior:auto!important}
 }
+
+.pet-hp-class{background:linear-gradient(180deg,#f7f7f9,#fff)}
+.pet-hp-class-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:30px}
+.pet-hp-plan{min-height:330px;padding:30px;border:1px solid #dce2ea;border-radius:24px;background:#fff;box-shadow:0 18px 45px rgba(15,27,42,.08);display:flex;flex-direction:column}
+.pet-hp-plan.business{color:#fff;border-color:#293127;background:radial-gradient(circle at 85% 10%,rgba(206,175,114,.25),transparent 34%),linear-gradient(145deg,#111813,#303b31)}
+.pet-hp-plan small{font-weight:950;letter-spacing:.13em;color:#6579f7}.pet-hp-plan.business small{color:#e4c98d}.pet-hp-plan h3{margin:9px 0 10px;font-size:28px;line-height:1.35}.pet-hp-plan p{margin:0;color:#667383}.pet-hp-plan.business p{color:rgba(255,255,255,.72)}
+.pet-hp-plan ul{margin:17px 0 20px;padding-left:1.2em}.pet-hp-plan li{margin:5px 0}.pet-hp-plan .button{margin-top:auto;align-self:flex-start}
+.pet-hp-common{margin-top:18px;padding:20px 22px;border:1px solid #dce2ea;border-radius:18px;background:#eef3ff;text-align:center;font-weight:900;color:#22324a}.pet-hp-common a{margin-left:8px;color:#354cc5}
+@media(max-width:760px){.pet-hp-class-grid{grid-template-columns:1fr}.pet-hp-plan{min-height:0;padding:24px}.pet-hp-common{text-align:left}.pet-hp-common a{display:block;margin:8px 0 0}}
+
 </style>
 </head>
 <body class="system-product-page official-product-page pet-salon-product">
@@ -494,14 +504,14 @@ body.pet-demo-open{overflow:hidden}
 <nav class="sys-breadcrumb" aria-label="パンくずリスト"><a href="../">DPRO SHOP</a><span>／</span><a href="./">DPROシステム</a><span>／</span><strong>ペットサロン</strong></nav>
 <div class="official-product-label"><span>DPRO SHOP</span><strong>製品紹介ページ</strong><small>DPRO PET SALON LINE｜ペットサロン向けシステム</small></div>
 <div class="product-code" aria-hidden="true">PS</div>
-<p class="eyebrow eyebrow-light"><span></span>RESERVATION・GROOMING・REBOOK</p>
-<h1 id="product-title"><span>予約・施術・お迎え・</span><span><em>次回予約<span class="dpro-jp-keep">まで、</span>LINEで。</em></span></h1>
-<p class="product-hero-lead">お客様のLINE予約と写真付きペット会員証、店舗のPC・iPad管理、施術進捗、写真付きカルテ、QR来店受付、次回予約希望を一つにつなぐ、ペットサロン向け業務システムです。</p>
+<p class="eyebrow eyebrow-light"><span></span>HP・RESERVATION・LINE・STORE OPERATION</p>
+<h1 id="product-title"><span>HP・予約・LINE・店舗運用まで、</span><span><em>ペットサロンをひとつに。</em></span></h1>
+<p class="product-hero-lead">店舗の見せ方を整えるホームページから、WEB・LINE予約、顧客・ペット管理、施術進捗、ホテル運用、次回来店まで。DPRO SHOPはペットサロンの集客入口と日々の店舗運用を、ひとつの流れとして設計します。</p>
 <div class="product-hero-actions">
 <a class="button button-line" href="#features"><span class="line-badge">PS</span><span>機能を詳しく見る</span><b>↓</b></a>
 <button class="button button-ghost" type="button" data-pet-demo-open aria-haspopup="dialog" aria-controls="pet-demo-modal" aria-expanded="false" data-demo-title="お客様用サロン予約" data-demo-src="https://dpromstk2000-lab.github.io/dpro-pet-salon-liff/index.html" data-demo-external="https://dpromstk2000-lab.github.io/dpro-pet-salon-liff/index.html">実際の操作デモ</button>
 </div>
-<div class="product-proof-tags"><span>LINE予約</span><span>写真付きペット会員証</span><span>PC・iPad管理</span><span>施術進捗4段階</span><span>写真付きカルテ</span><span>次回予約希望</span></div>
+<div class="product-proof-tags"><span>LINE予約</span><span>写真付きペット会員証</span><span>PC・iPad管理</span><span>施術進捗4段階</span><span>写真付きカルテ</span><span>次回予約希望</span><span>HPクラス選択</span></div>
 </div>
 
 <div class="product-hero-stage reveal" aria-label="DPROペットサロンLINEの画面構成イメージ">
@@ -528,8 +538,20 @@ body.pet-demo-open{overflow:hidden}
 </section>
 
 <nav class="product-local-nav" aria-label="ページ内メニュー">
-<div class="product-local-nav-inner"><a href="#summary" class="is-active">概要</a><a href="#system-map">全体構成</a><a href="#features">主な機能</a><a href="#flow">利用の流れ</a><a href="#roles">画面別</a><a href="#demo">操作デモ</a><a href="#after">導入前後</a><a href="#safety">安全設計</a><a href="#pricing">料金</a><a href="#faq">よくある質問</a></div>
+<div class="product-local-nav-inner"><a href="#hp-class">HPクラス</a><a href="#summary" class="is-active">概要</a><a href="#system-map">全体構成</a><a href="#features">主な機能</a><a href="#flow">利用の流れ</a><a href="#roles">画面別</a><a href="#demo">操作デモ</a><a href="#after">導入前後</a><a href="#safety">安全設計</a><a href="#pricing">料金</a><a href="#faq">よくある質問</a></div>
 </nav>
+
+
+<section class="section pet-hp-class" id="hp-class">
+<div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>WEBSITE CLASS × DPRO SYSTEM</p><h2>HPも、お店に合わせて選べる。<br><em>裏側のシステムは、同じDPRO。</em></h2></div><p>DPRO SHOPはシステムだけではなく、ホームページ・予約・LINE・日々の店舗運用まで一体で設計します。店舗規模、予算、ブランド戦略に合わせてHPのクラスを選べます。</p></div>
+<div class="pet-hp-class-grid">
+<article class="pet-hp-plan reveal"><small>MIDDLE CLASS / 実用重視</small><h3>きれい・使いやすい・必要十分。</h3><p>予約、LINE、ホテル、管理システムへの導線を分かりやすくまとめ、コストと運用性のバランスを重視。</p><ul><li>予約・LINE導線</li><li>DPRO本体リアルタイム連携</li><li>必要十分なページ構成</li><li>導入しやすい実用型</li></ul><a class="button button-demo-outline" href="https://dpromstk2000-lab.github.io/DPRO-PET-SALON-HP-DEMO/" target="_blank" rel="noopener noreferrer">中間クラスHPを見る</a></article>
+<article class="pet-hp-plan business reveal"><small>BUSINESS CLASS / ブランド重視</small><h3>店舗ブランドそのものを設計するHP。</h3><p>大判写真、余白、多ページ、コンセプト、スタッフ、スタイル、ホテルまで「選ばれる理由」として作り込みます。</p><ul><li>高級ブランド型HERO</li><li>CONCEPT / STYLE / STAFF</li><li>多ページ・SEO拡張余地</li><li>同じDPROシステムへ接続</li></ul><a class="button button-line" href="https://dpromstk2000-lab.github.io/DPRO-PET-SALON-HP-DEMO-BUSINESS/" target="_blank" rel="noopener noreferrer">BUSINESS CLASSを見る</a></article>
+</div>
+<div class="pet-hp-common reveal">HPのクラスが違っても、予約・LINE・顧客／ペット管理・ホテル連携は共通です。<a href="https://dpromstk2000-lab.github.io/DPRO-PET-SALON-HP-DEMO-BUSINESS/compare.html" target="_blank" rel="noopener noreferrer">2クラスを実画面で比較する →</a></div>
+</div>
+</section>
 
 <section class="section product-summary" id="summary">
 <div class="section-inner">
