@@ -37,18 +37,52 @@ jobs:
           count = text.count(old)
           print(f'old-version occurrences: {count}')
 
-          if count != 12:
-              raise SystemExit(f'Expected exactly 12 old-version occurrences, found {count}. No file was changed.')
+          # Current official HOUKAGO page has exactly 13 R7 cache-buster references:
+          # hero 1 + live-demo links/iframes 10 + final CTA 1 + mobile CTA 1.
+          if count != 13:
+              raise SystemExit(
+                  f'Expected exactly 13 old-version occurrences, found {count}. '
+                  'No file was changed.'
+              )
 
           updated = text.replace(old, new)
 
           if old in updated:
               raise SystemExit('Old version string still remains. No file was changed.')
-          if updated.count(new) < 12:
+          if updated.count(new) < 13:
               raise SystemExit('R2 version validation failed. No file was changed.')
 
           path.write_text(updated, encoding='utf-8', newline='\n')
-          print('PASS: replaced exactly 12 HOUKAGO demo-link version strings.')
+          print('PASS: replaced exactly 13 HOUKAGO demo-link version strings.')
+          PY
+
+      - name: Validate HOUKAGO R2 links
+        shell: bash
+        run: |
+          python <<'PY'
+          from pathlib import Path
+
+          path = Path('systems/houkago-dayservice.html')
+          text = path.read_text(encoding='utf-8')
+          old = 'HOUKAGO-4-R7-FINAL-INTEGRATION-20260717'
+          new = 'HOUKAGO-4-R2-PRODUCT-READY-20260824'
+
+          checks = {
+              'old R7 removed': old not in text,
+              'R2 count exactly 13': text.count(new) == 13,
+              'guardian contact R2': f'index.html?demo=1&amp;v={new}' in text,
+              'guardian member R2': f'member.html?demo=1&amp;v={new}' in text,
+              'owner R2': f'owner.html?demo=1&amp;v={new}' in text,
+              'owner iPad R2': f'owner-ipad.html?demo=1&amp;v={new}' in text,
+              'support program R2': f'support-program.html?v={new}' in text,
+          }
+
+          for name, ok in checks.items():
+              print(('PASS' if ok else 'FAIL') + ' - ' + name)
+
+          failed = [name for name, ok in checks.items() if not ok]
+          if failed:
+              raise SystemExit('Validation failed: ' + ', '.join(failed))
           PY
 
       - name: Self-remove one-shot workflow
