@@ -37,8 +37,6 @@ jobs:
           count = text.count(old)
           print(f'old-version occurrences: {count}')
 
-          # Current official HOUKAGO page has exactly 13 R7 cache-buster references:
-          # hero 1 + live-demo links/iframes 10 + final CTA 1 + mobile CTA 1.
           if count != 13:
               raise SystemExit(
                   f'Expected exactly 13 old-version occurrences, found {count}. '
@@ -49,8 +47,11 @@ jobs:
 
           if old in updated:
               raise SystemExit('Old version string still remains. No file was changed.')
-          if updated.count(new) < 13:
-              raise SystemExit('R2 version validation failed. No file was changed.')
+          if updated.count(new) != 13:
+              raise SystemExit(
+                  f'Expected exactly 13 R2 version occurrences after replacement, '
+                  f'found {updated.count(new)}. No file was changed.'
+              )
 
           path.write_text(updated, encoding='utf-8', newline='\n')
           print('PASS: replaced exactly 13 HOUKAGO demo-link version strings.')
@@ -93,12 +94,21 @@ jobs:
       - name: Commit and push
         shell: bash
         run: |
-          if git diff --quiet; then
-            echo 'No changes required.'
-            exit 0
-          fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add systems/houkago-dayservice.html .github/workflows/houkago-r2-product-site-link-fix.yml
+
+          # Stage both the updated HTML and the workflow deletion.
+          git add -A
+
+          # Check staged changes, not only unstaged working-tree changes.
+          if git diff --cached --quiet; then
+            echo 'No staged changes required.'
+            exit 0
+          fi
+
+          echo 'Staged changes:'
+          git diff --cached --stat
+          git status --short
+
           git commit -m 'Sync HOUKAGO public demo links to Product Ready R2'
           git push origin main
