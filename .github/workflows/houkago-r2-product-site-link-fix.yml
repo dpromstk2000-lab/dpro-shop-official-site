@@ -1,0 +1,70 @@
+name: HOUKAGO Product Site R2 Link Fix
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/houkago-r2-product-site-link-fix.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Replace HOUKAGO R7 demo version with R2
+        shell: bash
+        run: |
+          python <<'PY'
+          from pathlib import Path
+
+          path = Path('systems/houkago-dayservice.html')
+          old = 'HOUKAGO-4-R7-FINAL-INTEGRATION-20260717'
+          new = 'HOUKAGO-4-R2-PRODUCT-READY-20260824'
+
+          if not path.exists():
+              raise SystemExit(f'Missing required file: {path}')
+
+          text = path.read_text(encoding='utf-8')
+          count = text.count(old)
+          print(f'old-version occurrences: {count}')
+
+          if count != 12:
+              raise SystemExit(f'Expected exactly 12 old-version occurrences, found {count}. No file was changed.')
+
+          updated = text.replace(old, new)
+
+          if old in updated:
+              raise SystemExit('Old version string still remains. No file was changed.')
+          if updated.count(new) < 12:
+              raise SystemExit('R2 version validation failed. No file was changed.')
+
+          path.write_text(updated, encoding='utf-8', newline='\n')
+          print('PASS: replaced exactly 12 HOUKAGO demo-link version strings.')
+          PY
+
+      - name: Self-remove one-shot workflow
+        shell: bash
+        run: |
+          git rm --ignore-unmatch .github/workflows/houkago-r2-product-site-link-fix.yml
+
+      - name: Commit and push
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo 'No changes required.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add systems/houkago-dayservice.html .github/workflows/houkago-r2-product-site-link-fix.yml
+          git commit -m 'Sync HOUKAGO public demo links to Product Ready R2'
+          git push origin main
