@@ -1,4 +1,4 @@
-name: FINAL Targeted Public Copy Repair R2
+name: FINAL Targeted Public Copy Repair R3
 
 on:
   push:
@@ -24,9 +24,18 @@ jobs:
           set -euo pipefail
           BASELINE='ba162b2da76fd6222644198da7b614946afb1131'
           git cat-file -e "${BASELINE}^{commit}"
-          if ! git diff --quiet "$BASELINE" HEAD -- index.html line-operation.html systems/index.html systems/estate.html; then
+          if ! git diff --quiet "$BASELINE" HEAD -- \
+            index.html \
+            line-operation.html \
+            line-build.html \
+            website.html \
+            pricing.html \
+            systems/index.html \
+            systems/estate.html; then
             echo 'Target files changed after the approved baseline. Abort without touching them.' >&2
-            git diff --name-only "$BASELINE" HEAD -- index.html line-operation.html systems/index.html systems/estate.html >&2
+            git diff --name-only "$BASELINE" HEAD -- \
+              index.html line-operation.html line-build.html website.html pricing.html \
+              systems/index.html systems/estate.html >&2
             exit 2
           fi
 
@@ -36,39 +45,70 @@ jobs:
           set -euo pipefail
           python3 - <<'PY'
           from pathlib import Path
+          from html.parser import HTMLParser
           import re
 
           report = []
+          changed = set()
 
           def replace_exact(path, old, new, expected=1):
               p = Path(path)
               text = p.read_text(encoding='utf-8')
               count = text.count(old)
-              report.append(f'REPLACE {path}: old_count={count}')
+              report.append(f'REPLACE {path}: old_count={count} :: {old} -> {new}')
               if count != expected:
                   raise SystemExit(f'Unexpected match count in {path}: {count} for {old!r}')
               p.write_text(text.replace(old, new), encoding='utf-8')
+              changed.add(path)
 
-          # 00-001: public product/system count 50 -> 51 (semantic count only)
+          # 00-001A: systems hub bridge 50 -> 51.
           replace_exact(
               'systems/index.html',
               '<b>50</b><span>DPRO LINE SYSTEMS',
               '<b>51</b><span>DPRO LINE SYSTEMS'
           )
-          replace_exact(
-              'line-operation.html',
-              '<strong data-product-count>50</strong><span>LIVE DEMO PRODUCTS</span>',
-              '<strong data-product-count>51</strong><span>LIVE DEMO PRODUCTS</span>'
+
+          # 00-001B: every explicit data-product-count=50 is a stale public product count.
+          # This intentionally includes line-operation plus pricing / line-build / website
+          # discovered by R2. Only the number inside a data-product-count element is changed.
+          tag_pat = re.compile(
+              r'(<(?P<tag>[a-zA-Z0-9]+)\b[^>]*\bdata-product-count\b[^>]*>)\s*50\s*(</(?P=tag)>)',
+              re.I
+          )
+          count_replacements = {}
+          for p in Path('.').rglob('*.html'):
+              text = p.read_text(encoding='utf-8', errors='strict')
+              new_text, n = tag_pat.subn(r'\g<1>51\g<3>', text)
+              if n:
+                  p.write_text(new_text, encoding='utf-8')
+                  changed.add(str(p))
+                  count_replacements[str(p)] = n
+          report.append(
+              'DATA_PRODUCT_COUNT_REPAIRS=' +
+              ';'.join(f'{k}:{v}' for k, v in sorted(count_replacements.items()))
           )
 
-          # 00-015: avoid universal automatic-reception wording on the shared official top page
+          # R2 evidence established these files still contained stale explicit counts.
+          expected_count_files = {
+              'line-operation.html',
+              'line-build.html',
+              'website.html',
+              'pricing.html',
+          }
+          if set(count_replacements) != expected_count_files:
+              raise SystemExit(
+                  f'Unexpected data-product-count repair scope: '
+                  f'{set(count_replacements)!r}; expected {expected_count_files!r}'
+              )
+
+          # 00-015: avoid universal automatic-reception wording on shared official top.
           replace_exact(
               'index.html',
               '<h3><em>DPRO</em>で自動受付・管理</h3>',
               '<h3><em>DPRO</em>で受付情報をまとめて管理</h3>'
           )
 
-          # 00-004: remove implementation/infrastructure terms from ordinary ESTATE public copy
+          # 00-004: remove implementation/infrastructure terms from ordinary ESTATE public copy.
           replace_exact(
               'systems/estate.html',
               '公開デモは架空情報だけを使用し、本番は契約店舗専用のGitHub・Worker・データベースで運用します。',
@@ -85,53 +125,116 @@ jobs:
               '公開デモは架空データを使用し、本番環境とは運用環境・保存先を分けています。'
           )
 
-          # Focused QA: exact targets + safe semantic checks only.
+          # Focused QA.
           systems_index = Path('systems/index.html').read_text(encoding='utf-8')
-          line_operation = Path('line-operation.html').read_text(encoding='utf-8')
           top = Path('index.html').read_text(encoding='utf-8')
           estate = Path('systems/estate.html').read_text(encoding='utf-8')
 
-          checks = {
-              'systems index old product count removed': '<b>50</b><span>DPRO LINE SYSTEMS' not in systems_index,
-              'systems index new product count present': systems_index.count('<b>51</b><span>DPRO LINE SYSTEMS') == 1,
-              'ItemList numberOfItems remains 51': '"numberOfItems":51' in systems_index,
-              'line operation old live-demo count removed': '<strong data-product-count>50</strong><span>LIVE DEMO PRODUCTS</span>' not in line_operation,
-              'line operation new live-demo count present': line_operation.count('<strong data-product-count>51</strong><span>LIVE DEMO PRODUCTS</span>') == 1,
-              'top automatic-reception wording removed': '<h3><em>DPRO</em>で自動受付・管理</h3>' not in top,
-              'top replacement wording present': top.count('<h3><em>DPRO</em>で受付情報をまとめて管理</h3>') == 1,
-              'estate implementation terms removed': not re.search(r'GitHub|Worker|Cloudflare|Supabase|データベース|\bAPI\b', estate, re.I),
-          }
+          # Check VISIBLE estate copy only. URLs such as github.io are implementation details
+          # in href attributes and are not public prose; R2 incorrectly treated those as copy.
+          class VisibleTextParser(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.skip = 0
+                  self.parts = []
+              def handle_starttag(self, tag, attrs):
+                  if tag.lower() in ('script', 'style'):
+                      self.skip += 1
+              def handle_endtag(self, tag):
+                  if tag.lower() in ('script', 'style') and self.skip:
+                      self.skip -= 1
+              def handle_data(self, data):
+                  if not self.skip:
+                      self.parts.append(data)
 
-          # Any data-product-count=50 is definitely a stale public product count, so this is safe to block repo-wide.
+          parser = VisibleTextParser()
+          parser.feed(estate)
+          estate_visible = ' '.join(parser.parts)
+
           stale_product_count = []
-          pat = re.compile(r'data-product-count[^>]*>\s*50\s*<', re.I)
+          stale_pat = re.compile(
+              r'<[a-zA-Z0-9]+\b[^>]*\bdata-product-count\b[^>]*>\s*50\s*</[a-zA-Z0-9]+>',
+              re.I
+          )
           for p in Path('.').rglob('*.html'):
               text = p.read_text(encoding='utf-8', errors='replace')
-              if pat.search(text):
+              if stale_pat.search(text):
                   stale_product_count.append(str(p))
-          checks['repo-wide data-product-count 50 = 0'] = not stale_product_count
-          report.append('stale_data_product_count_files=' + ';'.join(stale_product_count))
 
-          # Verification-only controls from the start package; do not mutate them.
+          checks = {
+              'systems index old product count removed':
+                  '<b>50</b><span>DPRO LINE SYSTEMS' not in systems_index,
+              'systems index new product count present':
+                  systems_index.count('<b>51</b><span>DPRO LINE SYSTEMS') == 1,
+              'ItemList numberOfItems remains 51':
+                  '"numberOfItems":51' in systems_index,
+              'repo-wide explicit data-product-count 50 = 0':
+                  not stale_product_count,
+              'top automatic-reception wording removed':
+                  '<h3><em>DPRO</em>で自動受付・管理</h3>' not in top,
+              'top replacement wording present':
+                  top.count('<h3><em>DPRO</em>で受付情報をまとめて管理</h3>') == 1,
+              'estate old GitHub/Worker/database sentence removed':
+                  '公開デモは架空情報だけを使用し、本番は契約店舗専用のGitHub・Worker・データベースで運用します。' not in estate,
+              'estate old API sentence removed':
+                  'API、保存先、認証、画面動作、デモ分離などを導入前にDPRO SHOP側で確認します。' not in estate,
+              'estate old environment-separation sentence removed':
+                  '公開デモは架空データを使用し、本番環境とはGitHub・Worker・データベースを分離します。' not in estate,
+              'estate visible public copy has no implementation terms':
+                  not re.search(r'GitHub|Worker|Cloudflare|Supabase|データベース|\bAPI\b',
+                                estate_visible, re.I),
+          }
+
+          report.append('stale_data_product_count_files=' + ';'.join(stale_product_count))
+          report.append(
+              'estate_visible_infra_hits=' +
+              ';'.join(sorted(set(
+                  m.group(0) for m in
+                  re.finditer(r'GitHub|Worker|Cloudflare|Supabase|データベース|\bAPI\b',
+                              estate_visible, re.I)
+              )))
+          )
+
+          # Verification-only controls; never modify.
           pet = Path('systems/pet-salon.html').read_text(encoding='utf-8', errors='replace')
           terms = Path('terms.html').read_text(encoding='utf-8', errors='replace')
           flower = Path('systems/flower-shop.html').read_text(encoding='utf-8', errors='replace')
           report.append(f'00-016 VERIFY ONLY pet-salon リアルタイム count={pet.count("リアルタイム")}')
-          report.append('00-003 VERIFY ONLY terms provider-name counts=' + ','.join(f'{x}:{terms.count(x)}' for x in ('GitHub','Supabase','Cloudflare')))
+          report.append('00-003 VERIFY ONLY terms provider-name counts=' +
+                        ','.join(f'{x}:{terms.count(x)}'
+                                 for x in ('GitHub','Supabase','Cloudflare')))
           report.append(f'00-017 VERIFY ONLY flower exact broad-safety count={flower.count("確認済みの安全設計")}')
 
           for name, ok in checks.items():
               report.append(f'{"PASS" if ok else "FAIL"}: {name}')
           failed = [name for name, ok in checks.items() if not ok]
           if failed:
-              Path('/tmp/final_targeted_public_copy_repair_report.txt').write_text('\n'.join(report)+'\n', encoding='utf-8')
+              Path('/tmp/final_targeted_public_copy_repair_report.txt').write_text(
+                  '\n'.join(report) + '\n', encoding='utf-8'
+              )
               print('\n'.join(report))
               raise SystemExit('Focused QA failed: ' + '; '.join(failed))
 
+          expected_changed = {
+              'index.html',
+              'line-operation.html',
+              'line-build.html',
+              'website.html',
+              'pricing.html',
+              'systems/index.html',
+              'systems/estate.html',
+          }
+          if changed != expected_changed:
+              raise SystemExit(
+                  f'Unexpected target file set: {changed!r}; expected {expected_changed!r}'
+              )
+
           report.append('production_business_mutation=0')
           report.append('worker_api_db_supabase_changes=0')
-          report.append('target_files=index.html;line-operation.html;systems/index.html;systems/estate.html')
-          Path('/tmp/final_targeted_public_copy_repair_report.txt').write_text('\n'.join(report)+'\n', encoding='utf-8')
+          report.append('target_files=' + ';'.join(sorted(expected_changed)))
+          Path('/tmp/final_targeted_public_copy_repair_report.txt').write_text(
+              '\n'.join(report) + '\n', encoding='utf-8'
+          )
           print('\n'.join(report))
           PY
 
@@ -145,7 +248,7 @@ jobs:
           set -euo pipefail
           git diff --check
           actual="$(git diff --name-only | sort | tr '\n' ' ')"
-          expected=".github/workflows/final-targeted-public-copy-repair.yml index.html line-operation.html systems/estate.html systems/index.html "
+          expected=".github/workflows/final-targeted-public-copy-repair.yml index.html line-build.html line-operation.html pricing.html systems/estate.html systems/index.html website.html "
           echo "Changed files: $actual"
           if [ "$actual" != "$expected" ]; then
             echo "Unexpected diff scope: $actual" >&2
@@ -155,7 +258,7 @@ jobs:
       - name: Upload static QA evidence
         uses: actions/upload-artifact@v4
         with:
-          name: final-targeted-public-copy-repair-r2-evidence
+          name: final-targeted-public-copy-repair-r3-evidence
           path: /tmp/final_targeted_public_copy_repair_report.txt
           if-no-files-found: error
 
@@ -165,6 +268,14 @@ jobs:
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add -A index.html line-operation.html systems/index.html systems/estate.html .github/workflows/final-targeted-public-copy-repair.yml
-          git commit -m 'FINAL targeted public copy repair R2 (00-001 00-004 00-015)'
+          git add -A \
+            index.html \
+            line-operation.html \
+            line-build.html \
+            website.html \
+            pricing.html \
+            systems/index.html \
+            systems/estate.html \
+            .github/workflows/final-targeted-public-copy-repair.yml
+          git commit -m 'FINAL targeted public copy repair R3 (00-001 00-004 00-015)'
           git push origin HEAD:main
