@@ -1,0 +1,111 @@
+name: DPRO CHAT B Official Public Safety Fix
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dpro-chat-b-${{ github.repository }}
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository guard
+        shell: bash
+        run: |
+          if [ "$GITHUB_REPOSITORY" != "dpromstk2000-lab/dpro-shop-official-site" ]; then
+            echo "Wrong repository: expected dpromstk2000-lab/dpro-shop-official-site, got $GITHUB_REPOSITORY" >&2
+            exit 1
+          fi
+
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Patch public copy safely
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          def patch(path, replacements, required_after=(), forbidden_after=()):
+              p=Path(path); s=p.read_text(encoding='utf-8'); before=s
+              for old,new in replacements:
+                  if old in s:
+                      s=s.replace(old,new)
+                  elif new in s:
+                      pass
+                  else:
+                      print(f'INFO optional/current marker not found: {path}: {old[:80]}')
+              for token in required_after:
+                  if token not in s: raise SystemExit(f'{path}: required result missing: {token}')
+              for token in forbidden_after:
+                  if token in s: raise SystemExit(f'{path}: forbidden public token remains: {token}')
+              if s!=before: p.write_text(s,encoding='utf-8')
+              print(path, 'CHANGED' if s!=before else 'ALREADY_OK')
+
+          patch('systems/home-nursing.html',[
+            ('<li>利用者番号：DEMO-PATIENT-01</li>','<li>デモ用の本人確認情報は、デモ画面内の案内をご確認ください</li>'),
+            ('<li>登録電話番号：09000000000</li>','<li>実在する個人情報は使用しません</li>'),
+            ('<li>管理コード：1234</li>','<li>認証情報はデモ画面内の案内をご確認ください</li>'),
+            ('<li>Supabase実データ表示</li>','<li>最新のデモ状況を表示</li>'),
+          ],required_after=['認証情報はデモ画面内の案内をご確認ください','最新のデモ状況を表示'],forbidden_after=['管理コード：1234','DEMO-PATIENT-01','09000000000','Supabase実データ表示'])
+
+          patch('systems/homecare.html',[
+            ('<li>スタッフコード：ST003</li>','<li>スタッフ用の認証情報はデモ画面内でご案内します</li>'),
+            ('<li>アクセスコード：3333</li>','<li>実在するスタッフ情報は使用しません</li>'),
+            ('<li>管理コード：1234</li>','<li>認証情報はデモ画面内の案内をご確認ください</li>'),
+            ('<h3>管理者iPad・system-check</h3>','<h3>管理者iPad・営業前チェック</h3>'),
+            ('営業前の一括検査を実行します。','営業前の一括確認を行います。'),
+          ],required_after=['スタッフ用の認証情報はデモ画面内でご案内します','管理者iPad・営業前チェック'],forbidden_after=['スタッフコード：ST003','アクセスコード：3333','管理コード：1234','管理者iPad・system-check'])
+
+          mp=Path('systems/medical.html'); s=mp.read_text(encoding='utf-8'); before=s
+          replacements=[
+            ('DPRO MEDICAL / OFFICIAL SITE V1.2.1','DPRO MEDICAL / 公式製品ページ'),
+            ('MEDICAL OPERATIONS / ONE CORE / 6 PRESET','患者・受付・医院運用をひとつにつなぐ'),
+            ('PUBLIC DEMO SALES FINAL V1.1','公開デモ'),
+            ('6診療PRESET','6つの診療パターン'),
+            ('ONE CORE','共通基盤'),
+            ('ONE CONTRACT','一貫した運用'),
+            ('MULTI PRESET','複数の診療パターン'),
+            ('医療CORE','情報基盤'),
+            ('PRESET','診療パターン'),
+          ]
+          for old,new in replacements: s=s.replace(old,new)
+          for token in ['DPRO MEDICAL / OFFICIAL SITE V1.2.1','PUBLIC DEMO SALES FINAL V1.1','ONE CORE','ONE CONTRACT','MULTI PRESET','PRESET']:
+              if token in s: raise SystemExit(f'systems/medical.html: forbidden public token remains: {token}')
+          for token in ['DPRO MEDICAL / 公式製品ページ','診療パターン','情報基盤']:
+              if token not in s: raise SystemExit(f'systems/medical.html: expected readable copy missing: {token}')
+          if s!=before: mp.write_text(s,encoding='utf-8')
+          print('systems/medical.html', 'CHANGED' if s!=before else 'ALREADY_OK')
+          PY
+
+      - name: Static safety QA
+        shell: bash
+        run: |
+          grep -q 'href="https://dpromstk2000-lab.github.io/dpro-home-nursing-line/owner.html"' systems/home-nursing.html
+          grep -q 'href="https://dpromstk2000-lab.github.io/dpro-homecare-family-line/owner.html?demo=1&amp;v=HOMECARE-10"' systems/homecare.html
+          grep -q 'https://dpromstk2000-lab.github.io/dpro-medical-standard/medical-public-demo.html' systems/medical.html
+          ! grep -q '管理コード：1234' systems/home-nursing.html
+          ! grep -q '管理コード：1234' systems/homecare.html
+          ! grep -q 'Supabase実データ表示' systems/home-nursing.html
+          ! grep -q '>system-check<' systems/homecare.html
+          echo 'OFFICIAL CHAT B static QA: PASS'
+
+      - name: Commit forward-only fix
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm --ignore-unmatch ".github/workflows/dpro-chat-b-official-public-safety.yml"
+          git add "systems/home-nursing.html" "systems/homecare.html" "systems/medical.html"
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Fix CHAT B public copy and demo credential exposure"
+          git push
