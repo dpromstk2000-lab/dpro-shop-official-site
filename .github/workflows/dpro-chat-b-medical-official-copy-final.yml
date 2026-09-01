@@ -39,44 +39,109 @@ jobs:
           s = p.read_text(encoding="utf-8")
           before = s
 
-          replacements = [
-              ('<small>OFFICIAL SITE / DPRO MEDICAL</small>', '<small>医療機関向けDPROシステム</small>'),
-              ('>PRODUCT SITE ↗</a>', '>製品詳細 ↗</a>'),
-              ('<p class="eyebrow">OFFICIAL GUIDE</p>', '<p class="eyebrow">導入・運用ガイド</p>'),
-              ('OFFICIAL SITEでは、', 'このページでは、'),
-              ('診療診療パターン', '診療パターン'),
-              ('DPRO SHOP / DPRO MEDICAL OFFICIAL SITE V1.2.1 / 公開デモ', 'DPRO SHOP / DPRO MEDICAL / 公開デモ'),
-          ]
-          for old, new in replacements:
-              s = s.replace(old, new)
+          # Header / navigation / footer
+          s = s.replace('<small>OFFICIAL SITE / DPRO MEDICAL</small>', '<small>医療機関向けDPROシステム</small>')
+          s = s.replace('>PRODUCT SITE ↗</a>', '>製品詳細 ↗</a>')
+          s = s.replace('PRODUCT SITEで詳しく見る ↗', '製品詳細を見る ↗')
+          s = s.replace('PRODUCT SITEを見る ↗', '製品詳細を見る ↗')
+          s = s.replace('DPRO SHOP / DPRO MEDICAL OFFICIAL SITE V1.2.1 / 公開デモ', 'DPRO SHOP / DPRO MEDICAL / 公開デモ')
 
-          # Customer-facing wording: remove internal "CORE" vocabulary.
-          s = s.replace("CORE", "共通基盤")
-          s = s.replace("別共通基盤", "別の基盤")
-          s = s.replace("同じ共通基盤のルール", "共通基盤のルール")
+          # Metadata / sales copy
+          s = s.replace('公開LIVE DEMO', '公開デモ')
+          s = s.replace('30秒LIVE DEMO', '30秒公開デモ')
+          s = s.replace('DPRO MEDICAL LIVE DEMO', 'DPRO MEDICAL 公開デモ')
+          s = s.replace('LIVE DEMO ↗', '公開デモ ↗')
+          s = s.replace('<p class="eyebrow">LIVE DEMO</p>', '<p class="eyebrow">公開デモ</p>')
+          s = s.replace('<p class="eyebrow">OFFICIAL GUIDE</p>', '<p class="eyebrow">導入・運用ガイド</p>')
+          s = s.replace('OFFICIAL SITEでは、', 'このページでは、')
+          s = s.replace('診療診療パターン', '診療パターン')
+
+          # Internal implementation language -> customer/operator language
+          s = s.replace('CORE', '共通基盤')
+          s = s.replace('別共通基盤', '別の基盤')
+          s = s.replace('同じ共通基盤のルール', '共通基盤のルール')
+
+          s = s.replace(
+              '<p class="eyebrow">INTRODUCTION FLOW</p>',
+              '<p class="eyebrow">導入の流れ</p>'
+          )
+          s = s.replace(
+              '公開デモをそのまま本番利用するのではなく、実医院ごとに設定・認証・本番環境・外部連携・端末を確認してGO LIVEします。',
+              '公開デモをそのまま本番利用するのではなく、実医院ごとに設定・認証・外部連携・端末を確認してから運用を開始します。'
+          )
+          s = s.replace(
+              '<article class="intro"><b>3</b><strong>医院専用環境を構築</strong><p>tenant / clinic、スタッフ、本番DB、Worker、LINE / LIFF、domain等を設定。</p></article>',
+              '<article class="intro"><b>3</b><strong>医院専用環境を構築</strong><p>医院情報、スタッフ権限、LINE連携など、運用に必要な設定を行います。</p></article>'
+          )
+          s = s.replace(
+              '<article class="intro"><b>4</b><strong>本番LIVE VERIFY</strong><p>Cloudflare Binding、live API、production E2E、実端末を確認して本番開始。</p></article>',
+              '<article class="intro"><b>4</b><strong>本番前の最終確認</strong><p>実際のURLと端末で一連の操作を確認してから運用を開始します。</p></article>'
+          )
+
+          s = s.replace(
+              '<p class="eyebrow">SECURITY & BOUNDARY</p>',
+              '<p class="eyebrow">安全な運用</p>'
+          )
+          s = s.replace(
+              '患者認証とスタッフ認証を分け、tenant / clinic / role / patient scopeをサーバー側で確認する設計を維持します。',
+              '患者向けとスタッフ向けの認証を分け、役割に応じて利用できる画面と情報を適切に制御します。'
+          )
+          s = s.replace(
+              '<b>PUBLIC DEMO</b><p>営業用の架空環境。実在患者情報、本番DB書込み、秘密鍵を使用しません。公開デモ完成は実顧客本番稼働を意味しません。</p>',
+              '<b>公開デモ</b><p>架空の患者・医院情報を使った体験環境です。実在患者情報や本番環境のデータは使用しません。</p>'
+          )
+          s = s.replace(
+              '<b>REAL CUSTOMER LIVE</b><p>実医院受注後に医院専用設定・本番Supabase・Cloudflare Binding・Worker・LINE / LIFF・domain・E2E・実端末を正式確認します。</p>',
+              '<b>実医院での運用</b><p>受注後に医院専用設定、スタッフ権限、LINE連携、実際のURLと端末を確認してから運用を開始します。</p>'
+          )
+
+          # Remaining public demo wording
+          s = s.replace('公開DEMO', '公開デモ')
+          s = s.replace('本番DB書込み', '本番環境のデータ更新')
+          s = s.replace('秘密鍵', '本番用の機密情報')
+
+          # Internal CSS comment should not trip customer-copy QA.
+          s = s.replace('/* DPRO MEDICAL OFFICIAL HERO VISIBILITY HOTFIX V1.2.1', '/* DPRO MEDICAL HERO VISIBILITY HOTFIX')
+          s = s.replace('legacy OFFICIAL .hero-grid effect rules.', 'legacy shared .hero-grid effect rules.')
 
           for forbidden in [
               "OFFICIAL SITE",
               "OFFICIAL GUIDE",
-              "PRODUCT SITE ↗",
+              "PRODUCT SITE",
               "V1.2.1",
-              "診療診療パターン",
               "CORE",
+              "tenant / clinic",
+              "Worker",
+              "Supabase",
+              "Cloudflare",
+              "Binding",
+              "LIFF",
+              "production E2E",
+              "live API",
+              "GO LIVE",
+              "LIVE VERIFY",
+              "PUBLIC DEMO",
+              "REAL CUSTOMER LIVE",
+              "公開DEMO",
+              "LIVE DEMO",
           ]:
               if forbidden in s:
-                  raise SystemExit(f"customer-facing internal token remains: {forbidden}")
+                  raise SystemExit(f"customer-facing/internal token remains: {forbidden}")
 
           for required in [
               "医療機関向けDPROシステム",
-              "製品詳細 ↗",
+              "製品詳細",
               "導入・運用ガイド",
-              "DPRO SHOP / DPRO MEDICAL / 公開デモ",
+              "導入の流れ",
+              "安全な運用",
+              "本番前の最終確認",
+              "実医院での運用",
               "共通基盤",
           ]:
               if required not in s:
                   raise SystemExit(f"expected customer-facing wording missing: {required}")
 
-          # Preserve the important outbound destinations.
+          # Preserve required destinations.
           for required_url in [
               "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/medical.html",
               "https://dpromstk2000-lab.github.io/dpro-medical-standard/medical-public-demo.html",
@@ -96,12 +161,17 @@ jobs:
         run: |
           ! grep -q 'OFFICIAL SITE' systems/medical.html
           ! grep -q 'OFFICIAL GUIDE' systems/medical.html
-          ! grep -q 'PRODUCT SITE ↗' systems/medical.html
+          ! grep -q 'PRODUCT SITE' systems/medical.html
           ! grep -q 'V1.2.1' systems/medical.html
-          ! grep -q '診療診療パターン' systems/medical.html
           ! grep -q 'CORE' systems/medical.html
+          ! grep -q 'Worker' systems/medical.html
+          ! grep -q 'Supabase' systems/medical.html
+          ! grep -q 'Cloudflare' systems/medical.html
+          ! grep -q 'LIFF' systems/medical.html
+          ! grep -q 'LIVE DEMO' systems/medical.html
           grep -q '医療機関向けDPROシステム' systems/medical.html
           grep -q '導入・運用ガイド' systems/medical.html
+          grep -q '安全な運用' systems/medical.html
           grep -q '共通基盤' systems/medical.html
           echo 'MEDICAL OFFICIAL customer copy QA: PASS'
 
