@@ -1,0 +1,120 @@
+name: DPRO CHAT B Medical Official Copy Final
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dpro-chat-b-${{ github.repository }}
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository guard
+        shell: bash
+        run: |
+          if [ "$GITHUB_REPOSITORY" != "dpromstk2000-lab/dpro-shop-official-site" ]; then
+            echo "Wrong repository: expected dpromstk2000-lab/dpro-shop-official-site, got $GITHUB_REPOSITORY" >&2
+            exit 1
+          fi
+
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Finalize MEDICAL customer-facing copy
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          p = Path("systems/medical.html")
+          if not p.exists():
+              raise SystemExit("systems/medical.html not found")
+
+          s = p.read_text(encoding="utf-8")
+          before = s
+
+          replacements = [
+              ('<small>OFFICIAL SITE / DPRO MEDICAL</small>', '<small>医療機関向けDPROシステム</small>'),
+              ('>PRODUCT SITE ↗</a>', '>製品詳細 ↗</a>'),
+              ('<p class="eyebrow">OFFICIAL GUIDE</p>', '<p class="eyebrow">導入・運用ガイド</p>'),
+              ('OFFICIAL SITEでは、', 'このページでは、'),
+              ('診療診療パターン', '診療パターン'),
+              ('DPRO SHOP / DPRO MEDICAL OFFICIAL SITE V1.2.1 / 公開デモ', 'DPRO SHOP / DPRO MEDICAL / 公開デモ'),
+          ]
+          for old, new in replacements:
+              s = s.replace(old, new)
+
+          # Customer-facing wording: remove internal "CORE" vocabulary.
+          s = s.replace("CORE", "共通基盤")
+          s = s.replace("別共通基盤", "別の基盤")
+          s = s.replace("同じ共通基盤のルール", "共通基盤のルール")
+
+          for forbidden in [
+              "OFFICIAL SITE",
+              "OFFICIAL GUIDE",
+              "PRODUCT SITE ↗",
+              "V1.2.1",
+              "診療診療パターン",
+              "CORE",
+          ]:
+              if forbidden in s:
+                  raise SystemExit(f"customer-facing internal token remains: {forbidden}")
+
+          for required in [
+              "医療機関向けDPROシステム",
+              "製品詳細 ↗",
+              "導入・運用ガイド",
+              "DPRO SHOP / DPRO MEDICAL / 公開デモ",
+              "共通基盤",
+          ]:
+              if required not in s:
+                  raise SystemExit(f"expected customer-facing wording missing: {required}")
+
+          # Preserve the important outbound destinations.
+          for required_url in [
+              "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/medical.html",
+              "https://dpromstk2000-lab.github.io/dpro-medical-standard/medical-public-demo.html",
+              "https://lin.ee/YxJGXV6D",
+          ]:
+              if required_url not in s:
+                  raise SystemExit(f"required URL missing after patch: {required_url}")
+
+          if s != before:
+              p.write_text(s, encoding="utf-8")
+
+          print("MEDICAL OFFICIAL CUSTOMER COPY FINAL:", "CHANGED" if s != before else "ALREADY_OK")
+          PY
+
+      - name: Static customer copy QA
+        shell: bash
+        run: |
+          ! grep -q 'OFFICIAL SITE' systems/medical.html
+          ! grep -q 'OFFICIAL GUIDE' systems/medical.html
+          ! grep -q 'PRODUCT SITE ↗' systems/medical.html
+          ! grep -q 'V1.2.1' systems/medical.html
+          ! grep -q '診療診療パターン' systems/medical.html
+          ! grep -q 'CORE' systems/medical.html
+          grep -q '医療機関向けDPROシステム' systems/medical.html
+          grep -q '導入・運用ガイド' systems/medical.html
+          grep -q '共通基盤' systems/medical.html
+          echo 'MEDICAL OFFICIAL customer copy QA: PASS'
+
+      - name: Commit forward-only fix
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm --ignore-unmatch ".github/workflows/dpro-chat-b-medical-official-copy-final.yml"
+          git add "systems/medical.html"
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Finalize CHAT B MEDICAL official customer copy"
+          git push
