@@ -1,0 +1,160 @@
+name: CHAT A Public Copy Fix - Official
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/chat-a-public-copy-fix-official.yml'
+permissions:
+  contents: write
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Apply source-safe public copy fixes
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          changed = []
+          counts = {}
+
+          def write_if_changed(path: Path, text: str, old: str):
+              if text != old:
+                  path.write_text(text, encoding='utf-8')
+                  changed.append(str(path))
+
+          def replace_count(text, old, new, label):
+              n = text.count(old)
+              if n:
+                  counts[label] = counts.get(label, 0) + n
+                  text = text.replace(old, new)
+              return text
+
+          # Canonical inventory count: 51. Restrict count changes to assigned public surfaces.
+          count_targets = [
+              Path('index.html'), Path('line-build.html'), Path('line-operation.html'),
+              Path('website.html'), Path('contact.html'), Path('systems/index.html')
+          ]
+          for path in count_targets:
+              if not path.exists():
+                  continue
+              old = path.read_text(encoding='utf-8')
+              text = old
+              text = re.sub(r'(<(?:span|b)[^>]*data-product-count[^>]*>)50(</(?:span|b)>)', r'\g<1>51\g<2>', text)
+              for a, b, label in [
+                  ('50の業種別システム','51の業種別システム','50の業種別システム'),
+                  ('50の業種専用DPROシステム','51の業種専用DPROシステム','50の業種専用DPROシステム'),
+                  ('50製品','51製品','50製品'),
+                  ('50システム','51システム','50システム'),
+                  ('49製品','51製品','49製品'),
+                  ('49システム','51システム','49システム'),
+              ]:
+                  text = replace_count(text, a, b, label)
+              write_if_changed(path, text, old)
+
+          # Narrow universal/unsupported claims on public HTML only.
+          claim_replacements = {
+              'DPROで自動受付・管理': '受付情報をDPROへ集約・管理',
+              'DPRO本体リアルタイム連携': 'DPROシステムと連携',
+              '確認済みの安全設計': '安全性とプライバシーに配慮した設計',
+          }
+          for path in Path('.').rglob('*.html'):
+              if '.github' in path.parts:
+                  continue
+              old = path.read_text(encoding='utf-8')
+              text = old
+              for a,b in claim_replacements.items():
+                  if a in text:
+                      counts[a] = counts.get(a,0) + text.count(a)
+                      text = text.replace(a,b)
+              write_if_changed(path, text, old)
+
+          # Public brand naming consistency on legacy top-level pages.
+          brand_targets = [
+              'privacy.html','terms.html','about.html','pricing.html','contact.html',
+              'line-build.html','line-operation.html','website.html'
+          ]
+          for name in brand_targets:
+              path = Path(name)
+              if not path.exists():
+                  continue
+              old = path.read_text(encoding='utf-8')
+              text = old.replace('LINE BUSINESS DESIGN','OFFICIAL SITE')
+              write_if_changed(path, text, old)
+
+          # Owner-facing third-party wording in terms: remove implementation vendor names.
+          path = Path('terms.html')
+          if path.exists():
+              old = path.read_text(encoding='utf-8')
+              text = old
+              text = text.replace(
+                  'LINE、GitHub、Supabase等、店舗側権限でのみ可能な操作',
+                  'LINEや公開環境など、店舗・事業者本人の権限でのみ可能な操作'
+              )
+              text = text.replace(
+                  'LINE、GitHub、Cloudflare、メールサービス、ドメイン管理、アクセス解析、問い合わせフォームその他第三者の外部サービスを利用する場合があります。',
+                  'LINE、公開環境、メールサービス、ドメイン管理、アクセス解析、問い合わせフォームその他第三者の外部サービスを利用する場合があります。'
+              )
+              write_if_changed(path, text, old)
+
+          # Validation: assigned stale phrases must not remain on the intended surfaces.
+          forbidden = [
+              'DPROで自動受付・管理','DPRO本体リアルタイム連携','確認済みの安全設計'
+          ]
+          failures = []
+          for path in Path('.').rglob('*.html'):
+              if '.github' in path.parts:
+                  continue
+              text = path.read_text(encoding='utf-8')
+              for phrase in forbidden:
+                  if phrase in text:
+                      failures.append(f'{path}: {phrase}')
+          for name in ('privacy.html','terms.html'):
+              path = Path(name)
+              if path.exists() and 'LINE BUSINESS DESIGN' in path.read_text(encoding='utf-8'):
+                  failures.append(f'{name}: LINE BUSINESS DESIGN')
+          if Path('terms.html').exists():
+              terms = Path('terms.html').read_text(encoding='utf-8')
+              for vendor in ('GitHub','Supabase','Cloudflare'):
+                  if vendor in terms:
+                      failures.append(f'terms.html: {vendor}')
+          for path in count_targets:
+              if path.exists():
+                  text = path.read_text(encoding='utf-8')
+                  for m in re.finditer(r'(?<!\d)(49|50)(?:製品|システム|の業種)', text):
+                      failures.append(f'{path}: stale count {m.group(0)}')
+
+          print('CHANGED FILES:')
+          for p in sorted(set(changed)):
+              print(' -', p)
+          print('REPLACEMENT COUNTS:', counts)
+          if failures:
+              print('VALIDATION FAILURES:')
+              for f in failures:
+                  print(' -', f)
+              raise SystemExit(1)
+          print('CHAT A OFFICIAL validation: PASS')
+          PY
+      - name: Commit applied changes
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet; then
+            echo 'No source changes required.'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- ':!.github/workflows/chat-a-public-copy-fix-official.yml'
+          if git diff --cached --quiet; then
+            echo 'No business-source changes to commit.'
+            exit 0
+          fi
+          git commit -m 'fix(chat-a): public copy and canonical inventory'
+          git push
