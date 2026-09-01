@@ -1,0 +1,106 @@
+name: DPRO CHAT B Medical Official Duplicate Copy Cleanup
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dpro-chat-b-${{ github.repository }}
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository guard
+        shell: bash
+        run: |
+          if [ "$GITHUB_REPOSITORY" != "dpromstk2000-lab/dpro-shop-official-site" ]; then
+            echo "Wrong repository: expected dpromstk2000-lab/dpro-shop-official-site, got $GITHUB_REPOSITORY" >&2
+            exit 1
+          fi
+
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Clean duplicated MEDICAL public wording
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          p = Path("systems/medical.html")
+          if not p.exists():
+              raise SystemExit("systems/medical.html not found")
+
+          s = p.read_text(encoding="utf-8")
+          before = s
+
+          s = s.replace("公開公開デモ", "公開デモ")
+
+          if "公開公開デモ" in s:
+              raise SystemExit("duplicate public-demo wording remains")
+
+          for required in [
+              "医療機関向けDPROシステム",
+              "導入・運用ガイド",
+              "導入の流れ",
+              "安全な運用",
+              "共通基盤",
+          ]:
+              if required not in s:
+                  raise SystemExit(f"expected finalized wording missing: {required}")
+
+          for forbidden in [
+              "OFFICIAL SITE",
+              "OFFICIAL GUIDE",
+              "PRODUCT SITE",
+              "V1.2.1",
+              "CORE",
+              "Worker",
+              "Supabase",
+              "Cloudflare",
+              "LIFF",
+              "GO LIVE",
+          ]:
+              if forbidden in s:
+                  raise SystemExit(f"internal token unexpectedly present: {forbidden}")
+
+          for required_url in [
+              "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/medical.html",
+              "https://dpromstk2000-lab.github.io/dpro-medical-standard/medical-public-demo.html",
+              "https://lin.ee/YxJGXV6D",
+          ]:
+              if required_url not in s:
+                  raise SystemExit(f"required URL missing: {required_url}")
+
+          if s != before:
+              p.write_text(s, encoding="utf-8")
+
+          print("MEDICAL OFFICIAL DUPLICATE COPY CLEANUP:", "CHANGED" if s != before else "ALREADY_OK")
+          PY
+
+      - name: Static copy QA
+        shell: bash
+        run: |
+          ! grep -q '公開公開デモ' systems/medical.html
+          grep -q '公開デモ' systems/medical.html
+          grep -q 'https://dpromstk2000-lab.github.io/dpro-medical-standard/medical-public-demo.html' systems/medical.html
+          echo 'MEDICAL OFFICIAL duplicate copy QA: PASS'
+
+      - name: Commit forward-only fix
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm --ignore-unmatch ".github/workflows/dpro-chat-b-medical-official-duplicate-copy-cleanup.yml"
+          git add "systems/medical.html"
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Clean CHAT B MEDICAL official duplicate wording"
+          git push
