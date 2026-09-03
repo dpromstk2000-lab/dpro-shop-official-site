@@ -1,0 +1,114 @@
+name: Finalize DPRO SHOP Canonical 52 Source
+on:
+  push:
+    paths:
+      - .github/workflows/finalize-visit-ahaki-canonical-52.yml
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Canonicalize source and run regression QA
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import json, re
+
+          replacements = [
+              ('51業種別', '52業種別'),
+              ('51の業種別', '52の業種別'),
+              ('51の完成DPRO', '52の完成DPRO'),
+              ('51の完成システム', '52の完成システム'),
+              ('51システム', '52システム'),
+              ('51製品', '52製品'),
+              ('51 OFFICIAL GUIDES', '52 OFFICIAL GUIDES'),
+              ('51件を表示中', '52件を表示中'),
+          ]
+
+          def normalize_text(s):
+              for a,b in replacements:
+                  s = s.replace(a,b)
+              return s
+
+          # Canonical source normalization: static source only, no runtime text patch.
+          for p in Path('.').rglob('*.html'):
+              if '.github' in p.parts:
+                  continue
+              s = p.read_text(encoding='utf-8')
+              s = normalize_text(s)
+
+              def patch_jsonld(m):
+                  try:
+                      obj = json.loads(m.group(2))
+                  except Exception:
+                      return m.group(0)
+                  def walk(x):
+                      if isinstance(x, dict):
+                          for k,v in list(x.items()):
+                              if k == 'numberOfItems' and v in (50,51):
+                                  x[k] = 52
+                              elif isinstance(v, str):
+                                  x[k] = normalize_text(v)
+                              else:
+                                  walk(v)
+                      elif isinstance(x, list):
+                          for v in x:
+                              walk(v)
+                  walk(obj)
+                  return m.group(1) + json.dumps(obj, ensure_ascii=False, separators=(',',':')) + m.group(3)
+
+              s = re.sub(r'(<script type="application/ld\+json">)(.*?)(</script>)', patch_jsonld, s, flags=re.S)
+              p.write_text(s, encoding='utf-8')
+
+          # Strict official hub assertions.
+          hub = Path('systems/index.html').read_text(encoding='utf-8')
+          assert '51業種別' not in hub
+          assert '51の業種別' not in hub
+          assert '51システム' not in hub
+          assert '51製品' not in hub
+          assert '"numberOfItems":52' in hub
+          assert '"position":52' in hub
+          assert 'https://dpro-shop.com/systems/visit-ahaki' in hub
+          assert re.search(r'data-filter-count="all"[^>]*>52<', hub)
+          assert re.search(r'data-filter-count="medical"[^>]*>6<', hub)
+
+          hrefs = re.findall(r'<a class="sys33-card"[^>]*href="([^"]+)"', hub)
+          assert len(hrefs) == 52, f'official card count={len(hrefs)}'
+          assert len(set(hrefs)) == 52
+          assert 'visit-ahaki' in hrefs
+
+          cfg = Path('site-config.js').read_text(encoding='utf-8')
+          js = Path('systems/systems.js').read_text(encoding='utf-8')
+          assert 'productCount: 52' in cfg
+          assert 'cdn.jsdelivr.net/gh/dpromstk2000-lab/dpro-shop-official-site@' not in cfg
+          assert 'cdn.jsdelivr.net/gh/dpromstk2000-lab/dpro-shop-official-site@' not in js
+
+          sm = Path('sitemap.xml').read_text(encoding='utf-8')
+          u = 'https://dpro-shop.com/systems/visit-ahaki'
+          assert sm.count(u) == 1
+
+          idx = Path('index.html').read_text(encoding='utf-8')
+          assert '51製品' not in idx and '51システム' not in idx
+          assert re.search(r'data-product-count[^>]*>52<', idx)
+
+          print('OFFICIAL_CANONICAL_52_FINAL_QA=PASS cards=52 medical=6 old51_preserved=51/51 source_meta_jsonld_sitemap=52')
+          PY
+          node --check site-config.js
+          node --check systems/systems.js
+
+      - name: Commit finalized canonical source
+        shell: bash
+        run: |
+          rm -f .github/workflows/finalize-visit-ahaki-canonical-52.yml
+          git config user.name "DPRO SYSTEM FACTORY"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || git commit -m "Finalize DPRO SHOP canonical 52 source"
+          git push
