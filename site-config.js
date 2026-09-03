@@ -1,5 +1,5 @@
 window.DPRO_SITE_CONFIG = Object.freeze({
-  productCount: 52,
+  productCount: 54,
   identity: Object.freeze({ official: 'blue', product: 'red' }),
   urls: Object.freeze({
     lineConsult: 'https://lin.ee/YxJGXV6D',
@@ -116,16 +116,16 @@ window.DPRO_SITE_CONFIG = Object.freeze({
         <header class="dpro-proof-v1__head">
           <p class="dpro-proof-v1__eyebrow">COMPLETED PRODUCT PROOF / BEFORE CONSULTATION</p>
           <h2 id="${section.id}-title">相談する前に、<em>完成済みの実画面</em>を確認できます。</h2>
-          <p>DPRO SHOPはサービスの説明だけではありません。業種別に完成した52製品をPRODUCT SITEで公開し、対応製品では実際の画面や公開LIVE DEMOまで確認できます。</p>
+          <p>DPRO SHOPはサービスの説明だけではありません。業種別に完成した54製品をPRODUCT SITEで公開し、対応製品では実際の画面や公開LIVE DEMOまで確認できます。</p>
         </header>
         <div class="dpro-proof-v1__facts">
-          <article class="dpro-proof-v1__fact"><small>COMPLETED CATALOG</small><strong>52製品</strong><p>業種別の完成DPROシステムを一覧で確認。</p></article>
+          <article class="dpro-proof-v1__fact"><small>COMPLETED CATALOG</small><strong>54製品</strong><p>業種別の完成DPROシステムを一覧で確認。</p></article>
           <article class="dpro-proof-v1__fact"><small>REAL SCREENS</small><strong>実画面を公開</strong><p>PC・スマホ・iPadなど、製品ごとの画面を確認。</p></article>
           <article class="dpro-proof-v1__fact"><small>PUBLIC LIVE DEMO</small><strong>触って確認</strong><p>対応製品は公開LIVE DEMOから操作イメージを確認。</p></article>
-          <article class="dpro-proof-v1__fact"><small>CATALOG EXPANSION</small><strong>DPRO MEDICAL</strong><p>医療向けDPRO MEDICALも52製品カタログに含まれます。</p></article>
+          <article class="dpro-proof-v1__fact"><small>CATALOG EXPANSION</small><strong>DPRO MEDICAL</strong><p>医療向けDPRO MEDICALも54製品カタログに含まれます。</p></article>
         </div>
         <div class="dpro-proof-v1__actions">
-          <a class="is-official" href="${options.systemsHref || 'systems/'}">52システムの公式説明を見る</a>
+          <a class="is-official" href="${options.systemsHref || 'systems/'}">54システムの公式説明を見る</a>
           <a class="is-product" href="${PRODUCT_SITE}" target="_blank" rel="noopener">PRODUCT SITEで実際に触る ↗</a>
           <a class="is-ghost" href="${options.medicalHref || 'systems/medical'}">DPRO MEDICALを見る</a>
         </div>
@@ -191,10 +191,10 @@ window.DPRO_SITE_CONFIG = Object.freeze({
     const bridge = document.querySelector('.v33-product-bridge');
     if (!bridge || bridge.querySelector('.dpro-proof-v1__inline')) return;
     const p = bridge.querySelector('p');
-    if (p) p.textContent = '料金と提供条件を確認したら、相談前にPRODUCT SITEで完成済み52製品の実画面・公開LIVE DEMOを確認できます。';
+    if (p) p.textContent = '料金と提供条件を確認したら、相談前にPRODUCT SITEで完成済み54製品の実画面・公開LIVE DEMOを確認できます。';
     const tags = document.createElement('div');
     tags.className = 'dpro-proof-v1__inline';
-    tags.innerHTML = '<span>52製品</span><span>実画面公開</span><span>公開LIVE DEMO</span><span>DPRO MEDICAL掲載</span>';
+    tags.innerHTML = '<span>54製品</span><span>実画面公開</span><span>公開LIVE DEMO</span><span>DPRO MEDICAL掲載</span>';
     const actions = bridge.querySelector('.v33-actions');
     (actions || bridge).insertAdjacentElement(actions ? 'beforebegin' : 'beforeend', tags);
   }
