@@ -1,4 +1,4 @@
-/* DPRO SHOP OFFICIAL / PRODUCT 52 ADDON
+/* DPRO SHOP OFFICIAL / PRODUCT 52 ADDON HOTFIX V1.1
  * Product #52: DPRO 訪問マッサージ・鍼灸
  * Preserve the OFFICIAL SITE runtime locked at 4e1685f6a859f424a2326656152faee1b1e55984.
  */
@@ -67,7 +67,7 @@
   };
 
   if (document.readyState === "loading") {
-    document.write('<script src="' + CORE + '"><\\/script><script>window.__DPRO_OFFICIAL_52_BOOT__();<\\/script>');
+    document.write('<script src="' + CORE + '"><' + '/script><script>window.__DPRO_OFFICIAL_52_BOOT__();<' + '/script>');
   } else {
     const s = document.createElement("script");
     s.src = CORE;
