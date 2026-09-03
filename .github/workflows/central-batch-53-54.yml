@@ -1,0 +1,98 @@
+name: CENTRAL official register products 53-54
+on:
+  push:
+    paths:
+      - .github/workflows/central-batch-53-54.yml
+permissions:
+  contents: write
+jobs:
+  register:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Register official guides 53 and 54
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re, json, subprocess
+
+          hub=Path('systems/index.html')
+          s=hub.read_text(encoding='utf-8')
+          assert '"numberOfItems":52' in s
+          assert 'href="landscape-exterior"' not in s and 'href="pest-env"' not in s
+
+          # Broad public count claims: 52 -> 54. Product #52 labels like "PRODUCT 52" are not touched.
+          for p in list(Path('.').rglob('*.html')) + list(Path('.').rglob('*.js')):
+            if '.github' in p.parts: continue
+            t=p.read_text(encoding='utf-8')
+            t=t.replace('52の業種','54の業種').replace('52製品','54製品').replace('52システム','54システム')
+            t=t.replace('52件を表示中','54件を表示中').replace('52 OFFICIAL GUIDES','54 OFFICIAL GUIDES')
+            p.write_text(t,encoding='utf-8')
+
+          s=hub.read_text(encoding='utf-8')
+          s=s.replace('"numberOfItems":52','"numberOfItems":54')
+          item52='{"@type":"ListItem","position":52,"url":"https://dpro-shop.com/systems/visit-ahaki","name":"DPRO 訪問マッサージ・鍼灸"}'
+          assert item52 in s
+          s=s.replace(item52, item52+',{"@type":"ListItem","position":53,"url":"https://dpro-shop.com/systems/landscape-exterior","name":"DPRO 造園・外構"},{"@type":"ListItem","position":54,"url":"https://dpro-shop.com/systems/pest-env","name":"DPRO ペストコントロール／環境衛生サービス"}')
+          s=re.sub(r'(data-filter-count="all"[^>]*>)52(<)',r'\g<1>54\2',s)
+          s=re.sub(r'(data-filter-count="housing"[^>]*>)3(<)',r'\g<1>4\2',s)
+          s=re.sub(r'(data-filter-count="life"[^>]*>)4(<)',r'\g<1>5\2',s)
+          s=re.sub(r'(data-system-result-count[^>]*>)52件を表示中(<)',r'\g<1>54件を表示中\2',s)
+
+          grid=re.search(r'(<div class="sys33-grid">)(.*?)(</div></div></section>)',s,re.S)
+          assert grid, 'sys33-grid not found'
+          before=grid.group(2)
+          assert before.count('class="sys33-card"')==52
+          cards='''<a class="sys33-card" data-system-category="housing" data-central-product="53" href="landscape-exterior"><span class="sys33-card__cat">住宅・不動産</span><h3>造園・外構</h3><p>写真相談・現調・見積・施工・Before→After完了承認・季節アフター</p><span class="sys33-card__more">公式説明を見る <b>→</b></span></a><a class="sys33-card" data-system-category="life" data-central-product="54" href="pest-env"><span class="sys33-card__cat">生活サービス</span><h3>ペストコントロール／環境衛生</h3><p>相談写真・調査・施工・安全確認・報告・再訪・定期点検</p><span class="sys33-card__more">公式説明を見る <b>→</b></span></a>'''
+          s=s[:grid.start(2)] + before + cards + s[grid.end(2):]
+          hub.write_text(s,encoding='utf-8')
+
+          cfg=Path('site-config.js')
+          c=cfg.read_text(encoding='utf-8').replace('productCount: 52','productCount: 54').replace('52製品','54製品').replace('52システム','54システム')
+          cfg.write_text(c,encoding='utf-8')
+          sj=Path('systems/systems.js')
+          j=sj.read_text(encoding='utf-8').replace('52製品','54製品').replace('52システム','54システム')
+          if "LANDSCAPE_EXTERIOR:'landscape-exterior'" not in j and "VISIT_AHAKI:'visit-ahaki'" in j:
+            j=j.replace("VISIT_AHAKI:'visit-ahaki'","VISIT_AHAKI:'visit-ahaki', LANDSCAPE_EXTERIOR:'landscape-exterior', DPRO_PEST_ENV:'pest-env'")
+          sj.write_text(j,encoding='utf-8')
+
+          def official_page(no,slug,name,category,lead,product,demo,lp,guide,quick,manual,flyer,features):
+            feats=''.join(f'<li>{x}</li>' for x in features)
+            return f'''<!DOCTYPE html><html class="no-js" lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="DPRO {name}の公式説明。{lead}"><meta name="robots" content="index,follow,max-image-preview:large"><link rel="canonical" href="https://dpro-shop.com/systems/{slug}"><title>DPRO {name}｜DPRO SHOP</title><link rel="stylesheet" href="../styles.css?v=17r2"><link rel="stylesheet" href="systems.css?v=17"><link rel="stylesheet" href="systems-v3.3.css?v=3.3"></head><body class="systems-hub-page systems-v33-page"><header class="v33sys-header"><div class="v33sys-header__inner"><a class="v33sys-brand" href="../"><span>D</span><div><strong>DPRO SHOP</strong><small>OFFICIAL SITE</small></div></a><nav class="v33sys-nav"><a href="./">DPROシステム</a><a class="v33sys-nav__product" href="{product}" target="_blank" rel="noopener">PRODUCT SITEで実際に触る ↗</a><a class="v33sys-nav__cta" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで無料相談</a></nav></div></header><main><section class="sys33-hero"><div class="sys33-shell"><p class="sys33-eyebrow">PRODUCT {no} / {category}</p><h1>DPRO {name}</h1><p>{lead}</p><div class="sys33-actions"><a class="sys33-btn sys33-btn--red" href="{product}" target="_blank" rel="noopener">PRODUCT SITEで確認 ↗</a><a class="sys33-btn sys33-btn--blue" href="{demo}" target="_blank" rel="noopener">LIVE DEMO ↗</a></div></div></section><section class="sys33-connected"><div class="sys33-shell"><div class="sys33-section-head"><small>CORE VALUE</small><h2>業種専用の流れを、DPROへ集約。</h2></div><ul>{feats}</ul></div></section><section class="sys33-catalog" id="documents"><div class="sys33-shell"><div class="sys33-section-head sys33-section-head--dark"><small>GUIDE & DOCUMENTS</small><h2>導入前に資料まで確認。</h2></div><div class="sys33-actions"><a class="sys33-btn sys33-btn--blue" href="{guide}" target="_blank" rel="noopener">Guide ↗</a><a class="sys33-btn sys33-btn--blue" href="{quick}" target="_blank" rel="noopener">Quick Start ↗</a><a class="sys33-btn sys33-btn--blue" href="{manual}" target="_blank" rel="noopener">Detailed Manual ↗</a><a class="sys33-btn sys33-btn--blue" href="{flyer}" target="_blank" rel="noopener">A4チラシ ↗</a><a class="sys33-btn sys33-btn--red" href="{lp}" target="_blank" rel="noopener">詳しいLP ↗</a></div></div></section></main></body></html>'''
+
+          Path('systems/landscape-exterior.html').write_text(official_page(53,'landscape-exterior','造園・外構','住宅・不動産','写真相談から現調・見積・施工・Before→After完了承認・季節アフターまでを、一つの現場カルテでつなぐ業種専用DPROです。','https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/landscape-exterior.html','https://dpromstk2000-lab.github.io/dpro-landscape-exterior-standard/','https://dpromstk2000-lab.github.io/dpro-landscape-exterior-standard/lp.html','https://dpromstk2000-lab.github.io/dpro-landscape-exterior-standard/guide-center.html','https://dpromstk2000-lab.github.io/dpro-landscape-exterior-standard/DPRO_LANDSCAPE_EXTERIOR_QUICK_START_V1.0_20260902.pdf','https://dpromstk2000-lab.github.io/dpro-landscape-exterior-standard/DPRO_LANDSCAPE_EXTERIOR_DETAILED_MANUAL_V1.0_20260902.pdf','https://dpromstk2000-lab.github.io/dpro-landscape-exterior-standard/DPRO_LANDSCAPE_EXTERIOR_A4_FLYER_V1.0_20260902.pdf',['写真相談・現地調査','見積・案件・施工予定','担当者・現場進捗','Before→After写真・完了承認','季節アフター・再依頼']),encoding='utf-8')
+          Path('systems/pest-env.html').write_text(official_page(54,'pest-env','ペストコントロール／環境衛生サービス','生活サービス','害虫・害獣の単発相談から、飲食店・施設・管理物件の定期防除まで、相談写真・調査・施工・安全確認・報告・次回点検を一つにつなぐ業種専用DPROです。','https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/pest-env.html','https://dpromstk2000-lab.github.io/dpro-pest-env-line/demo-prepare.html?demo=1','https://dpromstk2000-lab.github.io/dpro-pest-env-line/lp.html','https://dpromstk2000-lab.github.io/dpro-pest-env-line/guide-center.html','https://dpromstk2000-lab.github.io/dpro-pest-env-line/DPRO_PEST_ENV_QUICK_START_FINAL_V1.1_G8.pdf','https://dpromstk2000-lab.github.io/dpro-pest-env-line/DPRO_PEST_ENV_DETAILED_MANUAL_FINAL_V1.1_G8.pdf','https://dpromstk2000-lab.github.io/dpro-pest-env-line/DPRO_PEST_ENV_A4_FLYER_FINAL_V1.1_G8.pdf',['WEB・LINE相談受付','写真・PDF Evidence','現地調査・施工・薬剤・安全確認','Field Map・Trap PIN','報告・再訪・保証・定期点検']),encoding='utf-8')
+
+          sm=Path('sitemap.xml'); x=sm.read_text(encoding='utf-8')
+          assert 'systems/landscape-exterior' not in x and 'systems/pest-env' not in x
+          x=x.replace('</urlset>','  <url><loc>https://dpro-shop.com/systems/landscape-exterior</loc><lastmod>2026-09-03</lastmod></url>\n  <url><loc>https://dpro-shop.com/systems/pest-env</loc><lastmod>2026-09-03</lastmod></url>\n</urlset>')
+          sm.write_text(x,encoding='utf-8')
+
+          final=hub.read_text(encoding='utf-8')
+          assert '"numberOfItems":54' in final
+          assert final.count('class="sys33-card"')==54
+          assert 'data-filter-count="all">54<' in final
+          assert 'data-filter-count="housing">4<' in final
+          assert 'data-filter-count="life">5<' in final
+          assert '"position":53' in final and '"position":54' in final
+          assert final.count('href="landscape-exterior"')==1
+          assert final.count('href="pest-env"')==1
+          assert 'productCount: 54' in cfg.read_text(encoding='utf-8')
+          assert sm.read_text().count('systems/landscape-exterior')==1
+          assert sm.read_text().count('systems/pest-env')==1
+          subprocess.check_call(['node','--check','site-config.js'])
+          subprocess.check_call(['node','--check','systems/systems.js'])
+          print('CENTRAL_OFFICIAL_BATCH_53_54_QA=PASS cards=54 housing=4 life=5 jsonld=54')
+          PY
+      - name: Commit official 54 catalog
+        shell: bash
+        run: |
+          rm -f .github/workflows/central-batch-53-54.yml
+          git config user.name "DPRO SYSTEM FACTORY"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || git commit -m "CENTRAL register official products 53-54 and count 54"
+          git push
