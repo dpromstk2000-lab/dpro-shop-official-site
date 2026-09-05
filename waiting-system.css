@@ -6,3 +6,7 @@
 /* PRODUCTION V1.0 SEO/POLISH */
 .seo-definition{max-width:900px;margin:22px auto 0;padding:18px 22px;border:1px solid #dce8e1;border-radius:16px;background:#f8fbf9;color:#5d6d66;font-size:13px;line-height:1.85}.seo-definition strong{color:#1f664b}.related-link{margin-top:28px;padding:20px 22px;border:1px solid #cfe3d6;border-radius:18px;background:linear-gradient(135deg,#f6fff0,#f7fbff);display:flex;align-items:center;justify-content:space-between;gap:16px}.related-link b{color:#173a2a}.related-link a{padding:10px 14px;border-radius:999px;background:#0d1720;color:#fff;font-size:11px;font-weight:900;white-space:nowrap}
 @media(max-width:620px){.related-link{display:grid}.related-link a{text-align:center}.hero h1 span,.hero h1 em{white-space:normal}.hero h1 span{white-space:nowrap}}
+
+/* V1.0.1 DPRO semantic hero line lock */
+.hero h1 em{white-space:nowrap;font-size:.78em;letter-spacing:-.07em}
+@media(max-width:620px){.hero h1 em{white-space:nowrap;font-size:.78em}}
