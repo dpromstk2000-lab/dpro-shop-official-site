@@ -193,3 +193,9 @@
  .reservation-page .hero-photo-stage{min-height:555px}
  .reservation-page .hero-photo-stage>img{height:555px}
 }
+
+
+/* V1.2.1 FINAL LOCK — DPRO semantic line break */
+.reservation-page .dpro-line--why{white-space:nowrap}
+@media(max-width:420px){.reservation-page .dpro-line--why{font-size:.88em;letter-spacing:-.055em}}
+@media(max-width:360px){.reservation-page .dpro-line--why{font-size:.84em;letter-spacing:-.055em}}
