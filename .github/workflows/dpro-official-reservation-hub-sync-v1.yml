@@ -1,0 +1,142 @@
+name: DPRO Official Reservation Hub Sync V1
+
+on:
+  push:
+    paths:
+      - '.github/workflows/dpro-official-reservation-hub-sync-v1.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  reservation-hub-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Preflight current CENTRAL baseline
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          EXPECTED_SYSTEMS_INDEX_BLOB="32c1a943dd31f7eef25142eb7c5b9810d9b21a9c"
+          ACTUAL_SYSTEMS_INDEX_BLOB="$(git hash-object systems/index.html)"
+          echo "systems/index.html blob: ${ACTUAL_SYSTEMS_INDEX_BLOB}"
+
+          if [ "${ACTUAL_SYSTEMS_INDEX_BLOB}" != "${EXPECTED_SYSTEMS_INDEX_BLOB}" ]; then
+            echo "::error::DRIFT_HOLD: systems/index.html changed from CENTRAL verified baseline."
+            exit 1
+          fi
+
+          grep -q 'reservation-entry.js?v=1.2.0' index.html
+          grep -q '<loc>https://dpro-shop.com/reservation</loc>' sitemap.xml
+          grep -q '<loc>https://dpro-shop.com/waiting-system</loc>' sitemap.xml
+
+          python - <<'PY'
+          from pathlib import Path
+          s = Path("systems/index.html").read_text(encoding="utf-8")
+          required = [
+              '"numberOfItems":54',
+              '"position":51',
+              '"position":52',
+              '"position":53',
+              '"position":54',
+              'href="medical"',
+              'href="visit-ahaki"',
+              'href="landscape-exterior"',
+              'href="pest-env"',
+          ]
+          missing = [x for x in required if x not in s]
+          if missing:
+              raise SystemExit("DRIFT_HOLD: missing protected markers: " + ", ".join(missing))
+          if '"position":55' in s:
+              raise SystemExit("BLOCK: reservation system must NOT become product #55")
+          print("Protected 54-product catalog preflight: PASS")
+          PY
+
+      - name: Add reservation route to systems hub
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path("systems/index.html")
+          s = path.read_text(encoding="utf-8")
+
+          nav_link = '<a href="../reservation">予約システム</a>'
+          nav_marker = '<a href="./" aria-current="page">DPROシステム</a>'
+
+          if nav_link not in s:
+              if s.count(nav_marker) != 1:
+                  raise SystemExit(
+                      f"DRIFT_HOLD: expected exactly one systems nav marker, got {s.count(nav_marker)}"
+                  )
+              s = s.replace(nav_marker, nav_marker + nav_link, 1)
+
+          cta_label = 'DPRO予約システムを詳しく見る'
+          cta = (
+              '<div class="sys33-actions" data-reservation-hub-cta="1" '
+              'style="justify-content:center;margin-top:24px">'
+              '<a class="sys33-btn sys33-btn--blue" href="../reservation">'
+              'DPRO予約システムを詳しく見る →</a></div>'
+          )
+
+          section_start = s.find('<section class="sys33-connected">')
+          if section_start < 0:
+              raise SystemExit("DRIFT_HOLD: sys33-connected section not found")
+          section_end = s.find('</section>', section_start)
+          if section_end < 0:
+              raise SystemExit("DRIFT_HOLD: sys33-connected closing section not found")
+
+          connected = s[section_start:section_end]
+          if cta_label not in connected:
+              shell_close = s.rfind('</div>', section_start, section_end)
+              if shell_close < 0:
+                  raise SystemExit("DRIFT_HOLD: connected shell closing div not found")
+              s = s[:shell_close] + cta + s[shell_close:]
+
+          # FINAL SAFETY CHECKS
+          checks = {
+              "reservation_nav": nav_link in s,
+              "reservation_cta": cta_label in s and 'href="../reservation"' in s,
+              "catalog_54": '"numberOfItems":54' in s,
+              "no_position_55": '"position":55' not in s,
+              "medical_51": '"position":51' in s and 'href="medical"' in s,
+              "visit_52": '"position":52' in s and 'href="visit-ahaki"' in s,
+              "landscape_53": '"position":53' in s and 'href="landscape-exterior"' in s,
+              "pest_54": '"position":54' in s and 'href="pest-env"' in s,
+              "line_cta_preserved": 'LINEで無料相談' in s,
+              "product_site_preserved": 'PRODUCT SITE / 54製品' in s,
+          }
+          print("FINAL QA:", checks)
+          failed = [k for k, v in checks.items() if not v]
+          if failed:
+              raise SystemExit("QA FAILED: " + ", ".join(failed))
+
+          path.write_text(s, encoding="utf-8")
+          PY
+
+      - name: Show protected diff
+        shell: bash
+        run: |
+          git diff -- systems/index.html
+
+      - name: Commit CENTRAL reservation hub integration
+        shell: bash
+        run: |
+          set -euo pipefail
+          if git diff --quiet -- systems/index.html; then
+            echo "No changes required"
+            exit 0
+          fi
+          git config user.name "DPRO CENTRAL"
+          git config user.email "actions@users.noreply.github.com"
+          git add systems/index.html
+          git commit -m "Integrate reservation route into systems hub"
+          git push origin HEAD:main
