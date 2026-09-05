@@ -18,3 +18,6 @@ footer .foot a{color:#829087}
   footer .foot{display:grid;text-align:center}
   footer .foot nav{display:grid;gap:8px}
 }
+
+/* V1.0.1 — DPRO semantic Japanese wrap lock */
+.dpro-jp-keep{white-space:nowrap}
