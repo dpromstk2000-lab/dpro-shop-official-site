@@ -11,3 +11,7 @@ footer .foot a{color:rgba(255,255,255,.5)}
 @media(max-width:620px){
   footer .foot nav{display:grid;gap:8px}
 }
+
+/* V1.0.1 — DPRO semantic Japanese wrap lock */
+.hero h1 .hero-line-one{white-space:nowrap;font-size:.86em}
+.line-section h2 .keep{white-space:nowrap}
