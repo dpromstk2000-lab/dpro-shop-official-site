@@ -3,3 +3,16 @@
 @media(max-width:620px){.shell{width:min(calc(100% - 30px),1180px)}.hero{padding:52px 0}.hero-grid{gap:30px}.hero h1{font-size:42px}.hero h1 span,.hero h1 em{white-space:nowrap}.lead{font-size:13px}.actions .btn{width:100%}.next-card{position:relative;right:auto;top:auto;width:auto;margin:-40px 14px 0}.crm-card{position:relative;left:auto;bottom:auto;width:auto;margin:8px 14px 0}.section{padding:72px 0}.section-head h2{font-size:38px}.compare-grid{grid-template-columns:1fr}.related{font-size:11px}.flow-grid{grid-template-columns:1fr 1fr}.industry-grid{grid-template-columns:1fr}.industry-card.wide{grid-column:auto;display:block}.industry-card.wide>img{margin-top:18px}.pet-visual{height:200px}.split{gap:34px}.foot nav{display:grid;gap:8px}}
 @media(max-width:390px){.hero h1{font-size:35px}.hero h1 em{font-size:.88em}.section-head h2{font-size:33px}.flow-grid{grid-template-columns:1fr}}
 @media(max-width:340px){.hero h1{font-size:31px}}
+
+/* V1.0.1 — DPRO semantic hero line lock */
+.hero h1 em{
+  white-space:nowrap;
+  font-size:.76em;
+  letter-spacing:-.075em;
+}
+@media(max-width:620px){
+  .hero h1 em{
+    white-space:nowrap;
+    font-size:.78em;
+  }
+}
