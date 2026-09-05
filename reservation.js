@@ -7,7 +7,8 @@
    cards.forEach(c=>{c.hidden=type!=='all'&&c.dataset.type!==type});
  }
  buttons.forEach(b=>b.addEventListener('click',()=>{filter(b.dataset.filter);document.querySelector('#industries').scrollIntoView({behavior:'smooth',block:'start'})}));
- document.querySelectorAll('[data-scene-filter]').forEach(b=>b.addEventListener('click',()=>{filter(b.dataset.sceneFilter);document.querySelector('#industries').scrollIntoView({behavior:'smooth',block:'start'})}));
+ const sceneButtons=[...document.querySelectorAll('[data-scene-filter]')];
+ sceneButtons.forEach(b=>b.addEventListener('click',()=>{sceneButtons.forEach(x=>x.classList.toggle('is-active',x===b));filter(b.dataset.sceneFilter);document.querySelector('#industries').scrollIntoView({behavior:'smooth',block:'start'})}));
  document.querySelector('#diagnose').addEventListener('click',()=>{
    const type=document.querySelector('#q1').value;
    filter(type);
@@ -27,6 +28,7 @@
     const url = button.dataset.demoUrl || '';
     const name = button.dataset.demoName || 'DPRO';
     if (!url) return;
+    stage.classList.add('is-loaded');
     stage.innerHTML = `<div class="demo-frame-head"><strong>${name} / LIVE DEMO</strong><a href="${url}" target="_blank" rel="noopener">別タブで開く ↗</a></div><iframe title="${name} DPRO LIVE DEMO" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" src="${url}"></iframe>`;
   }));
 })();

@@ -21,7 +21,7 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png" sizes="180x180">
 <link rel="manifest" href="site.webmanifest">
 <title>予約システム｜業種・予約方式に合わせて選べる DPRO</title>
-<link rel="stylesheet" href="reservation.css?v=1.1">
+<link rel="stylesheet" href="reservation.css?v=1.2">
 <script type="application/ld+json">
 {
  "@context":"https://schema.org",
@@ -101,7 +101,7 @@
 
 <section class="industry-scenes section" aria-labelledby="industry-scenes-title">
  <div class="shell">
-  <header class="section-head scene-head"><p class="eyebrow">RESERVATION BY INDUSTRY</p><h2 id="industry-scenes-title"><span class="dpro-line">業種が変われば、</span><span class="dpro-line dpro-line--long">予約の見え方も<wbr>変わる。</span></h2><p>同じ「予約」でも、必要な画面や管理の流れは違います。写真から近い業種を選ぶと、代表DPRO製品へ絞り込みます。</p></header>
+  <header class="section-head scene-head"><p class="eyebrow">RESERVATION BY INDUSTRY</p><h2 id="industry-scenes-title"><span class="dpro-line">業種が変われば、</span><span class="dpro-line">予約の見え方も<wbr>変わる。</span></h2><p>同じ「予約」でも、必要な画面や管理の流れは違います。写真から近い業種を選ぶと、代表DPRO製品へ絞り込みます。</p></header>
   <div class="scene-grid">
    <button class="scene-card" type="button" data-scene-filter="datetime"><img src="reservation-industry-hair.webp" width="1448" height="1086" loading="lazy" alt="美容室の予約イメージ"><span><small>HAIR / DATE</small><b>美容室</b><em>日時・担当者</em></span></button>
    <button class="scene-card" type="button" data-scene-filter="queue"><img src="reservation-industry-medical.webp" width="1448" height="1086" loading="lazy" alt="クリニックの予約と受付イメージ"><span><small>MEDICAL / QUEUE</small><b>医療・クリニック</b><em>予約・当日受付</em></span></button>
@@ -113,6 +113,7 @@
    <button class="scene-card" type="button" data-scene-filter="pickup"><img src="reservation-industry-takeout.webp" width="1448" height="1086" loading="lazy" alt="テイクアウト受取予約イメージ"><span><small>PICKUP</small><b>飲食・テイクアウト</b><em>受取時間</em></span></button>
   </div>
  </div>
+</section>
 
 <section class="types section" id="types">
  <div class="shell">
@@ -132,7 +133,7 @@
 
 <section class="diagnosis section">
  <div class="shell diag-box">
-  <div class="diag-copy"><p class="eyebrow">QUICK FINDER</p><h2><span class="dpro-line">3つの質問で、</span><span class="dpro-line dpro-line--long">近い予約タイプを<wbr>チェック。</span></h2><p>回答に合わせて、下の代表DPRO製品を予約タイプ別に絞り込みます。担当者選択や顧客履歴などは、製品ごとの業務に合わせて組み合わせます。</p></div>
+  <div class="diag-copy"><p class="eyebrow">QUICK FINDER</p><h2><span class="dpro-line">3つの質問で、</span><span class="dpro-line">近い予約タイプを<wbr>チェック。</span></h2><p>回答に合わせて、下の代表DPRO製品を予約タイプ別に絞り込みます。担当者選択や顧客履歴などは、製品ごとの業務に合わせて組み合わせます。</p></div>
   <div class="diag-ui">
    <label>Q1. 何を予約しますか？<select id="q1"><option value="datetime">時間・施術</option><option value="queue">当日の順番</option><option value="lesson">レッスン・体験</option><option value="visit">訪問・送迎</option><option value="consult">相談・面談</option><option value="pickup">受取・注文</option><option value="stay">宿泊・預かり</option></select></label>
    <label>Q2. 担当者やスタッフを選びますか？<select id="q2"><option>選ぶ</option><option>選ばない</option><option>業種による</option></select></label>
@@ -145,7 +146,7 @@
 
 <section class="industries section" id="industries">
  <div class="shell">
-  <header class="section-head row-head"><div><p class="eyebrow">BY INDUSTRY</p><h2>あなたの業種なら？</h2></div><p>予約方式の違いが伝わりやすい代表16製品を掲載。7つの予約タイプすべてから、実際のDPRO製品へ進めます。54製品すべては「DPROシステム一覧」へ。</p></header>
+  <header class="section-head row-head"><div><p class="eyebrow">BY INDUSTRY</p><h2>あなたの業種なら？</h2></div><p>近い業種から、予約の入口・受付・管理までを確認できます。代表16製品を掲載し、7つの予約タイプすべてから実際のDPRO製品へ進めます。</p></header>
   <div class="product-grid" id="product-grid">
 <article class="product-card" data-type="datetime">
  <div class="product-photo"><img src="reservation-industry-hair.webp" width="1448" height="1086" loading="lazy" alt="HAIRの予約業種イメージ"><small>HAIR</small></div>
@@ -250,7 +251,7 @@
 
 <section class="entrymix section">
  <div class="shell">
-  <header class="section-head center"><p class="eyebrow">ONE RECEPTION HUB</p><h2><span class="dpro-line dpro-line--long">LINEでも、WEBでも、<wbr>電話でも。</span><span class="dpro-line">受付はひとつへ。</span></h2><p>お客様の入口を一つに限定するのではなく、入口は自由。店舗側の管理はDPROに集約する考え方です。</p></header>
+  <header class="section-head center"><p class="eyebrow">ONE RECEPTION HUB</p><h2><span class="dpro-line">LINEでも、WEBでも、</span><span class="dpro-line">電話でも。</span><span class="dpro-line">受付はひとつへ。</span></h2><p>お客様の入口を一つに限定するのではなく、入口は自由。店舗側の管理はDPROに集約する考え方です。</p></header>
   <div class="channel-flow"><div class="channels"><article><b>LINE</b><span>予約・相談</span></article><article><b>WEB</b><span>予約・問合せ</span></article><article><b>TEL</b><span>電話受付</span></article><article><b>STORE</b><span>店頭受付</span></article></div><div class="arrow-down">↓</div><div class="hub"><small>DPRO SYSTEM</small><b>予約・受付情報を一元管理</b></div></div>
  </div>
 </section>
@@ -265,20 +266,20 @@
 
 <section class="roles section">
  <div class="shell">
-  <header class="section-head center"><p class="eyebrow">THREE EXPERIENCES</p><h2><span class="dpro-line dpro-line--long">お客様も、<wbr>スタッフも、</span><span class="dpro-line">オーナーも。</span></h2></header>
+  <header class="section-head center"><p class="eyebrow">THREE EXPERIENCES</p><h2><span class="dpro-line">お客様も、スタッフも、</span><span class="dpro-line">オーナーも。</span></h2></header>
   <div class="role-grid"><article><div class="role-device phone"><small>CUSTOMER</small><b>スマホ予約</b><span>空き枠・受付・マイページ</span></div><h3>お客様</h3><p>必要な操作を、できるだけ簡単に。</p></article><article><div class="role-device tablet"><small>STAFF</small><b>今日の予約</b><span>受付・顧客・進捗</span></div><h3>スタッフ</h3><p>今日やることが、すぐ分かる。</p></article><article><div class="role-device desktop"><small>OWNER</small><b>店舗管理</b><span>予約・顧客・設定・状況</span></div><h3>オーナー</h3><p>店舗全体を、一つの画面から。</p></article></div>
  </div>
 </section>
 
 <section class="compare section">
- <div class="shell compare-grid"><div><p class="eyebrow">DPRO DIFFERENCE</p><h2><span class="dpro-line dpro-line--long">「予約フォーム」<wbr>ではなく、</span><span class="dpro-line">業種の流れをつくる。</span></h2></div><div class="compare-table"><div class="th"><b>一般的な予約フォーム</b><b>DPRO</b></div><div><span>予約を受ける</span><strong>予約前後までつなぐ</strong></div><div><span>共通の型</span><strong>業種別の流れ</strong></div><div><span>予約情報が中心</span><strong>顧客・履歴・受付へ接続</strong></div><div><span>入口ごとに管理</span><strong>LINE / WEB / 電話 / 店頭を集約</strong></div></div></div>
+ <div class="shell compare-grid"><div><p class="eyebrow">DPRO DIFFERENCE</p><h2><span class="dpro-line">「予約フォーム」<wbr>ではなく、</span><span class="dpro-line">業種の流れをつくる。</span></h2></div><div class="compare-table"><div class="th"><b>一般的な予約フォーム</b><b>DPRO</b></div><div><span>予約を受ける</span><strong>予約前後までつなぐ</strong></div><div><span>共通の型</span><strong>業種別の流れ</strong></div><div><span>予約情報が中心</span><strong>顧客・履歴・受付へ接続</strong></div><div><span>入口ごとに管理</span><strong>LINE / WEB / 電話 / 店頭を集約</strong></div></div></div>
 </section>
 
 <section class="faq section" id="faq"><div class="shell"><header class="section-head"><p class="eyebrow">FAQ</p><h2>よくあるご質問</h2></header><div class="faq-grid"><details open><summary>LINEから予約できますか？</summary><p>LINE公式を予約・受付の入口として活用する構成が可能です。対応内容は各DPROシステムによって異なります。</p></details><details><summary>スタッフごとに予約できますか？</summary><p>担当スタッフ選択に対応する製品があります。美容サロンなど、スタッフ別管理が必要な業種で活用できます。</p></details><details><summary>順番待ちにも対応できますか？</summary><p>医療・動物病院・飲食店など、当日順番受付を持つ製品があります。</p></details><details><summary>訪問サービスでも使えますか？</summary><p>訪問マッサージ・鍼灸、家事代行、介護タクシーなど、訪問先や担当者を含めて管理する製品があります。</p></details></div></div></section>
 
-<section class="final"><div class="shell final-inner"><p class="eyebrow">LET'S FIND YOUR FLOW</p><h2><span class="dpro-line">あなたのお店には、</span><span class="dpro-line dpro-line--long">どんな予約が<wbr>合いますか？</span></h2><p>今の予約方法や営業スタイルを聞きながら、必要な予約・受付・管理の仕組みを一緒に整理します。</p><div class="hero-actions"><a class="btn primary" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで無料相談</a><a class="btn ghost" href="systems/">DPROシステム一覧</a></div></div></section>
+<section class="final"><div class="shell final-inner"><p class="eyebrow">LET'S FIND YOUR FLOW</p><h2><span class="dpro-line">あなたのお店には、</span><span class="dpro-line">どんな予約が<wbr>合いますか？</span></h2><p>今の予約方法や営業スタイルを聞きながら、必要な予約・受付・管理の仕組みを一緒に整理します。</p><div class="hero-actions"><a class="btn primary" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで無料相談</a><a class="btn ghost" href="systems/">DPROシステム一覧</a></div></div></section>
 </main>
 <footer class="reservation-footer"><div class="shell reservation-footer__grid"><div><a class="footer-brand" href="./"><span>D</span><b>DPRO SHOP</b></a><p>LINE・WEB・DPROを、店舗の仕組みに。</p></div><nav aria-label="フッターナビ"><a href="reservation">予約システム</a><a href="systems/">DPROシステム</a><a href="pricing">料金</a><a href="contact">お問い合わせ</a><a href="privacy">プライバシー</a></nav></div><div class="shell reservation-footer__bottom"><span>© 2026 DPRO SHOP.</span><span>RESERVATION SYSTEM / OFFICIAL</span></div></footer>
 <div class="mobile-sticky"><a href="#types">予約タイプ</a><a href="#real-screens">実画面</a><a href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINE相談</a></div>
-<script src="reservation.js?v=1.1"></script>
+<script src="reservation.js?v=1.2"></script>
 </body></html>

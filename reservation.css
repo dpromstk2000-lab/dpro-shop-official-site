@@ -65,3 +65,131 @@
 }
 @media(max-width:390px){.hero h1{font-size:37px}.section h2{font-size:31px}.dpro-line--long{font-size:.82em}.scene-card,.scene-card img{height:175px}.scene-card b{font-size:13px}.final h2{font-size:34px}}
 @media(max-width:340px){.hero h1{font-size:34px}.section h2{font-size:28px}.dpro-line--long{font-size:.78em}.scene-grid{grid-template-columns:1fr}.scene-card,.scene-card img{height:210px}.final h2{font-size:31px}}
+
+
+/* =========================================================
+   DPRO RESERVATION V1.2 / VISUAL HIERARCHY + JAPANESE BREAK LOCK
+   2026-09-05
+   ========================================================= */
+.reservation-page .section{padding:84px 0}
+.reservation-page .section h2{word-break:keep-all;overflow-wrap:normal}
+.reservation-page .dpro-line{display:block;word-break:keep-all;overflow-wrap:normal}
+
+/* Hero: let the industry visual lead the page */
+.reservation-page .hero-grid{grid-template-columns:minmax(0,.82fr) minmax(0,1.18fr);gap:52px}
+.reservation-page .hero-photo-stage{min-height:570px;border-radius:32px}
+.reservation-page .hero-photo-stage>img{height:570px}
+.reservation-page .hero-photo-stage figcaption{padding:2px 0}
+
+/* Industry scenes: editorial, not a row of tiny thumbnails */
+.reservation-page .industry-scenes{padding-top:92px;padding-bottom:92px;background:linear-gradient(180deg,#fff 0%,#f8fbf8 100%)}
+.reservation-page .scene-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:18px;margin-top:44px}
+.reservation-page .scene-card{grid-column:span 4;min-height:292px;border-radius:24px;box-shadow:0 18px 48px rgba(29,67,43,.09)}
+.reservation-page .scene-card:nth-child(1),
+.reservation-page .scene-card:nth-child(2){grid-column:span 6;min-height:365px}
+.reservation-page .scene-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.reservation-page .scene-card:after{inset:42% 0 0;background:linear-gradient(180deg,transparent,rgba(5,24,13,.86))}
+.reservation-page .scene-card span{left:20px;right:20px;bottom:19px}
+.reservation-page .scene-card small{font-size:9px}
+.reservation-page .scene-card b{margin-top:4px;font-size:21px;line-height:1.25}
+.reservation-page .scene-card em{margin-top:5px;font-size:11px}
+.reservation-page .scene-card:nth-child(1) b,
+.reservation-page .scene-card:nth-child(2) b{font-size:25px}
+
+/* Product finder: fewer tiny cards, bigger readable product units */
+.reservation-page .industries{background:linear-gradient(180deg,#f5faf6 0%,#eef6f0 100%)}
+.reservation-page .product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:46px}
+.reservation-page .product-card{display:grid;grid-template-columns:minmax(215px,.92fr) minmax(0,1.08fr);min-height:292px;border-radius:25px;box-shadow:0 20px 58px rgba(20,47,29,.07)}
+.reservation-page .product-card:hover{transform:translateY(-4px);box-shadow:0 28px 68px rgba(20,47,29,.12)}
+.reservation-page .product-photo,
+.reservation-page .product-mock{height:auto;min-height:292px}
+.reservation-page .product-photo img{height:100%;min-height:292px;object-fit:cover}
+.reservation-page .product-photo:after{background:linear-gradient(180deg,transparent 55%,rgba(5,25,13,.66))}
+.reservation-page .product-photo small{left:18px;bottom:17px;font-size:10px}
+.reservation-page .product-copy{padding:28px 26px;display:flex;flex-direction:column;justify-content:center}
+.reservation-page .product-copy h3{font-size:25px;line-height:1.25;word-break:keep-all}
+.reservation-page .product-copy p{min-height:0;font-size:12px;line-height:1.8}
+.reservation-page .card-actions{margin-top:22px}
+
+/* Old dark synthetic mocks are now light DPRO-style UI illustrations. */
+.reservation-page .product-mock{background:radial-gradient(circle at 16% 10%,rgba(183,255,36,.28),transparent 34%),linear-gradient(145deg,#f9fdf9,#e9f4ec);color:#173424;border-right:1px solid #dbe7de}
+.reservation-page .product-mock>small{color:#2f80ed;font-weight:950}
+.reservation-page .phone-mock{border-color:#1b2b22;background:#fff;color:#24392c;box-shadow:0 18px 42px rgba(21,55,34,.16)}
+.reservation-page .phone-mock span{color:#718077}.reservation-page .phone-mock i{background:#edf3ef}
+.reservation-page .pc-mock{border-color:#d5e2d9;background:#fff;color:#173424;box-shadow:0 18px 45px rgba(21,55,34,.12)}
+.reservation-page .pc-mock span{color:#639900}.reservation-page .pc-mock p{background:#edf5ef}
+
+/* Real screens stay proof-oriented but gain more breathing room. */
+.reservation-page .real-screens{padding-top:92px;padding-bottom:92px}
+.reservation-page .real-grid{gap:20px}
+
+/* LIVE DEMO: no giant empty black hole before a user chooses a demo. */
+.reservation-page .live-demo{padding-top:80px;padding-bottom:80px}
+.reservation-page .demo-stage{min-height:230px;border-radius:22px}
+.reservation-page .demo-empty{min-height:230px;padding:34px 24px;background:radial-gradient(circle at 50% 25%,rgba(47,128,237,.18),transparent 35%),linear-gradient(145deg,#0b1725,#06101b)}
+.reservation-page .demo-empty b{font-size:27px}.reservation-page .demo-empty span{max-width:560px;margin:auto;line-height:1.7}
+.reservation-page .demo-stage.is-loaded{min-height:680px}
+
+@media(max-width:1100px){
+ .reservation-page .hero-grid{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:38px}
+ .reservation-page .product-card{grid-template-columns:42% 58%}
+}
+@media(max-width:980px){
+ .reservation-page .hero-grid{grid-template-columns:1fr}.reservation-page .hero-photo-stage,.reservation-page .hero-photo-stage>img{height:500px;min-height:500px}
+ .reservation-page .scene-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .reservation-page .scene-card,.reservation-page .scene-card:nth-child(1),.reservation-page .scene-card:nth-child(2){grid-column:auto;min-height:310px}
+ .reservation-page .product-grid{grid-template-columns:1fr}
+ .reservation-page .product-card{grid-template-columns:42% 58%;min-height:280px}
+ .reservation-page .product-photo,.reservation-page .product-mock,.reservation-page .product-photo img{min-height:280px}
+}
+@media(max-width:640px){
+ .reservation-page .section{padding:66px 0}
+ .reservation-page .shell{width:min(calc(100% - 28px),var(--max))}
+ .reservation-page .hero--bright{padding:50px 0 54px}
+ .reservation-page .hero h1{font-size:clamp(38px,11.3vw,46px);line-height:1.08}
+ .reservation-page .section h2{font-size:clamp(30px,8.6vw,37px);line-height:1.16;letter-spacing:-.045em}
+ .reservation-page .hero-photo-stage,.reservation-page .hero-photo-stage>img{height:400px;min-height:400px}
+ .reservation-page .hero-float{min-width:122px;padding:9px 10px}.reservation-page .hero-float b{font-size:10px}
+ .reservation-page .scene-grid{grid-template-columns:1fr;gap:14px}
+ .reservation-page .scene-card,.reservation-page .scene-card:nth-child(1),.reservation-page .scene-card:nth-child(2){min-height:285px;border-radius:20px}
+ .reservation-page .scene-card b,.reservation-page .scene-card:nth-child(1) b,.reservation-page .scene-card:nth-child(2) b{font-size:21px}
+ .reservation-page .product-card{display:block;min-height:0;border-radius:22px}
+ .reservation-page .product-photo,.reservation-page .product-mock{height:225px;min-height:225px;border-right:0}
+ .reservation-page .product-photo img{height:225px;min-height:225px}
+ .reservation-page .product-copy{padding:22px 20px 23px}
+ .reservation-page .product-copy h3{font-size:23px}
+ .reservation-page .demo-stage,.reservation-page .demo-empty{min-height:190px}
+ .reservation-page .demo-stage.is-loaded{min-height:600px}
+}
+@media(max-width:360px){
+ .reservation-page .hero h1{font-size:36px}
+ .reservation-page .section h2{font-size:28px}
+ .reservation-page .dpro-line{white-space:normal}
+ .reservation-page .hero-photo-stage,.reservation-page .hero-photo-stage>img{height:360px;min-height:360px}
+}
+
+
+/* V1.2 mobile containment correction */
+@media(max-width:980px){
+ .reservation-page .split,
+ .reservation-page .diag-box,
+ .reservation-page .compare-grid{grid-template-columns:1fr}
+ .reservation-page .row-head{display:grid;grid-template-columns:1fr;align-items:start;gap:16px}
+ .reservation-page .row-head>p{max-width:720px}
+}
+@media(max-width:640px){
+ .reservation-page .diag-box{padding:22px 18px;gap:24px}
+ .reservation-page .diag-copy,.reservation-page .diag-ui{min-width:0;width:100%}
+ .reservation-page .diag-ui select,.reservation-page #diagnose,.reservation-page .diag-result{max-width:100%;width:100%}
+ .reservation-page .examples{width:100%;min-width:0}
+ .reservation-page .section h2{max-width:100%}
+}
+
+
+/* V1.2 desktop hero correction */
+@media(min-width:981px){
+ .reservation-page .hero-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px}
+ .reservation-page .hero h1{font-size:clamp(52px,4.25vw,64px);line-height:1.06;letter-spacing:-.062em}
+ .reservation-page .hero-photo-stage{min-height:555px}
+ .reservation-page .hero-photo-stage>img{height:555px}
+}
