@@ -1,0 +1,147 @@
+name: DPRO Official 54 Catalog Visible Fix
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/dpro-official-54-catalog-visible-fix.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dpro-official-54-catalog-visible-fix
+  cancel-in-progress: false
+
+jobs:
+  fix_catalog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout current main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Repair visible 54-product catalog
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          path = Path("systems/index.html")
+          s = path.read_text(encoding="utf-8")
+
+          # #52 must already be a normal visible grid card.
+          assert 'data-dpro-visit-ahaki-card="1"' in s, "PRODUCT 52 card missing"
+          assert 'href="visit-ahaki"' in s, "PRODUCT 52 link missing"
+
+          # #53/#54 were accidentally placed inside the hidden empty-result box.
+          empty_re = re.compile(
+              r'<div class="sys33-empty" data-system-empty hidden>'
+              r'該当するシステムはありません。'
+              r'(?P<c53><a class="sys33-card" data-system-category="housing" '
+              r'data-central-product="53" href="landscape-exterior">.*?</a>)'
+              r'(?P<c54><a class="sys33-card" data-system-category="life" '
+              r'data-central-product="54" href="pest-env">.*?</a>)'
+              r'</div>',
+              re.S,
+          )
+          m = empty_re.search(s)
+          assert m, "Expected hidden PRODUCT 53/54 malformed block not found"
+
+          c53 = m.group("c53")
+          c54 = m.group("c54")
+
+          # First empty the hidden no-results box.
+          empty_clean = '<div class="sys33-empty" data-system-empty hidden>該当するシステムはありません。</div>'
+          s = s[:m.start()] + empty_clean + s[m.end():]
+
+          # Insert #53/#54 immediately before the closing tag of the visible .sys33-grid.
+          empty_pos = s.index(empty_clean)
+          grid_prefix = s[:empty_pos]
+          grid_close = grid_prefix.rfind("</div>")
+          assert grid_close != -1, "Visible catalog grid closing tag not found"
+          s = grid_prefix[:grid_close] + c53 + c54 + grid_prefix[grid_close:] + s[empty_pos:]
+
+          # Bottom bridge was still hard-coded as 51.
+          old_bridge = '<b>51</b><span>DPRO LINE SYSTEMS'
+          new_bridge = '<b>54</b><span>DPRO LINE SYSTEMS'
+          assert s.count(old_bridge) == 1, "Expected PRODUCT SITE 51 bridge not found exactly once"
+          s = s.replace(old_bridge, new_bridge, 1)
+
+          # Keep structured freshness accurate.
+          s = s.replace('"dateModified":"2026-09-03"', '"dateModified":"2026-09-05"', 1)
+
+          # Blocking QA: 54 cards must be in the visible grid, none in the hidden empty box.
+          grid_m = re.search(
+              r'<div class="sys33-grid">(?P<body>.*?)</div>'
+              r'<div class="sys33-empty" data-system-empty hidden>',
+              s, re.S
+          )
+          assert grid_m, "Visible grid fragment not found after repair"
+          grid = grid_m.group("body")
+          assert grid.count('class="sys33-card"') == 54, f"Visible card count={grid.count('class=\"sys33-card\"')}"
+
+          empty_m = re.search(
+              r'<div class="sys33-empty" data-system-empty hidden>(?P<body>.*?)</div>',
+              s, re.S
+          )
+          assert empty_m, "Empty-result box missing"
+          assert 'class="sys33-card"' not in empty_m.group("body"), "Cards remain inside hidden empty-result box"
+
+          for marker in [
+              'data-dpro-visit-ahaki-card="1"',
+              'data-central-product="53"',
+              'data-central-product="54"',
+              'href="visit-ahaki"',
+              'href="landscape-exterior"',
+              'href="pest-env"',
+              '<b>54</b><span>DPRO LINE SYSTEMS',
+          ]:
+              assert marker in grid + s, f"Missing marker: {marker}"
+
+          assert '<b>51</b><span>DPRO LINE SYSTEMS' not in s, "Old 51 bridge still present"
+
+          path.write_text(s, encoding="utf-8")
+          print("VISIBLE_CATALOG_CARD_COUNT=54")
+          print("PRODUCT_52=VISIBLE")
+          print("PRODUCT_53=VISIBLE")
+          print("PRODUCT_54=VISIBLE")
+          print("HIDDEN_CARD_COUNT=0")
+          print("PRODUCT_SITE_BRIDGE=54")
+          PY
+
+      - name: Commit catalog repair
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "DPRO CENTRAL"
+          git config user.email "actions@users.noreply.github.com"
+          git add systems/index.html
+          git diff --cached --check
+          git commit -m "fix: show products 52-54 in official 54 catalog"
+          git push origin HEAD:main
+
+      - name: Optional temporary workflow cleanup
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          git pull --ff-only origin main
+          git rm .github/workflows/dpro-official-54-catalog-visible-fix.yml
+          git commit -m "chore: remove temporary official catalog fix workflow"
+          git push origin HEAD:main
+
+      - name: Final summary
+        shell: bash
+        run: |
+          echo "DPRO OFFICIAL CATALOG FIX: PASS"
+          echo "Visible catalog: 54"
+          echo "Products 52-54: visible"
+          echo "Hidden misplaced cards: 0"
+          echo "Bottom PRODUCT SITE badge: 54"
