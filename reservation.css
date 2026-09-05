@@ -199,3 +199,7 @@
 .reservation-page .dpro-line--why{white-space:nowrap}
 @media(max-width:420px){.reservation-page .dpro-line--why{font-size:.88em;letter-spacing:-.055em}}
 @media(max-width:360px){.reservation-page .dpro-line--why{font-size:.84em;letter-spacing:-.055em}}
+
+/* V1.2.2 — WAITING SYSTEM INTERNAL LINK */
+.waiting-deep-link{margin-top:24px;padding:20px 22px;border:1px solid #cddfcf;border-radius:19px;background:linear-gradient(135deg,#f8fff1,#f3f9ff);display:flex;align-items:center;justify-content:space-between;gap:22px;color:#183326}.waiting-deep-link small{display:block;color:#2f80ed;font-size:8px;font-weight:950;letter-spacing:.15em}.waiting-deep-link b{display:block;margin-top:6px;font-size:17px}.waiting-deep-link p{margin:6px 0 0;color:#66766d;font-size:11px;line-height:1.7}.waiting-deep-link a{flex:0 0 auto;padding:11px 15px;border-radius:999px;background:#0c1a22;color:#fff;font-size:11px;font-weight:900}.types .waiting-deep-link{color:#183326}
+@media(max-width:640px){.waiting-deep-link{display:grid}.waiting-deep-link a{text-align:center}}
