@@ -7,6 +7,7 @@
    cards.forEach(c=>{c.hidden=type!=='all'&&c.dataset.type!==type});
  }
  buttons.forEach(b=>b.addEventListener('click',()=>{filter(b.dataset.filter);document.querySelector('#industries').scrollIntoView({behavior:'smooth',block:'start'})}));
+ document.querySelectorAll('[data-scene-filter]').forEach(b=>b.addEventListener('click',()=>{filter(b.dataset.sceneFilter);document.querySelector('#industries').scrollIntoView({behavior:'smooth',block:'start'})}));
  document.querySelector('#diagnose').addEventListener('click',()=>{
    const type=document.querySelector('#q1').value;
    filter(type);
