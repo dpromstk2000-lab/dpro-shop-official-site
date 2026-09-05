@@ -40,4 +40,16 @@
   });
 
   document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date().getFullYear());
+
+  // LINE build page -> dedicated LINE reservation SEO page.
+  if (location.pathname === '/line-build' || location.pathname === '/line-build.html') {
+    const connection = document.querySelector('#connection .v33-shell');
+    if (connection && !connection.querySelector('a[href="line-reservation"]')) {
+      const actions = document.createElement('div');
+      actions.className = 'v33-actions v33-reveal is-visible';
+      actions.innerHTML = '<a class="v33-button v33-button--ghost" href="line-reservation">LINE予約システムを詳しく見る →</a>';
+      const note = connection.querySelector('.v33-note');
+      note ? note.insertAdjacentElement('afterend', actions) : connection.appendChild(actions);
+    }
+  }
 })();
