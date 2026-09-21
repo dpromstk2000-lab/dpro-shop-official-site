@@ -1,0 +1,10 @@
+{
+  "product": "DPRO 診療所送迎予約",
+  "systemCode": "CLINIC_SHUTTLE",
+  "productNumber": 55,
+  "stage": "REL-03_OFFICIAL_SOURCE",
+  "systemFinalLock": "3fc09f4b5c6781d6038dc280de5c58752ce60b51",
+  "systemRepositoryProtected": true,
+  "officialBaseline": "d6e70acf419134fbd16b9ad6b4c64c8ae8aa81fc",
+  "generatedAt": "2026-09-21"
+}

@@ -1,0 +1,20 @@
+{
+  "stage": "REL-03_OFFICIAL_LOCAL_QA",
+  "pass": true,
+  "checks": {
+    "officialPageRequired": {
+      "pass": true,
+      "missing": []
+    },
+    "hub": {
+      "pass": true,
+      "missing": []
+    },
+    "siteConfig55": true,
+    "index.html": true,
+    "pricing.html": true,
+    "sitemap": true
+  },
+  "systemProtected": true,
+  "systemFinalLock": "3fc09f4b5c6781d6038dc280de5c58752ce60b51"
+}
