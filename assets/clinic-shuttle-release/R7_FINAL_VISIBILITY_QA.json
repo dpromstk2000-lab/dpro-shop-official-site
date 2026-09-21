@@ -1,0 +1,539 @@
+{
+  "stage": "R7_FINAL_HUMAN_LIKE_VISIBILITY_QA",
+  "status": "PASS",
+  "method": "scroll each section/reveal into viewport, then validate computed visibility",
+  "systemFinalLock": "3fc09f4b5c6781d6038dc280de5c58752ce60b51",
+  "systemProtected": true,
+  "productHead": "7bfb6ae44e53aeb470664aeec2991752ae5c3cbc",
+  "targets": {
+    "https://dpro-shop.com/systems/clinic-shuttle": {
+      "deploy": {
+        "status": 200,
+        "attempt": 1,
+        "r5Marker": true
+      },
+      "responsive": {
+        "390": {
+          "title": "DPRO 診療所送迎予約｜通院送迎・配車・家族連絡｜DPRO SHOP",
+          "h1": "予約・家族連絡から、\n配車・通院・帰宅便まで。",
+          "sections": {
+            "summary": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 390,
+              "height": 1484.515625,
+              "textChars": 267
+            },
+            "features": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 390,
+              "height": 2387.515625,
+              "textChars": 345
+            },
+            "flow": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 390,
+              "height": 1895.515625,
+              "textChars": 241
+            },
+            "roles": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 390,
+              "height": 1788.3125,
+              "textChars": 140
+            },
+            "demo": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 390,
+              "height": 1554.5625,
+              "textChars": 280
+            },
+            "safety": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 390,
+              "height": 961.609375,
+              "textChars": 177
+            },
+            "pricing": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 390,
+              "height": 1434.03125,
+              "textChars": 236
+            },
+            "docs": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 390,
+              "height": 924.5,
+              "textChars": 169
+            },
+            "faq": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 390,
+              "height": 524.296875,
+              "textChars": 129
+            }
+          },
+          "reveals": {
+            "count": 39,
+            "failed": []
+          },
+          "consoleErrors": [],
+          "overflow": false,
+          "brokenImages": []
+        },
+        "768": {
+          "title": "DPRO 診療所送迎予約｜通院送迎・配車・家族連絡｜DPRO SHOP",
+          "h1": "予約・家族連絡から、\n配車・通院・帰宅便まで。",
+          "sections": {
+            "summary": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 768,
+              "height": 1125.90625,
+              "textChars": 267
+            },
+            "features": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 768,
+              "height": 1385.515625,
+              "textChars": 345
+            },
+            "flow": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 768,
+              "height": 1001.515625,
+              "textChars": 241
+            },
+            "roles": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 768,
+              "height": 1042.5,
+              "textChars": 140
+            },
+            "demo": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 768,
+              "height": 1509.1875,
+              "textChars": 280
+            },
+            "safety": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 768,
+              "height": 838.921875,
+              "textChars": 177
+            },
+            "pricing": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 768,
+              "height": 1063.921875,
+              "textChars": 236
+            },
+            "docs": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 768,
+              "height": 697.390625,
+              "textChars": 169
+            },
+            "faq": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 768,
+              "height": 547.921875,
+              "textChars": 129
+            }
+          },
+          "reveals": {
+            "count": 39,
+            "failed": []
+          },
+          "consoleErrors": [],
+          "overflow": false,
+          "brokenImages": []
+        },
+        "1440": {
+          "title": "DPRO 診療所送迎予約｜通院送迎・配車・家族連絡｜DPRO SHOP",
+          "h1": "予約・家族連絡から、\n配車・通院・帰宅便まで。",
+          "sections": {
+            "summary": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 1440,
+              "height": 912.90625,
+              "textChars": 267
+            },
+            "features": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 1440,
+              "height": 1225.90625,
+              "textChars": 345
+            },
+            "flow": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 1440,
+              "height": 877.90625,
+              "textChars": 241
+            },
+            "roles": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 1440,
+              "height": 1491.09375,
+              "textChars": 140
+            },
+            "demo": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 1440,
+              "height": 1725.65625,
+              "textChars": 280
+            },
+            "safety": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 1440,
+              "height": 810.328125,
+              "textChars": 177
+            },
+            "pricing": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 1440,
+              "height": 1190.875,
+              "textChars": 236
+            },
+            "docs": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 1440,
+              "height": 693.15625,
+              "textChars": 169
+            },
+            "faq": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 1440,
+              "height": 636.71875,
+              "textChars": 129
+            }
+          },
+          "reveals": {
+            "count": 39,
+            "failed": []
+          },
+          "consoleErrors": [],
+          "overflow": false,
+          "brokenImages": []
+        }
+      }
+    },
+    "https://dpromstk2000-lab.github.io/dpro-shop-official-site/systems/clinic-shuttle.html": {
+      "deploy": {
+        "status": 200,
+        "attempt": 1,
+        "r5Marker": true
+      },
+      "responsive": {
+        "390": {
+          "title": "DPRO 診療所送迎予約｜通院送迎・配車・家族連絡｜DPRO SHOP",
+          "h1": "予約・家族連絡から、\n配車・通院・帰宅便まで。",
+          "sections": {
+            "summary": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 390,
+              "height": 1484.515625,
+              "textChars": 267
+            },
+            "features": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 390,
+              "height": 2387.515625,
+              "textChars": 345
+            },
+            "flow": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 390,
+              "height": 1895.515625,
+              "textChars": 241
+            },
+            "roles": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 390,
+              "height": 1788.3125,
+              "textChars": 140
+            },
+            "demo": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 390,
+              "height": 1554.5625,
+              "textChars": 280
+            },
+            "safety": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 390,
+              "height": 961.609375,
+              "textChars": 177
+            },
+            "pricing": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 390,
+              "height": 1434.03125,
+              "textChars": 236
+            },
+            "docs": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 390,
+              "height": 924.5,
+              "textChars": 169
+            },
+            "faq": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 390,
+              "height": 524.296875,
+              "textChars": 129
+            }
+          },
+          "reveals": {
+            "count": 39,
+            "failed": []
+          },
+          "consoleErrors": [],
+          "overflow": false,
+          "brokenImages": []
+        },
+        "768": {
+          "title": "DPRO 診療所送迎予約｜通院送迎・配車・家族連絡｜DPRO SHOP",
+          "h1": "予約・家族連絡から、\n配車・通院・帰宅便まで。",
+          "sections": {
+            "summary": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 768,
+              "height": 1125.90625,
+              "textChars": 267
+            },
+            "features": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 768,
+              "height": 1385.515625,
+              "textChars": 345
+            },
+            "flow": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 768,
+              "height": 1001.515625,
+              "textChars": 241
+            },
+            "roles": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 768,
+              "height": 1042.5,
+              "textChars": 140
+            },
+            "demo": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 768,
+              "height": 1509.1875,
+              "textChars": 280
+            },
+            "safety": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 768,
+              "height": 838.921875,
+              "textChars": 177
+            },
+            "pricing": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 768,
+              "height": 1063.921875,
+              "textChars": 236
+            },
+            "docs": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 768,
+              "height": 697.390625,
+              "textChars": 169
+            },
+            "faq": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 768,
+              "height": 547.921875,
+              "textChars": 129
+            }
+          },
+          "reveals": {
+            "count": 39,
+            "failed": []
+          },
+          "consoleErrors": [],
+          "overflow": false,
+          "brokenImages": []
+        },
+        "1440": {
+          "title": "DPRO 診療所送迎予約｜通院送迎・配車・家族連絡｜DPRO SHOP",
+          "h1": "予約・家族連絡から、\n配車・通院・帰宅便まで。",
+          "sections": {
+            "summary": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 1440,
+              "height": 912.90625,
+              "textChars": 267
+            },
+            "features": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 1440,
+              "height": 1225.90625,
+              "textChars": 345
+            },
+            "flow": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 1440,
+              "height": 877.90625,
+              "textChars": 241
+            },
+            "roles": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 1440,
+              "height": 1491.09375,
+              "textChars": 140
+            },
+            "demo": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 1440,
+              "height": 1725.65625,
+              "textChars": 280
+            },
+            "safety": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 1440,
+              "height": 810.328125,
+              "textChars": 177
+            },
+            "pricing": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 1440,
+              "height": 1190.875,
+              "textChars": 236
+            },
+            "docs": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 1440,
+              "height": 693.15625,
+              "textChars": 169
+            },
+            "faq": {
+              "display": "block",
+              "visibility": "visible",
+              "opacity": 1,
+              "width": 1440,
+              "height": 636.71875,
+              "textChars": 129
+            }
+          },
+          "reveals": {
+            "count": 39,
+            "failed": []
+          },
+          "consoleErrors": [],
+          "overflow": false,
+          "brokenImages": []
+        }
+      }
+    }
+  },
+  "blockers": []
+}
