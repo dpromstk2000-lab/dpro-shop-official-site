@@ -1,0 +1,461 @@
+#!/usr/bin/env python3
+from __future__ import annotations
+from pathlib import Path
+import hashlib, json, sys, time, urllib.request
+
+ROOT = Path.cwd()
+REL = ROOT / "assets" / "clinic-shuttle-release"
+DATE = "2026-09-21"
+
+SYSTEM = "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/"
+PRODUCT = "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/clinic-shuttle.html"
+PRODUCT_ROOT = "https://dpromstk2000-lab.github.io/dpro-line-systems-site/"
+OFFICIAL = "https://dpro-shop.com/systems/clinic-shuttle"
+LINE = "https://lin.ee/YxJGXV6D"
+ROLE = {
+    "member": SYSTEM + "member.html",
+    "owner": SYSTEM + "owner.html",
+    "ipad": SYSTEM + "owner-ipad.html",
+    "staff": SYSTEM + "staff.html",
+    "guide": SYSTEM + "guide-center.html",
+    "check": SYSTEM + "system-check.html",
+}
+EXPECTED_SYSTEM_HEAD = "3fc09f4b5c6781d6038dc280de5c58752ce60b51"
+EXPECTED_OFFICIAL_BASE = "d6e70acf419134fbd16b9ad6b4c64c8ae8aa81fc"
+
+def write(path, content):
+    p = ROOT / path
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(content, encoding="utf-8")
+
+def sha256(path):
+    h = hashlib.sha256()
+    with open(ROOT / path, "rb") as f:
+        for chunk in iter(lambda: f.read(1024 * 1024), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+def official_page():
+    return f'''<!DOCTYPE html>
+<html class="no-js" lang="ja">
+<head>
+<script async fetchpriority="low" src="https://www.googletagmanager.com/gtag/js?id=G-YPN3998BHG"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments)}}gtag('js',new Date());gtag('config','G-YPN3998BHG');</script>
+<meta charset="utf-8">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="color-scheme" content="light dark">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="DPRO 診療所送迎予約。患者・ご家族の送迎予約、電話代理登録、受付・配車、運転員の乗降記録、診療後の帰宅便までを同じ送迎情報でつなぐ診療所向けDPROシステムです。">
+<meta name="theme-color" content="#07111f">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DPRO SHOP">
+<meta property="og:locale" content="ja_JP">
+<meta property="og:title" content="DPRO 診療所送迎予約｜通院送迎・配車・家族連絡">
+<meta property="og:description" content="WEB・LINE・電話の送迎受付から配車、当日運行、診療後の帰宅便まで。実際の公開デモで役割別画面を確認できます。">
+<meta property="og:url" content="{OFFICIAL}">
+<meta property="og:image" content="https://dpro-shop.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<title>DPRO 診療所送迎予約｜通院送迎・配車・家族連絡｜DPRO SHOP</title>
+<link rel="canonical" href="{OFFICIAL}">
+<link rel="manifest" href="../site.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="sitemap" type="application/xml" title="Sitemap" href="../sitemap.xml">
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="stylesheet" href="../styles.css?v=17r2">
+<link rel="stylesheet" href="systems.css?v=4">
+<style>
+.clinic-real{{display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:center}}
+.clinic-real img{{display:block;width:100%;border-radius:18px;border:1px solid rgba(255,255,255,.15);box-shadow:0 24px 60px rgba(0,0,0,.18)}}
+.clinic-screen-grid{{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}}
+.clinic-screen{{background:#fff;border:1px solid #dde6ec;border-radius:18px;padding:12px;color:#142133}}
+.clinic-screen img{{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;border-radius:12px;border:1px solid #e5ebef}}
+.clinic-screen small{{display:block;margin:8px 2px 2px;color:#2563eb;font-weight:900;letter-spacing:.08em}}
+.clinic-screen strong{{display:block;margin:2px;font-size:18px}}
+.clinic-scope{{display:grid;grid-template-columns:1fr 1fr;gap:16px}}
+.clinic-scope article{{padding:22px;border-radius:18px;border:1px solid #d9e3e9;background:#fff}}
+.clinic-scope .no{{background:#fff7f7;border-color:#efcfcf}}
+.clinic-docs{{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}}
+.clinic-docs a{{display:block;padding:18px;border-radius:16px;background:#fff;border:1px solid #dce5ea;text-decoration:none;color:#102033;font-weight:900}}
+@media(max-width:820px){{.clinic-real,.clinic-scope{{grid-template-columns:1fr}}.clinic-screen-grid{{grid-template-columns:1fr 1fr}}.clinic-docs{{grid-template-columns:1fr 1fr}}}}
+@media(max-width:560px){{.clinic-screen-grid,.clinic-docs{{grid-template-columns:1fr}}}}
+</style>
+<script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
+<script type="application/ld+json">{{"@context":"https://schema.org","@graph":[{{"@type":"WebPage","@id":"{OFFICIAL}#webpage","url":"{OFFICIAL}","name":"DPRO 診療所送迎予約｜通院送迎・配車・家族連絡","description":"診療所の通院送迎を、予約・変更・配車・乗降・診療後の帰宅便まで同じ送迎情報でつなぐDPROシステム。","inLanguage":"ja","dateModified":"{DATE}"}},{{"@type":"SoftwareApplication","@id":"{OFFICIAL}#software","name":"DPRO 診療所送迎予約","applicationCategory":"BusinessApplication","operatingSystem":"Web browser / LINE","url":"{OFFICIAL}","offers":[{{"@type":"Offer","name":"DPROシステム構築","price":"33000","priceCurrency":"JPY"}},{{"@type":"Offer","name":"DPROシステム利用・基本保守","price":"1100","priceCurrency":"JPY"}}]}}]}}</script>
+</head>
+<body class="system-product-page official-product-page clinic-shuttle-product-page">
+<div class="sys-progress" aria-hidden="true"></div>
+<a class="skip-link" href="#main">本文へ移動</a>
+<header class="site-header" id="top"><div class="header-inner">
+<a class="brand" href="../" aria-label="DPRO SHOP トップへ"><span class="brand-mark" aria-hidden="true">D</span><span class="brand-copy"><strong>DPRO SHOP</strong><small>LINE BUSINESS DESIGN</small></span></a>
+<button class="menu-button" type="button" aria-expanded="false" aria-controls="global-nav" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+<nav class="global-nav" id="global-nav" aria-label="メインナビゲーション"><a href="../">トップ</a><a href="../line-build">LINE構築</a><a href="../line-operation">LINE運用</a><a href="../website">HP制作</a><a href="./">DPROシステム</a><a href="../pricing">料金</a><a href="../about">DPRO SHOP</a><a class="nav-cta" href="{LINE}" target="_blank" rel="noopener">LINEで無料相談</a></nav>
+</div></header>
+
+<main id="main">
+<section class="product-hero" aria-labelledby="product-title"><div class="product-hero-grid" aria-hidden="true"></div><div class="product-hero-inner">
+<div class="product-hero-copy reveal">
+<nav class="sys-breadcrumb" aria-label="パンくずリスト"><a href="../">DPRO SHOP</a><span>／</span><a href="./">DPROシステム</a><span>／</span><strong>診療所送迎予約</strong></nav>
+<div class="official-product-label"><span>DPRO SHOP</span><strong>製品紹介ページ</strong><small>DPRO 診療所送迎予約｜医療・送迎</small></div>
+<div class="product-code" aria-hidden="true">送</div>
+<p class="eyebrow eyebrow-light"><span></span>PATIENT・FAMILY・DISPATCH・DRIVER</p>
+<h1 id="product-title"><span>予約・家族連絡から、</span><span><em>配車・通院・帰宅便まで。</em></span></h1>
+<p class="product-hero-lead">患者・ご家族の送迎予約、受付側の配車、運転員の乗降記録、診療後の帰宅便までを同じ送迎情報でつなぐ診療所向けDPROシステムです。</p>
+<div class="product-hero-actions"><a class="button button-line" href="#features"><span class="line-badge">送迎</span><span>機能を詳しく見る</span><b>↓</b></a><a class="button button-ghost" href="{SYSTEM}" target="_blank" rel="noopener">実際のデモを体験する</a></div>
+<div class="product-proof-tags"><span>WEB・LINE送迎予約</span><span>電話代理登録</span><span>予約・変更一覧</span><span>車両・運転員割当</span><span>乗降・到着記録</span><span>診療後の帰宅便</span></div>
+</div>
+<div class="product-hero-stage reveal clinic-real" aria-label="DPRO 診療所送迎予約の実画面">
+<div><div class="product-stage-label"><i></i>DPRO SHOP 製品紹介 / REAL SCREEN</div><img src="{PRODUCT_ROOT}assets/clinic-shuttle-next/screens/owner.png" alt="DPRO 診療所送迎予約 管理・配車PCの実画面"></div>
+<div class="product-stage-tablet"><div class="product-tablet-inner"><small>LIVE DEMO</small><h3>説明画像ではなく、現在の実画面を公開。</h3><p>患者・ご家族、管理・配車PC、iPad、運転員・スタッフの役割別画面を確認できます。</p></div></div>
+</div></div></section>
+
+<nav class="product-local-nav" aria-label="ページ内メニュー"><div class="product-local-nav-inner"><a href="#summary" class="is-active">概要</a><a href="#features">主な機能</a><a href="#flow">利用の流れ</a><a href="#roles">画面別</a><a href="#demo">実画面</a><a href="#safety">対象範囲</a><a href="#pricing">料金</a><a href="#docs">資料</a><a href="#faq">FAQ</a></div></nav>
+
+<section class="section product-summary" id="summary"><div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>30秒で分かる</p><h2>通院送迎の予約前後を、<br><em>同じ情報でつなぐ。</em></h2></div><p>送迎受付だけをデジタル化するのではなく、予約・変更・配車・乗降・診療後の帰宅までを一つの運用へまとめます。</p></div>
+<div class="product-summary-grid">
+<article class="product-summary-card reveal"><span>01 / INTAKE</span><h3>入口をまとめる。</h3><p>WEB・LINE・電話代理登録の送迎受付を同じ予約台帳へ集約します。</p></article>
+<article class="product-summary-card reveal"><span>02 / DISPATCH</span><h3>配車を見える化。</h3><p>予約、変更依頼、車両、運転員、当日の送迎状況をPC・iPadで確認します。</p></article>
+<article class="product-summary-card reveal"><span>03 / RETURN</span><h3>帰宅便まで残す。</h3><p>迎車、乗車、診療所到着、診療後の帰宅便、自宅到着まで履歴としてつなぎます。</p></article>
+</div></div></section>
+
+<section class="section product-features" id="features"><div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>6 CORE FUNCTIONS</p><h2>診療所送迎を、<br><em>6つの仕組みで整える。</em></h2></div><p>患者・ご家族と受付・配車担当、運転員の送迎情報を役割別画面で共有します。</p></div>
+<div class="product-feature-grid">
+<article class="product-feature reveal"><span class="product-feature-icon">WEB</span><h3>WEB・LINE送迎予約</h3><p>希望日・時間、乗降場所、往復・片道などの送迎希望を受け付けます。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">TEL</span><h3>電話代理登録</h3><p>電話で受けた内容も受付が同じ送迎台帳へ登録できます。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">LIST</span><h3>予約・変更一覧</h3><p>欠席、時間変更、片道利用などの変更を整理して確認します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">CAR</span><h3>車両・運転員割当</h3><p>当日の車両と担当者を確認し、送迎予定へ割り当てます。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">RUN</span><h3>乗降・到着記録</h3><p>迎車、乗車、診療所到着、引渡しなどの状態を現場から記録します。</p></article>
+<article class="product-feature reveal"><span class="product-feature-icon">HOME</span><h3>診療後の帰宅便</h3><p>帰宅送迎の確認から自宅到着・完了までを同じ履歴につなぎます。</p></article>
+</div></div></section>
+
+<section class="section product-flow" id="flow"><div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>FROM RESERVATION TO HOME</p><h2>予約から帰宅完了まで、<br><em>5つの流れ。</em></h2></div><p>入口がWEB・LINE・電話でも、診療所では同じDPROの送迎情報として確認します。</p></div>
+<div class="product-flow-list">
+<article class="product-flow-step reveal"><span class="product-flow-number">01</span><h3>予約</h3><p>患者・ご家族、または受付から送迎希望を登録。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">02</span><h3>確認</h3><p>日時、乗降場所、往復・片道、変更内容を確認。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">03</span><h3>配車</h3><p>車両・運転員を割り当て、当日運行を準備。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">04</span><h3>通院</h3><p>迎車・乗車・診療所到着をスタッフ画面から記録。</p></article>
+<article class="product-flow-step reveal"><span class="product-flow-number">05</span><h3>帰宅</h3><p>診療後の帰宅便、自宅到着、完了までを記録。</p></article>
+</div></div></section>
+
+<section class="section product-roles" id="roles"><div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>SCREENS BY ROLE</p><h2>使う人ごとに、<br><em>必要な画面だけ。</em></h2></div><p>同じ送迎情報を共有しながら、患者・ご家族、受付・配車、iPad、運転員・スタッフで操作を分けます。</p></div>
+<div class="clinic-screen-grid">
+<article class="clinic-screen reveal"><img src="{PRODUCT_ROOT}assets/clinic-shuttle-next/screens/member.png" alt="患者・ご家族画面の実画面"><small>FAMILY</small><strong>患者・ご家族</strong></article>
+<article class="clinic-screen reveal"><img src="{PRODUCT_ROOT}assets/clinic-shuttle-next/screens/owner.png" alt="管理・配車PC画面の実画面"><small>OWNER</small><strong>管理・配車PC</strong></article>
+<article class="clinic-screen reveal"><img src="{PRODUCT_ROOT}assets/clinic-shuttle-next/screens/ipad.png" alt="配車iPad画面の実画面"><small>IPAD</small><strong>配車iPad</strong></article>
+<article class="clinic-screen reveal"><img src="{PRODUCT_ROOT}assets/clinic-shuttle-next/screens/staff.png" alt="運転員・スタッフ画面の実画面"><small>STAFF</small><strong>運転員・スタッフ</strong></article>
+</div></div></section>
+
+<section class="section product-live" id="demo"><div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-light"><span></span>REAL SCREEN DEMO</p><h2>説明画像ではなく、<br>本物の画面を体験。</h2></div><p>公開デモは架空データのみを使用しています。</p></div>
+<div class="product-live-list">
+<article class="product-live-row"><div class="product-live-copy reveal"><span>01 / FAMILY</span><h3>患者・ご家族</h3><p>送迎予定、状況、変更依頼を確認します。</p><div class="product-live-actions"><a class="button button-line" href="{ROLE["member"]}" target="_blank" rel="noopener">家族画面を開く</a></div></div></article>
+<article class="product-live-row"><div class="product-live-copy reveal"><span>02 / OWNER</span><h3>管理・配車PC</h3><p>予約、変更依頼、車両、担当、当日運行を確認します。</p><div class="product-live-actions"><a class="button button-line" href="{ROLE["owner"]}" target="_blank" rel="noopener">管理PCを開く</a></div></div></article>
+<article class="product-live-row"><div class="product-live-copy reveal"><span>03 / IPAD</span><h3>配車iPad</h3><p>受付・配車場所で当日の状況を大きな画面で確認します。</p><div class="product-live-actions"><a class="button button-line" href="{ROLE["ipad"]}" target="_blank" rel="noopener">iPad画面を開く</a></div></div></article>
+<article class="product-live-row"><div class="product-live-copy reveal"><span>04 / STAFF</span><h3>運転員・スタッフ</h3><p>担当便、乗車、到着、引渡し、完了を確認・記録します。</p><div class="product-live-actions"><a class="button button-line" href="{ROLE["staff"]}" target="_blank" rel="noopener">スタッフ画面を開く</a></div></div></article>
+</div></div></section>
+
+<section class="section" id="safety"><div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>SCOPE & SAFETY</p><h2>送迎業務に必要な情報へ、<br><em>範囲を限定。</em></h2></div><p>DPRO 診療所送迎予約は送迎運用のためのシステムです。診療情報を扱う電子カルテではありません。</p></div>
+<div class="clinic-scope"><article class="reveal"><h3>標準範囲</h3><p>送迎予約、連絡、乗降場所、車両・担当、当日運行、帰宅便、送迎履歴など。</p></article><article class="no reveal"><h3>標準範囲外</h3><p>電子カルテ、診断、検査、薬剤、診療報酬・請求、医療判断などの医療情報・医療行為。</p></article></div>
+</div></section>
+
+<section class="section product-pricing" id="pricing"><div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>OFFICIAL PRICE</p><h2>DPRO追加料金は、<br><em>初期33,000円 + 月額1,100円。</em></h2></div><p>税込。DPRO SHOPのLINE構築・運用契約先向け追加サービスです。</p></div>
+<div class="product-price-grid">
+<article class="product-price-card reveal"><small>INITIAL</small><h3>DPROシステム構築</h3><strong>33,000円</strong><p>初期費用・税込</p></article>
+<article class="product-price-card reveal"><small>MONTHLY</small><h3>DPRO利用・基本保守</h3><strong>月額1,100円</strong><p>税込</p></article>
+<article class="product-price-card reveal"><small>CONDITION</small><h3>LINE契約先向け</h3><p>LINE構築77,000円、LINE運用3,300円/月は別途です。</p></article>
+</div><div class="product-hero-actions"><a class="button button-line" href="../pricing">料金・提供条件を見る</a><a class="button button-ghost" href="{LINE}" target="_blank" rel="noopener">LINEで無料相談</a></div>
+</div></section>
+
+<section class="section" id="docs"><div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>PRODUCT DOCUMENTS</p><h2>導入前に、<br><em>資料と操作を確認。</em></h2></div><p>PRODUCT SITEにはA4資料、操作体験シート、Quick Start、詳細マニュアルを用意しています。</p></div>
+<div class="clinic-docs">
+<a href="{PRODUCT_ROOT}flyer-clinic-shuttle.pdf" target="_blank" rel="noopener">A4販売チラシ ↗</a>
+<a href="{PRODUCT_ROOT}assets/clinic-shuttle-next/DPRO_CLINIC_SHUTTLE_OPERATION_EXPERIENCE_SHEET_V1.0.pdf" target="_blank" rel="noopener">操作体験シート ↗</a>
+<a href="{PRODUCT_ROOT}DPRO_TUTORIAL_CLINIC_SHUTTLE_QUICK_START_V1.0.pdf" target="_blank" rel="noopener">Quick Start ↗</a>
+<a href="{PRODUCT_ROOT}DPRO_TUTORIAL_CLINIC_SHUTTLE_DETAILED_MANUAL_V1.0.pdf" target="_blank" rel="noopener">詳細マニュアル ↗</a>
+</div><div class="product-hero-actions"><a class="button button-line" href="{PRODUCT}" target="_blank" rel="noopener">PRODUCT SITEの商品ページ ↗</a><a class="button button-ghost" href="{SYSTEM}" target="_blank" rel="noopener">LIVE DEMO ↗</a></div>
+</div></section>
+
+<section class="section product-faq" id="faq"><div class="section-inner">
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>FAQ</p><h2>よくある質問。</h2></div></div>
+<div class="product-faq-list">
+<details open><summary>電話で受けた送迎予約も管理できますか？</summary><p>はい。受付側で代理登録し、WEB・LINEからの受付と同じ送迎台帳で確認できます。</p></details>
+<details><summary>診療内容や電子カルテも管理しますか？</summary><p>いいえ。標準範囲は送迎運用です。電子カルテ、診断、検査、薬剤、請求、医療判断は標準範囲外です。</p></details>
+<details><summary>実際の画面を導入前に確認できますか？</summary><p>はい。患者・ご家族、管理・配車PC、iPad、運転員・スタッフの公開LIVE DEMOを確認できます。</p></details>
+<details><summary>DPROだけ契約できますか？</summary><p>現在はDPROシステム単体での提供は行っていません。LINE構築・運用契約先向け追加サービスとしてご案内しています。</p></details>
+</div></div></section>
+
+<section class="section product-live"><div class="section-inner"><div class="clinic-real">
+<div class="product-live-copy reveal"><span>PRODUCT 55</span><h2>診療所送迎を、<br>予約から帰宅まで一つに。</h2><p>仕組みと料金はDPRO SHOPで、実画面・資料・操作はPRODUCT SITEで確認できます。</p><div class="product-live-actions"><a class="button button-line" href="{PRODUCT}" target="_blank" rel="noopener">PRODUCT SITEで詳しく見る ↗</a><a class="button button-ghost" href="{LINE}" target="_blank" rel="noopener">LINEで無料相談</a></div></div>
+<img src="{PRODUCT_ROOT}assets/clinic-shuttle-next/screens/ipad.png" alt="DPRO 診療所送迎予約 配車iPadの実画面">
+</div></div></section>
+</main>
+
+<footer class="v33sys-footer"><div class="section-inner v33sys-footer__grid"><div><a class="v33sys-brand" href="../"><span>D</span><div><strong>DPRO SHOP</strong><small>OFFICIAL SITE</small></div></a><p>LINE・WEB・業務を、ひとつにつなぐ。</p></div><div><strong>OFFICIAL</strong><a href="../line-build">LINE構築</a><a href="../line-operation">LINE運用</a><a href="../website">HP制作</a><a href="../pricing">料金</a></div><div><strong>GUIDE</strong><a href="./">55システム説明</a><a href="../about">DPRO SHOP</a><a href="../contact">お問い合わせ</a></div><div class="v33sys-footer__product"><strong>PRODUCT SITE</strong><a href="{PRODUCT_ROOT}" target="_blank" rel="noopener">55製品を実際に触る ↗</a></div></div><div class="v33sys-footer__bottom"><span>© 2026 DPRO SHOP.</span><span><a href="../privacy">Privacy</a> · <a href="../terms">Terms</a></span></div></footer>
+<script src="systems.js?v=33" defer></script>
+</body></html>'''
+
+def patch_sources():
+    write("systems/clinic-shuttle.html", official_page())
+
+    for name in ["index.html", "pricing.html", "site-config.js"]:
+        p = ROOT / name
+        s = p.read_text(encoding="utf-8")
+        if "54" not in s and "55" not in s:
+            raise SystemExit(f"catalog count marker missing: {name}")
+        s = s.replace("54", "55")
+        write(name, s)
+
+    p = ROOT / "systems/index.html"
+    s = p.read_text(encoding="utf-8")
+    pest_item = '{"@type":"ListItem","position":54,"url":"https://dpro-shop.com/systems/pest-env","name":"DPRO ペストコントロール／環境衛生サービス"}'
+    if pest_item not in s:
+        raise SystemExit("product #54 JSON-LD marker missing")
+    if 'data-central-product="54"' not in s:
+        raise SystemExit("product #54 card marker missing")
+
+    s = s.replace(pest_item, "__DPRO_KEEP_PEST_ITEM_54__")
+    s = s.replace('data-central-product="54"', 'data-central-product="__DPRO_KEEP_54__"')
+    s = s.replace("54", "55")
+    s = s.replace("__DPRO_KEEP_PEST_ITEM_55__", "__DPRO_KEEP_PEST_ITEM_54__")
+    s = s.replace("__DPRO_KEEP_55__", "__DPRO_KEEP_54__")
+    s = s.replace("__DPRO_KEEP_PEST_ITEM_54__", pest_item)
+    s = s.replace('data-central-product="__DPRO_KEEP_54__"', 'data-central-product="54"')
+    s = s.replace('data-filter-count="medical">6</b>', 'data-filter-count="medical">7</b>')
+    s = s.replace('"dateModified":"2026-09-05"', f'"dateModified":"{DATE}"')
+
+    clinic_item = '{"@type":"ListItem","position":55,"url":"https://dpro-shop.com/systems/clinic-shuttle","name":"DPRO 診療所送迎予約"}'
+    if clinic_item not in s:
+        s = s.replace(pest_item + ']}]}', pest_item + ',' + clinic_item + ']}]}')
+
+    card = '<a class="sys33-card" data-system-category="medical" data-central-product="55" href="clinic-shuttle"><span class="sys33-card__cat">医療・ペット</span><h3>診療所送迎予約</h3><p>送迎予約・電話代理登録・配車・乗降・診療後の帰宅便</p><span class="sys33-card__more">公式説明を見る <b>→</b></span></a>'
+    marker = '</div><div class="sys33-empty" data-system-empty hidden>'
+    if card not in s:
+        if marker not in s:
+            raise SystemExit("systems hub catalog closing marker missing")
+        s = s.replace(marker, card + marker, 1)
+    write("systems/index.html", s)
+
+    p = ROOT / "sitemap.xml"
+    s = p.read_text(encoding="utf-8")
+    if "systems/clinic-shuttle" not in s:
+        entry = f'  <url><loc>https://dpro-shop.com/systems/clinic-shuttle</loc><lastmod>{DATE}</lastmod><changefreq>monthly</changefreq><priority>0.9</priority></url>\n'
+        s = s.replace("</urlset>", entry + "</urlset>")
+    write("sitemap.xml", s)
+
+    metadata = {
+        "product": "DPRO 診療所送迎予約",
+        "systemCode": "CLINIC_SHUTTLE",
+        "productNumber": 55,
+        "stage": "REL-03_OFFICIAL_SOURCE",
+        "systemFinalLock": EXPECTED_SYSTEM_HEAD,
+        "systemRepositoryProtected": True,
+        "officialBaseline": EXPECTED_OFFICIAL_BASE,
+        "generatedAt": DATE,
+    }
+    write("assets/clinic-shuttle-release/OFFICIAL_BUILD_METADATA.json",
+          json.dumps(metadata, ensure_ascii=False, indent=2))
+    print("official sources complete")
+
+def localqa():
+    checks = {}
+    page = (ROOT / "systems/clinic-shuttle.html").read_text(encoding="utf-8")
+    required = [
+        "DPRO 診療所送迎予約", OFFICIAL, PRODUCT, SYSTEM,
+        ROLE["member"], ROLE["owner"], ROLE["ipad"], ROLE["staff"],
+        "33,000円", "月額1,100円", "電子カルテ", "標準範囲外",
+        "A4販売チラシ", "Quick Start", "詳細マニュアル"
+    ]
+    missing = [x for x in required if x not in page]
+    checks["officialPageRequired"] = {"pass": not missing, "missing": missing}
+    if missing:
+        raise SystemExit("official page required content missing: " + repr(missing))
+    if "dpro-welfare-shuttle-line" in page:
+        raise SystemExit("stale welfare shuttle URL leaked into clinic page")
+
+    hub = (ROOT / "systems/index.html").read_text(encoding="utf-8")
+    hub_required = [
+        '"numberOfItems":55', '"position":54', '"position":55',
+        'data-central-product="54"', 'data-central-product="55"',
+        'href="clinic-shuttle"', 'data-filter-count="medical">7</b>',
+        "55 OFFICIAL GUIDES", "55の業種別システム"
+    ]
+    missing = [x for x in hub_required if x not in hub]
+    checks["hub"] = {"pass": not missing, "missing": missing}
+    if missing:
+        raise SystemExit("systems hub QA failed: " + repr(missing))
+
+    site_config = (ROOT / "site-config.js").read_text(encoding="utf-8")
+    if "productCount: 55" not in site_config:
+        raise SystemExit("site-config productCount != 55")
+    checks["siteConfig55"] = True
+
+    for path in ["index.html", "pricing.html"]:
+        s = (ROOT / path).read_text(encoding="utf-8")
+        if "data-product-count>54" in s:
+            raise SystemExit(f"stale catalog count in {path}")
+        checks[path] = True
+
+    sitemap = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
+    if "https://dpro-shop.com/systems/clinic-shuttle" not in sitemap:
+        raise SystemExit("sitemap clinic shuttle missing")
+    checks["sitemap"] = True
+
+    report = {
+        "stage": "REL-03_OFFICIAL_LOCAL_QA",
+        "pass": True,
+        "checks": checks,
+        "systemProtected": True,
+        "systemFinalLock": EXPECTED_SYSTEM_HEAD,
+    }
+    write("assets/clinic-shuttle-release/OFFICIAL_LOCAL_QA.json",
+          json.dumps(report, ensure_ascii=False, indent=2))
+    print("official local QA PASS")
+
+def get(url, timeout=30):
+    req = urllib.request.Request(url, headers={"User-Agent":"Mozilla/5.0 DPRO-QA"})
+    with urllib.request.urlopen(req, timeout=timeout) as r:
+        return r.status, r.read()
+
+def wait_url(url, needle=None, tries=42, sleep=10):
+    last = None
+    for i in range(tries):
+        try:
+            status, data = get(url)
+            text = data.decode("utf-8", "ignore")
+            if status == 200 and (needle is None or needle in text):
+                return {"status": status, "contentPass": True, "attempt": i + 1}
+            last = f"status={status}"
+        except Exception as e:
+            last = repr(e)
+        time.sleep(sleep)
+    raise SystemExit(f"live wait failed {url}: {last}")
+
+def liveqa():
+    targets = {
+        OFFICIAL: "DPRO 診療所送迎予約",
+        "https://dpro-shop.com/systems/": "診療所送迎予約",
+        "https://dpro-shop.com/pricing": "55",
+        PRODUCT: "DPRO 診療所送迎予約",
+        SYSTEM: "DPRO",
+        ROLE["member"]: None,
+        ROLE["owner"]: None,
+        ROLE["ipad"]: None,
+        ROLE["staff"]: None,
+    }
+    report = {
+        "stage":"REL-03_OFFICIAL_INITIAL_PUBLIC_QA",
+        "official_public_qa": True,
+        "blockers": [],
+        "targets": {},
+        "responsive": {},
+        "systemRepositoryProtected": True,
+        "systemFinalLock": EXPECTED_SYSTEM_HEAD,
+    }
+
+    report["targets"][OFFICIAL] = wait_url(OFFICIAL, "DPRO 診療所送迎予約")
+    for url, needle in list(targets.items())[1:]:
+        try:
+            status, data = get(url)
+            txt = data.decode("utf-8","ignore")
+            ok = status == 200 and (needle is None or needle in txt)
+            report["targets"][url] = {"status": status, "contentPass": ok}
+            if not ok:
+                raise RuntimeError(f"content check failed {url}")
+        except Exception as e:
+            report["blockers"].append({"url":url,"error":repr(e)})
+
+    if report["blockers"]:
+        write("assets/clinic-shuttle-release/OFFICIAL_PUBLIC_QA.json",
+              json.dumps(report, ensure_ascii=False, indent=2))
+        raise SystemExit("public URL QA blockers: " + repr(report["blockers"]))
+
+    from playwright.sync_api import sync_playwright
+    REL.mkdir(parents=True, exist_ok=True)
+    with sync_playwright() as pw:
+        b = pw.chromium.launch(headless=True)
+        for w in [390, 768, 1440]:
+            p = b.new_page(viewport={"width":w, "height":1000})
+            console_errors = []
+            p.on("console", lambda msg, arr=console_errors: arr.append(msg.text) if msg.type == "error" else None)
+            p.goto(OFFICIAL, wait_until="domcontentloaded", timeout=60000)
+            p.wait_for_timeout(2500)
+            overflow = p.evaluate("document.documentElement.scrollWidth > window.innerWidth + 2")
+            broken = p.locator("img").evaluate_all("(els)=>els.filter(x=>!x.complete||x.naturalWidth===0).map(x=>x.src)")
+            title = p.title()
+            h1 = p.locator("h1").inner_text()
+            p.screenshot(path=str(REL / f"official-{w}.png"), full_page=True)
+            report["responsive"][str(w)] = {
+                "overflow": bool(overflow),
+                "brokenImages": broken,
+                "title": title,
+                "h1": h1,
+                "consoleErrors": console_errors[:10],
+            }
+            if overflow or broken or "診療所送迎" not in h1:
+                b.close()
+                write("assets/clinic-shuttle-release/OFFICIAL_PUBLIC_QA.json",
+                      json.dumps(report, ensure_ascii=False, indent=2))
+                raise SystemExit(f"responsive QA failed width={w}")
+            p.close()
+        b.close()
+
+    write("assets/clinic-shuttle-release/OFFICIAL_PUBLIC_QA.json",
+          json.dumps(report, ensure_ascii=False, indent=2))
+    print("official public QA PASS")
+
+def manifest():
+    files = [
+        "systems/clinic-shuttle.html",
+        "systems/index.html",
+        "index.html",
+        "pricing.html",
+        "site-config.js",
+        "sitemap.xml",
+        "assets/clinic-shuttle-release/OFFICIAL_BUILD_METADATA.json",
+        "assets/clinic-shuttle-release/OFFICIAL_LOCAL_QA.json",
+        "assets/clinic-shuttle-release/OFFICIAL_PUBLIC_QA.json",
+        "assets/clinic-shuttle-release/official-390.png",
+        "assets/clinic-shuttle-release/official-768.png",
+        "assets/clinic-shuttle-release/official-1440.png",
+    ]
+    data = {
+        "product": "DPRO 診療所送迎予約",
+        "systemCode": "CLINIC_SHUTTLE",
+        "productNumber": 55,
+        "phase": "REL-03_OFFICIAL_SITE",
+        "officialInitialPublicQA": True,
+        "systemProtected": True,
+        "systemFinalLock": EXPECTED_SYSTEM_HEAD,
+        "officialUrl": OFFICIAL,
+        "productUrl": PRODUCT,
+        "liveDemo": SYSTEM,
+        "files": [],
+        "pending": ["REL-B1..B4","REL-F1..F4","REL-LOCK","REL-RETURN"],
+    }
+    for f in files:
+        p = ROOT / f
+        if not p.exists():
+            raise SystemExit("manifest missing file: " + f)
+        data["files"].append({"path":f,"bytes":p.stat().st_size,"sha256":sha256(f)})
+    write("assets/clinic-shuttle-release/OFFICIAL_SITE_RELEASE_MANIFEST_R1.json",
+          json.dumps(data, ensure_ascii=False, indent=2))
+    print("manifest complete")
+
+def main():
+    if len(sys.argv) != 2:
+        raise SystemExit("usage: script.py sources|localqa|liveqa|manifest")
+    cmd = sys.argv[1]
+    funcs = {"sources": patch_sources, "localqa": localqa, "liveqa": liveqa, "manifest": manifest}
+    if cmd not in funcs:
+        raise SystemExit("unknown command: " + cmd)
+    funcs[cmd]()
+
+if __name__ == "__main__":
+    main()
