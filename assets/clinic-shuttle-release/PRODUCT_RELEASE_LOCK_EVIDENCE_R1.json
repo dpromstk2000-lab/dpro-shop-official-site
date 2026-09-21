@@ -1,0 +1,24 @@
+{
+  "status": "PRODUCT RELEASE COMPLETE",
+  "product": "DPRO 診療所送迎予約",
+  "systemCode": "CLINIC_SHUTTLE",
+  "productNumber": 55,
+  "systemFinalLock": "3fc09f4b5c6781d6038dc280de5c58752ce60b51",
+  "systemProtected": true,
+  "officialUrl": "https://dpro-shop.com/systems/clinic-shuttle",
+  "productUrl": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/clinic-shuttle.html",
+  "liveDemo": "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/",
+  "brushup": {
+    "B1": "PASS",
+    "B2": "PASS",
+    "B3": "PASS",
+    "B4": "PASS"
+  },
+  "finalRelease": {
+    "F1": "PASS",
+    "F2": "PASS",
+    "F3": "PASS",
+    "F4": "PASS"
+  },
+  "blockers": []
+}

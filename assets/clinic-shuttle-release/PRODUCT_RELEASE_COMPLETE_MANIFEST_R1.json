@@ -1,0 +1,72 @@
+{
+  "status": "PRODUCT RELEASE COMPLETE",
+  "product": "DPRO 診療所送迎予約",
+  "systemCode": "CLINIC_SHUTTLE",
+  "productNumber": 55,
+  "systemFinalLock": "3fc09f4b5c6781d6038dc280de5c58752ce60b51",
+  "officialSourceHead": "abecfc70d39155ebb13566065b231c28c528ac84",
+  "productHeadAtProductComplete": "7bfb6ae44e53aeb470664aeec2991752ae5c3cbc",
+  "files": [
+    {
+      "path": "assets/clinic-shuttle-release/R4_SOURCE_GUARD.json",
+      "bytes": 258,
+      "sha256": "2d3a385928b21fcd3b4a476d9b6a2f361c0cc7e55f381b4a8d381afca1754c67"
+    },
+    {
+      "path": "assets/clinic-shuttle-release/BRUSHUP_FINAL_RELEASE_EVIDENCE_R4.json",
+      "bytes": 10629,
+      "sha256": "97f73f7a5fa52bc521ea369cb540d5c22362d54b47c3099bbdc1d4ed37d5ee0a"
+    },
+    {
+      "path": "assets/clinic-shuttle-release/PRODUCT_RELEASE_LOCK_EVIDENCE_R1.json",
+      "bytes": 687,
+      "sha256": "ccfa344c82f3209bfd577c2b4de7e731e71bae8c469fb91352ed5f6261a55e32"
+    },
+    {
+      "path": "assets/clinic-shuttle-release/PRODUCT_RELEASE_COMPLETE.json",
+      "bytes": 687,
+      "sha256": "ccfa344c82f3209bfd577c2b4de7e731e71bae8c469fb91352ed5f6261a55e32"
+    },
+    {
+      "path": "assets/clinic-shuttle-release/r4-official-390.png",
+      "bytes": 849636,
+      "sha256": "ec7808296ea8d6061af480297d992c89b6a032437002e3b04b44c2d025b98e31"
+    },
+    {
+      "path": "assets/clinic-shuttle-release/r4-official-768.png",
+      "bytes": 1483659,
+      "sha256": "b5952376bb4689c84636baeb7dd653bf572c068d2bed7c46fa4116cd3e091519"
+    },
+    {
+      "path": "assets/clinic-shuttle-release/r4-official-1440.png",
+      "bytes": 2216513,
+      "sha256": "805dccc9c37888ea1594d8225682de7b69a72259ed469c6e84b6b62115cb1d93"
+    },
+    {
+      "path": "assets/clinic-shuttle-release/r4-product-390.png",
+      "bytes": 1076664,
+      "sha256": "2f78c3f913e7448b4b128198a1f9974928dabf034bd8fbcee0b90606cc18d866"
+    },
+    {
+      "path": "assets/clinic-shuttle-release/r4-product-768.png",
+      "bytes": 1125725,
+      "sha256": "08165c94d0604488bb1e2f384010d21ae5d4124ca22245ad8fa68d393e9e11f5"
+    },
+    {
+      "path": "assets/clinic-shuttle-release/r4-product-1440.png",
+      "bytes": 1380859,
+      "sha256": "984cc934dfe77d08bc996edf318582ca264d0178ffd54756e42b66986f4b9017"
+    },
+    {
+      "path": "assets/clinic-shuttle-release/r4-lp-390.png",
+      "bytes": 779304,
+      "sha256": "3d2e1054245ddb2b1972d82a41f8ce39a22da6c16ff529d2bf4468a5139ac0b3"
+    },
+    {
+      "path": "assets/clinic-shuttle-release/r4-lp-1440.png",
+      "bytes": 1667067,
+      "sha256": "4e81e2a141335bf781cb9400c566d00824d45d42439cd2e3ed96dd9661bcd963"
+    }
+  ],
+  "next": "REL-RETURN"
+}

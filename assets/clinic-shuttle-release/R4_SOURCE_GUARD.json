@@ -1,0 +1,12 @@
+{
+  "stage": "R4_SOURCE_GUARD",
+  "pass": true,
+  "product": "DPRO 診療所送迎予約",
+  "productNumber": 55,
+  "checks": {
+    "officialProductSource": true,
+    "officialCatalog55": true,
+    "siteConfig55": true,
+    "selfContainedScreens": true
+  }
+}

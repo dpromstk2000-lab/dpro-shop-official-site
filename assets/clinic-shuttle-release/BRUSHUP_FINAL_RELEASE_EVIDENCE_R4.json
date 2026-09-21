@@ -1,0 +1,284 @@
+{
+  "product": "DPRO 診療所送迎予約",
+  "systemCode": "CLINIC_SHUTTLE",
+  "productNumber": 55,
+  "stage": "REL-B1_TO_REL-LOCK",
+  "systemFinalLock": "3fc09f4b5c6781d6038dc280de5c58752ce60b51",
+  "systemProtected": true,
+  "officialSourceHead": "abecfc70d39155ebb13566065b231c28c528ac84",
+  "productHeadAtProductComplete": "7bfb6ae44e53aeb470664aeec2991752ae5c3cbc",
+  "public": {
+    "https://dpro-shop.com/systems/clinic-shuttle": {
+      "status": 200,
+      "attempt": 1,
+      "bytes": 23056
+    },
+    "https://dpro-shop.com/systems/": {
+      "status": 200,
+      "attempt": 1,
+      "bytes": 34192
+    },
+    "https://dpro-shop.com/pricing": {
+      "status": 200,
+      "bytes": 18998,
+      "pass": true
+    },
+    "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/clinic-shuttle.html": {
+      "status": 200,
+      "bytes": 21356,
+      "pass": true
+    },
+    "https://dpromstk2000-lab.github.io/dpro-line-systems-site/lp-clinic-shuttle.html": {
+      "status": 200,
+      "bytes": 10686,
+      "pass": true
+    },
+    "https://dpromstk2000-lab.github.io/dpro-line-systems-site/flyer-clinic-shuttle.pdf": {
+      "status": 200,
+      "bytes": 3793645,
+      "pass": true
+    },
+    "https://dpromstk2000-lab.github.io/dpro-line-systems-site/assets/clinic-shuttle-next/DPRO_CLINIC_SHUTTLE_OPERATION_EXPERIENCE_SHEET_V1.0.pdf": {
+      "status": 200,
+      "bytes": 1327442,
+      "pass": true
+    },
+    "https://dpromstk2000-lab.github.io/dpro-line-systems-site/DPRO_TUTORIAL_CLINIC_SHUTTLE_QUICK_START_V1.0.pdf": {
+      "status": 200,
+      "bytes": 295232,
+      "pass": true
+    },
+    "https://dpromstk2000-lab.github.io/dpro-line-systems-site/DPRO_TUTORIAL_CLINIC_SHUTTLE_DETAILED_MANUAL_V1.0.pdf": {
+      "status": 200,
+      "bytes": 456669,
+      "pass": true
+    },
+    "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/": {
+      "status": 200,
+      "bytes": 9439,
+      "pass": true
+    },
+    "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/member.html": {
+      "status": 200,
+      "bytes": 1221,
+      "pass": true
+    },
+    "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner.html": {
+      "status": 200,
+      "bytes": 1168,
+      "pass": true
+    },
+    "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner-ipad.html": {
+      "status": 200,
+      "bytes": 1158,
+      "pass": true
+    },
+    "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/staff.html": {
+      "status": 200,
+      "bytes": 2259,
+      "pass": true
+    },
+    "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/guide-center.html": {
+      "status": 200,
+      "bytes": 4928,
+      "pass": true
+    },
+    "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/system-check.html": {
+      "status": 200,
+      "bytes": 28040,
+      "pass": true
+    },
+    "https://dpromstk2000-lab.github.io/dpro-line-systems-site/assets/clinic-shuttle-next/PRODUCT_LOCAL_QA.json": {
+      "status": 200,
+      "bytes": 3950,
+      "pass": true
+    },
+    "https://dpromstk2000-lab.github.io/dpro-line-systems-site/assets/clinic-shuttle-next/PRODUCT_PUBLIC_QA.json": {
+      "status": 200,
+      "bytes": 1475,
+      "pass": true
+    }
+  },
+  "responsive": {
+    "official": {
+      "390": {
+        "overflow": false,
+        "brokenImages": [],
+        "title": "DPRO 診療所送迎予約｜通院送迎・配車・家族連絡｜DPRO SHOP",
+        "h1": "予約・家族連絡から、\n配車・通院・帰宅便まで。",
+        "sourceProduct55": true,
+        "consoleErrors": []
+      },
+      "768": {
+        "overflow": false,
+        "brokenImages": [],
+        "title": "DPRO 診療所送迎予約｜通院送迎・配車・家族連絡｜DPRO SHOP",
+        "h1": "予約・家族連絡から、\n配車・通院・帰宅便まで。",
+        "sourceProduct55": true,
+        "consoleErrors": []
+      },
+      "1440": {
+        "overflow": false,
+        "brokenImages": [],
+        "title": "DPRO 診療所送迎予約｜通院送迎・配車・家族連絡｜DPRO SHOP",
+        "h1": "予約・家族連絡から、\n配車・通院・帰宅便まで。",
+        "sourceProduct55": true,
+        "consoleErrors": []
+      }
+    },
+    "product": {
+      "390": {
+        "overflow": false,
+        "brokenImages": [],
+        "title": "DPRO 診療所送迎予約｜通院送迎・配車・家族連絡｜DPRO LINE SYSTEMS",
+        "h1": "予約・家族連絡から、\n配車・通院・帰宅便まで。",
+        "sourceProduct55": true,
+        "consoleErrors": []
+      },
+      "768": {
+        "overflow": false,
+        "brokenImages": [],
+        "title": "DPRO 診療所送迎予約｜通院送迎・配車・家族連絡｜DPRO LINE SYSTEMS",
+        "h1": "予約・家族連絡から、\n配車・通院・帰宅便まで。",
+        "sourceProduct55": true,
+        "consoleErrors": []
+      },
+      "1440": {
+        "overflow": false,
+        "brokenImages": [],
+        "title": "DPRO 診療所送迎予約｜通院送迎・配車・家族連絡｜DPRO LINE SYSTEMS",
+        "h1": "予約・家族連絡から、\n配車・通院・帰宅便まで。",
+        "sourceProduct55": true,
+        "consoleErrors": []
+      }
+    },
+    "lp": {
+      "390": {
+        "overflow": false,
+        "brokenImages": [],
+        "title": "DPRO 診療所送迎予約｜通院送迎を一つの流れに",
+        "h1": "通院送迎を、\n予約から帰宅まで一つに。",
+        "sourceProduct55": false,
+        "consoleErrors": []
+      },
+      "1440": {
+        "overflow": false,
+        "brokenImages": [],
+        "title": "DPRO 診療所送迎予約｜通院送迎を一つの流れに",
+        "h1": "通院送迎を、\n予約から帰宅まで一つに。",
+        "sourceProduct55": false,
+        "consoleErrors": []
+      }
+    }
+  },
+  "brushup": {
+    "B1": {
+      "pass": true,
+      "nameConsistency": true,
+      "priceConsistency": true,
+      "scopeConsistency": true
+    },
+    "B2": {
+      "pass": true,
+      "targets": [
+        "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/clinic-shuttle.html",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/member.html",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner.html",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner-ipad.html",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/staff.html",
+        "https://dpromstk2000-lab.github.io/dpro-line-systems-site/flyer-clinic-shuttle.pdf",
+        "https://dpromstk2000-lab.github.io/dpro-line-systems-site/assets/clinic-shuttle-next/DPRO_CLINIC_SHUTTLE_OPERATION_EXPERIENCE_SHEET_V1.0.pdf",
+        "https://dpromstk2000-lab.github.io/dpro-line-systems-site/DPRO_TUTORIAL_CLINIC_SHUTTLE_QUICK_START_V1.0.pdf",
+        "https://dpromstk2000-lab.github.io/dpro-line-systems-site/DPRO_TUTORIAL_CLINIC_SHUTTLE_DETAILED_MANUAL_V1.0.pdf",
+        "https://dpro-shop.com/systems/clinic-shuttle",
+        "https://dpro-shop.com/pricing"
+      ]
+    },
+    "B3": {
+      "pass": true,
+      "responsiveWidths": [
+        390,
+        768,
+        1440
+      ],
+      "visualTargets": [
+        "OFFICIAL",
+        "PRODUCT",
+        "LP"
+      ]
+    },
+    "B4": {
+      "pass": true,
+      "pdfPageCounts": {
+        "flyer-clinic-shuttle.pdf": 1,
+        "assets/clinic-shuttle-next/DPRO_CLINIC_SHUTTLE_OPERATION_EXPERIENCE_SHEET_V1.0.pdf": 1,
+        "DPRO_TUTORIAL_CLINIC_SHUTTLE_QUICK_START_V1.0.pdf": 3,
+        "DPRO_TUTORIAL_CLINIC_SHUTTLE_DETAILED_MANUAL_V1.0.pdf": 9
+      },
+      "flyerQrDecoded": [
+        "https://dpro-shop.com/systems/clinic-shuttle",
+        "https://lin.ee/YxJGXV6D",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/"
+      ],
+      "operationQrDecoded": [
+        "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/clinic-shuttle.html",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/member.html",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner.html",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner-ipad.html",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/staff.html",
+        "https://lin.ee/YxJGXV6D"
+      ],
+      "productPublicQABlockers": []
+    }
+  },
+  "finalRelease": {
+    "F1": {
+      "pass": true,
+      "systemFinalLock": "3fc09f4b5c6781d6038dc280de5c58752ce60b51",
+      "systemProtected": true
+    },
+    "F2": {
+      "pass": true,
+      "requiredUrls": [
+        "https://dpro-shop.com/systems/clinic-shuttle",
+        "https://dpro-shop.com/systems/",
+        "https://dpro-shop.com/pricing",
+        "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/clinic-shuttle.html",
+        "https://dpromstk2000-lab.github.io/dpro-line-systems-site/lp-clinic-shuttle.html",
+        "https://dpromstk2000-lab.github.io/dpro-line-systems-site/flyer-clinic-shuttle.pdf",
+        "https://dpromstk2000-lab.github.io/dpro-line-systems-site/assets/clinic-shuttle-next/DPRO_CLINIC_SHUTTLE_OPERATION_EXPERIENCE_SHEET_V1.0.pdf",
+        "https://dpromstk2000-lab.github.io/dpro-line-systems-site/DPRO_TUTORIAL_CLINIC_SHUTTLE_QUICK_START_V1.0.pdf",
+        "https://dpromstk2000-lab.github.io/dpro-line-systems-site/DPRO_TUTORIAL_CLINIC_SHUTTLE_DETAILED_MANUAL_V1.0.pdf",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/member.html",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner.html",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner-ipad.html",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/staff.html",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/guide-center.html",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/system-check.html"
+      ]
+    },
+    "F3": {
+      "pass": true,
+      "a4FlyerPages": 1,
+      "operationSheetPages": 1,
+      "quickStartPages": 3,
+      "detailedManualPages": 9,
+      "qrDecodeEvidence": true
+    },
+    "F4": {
+      "pass": true,
+      "officialCatalogCount": 55,
+      "productCatalogCount": 55,
+      "responsivePass": true,
+      "brokenImages": 0,
+      "horizontalOverflow": false
+    }
+  },
+  "blockers": [],
+  "brushupComplete": true,
+  "finalReleaseComplete": true,
+  "productReleaseLock": true,
+  "status": "PRODUCT RELEASE COMPLETE"
+}
