@@ -1,0 +1,126 @@
+{
+  "schema_version": "DPRO-PRODUCT-RELEASE-MANIFEST-R2",
+  "pass": true,
+  "product_dev_id": "f061f7dc-787d-44e7-b678-59f095298980",
+  "system_code": "CLINIC_SHUTTLE",
+  "master": "DPRO_PRODUCT_RELEASE_MASTER_V1.2",
+  "official_candidate_head": "b04b939599c212f746cb09576f5280673afd2eff",
+  "product_head": "a1fc0ee49518d1deb71990df8a4c31624225ccbe",
+  "files": [
+    {
+      "name": "DEPLOY_ATTESTATION.json",
+      "bytes": 8419,
+      "sha256": "38d79760b1f46d31649a8173e6589bad07f426ab3aa5853961f25082a1108d6c"
+    },
+    {
+      "name": "DEPLOY_ATTESTATION_PRELOCK.json",
+      "bytes": 5370,
+      "sha256": "126d48866a246e0beae0c5cc12b213fe0256b50944e330c576dcde6f1dc74882"
+    },
+    {
+      "name": "EXACT_CTA_JOURNEY.json",
+      "bytes": 5054,
+      "sha256": "19c31f3d59a1285ac0adc79d3d2153b100f0e8fb606950d087892ab257511716"
+    },
+    {
+      "name": "FACT_LOCK.json",
+      "bytes": 2256,
+      "sha256": "2bd2fc6a972a05e6d0a17d36489c9109d71d0dab0f57ef6582d8a9e3f36cdfe4"
+    },
+    {
+      "name": "FINALIZER_AUDIT_READY.json",
+      "bytes": 437,
+      "sha256": "f83632681bdd4de4c58563642e5a17e58b9c47c06b94bf66a95e70088980162a"
+    },
+    {
+      "name": "FINAL_RELEASE_1_OF_4.json",
+      "bytes": 858,
+      "sha256": "8f44f57076c9b9256049293f28a8a0d4533f15912c095d8302f22eddd116c9ef"
+    },
+    {
+      "name": "FINAL_RELEASE_2_OF_4.json",
+      "bytes": 5409,
+      "sha256": "a74d2d1fafb4b5a4b050b3c3dd8f29a4a4b7bd89fafff3a5a16bc7f98c3c628b"
+    },
+    {
+      "name": "FINAL_RELEASE_3_OF_4.json",
+      "bytes": 19617,
+      "sha256": "183ca1a9e96afd13e5b9c03c56c46555a17428760e0d3fb36d96babfc7e76a96"
+    },
+    {
+      "name": "FINAL_RELEASE_4_OF_4.json",
+      "bytes": 9153,
+      "sha256": "d05e028448dbd8baa478925db62a4375d9536c7587d0c10bf036031e83bd748b"
+    },
+    {
+      "name": "FINAL_RELEASE_4_OF_4_RESULT.txt",
+      "bytes": 508,
+      "sha256": "0f6ed1fc608b221032ed16c9dfcf8590386a587c9a48072c9dd798a6d72ff678"
+    },
+    {
+      "name": "HUMAN_ACCEPTANCE.json",
+      "bytes": 812,
+      "sha256": "6704c0ba115deead184839d82f1fa149d4ff0c2e62ba0234fd5a40a55f39d039"
+    },
+    {
+      "name": "OPEN_DEFECT_REGISTER.json",
+      "bytes": 2279,
+      "sha256": "193565aa372273bbc814dc333ffc2cbffbc1cba77b58764ddb7279b5a621b895"
+    },
+    {
+      "name": "PDF_QR_QA.json",
+      "bytes": 9616,
+      "sha256": "870cf8a5cf909141d300f53aa8a63e4fb7c2da918e18e6a85fc8ad2341248425"
+    },
+    {
+      "name": "PRODUCT_RELEASE_EVIDENCE.json",
+      "bytes": 2245,
+      "sha256": "aaadeb2b34eb8abcbdd7ab3eb22db211a71581780adab90cc6e68deb130c3b16"
+    },
+    {
+      "name": "PUBLIC_SURFACE_MATRIX.json",
+      "bytes": 7204,
+      "sha256": "4d3de6ea1f41b12f597119faa681c56602cc4e21d5218cc37adb0ece30647e7e"
+    },
+    {
+      "name": "SOURCE_FACT_SCAN.json",
+      "bytes": 687,
+      "sha256": "aa33e10b918e91d0ba753ecf783d94ba5a2d97c2e345ca662a373bdcad811911"
+    },
+    {
+      "name": "VISUAL_QA.json",
+      "bytes": 8248,
+      "sha256": "c62445c9eb00f02b4fc4eadc2410f32a36df0dbd0bfba6d5122a22860cc06b66"
+    },
+    {
+      "name": "final-lp-1440.png",
+      "bytes": 1612116,
+      "sha256": "81374fcf144e669b977b0891274bdf5286e683e519ae439042db4bead96ec12c"
+    },
+    {
+      "name": "final-lp-390.png",
+      "bytes": 845322,
+      "sha256": "831bbb3e0cdcd6f4c6698ac311c0a523b78dfa38a8a6993a05def063dbdddcc2"
+    },
+    {
+      "name": "final-official-1440.png",
+      "bytes": 2644619,
+      "sha256": "6570d3219d21549d1a5576eabfd16d4f44e0c5ca95e5e1776f1baf143f05d84a"
+    },
+    {
+      "name": "final-official-390.png",
+      "bytes": 1089004,
+      "sha256": "f2347e94b037144ed8ec4cbd872c4de73bf7f8ad44c3844015b2bdec366a14fd"
+    },
+    {
+      "name": "final-product-1440.png",
+      "bytes": 1379033,
+      "sha256": "2621b4f8ecfb77b59baa0283d6e8f2afce66687dd8a17b93c6f9dbb15b8eb932"
+    },
+    {
+      "name": "final-product-390.png",
+      "bytes": 999339,
+      "sha256": "abd2f33dd4acf7cfd8a0cf3cd34a19674a85dd9fd14c729374c3bac912ae4fe5"
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "schema_version": "DPRO-PRODUCT-RELEASE-EVIDENCE-R2",
+  "release_master_version": "DPRO_PRODUCT_RELEASE_MASTER_V1.2",
+  "product_dev_id": "f061f7dc-787d-44e7-b678-59f095298980",
+  "system_code": "CLINIC_SHUTTLE",
+  "product_number": 55,
+  "product_name": "DPRO 診療所送迎予約",
+  "initial_publish": {
+    "pass": true
+  },
+  "brushup": {
+    "b1": true,
+    "b2": true,
+    "b3": true,
+    "b4": true
+  },
+  "human_acceptance": {
+    "pass": true,
+    "file": "HUMAN_ACCEPTANCE.json"
+  },
+  "final_release": {
+    "1": true,
+    "2": true,
+    "3": true,
+    "4": true
+  },
+  "deploy_attestation": {
+    "pass": true,
+    "file": "DEPLOY_ATTESTATION.json"
+  },
+  "open_defects": {
+    "blocker": 0,
+    "high": 0,
+    "medium": 0
+  },
+  "system": {
+    "head": "3fc09f4b5c6781d6038dc280de5c58752ce60b51",
+    "final_lock": true,
+    "reopen": false
+  },
+  "release_heads": {
+    "official_content": "ff6f4d672fce7c91aac6889e5f0378e7c3c23850",
+    "official_candidate": "b04b939599c212f746cb09576f5280673afd2eff",
+    "product": "a1fc0ee49518d1deb71990df8a4c31624225ccbe"
+  },
+  "public_urls": {
+    "official": "https://dpro-shop.com/systems/clinic-shuttle",
+    "official_github": "https://dpromstk2000-lab.github.io/dpro-shop-official-site/systems/clinic-shuttle.html",
+    "product": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/clinic-shuttle.html",
+    "lp": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/lp-clinic-shuttle.html",
+    "flyer_html": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/flyer-clinic-shuttle.html",
+    "flyer_pdf": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/flyer-clinic-shuttle.pdf",
+    "operation_experience_pdf": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/assets/clinic-shuttle-next/DPRO_CLINIC_SHUTTLE_OPERATION_EXPERIENCE_SHEET_V1.0.pdf",
+    "quick_start_pdf": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/DPRO_TUTORIAL_CLINIC_SHUTTLE_QUICK_START_V1.0.pdf",
+    "detailed_manual_pdf": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/DPRO_TUTORIAL_CLINIC_SHUTTLE_DETAILED_MANUAL_V1.0.pdf",
+    "live_demo": "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/"
+  },
+  "blockers": []
+}

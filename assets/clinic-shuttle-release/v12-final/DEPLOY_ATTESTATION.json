@@ -1,0 +1,228 @@
+{
+  "schema_version": "DPRO-PRODUCT-RELEASE-DEPLOY-ATTESTATION-R1",
+  "pass": true,
+  "expected_final_heads": {
+    "official_candidate": "b04b939599c212f746cb09576f5280673afd2eff",
+    "official_release_content": "ff6f4d672fce7c91aac6889e5f0378e7c3c23850",
+    "product": "a1fc0ee49518d1deb71990df8a4c31624225ccbe"
+  },
+  "repositories": {
+    "system": {
+      "head": "3fc09f4b5c6781d6038dc280de5c58752ce60b51",
+      "final_lock": true
+    },
+    "official": {
+      "candidate_head": "b04b939599c212f746cb09576f5280673afd2eff",
+      "accepted_content_head": "ff6f4d672fce7c91aac6889e5f0378e7c3c23850"
+    },
+    "product": {
+      "head": "a1fc0ee49518d1deb71990df8a4c31624225ccbe"
+    }
+  },
+  "expected_workflows": [
+    {
+      "repo": "dpromstk2000-lab/dpro-shop-official-site",
+      "id": 35575257054,
+      "name": "DPRO Clinic Shuttle HA Official Footer Dedupe R1",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "b07182863e17c1cc3cc5e2bb9dd3998a013fd640",
+      "html_url": "https://github.com/dpromstk2000-lab/dpro-shop-official-site/actions/runs/35575257054",
+      "verification": "authenticated current-repo API",
+      "label": "Official footer dedupe HA",
+      "pass": true
+    },
+    {
+      "repo": "dpromstk2000-lab/dpro-shop-official-site",
+      "id": 35574000618,
+      "name": "DPRO Clinic Shuttle HA Official Final Brushup R2",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "0d4afa2d217768ca2cc0dfe7bcf04032419b7d3c",
+      "html_url": "https://github.com/dpromstk2000-lab/dpro-shop-official-site/actions/runs/35574000618",
+      "verification": "authenticated current-repo API",
+      "label": "Official HA final brushup",
+      "pass": true
+    },
+    {
+      "repo": "dpromstk2000-lab/dpro-shop-official-site",
+      "id": 35571696418,
+      "name": "DPRO Clinic Shuttle V1.2 Brushup Final R6",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "cd3d04cc8e1c3b1b3f9cb2d6ccec772698c5ff94",
+      "html_url": "https://github.com/dpromstk2000-lab/dpro-shop-official-site/actions/runs/35571696418",
+      "verification": "authenticated current-repo API",
+      "label": "Brushup 4/4 R6",
+      "pass": true
+    },
+    {
+      "repo": "dpromstk2000-lab/dpro-line-systems-site",
+      "id": 35574498232,
+      "name": "DPRO Clinic Shuttle HA Product Final Brushup R1",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "a63ab8ed4b54c586ec838359bccd05bc8801737a",
+      "html_url": "https://github.com/dpromstk2000-lab/dpro-line-systems-site/actions/runs/35574498232",
+      "verification": "preverified before FINALIZER R3",
+      "label": "Product HA final brushup",
+      "pass": true
+    },
+    {
+      "repo": "dpromstk2000-lab/dpro-line-systems-site",
+      "id": 35571159571,
+      "name": "DPRO Clinic Shuttle V1.2 Operation PDF Masterfix R2F",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": null,
+      "html_url": "https://github.com/dpromstk2000-lab/dpro-line-systems-site/actions/runs/35571159571",
+      "verification": "preverified before FINALIZER R3",
+      "label": "Operation PDF masterfix",
+      "pass": true
+    },
+    {
+      "repo": "dpromstk2000-lab/dpro-line-systems-site",
+      "id": 35569465809,
+      "name": "DPRO Clinic Shuttle V1.2 Flyer Mobile Overflow R2E",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": null,
+      "html_url": "https://github.com/dpromstk2000-lab/dpro-line-systems-site/actions/runs/35569465809",
+      "verification": "preverified before FINALIZER R3",
+      "label": "Flyer mobile final QA",
+      "pass": true
+    }
+  ],
+  "actions": [
+    {
+      "repo": "dpromstk2000-lab/dpro-shop-official-site",
+      "id": 35575257054,
+      "name": "DPRO Clinic Shuttle HA Official Footer Dedupe R1",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "b07182863e17c1cc3cc5e2bb9dd3998a013fd640",
+      "html_url": "https://github.com/dpromstk2000-lab/dpro-shop-official-site/actions/runs/35575257054",
+      "verification": "authenticated current-repo API",
+      "label": "Official footer dedupe HA",
+      "pass": true
+    },
+    {
+      "repo": "dpromstk2000-lab/dpro-shop-official-site",
+      "id": 35574000618,
+      "name": "DPRO Clinic Shuttle HA Official Final Brushup R2",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "0d4afa2d217768ca2cc0dfe7bcf04032419b7d3c",
+      "html_url": "https://github.com/dpromstk2000-lab/dpro-shop-official-site/actions/runs/35574000618",
+      "verification": "authenticated current-repo API",
+      "label": "Official HA final brushup",
+      "pass": true
+    },
+    {
+      "repo": "dpromstk2000-lab/dpro-shop-official-site",
+      "id": 35571696418,
+      "name": "DPRO Clinic Shuttle V1.2 Brushup Final R6",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "cd3d04cc8e1c3b1b3f9cb2d6ccec772698c5ff94",
+      "html_url": "https://github.com/dpromstk2000-lab/dpro-shop-official-site/actions/runs/35571696418",
+      "verification": "authenticated current-repo API",
+      "label": "Brushup 4/4 R6",
+      "pass": true
+    },
+    {
+      "repo": "dpromstk2000-lab/dpro-line-systems-site",
+      "id": 35574498232,
+      "name": "DPRO Clinic Shuttle HA Product Final Brushup R1",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "a63ab8ed4b54c586ec838359bccd05bc8801737a",
+      "html_url": "https://github.com/dpromstk2000-lab/dpro-line-systems-site/actions/runs/35574498232",
+      "verification": "preverified before FINALIZER R3",
+      "label": "Product HA final brushup",
+      "pass": true
+    },
+    {
+      "repo": "dpromstk2000-lab/dpro-line-systems-site",
+      "id": 35571159571,
+      "name": "DPRO Clinic Shuttle V1.2 Operation PDF Masterfix R2F",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": null,
+      "html_url": "https://github.com/dpromstk2000-lab/dpro-line-systems-site/actions/runs/35571159571",
+      "verification": "preverified before FINALIZER R3",
+      "label": "Operation PDF masterfix",
+      "pass": true
+    },
+    {
+      "repo": "dpromstk2000-lab/dpro-line-systems-site",
+      "id": 35569465809,
+      "name": "DPRO Clinic Shuttle V1.2 Flyer Mobile Overflow R2E",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": null,
+      "html_url": "https://github.com/dpromstk2000-lab/dpro-line-systems-site/actions/runs/35569465809",
+      "verification": "preverified before FINALIZER R3",
+      "label": "Flyer mobile final QA",
+      "pass": true
+    }
+  ],
+  "pages": [
+    {
+      "id": 35581844464,
+      "head_sha": "b04b939599c212f746cb09576f5280673afd2eff",
+      "html_url": "https://github.com/dpromstk2000-lab/dpro-shop-official-site/actions/runs/35581844464",
+      "status": "completed",
+      "conclusion": "success",
+      "verification": "authenticated current-repo API"
+    },
+    {
+      "id": 35574520167,
+      "head_sha": "a1fc0ee49518d1deb71990df8a4c31624225ccbe",
+      "html_url": "https://github.com/dpromstk2000-lab/dpro-line-systems-site/actions/runs/35574520167",
+      "status": "completed",
+      "conclusion": "success",
+      "verification": "preverified accepted PRODUCT Pages deployment"
+    }
+  ],
+  "public_markers": [
+    {
+      "name": "official",
+      "url": "https://dpro-shop.com/systems/clinic-shuttle",
+      "status": 200,
+      "markers": [
+        "DPRO 診療所送迎予約",
+        "現在の送迎運用と",
+        "PRODUCT SITE"
+      ],
+      "pass": true
+    },
+    {
+      "name": "product",
+      "url": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/clinic-shuttle.html",
+      "status": 200,
+      "markers": [
+        "DPRO 診療所送迎予約",
+        "現在の実画面を、そのまま公開デモで。"
+      ],
+      "pass": true
+    },
+    {
+      "name": "lp",
+      "url": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/lp-clinic-shuttle.html",
+      "status": 200,
+      "markers": [
+        "通院送迎を、",
+        "P10 / NEXT STEP"
+      ],
+      "pass": true
+    }
+  ],
+  "rules": {
+    "repo_head_matches_expected": true,
+    "expected_release_actions_success": true,
+    "latest_relevant_pages_head_matches": true,
+    "public_release_signature_matches": true,
+    "unrelated_ci_ignored": true
+  }
+}
