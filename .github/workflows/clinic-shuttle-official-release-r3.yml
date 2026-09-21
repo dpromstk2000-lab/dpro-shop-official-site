@@ -1,0 +1,94 @@
+name: DPRO Clinic Shuttle Official Release R3
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/clinic-shuttle-official-release-r3.yml"
+      - ".github/workflows/clinic-shuttle-official-release-r3.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dpro-clinic-shuttle-official-release-r3
+  cancel-in-progress: false
+
+jobs:
+  official-release-r3:
+    runs-on: ubuntu-latest
+    timeout-minutes: 16
+    steps:
+      - name: Checkout official site
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 4
+
+      - name: Guard OFFICIAL R2 parent and SYSTEM FINAL LOCK
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD^)" = "500365d390c75ab38fa94ebd7c66922776e511e6" || {
+            echo "OFFICIAL parent drift"; exit 1;
+          }
+          SYSTEM_HEAD="$(git ls-remote https://github.com/dpromstk2000-lab/dpro-clinic-shuttle-line.git refs/heads/main | awk '{print $1}')"
+          test "$SYSTEM_HEAD" = "3fc09f4b5c6781d6038dc280de5c58752ce60b51" || {
+            echo "SYSTEM FINAL LOCK drift: $SYSTEM_HEAD"; exit 1;
+          }
+
+      - name: Import verified screenshots into OFFICIAL
+        run: python .github/workflows/clinic-shuttle-official-release-r3.py prepare
+
+      - name: Verify self-contained source
+        run: python .github/workflows/clinic-shuttle-official-release-r3.py sourceqa
+
+      - name: Commit self-contained official assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add systems/clinic-shuttle.html assets/clinic-shuttle-release
+          git commit -m "Make clinic shuttle official page self-contained"
+          git push origin main
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install browser QA
+        run: |
+          python -m pip install --upgrade pip
+          pip install playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Wait for deployment and run final responsive QA
+        run: python .github/workflows/clinic-shuttle-official-release-r3.py liveqa
+
+      - name: Build official release manifest
+        run: python .github/workflows/clinic-shuttle-official-release-r3.py manifest
+
+      - name: Commit final OFFICIAL QA evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add assets/clinic-shuttle-release
+          git commit -m "Record clinic shuttle official final public QA"
+          git push origin main
+
+      - name: Remove one-shot official workflows
+        shell: bash
+        run: |
+          set -euo pipefail
+          git pull --rebase origin main
+          git rm -f \
+            .github/workflows/clinic-shuttle-official-release-r1.yml \
+            .github/workflows/clinic-shuttle-official-release-r1.py \
+            .github/workflows/clinic-shuttle-official-release-r2.yml \
+            .github/workflows/clinic-shuttle-official-release-r2.py \
+            .github/workflows/clinic-shuttle-official-release-r3.yml \
+            .github/workflows/clinic-shuttle-official-release-r3.py
+          git commit -m "Remove completed clinic shuttle official release workflows"
+          git push origin main
