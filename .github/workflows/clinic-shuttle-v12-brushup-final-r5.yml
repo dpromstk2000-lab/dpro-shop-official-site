@@ -1,0 +1,83 @@
+name: DPRO Clinic Shuttle V1.2 Brushup Final R5
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/clinic-shuttle-v12-brushup-final-r5.yml"
+      - ".github/workflows/clinic-shuttle-v12-brushup-final-r5.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dpro-clinic-shuttle-v12-brushup-final-r5
+  cancel-in-progress: false
+
+jobs:
+  brushup-final:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout OFFICIAL
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 8
+
+      - name: Guard release-critical HEADs
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD^)" = "b9b79d6eed7e78f44c967f319480654f40b84a24" || {
+            echo "OFFICIAL drift before R4"; exit 1;
+          }
+          SYSTEM_HEAD="$(git ls-remote https://github.com/dpromstk2000-lab/dpro-clinic-shuttle-line.git refs/heads/main | awk '{print $1}')"
+          test "$SYSTEM_HEAD" = "3fc09f4b5c6781d6038dc280de5c58752ce60b51" || {
+            echo "SYSTEM FINAL LOCK drift: $SYSTEM_HEAD"; exit 1;
+          }
+          PRODUCT_HEAD="$(git ls-remote https://github.com/dpromstk2000-lab/dpro-line-systems-site.git refs/heads/main | awk '{print $1}')"
+          test "$PRODUCT_HEAD" = "6a04230ec526d3ea589ffc42a5e777a355e95e46" || {
+            echo "PRODUCT drift: $PRODUCT_HEAD"; exit 1;
+          }
+          CONTROL_HEAD="$(git ls-remote https://github.com/dpromstk2000-lab/dpro-shop-control-center.git refs/heads/main | awk '{print $1}')"
+          echo "CONTROL CENTER observed HEAD (non-blocking): $CONTROL_HEAD"
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install final brushup QA
+        run: |
+          python -m pip install --upgrade pip
+          pip install playwright pymupdf numpy opencv-python-headless zxing-cpp pillow
+          python -m playwright install --with-deps chromium
+
+      - name: Preserve runner
+        run: cp .github/workflows/clinic-shuttle-v12-brushup-final-r5.py /tmp/clinic-shuttle-v12-r5.py
+
+      - name: Remove one-shot workflow and establish final OFFICIAL HEAD
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm -f \
+            .github/workflows/clinic-shuttle-v12-brushup-final-r5.yml \
+            .github/workflows/clinic-shuttle-v12-brushup-final-r5.py
+          git commit -m "Run clinic shuttle V1.2 final brushup gates R5"
+          FINAL_HEAD="$(git rev-parse HEAD)"
+          echo "FINAL_OFFICIAL_HEAD=$FINAL_HEAD" >> "$GITHUB_ENV"
+          git push origin main
+
+      - name: BRUSHUP 4 of 4
+        run: python /tmp/clinic-shuttle-v12-r5.py audit
+
+      - name: Upload final brushup evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: clinic-shuttle-v12-brushup-final-r5-evidence
+          path: release-evidence-v12-final-brushup/
+          if-no-files-found: error
+          retention-days: 30
