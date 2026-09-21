@@ -1,0 +1,76 @@
+name: DPRO Clinic Shuttle HA Official Final Brushup R1
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/clinic-shuttle-ha-official-final-brushup-r1.yml"
+      - ".github/workflows/clinic-shuttle-ha-official-final-brushup-r1.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: clinic-shuttle-ha-official-final-brushup-r1
+  cancel-in-progress: false
+
+jobs:
+  official-ha:
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 20
+
+      - name: Guard clinic page and release-critical HEADs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch origin 60e24b26aff034811ef2e6f244db51c585dc74e2 --depth=1
+          git diff --quiet 60e24b26aff034811ef2e6f244db51c585dc74e2 HEAD^ -- systems/clinic-shuttle.html || {
+            echo "Clinic OFFICIAL page changed since accepted baseline"; exit 1;
+          }
+          SYSTEM_HEAD="$(git ls-remote https://github.com/dpromstk2000-lab/dpro-clinic-shuttle-line.git refs/heads/main | awk '{print $1}')"
+          test "$SYSTEM_HEAD" = "3fc09f4b5c6781d6038dc280de5c58752ce60b51" || { echo "SYSTEM FINAL LOCK drift"; exit 1; }
+          PRODUCT_HEAD="$(git ls-remote https://github.com/dpromstk2000-lab/dpro-line-systems-site.git refs/heads/main | awk '{print $1}')"
+          test "$PRODUCT_HEAD" = "4dba31e5daa62e1966afcf293a3094d98acab243" || { echo "PRODUCT drift"; exit 1; }
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Preserve runner
+        run: cp .github/workflows/clinic-shuttle-ha-official-final-brushup-r1.py /tmp/clinic-ha-official-r1.py
+
+      - name: Apply HUMAN ACCEPTANCE OFFICIAL fixes
+        run: python /tmp/clinic-ha-official-r1.py patch
+
+      - name: Commit OFFICIAL fix and remove one-shot workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add systems/clinic-shuttle.html
+          git rm -f .github/workflows/clinic-shuttle-ha-official-final-brushup-r1.yml .github/workflows/clinic-shuttle-ha-official-final-brushup-r1.py
+          git commit -m "Refine clinic shuttle OFFICIAL for human acceptance"
+          FINAL_HEAD="$(git rev-parse HEAD)"
+          echo "FINAL_OFFICIAL_HEAD=$FINAL_HEAD" >> "$GITHUB_ENV"
+          git push origin main
+
+      - name: Install browser QA
+        run: |
+          pip install playwright
+          python -m playwright install --with-deps chromium
+
+      - name: Verify public OFFICIAL at 375-1440
+        run: python /tmp/clinic-ha-official-r1.py publicqa
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: clinic-shuttle-ha-official-r1-evidence
+          path: release-evidence-ha-official/
+          if-no-files-found: error
+          retention-days: 30
