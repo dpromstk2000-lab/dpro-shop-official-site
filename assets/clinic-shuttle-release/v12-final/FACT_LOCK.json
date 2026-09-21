@@ -1,0 +1,57 @@
+{
+  "product_dev_id": "f061f7dc-787d-44e7-b678-59f095298980",
+  "system_code": "CLINIC_SHUTTLE",
+  "product_number": 55,
+  "product_name_ja": "DPRO 診療所送迎予約",
+  "category": "医療・送迎",
+  "official_slug": "clinic-shuttle",
+  "product_slug": "clinic-shuttle",
+  "pricing": {
+    "dpro_initial_jpy_tax_included": 33000,
+    "dpro_monthly_jpy_tax_included": 1100,
+    "line_build_jpy_tax_included": 77000,
+    "line_operation_monthly_jpy_tax_included": 3300,
+    "line_separate": true
+  },
+  "roles": [
+    "患者・ご家族",
+    "管理・配車PC",
+    "配車iPad",
+    "運転員・スタッフ"
+  ],
+  "scope_in": [
+    "送迎予約",
+    "電話代理登録",
+    "予約・変更一覧",
+    "車両・運転員割当",
+    "乗降・到着記録",
+    "診療後の帰宅便"
+  ],
+  "scope_out": [
+    "電子カルテ",
+    "診断",
+    "検査",
+    "薬剤",
+    "請求・レセプト",
+    "医療判断"
+  ],
+  "urls": {
+    "official": "https://dpro-shop.com/systems/clinic-shuttle",
+    "product": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/clinic-shuttle.html",
+    "lp": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/lp-clinic-shuttle.html",
+    "demo": "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/",
+    "line": "https://lin.ee/YxJGXV6D",
+    "member": "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/member.html",
+    "owner": "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner.html",
+    "ipad": "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner-ipad.html",
+    "staff": "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/staff.html",
+    "guide": "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/guide-center.html",
+    "system_check": "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/system-check.html"
+  },
+  "product_count": 55,
+  "hero_media_id": "assets/clinic-shuttle-next/clinic-care-bright.png",
+  "flyer_master_id": "DPRO CLINIC SHUTTLE A4 FLYER MASTER V2.2",
+  "system_final_lock": "3fc09f4b5c6781d6038dc280de5c58752ce60b51",
+  "official_accepted_content_head": "ff6f4d672fce7c91aac6889e5f0378e7c3c23850",
+  "product_head": "a1fc0ee49518d1deb71990df8a4c31624225ccbe"
+}

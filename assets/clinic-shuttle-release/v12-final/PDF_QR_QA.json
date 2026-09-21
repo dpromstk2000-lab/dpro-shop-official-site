@@ -1,0 +1,246 @@
+{
+  "schema_version": "DPRO-FINAL-PDF-QR-QA-R1",
+  "pass": true,
+  "documents": [
+    {
+      "name": "flyer",
+      "url": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/flyer-clinic-shuttle.pdf",
+      "final_url": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/flyer-clinic-shuttle.pdf",
+      "pass": true,
+      "pages": 1,
+      "a4Portrait": true,
+      "bboxOutOfPage": 0,
+      "renderDpi": 300,
+      "bytes": 2927097,
+      "sha256": "6a9b2ffc8506d206c0408b8d3d0f94c1bedc5d624105348bf704a7e955b7d822",
+      "decodedQr": [
+        "https://dpro-shop.com/",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/",
+        "https://lin.ee/YxJGXV6D"
+      ],
+      "expectedQr": [
+        "https://dpro-shop.com/",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/",
+        "https://lin.ee/YxJGXV6D"
+      ],
+      "embeddedImages": 4,
+      "pageEvidence": [
+        {
+          "page": 1,
+          "nonwhitePixels": 3612293,
+          "qr": [
+            "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/",
+            "https://lin.ee/YxJGXV6D",
+            "https://dpro-shop.com/"
+          ],
+          "bboxOutOfPage": 0
+        }
+      ]
+    },
+    {
+      "name": "operation",
+      "url": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/assets/clinic-shuttle-next/DPRO_CLINIC_SHUTTLE_OPERATION_EXPERIENCE_SHEET_V1.0.pdf",
+      "final_url": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/assets/clinic-shuttle-next/DPRO_CLINIC_SHUTTLE_OPERATION_EXPERIENCE_SHEET_V1.0.pdf",
+      "pass": true,
+      "pages": 1,
+      "a4Portrait": true,
+      "bboxOutOfPage": 0,
+      "renderDpi": 300,
+      "bytes": 1327442,
+      "sha256": "1496e151b6a98547ec1e3fb05cbcdeadffb08b9b219017e1f4991ee74895b1c2",
+      "decodedQr": [
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/member.html",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner-ipad.html",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner.html",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/staff.html",
+        "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/clinic-shuttle.html",
+        "https://lin.ee/YxJGXV6D"
+      ],
+      "expectedQr": [
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/member.html",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner-ipad.html",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner.html",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/staff.html",
+        "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/clinic-shuttle.html",
+        "https://lin.ee/YxJGXV6D"
+      ],
+      "embeddedImages": 10,
+      "pageEvidence": [
+        {
+          "page": 1,
+          "nonwhitePixels": 5032770,
+          "qr": [
+            "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/clinic-shuttle.html",
+            "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/member.html",
+            "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner.html",
+            "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner-ipad.html",
+            "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/staff.html",
+            "https://lin.ee/YxJGXV6D"
+          ],
+          "bboxOutOfPage": 0
+        }
+      ]
+    },
+    {
+      "name": "quick",
+      "url": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/DPRO_TUTORIAL_CLINIC_SHUTTLE_QUICK_START_V1.0.pdf",
+      "final_url": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/DPRO_TUTORIAL_CLINIC_SHUTTLE_QUICK_START_V1.0.pdf",
+      "pass": true,
+      "pages": 3,
+      "a4Portrait": true,
+      "bboxOutOfPage": 0,
+      "renderDpi": 300,
+      "bytes": 1360869,
+      "sha256": "85dfa06dfad989e12b1d111035317eccaa3f2c8fa80943763880a4bfa5644479",
+      "decodedQr": [
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/guide-center.html",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/system-check.html",
+        "https://lin.ee/YxJGXV6D"
+      ],
+      "expectedQr": [
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/guide-center.html",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/system-check.html",
+        "https://lin.ee/YxJGXV6D"
+      ],
+      "embeddedImages": 9,
+      "pageEvidence": [
+        {
+          "page": 1,
+          "nonwhitePixels": 1541946,
+          "qr": [
+            "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/guide-center.html",
+            "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/",
+            "https://lin.ee/YxJGXV6D"
+          ],
+          "bboxOutOfPage": 0
+        },
+        {
+          "page": 2,
+          "nonwhitePixels": 816008,
+          "qr": [],
+          "bboxOutOfPage": 0
+        },
+        {
+          "page": 3,
+          "nonwhitePixels": 1283527,
+          "qr": [
+            "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/system-check.html",
+            "https://lin.ee/YxJGXV6D"
+          ],
+          "bboxOutOfPage": 0
+        }
+      ]
+    },
+    {
+      "name": "detailed",
+      "url": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/DPRO_TUTORIAL_CLINIC_SHUTTLE_DETAILED_MANUAL_V1.0.pdf",
+      "final_url": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/DPRO_TUTORIAL_CLINIC_SHUTTLE_DETAILED_MANUAL_V1.0.pdf",
+      "pass": true,
+      "pages": 9,
+      "a4Portrait": true,
+      "bboxOutOfPage": 0,
+      "renderDpi": 300,
+      "bytes": 1909385,
+      "sha256": "61e5eb9fa56adc21c2e9e61c4cea6afe7187e7c55c416a206a2a9ac5c7633252",
+      "decodedQr": [
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/guide-center.html",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/member.html",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner-ipad.html",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner.html",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/staff.html",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/system-check.html",
+        "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/clinic-shuttle.html",
+        "https://lin.ee/YxJGXV6D"
+      ],
+      "expectedQr": [
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/guide-center.html",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/member.html",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner-ipad.html",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner.html",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/staff.html",
+        "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/system-check.html",
+        "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/clinic-shuttle.html",
+        "https://lin.ee/YxJGXV6D"
+      ],
+      "embeddedImages": 19,
+      "pageEvidence": [
+        {
+          "page": 1,
+          "nonwhitePixels": 885147,
+          "qr": [
+            "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/",
+            "https://lin.ee/YxJGXV6D"
+          ],
+          "bboxOutOfPage": 0
+        },
+        {
+          "page": 2,
+          "nonwhitePixels": 1256221,
+          "qr": [
+            "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/member.html"
+          ],
+          "bboxOutOfPage": 0
+        },
+        {
+          "page": 3,
+          "nonwhitePixels": 1159421,
+          "qr": [
+            "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner.html"
+          ],
+          "bboxOutOfPage": 0
+        },
+        {
+          "page": 4,
+          "nonwhitePixels": 1552306,
+          "qr": [],
+          "bboxOutOfPage": 0
+        },
+        {
+          "page": 5,
+          "nonwhitePixels": 1206852,
+          "qr": [
+            "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/staff.html"
+          ],
+          "bboxOutOfPage": 0
+        },
+        {
+          "page": 6,
+          "nonwhitePixels": 1217878,
+          "qr": [
+            "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner-ipad.html"
+          ],
+          "bboxOutOfPage": 0
+        },
+        {
+          "page": 7,
+          "nonwhitePixels": 969119,
+          "qr": [],
+          "bboxOutOfPage": 0
+        },
+        {
+          "page": 8,
+          "nonwhitePixels": 474160,
+          "qr": [
+            "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/system-check.html",
+            "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/guide-center.html"
+          ],
+          "bboxOutOfPage": 0
+        },
+        {
+          "page": 9,
+          "nonwhitePixels": 427763,
+          "qr": [
+            "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/clinic-shuttle.html",
+            "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/guide-center.html",
+            "https://lin.ee/YxJGXV6D"
+          ],
+          "bboxOutOfPage": 0
+        }
+      ]
+    }
+  ]
+}

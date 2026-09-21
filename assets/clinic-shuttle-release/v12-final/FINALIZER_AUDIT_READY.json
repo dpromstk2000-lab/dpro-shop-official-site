@@ -1,0 +1,11 @@
+{
+  "pass": true,
+  "master": "DPRO_PRODUCT_RELEASE_MASTER_V1.2",
+  "systemFinalLock": "3fc09f4b5c6781d6038dc280de5c58752ce60b51",
+  "officialAcceptedContentHead": "ff6f4d672fce7c91aac6889e5f0378e7c3c23850",
+  "productHead": "a1fc0ee49518d1deb71990df8a4c31624225ccbe",
+  "humanAcceptance": true,
+  "openBlocker": 0,
+  "openHigh": 0,
+  "next": "candidate evidence commit -> candidate Pages -> FINAL RELEASE 4/4 -> PRODUCT RELEASE LOCK"
+}

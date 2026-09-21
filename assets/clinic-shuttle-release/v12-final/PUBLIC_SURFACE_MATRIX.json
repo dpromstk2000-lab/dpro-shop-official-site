@@ -1,0 +1,230 @@
+{
+  "schema_version": "DPRO-PUBLIC-SURFACE-MATRIX-R1",
+  "pass": true,
+  "surfaces": [
+    {
+      "name": "official_custom",
+      "url": "https://dpro-shop.com/systems/clinic-shuttle",
+      "status": 200,
+      "final_url": "https://dpro-shop.com/systems/clinic-shuttle",
+      "markers": [
+        "DPRO 診療所送迎予約",
+        "PRODUCT SITE"
+      ],
+      "matched": [
+        "DPRO 診療所送迎予約",
+        "PRODUCT SITE"
+      ],
+      "pass": true
+    },
+    {
+      "name": "official_github",
+      "url": "https://dpromstk2000-lab.github.io/dpro-shop-official-site/systems/clinic-shuttle.html",
+      "status": 200,
+      "final_url": "https://dpromstk2000-lab.github.io/dpro-shop-official-site/systems/clinic-shuttle.html",
+      "markers": [
+        "DPRO 診療所送迎予約"
+      ],
+      "matched": [
+        "DPRO 診療所送迎予約"
+      ],
+      "pass": true
+    },
+    {
+      "name": "official_catalog",
+      "url": "https://dpro-shop.com/systems/",
+      "status": 200,
+      "final_url": "https://dpro-shop.com/systems/",
+      "markers": [
+        "診療所送迎予約"
+      ],
+      "matched": [
+        "診療所送迎予約"
+      ],
+      "pass": true
+    },
+    {
+      "name": "product",
+      "url": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/clinic-shuttle.html",
+      "status": 200,
+      "final_url": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/clinic-shuttle.html",
+      "markers": [
+        "DPRO 診療所送迎予約",
+        "LIVE PRODUCT EXPERIENCE"
+      ],
+      "matched": [
+        "DPRO 診療所送迎予約",
+        "LIVE PRODUCT EXPERIENCE"
+      ],
+      "pass": true
+    },
+    {
+      "name": "product_catalog",
+      "url": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems.html",
+      "status": 200,
+      "final_url": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems.html",
+      "markers": [
+        "55システム一覧"
+      ],
+      "matched": [
+        "55システム一覧"
+      ],
+      "pass": true
+    },
+    {
+      "name": "lp",
+      "url": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/lp-clinic-shuttle.html",
+      "status": 200,
+      "final_url": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/lp-clinic-shuttle.html",
+      "markers": [
+        "DPRO 診療所送迎予約",
+        "P10 / NEXT STEP"
+      ],
+      "matched": [
+        "DPRO 診療所送迎予約",
+        "P10 / NEXT STEP"
+      ],
+      "pass": true
+    },
+    {
+      "name": "flyer_html",
+      "url": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/flyer-clinic-shuttle.html",
+      "status": 200,
+      "final_url": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/flyer-clinic-shuttle.html",
+      "markers": [
+        "A4 FLYER MASTER V2.2"
+      ],
+      "matched": [
+        "A4 FLYER MASTER V2.2"
+      ],
+      "pass": true
+    },
+    {
+      "name": "demo",
+      "url": "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/",
+      "status": 200,
+      "final_url": "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/",
+      "markers": [
+        "DPRO"
+      ],
+      "matched": [
+        "DPRO"
+      ],
+      "pass": true
+    },
+    {
+      "name": "member",
+      "url": "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/member.html",
+      "status": 200,
+      "final_url": "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/member.html",
+      "markers": [
+        "DPRO"
+      ],
+      "matched": [
+        "DPRO"
+      ],
+      "pass": true
+    },
+    {
+      "name": "owner",
+      "url": "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner.html",
+      "status": 200,
+      "final_url": "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner.html",
+      "markers": [
+        "DPRO"
+      ],
+      "matched": [
+        "DPRO"
+      ],
+      "pass": true
+    },
+    {
+      "name": "ipad",
+      "url": "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner-ipad.html",
+      "status": 200,
+      "final_url": "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner-ipad.html",
+      "markers": [
+        "DPRO"
+      ],
+      "matched": [
+        "DPRO"
+      ],
+      "pass": true
+    },
+    {
+      "name": "staff",
+      "url": "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/staff.html",
+      "status": 200,
+      "final_url": "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/staff.html",
+      "markers": [
+        "DPRO"
+      ],
+      "matched": [
+        "DPRO"
+      ],
+      "pass": true
+    },
+    {
+      "name": "guide",
+      "url": "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/guide-center.html",
+      "status": 200,
+      "final_url": "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/guide-center.html",
+      "markers": [
+        "DPRO"
+      ],
+      "matched": [
+        "DPRO"
+      ],
+      "pass": true
+    },
+    {
+      "name": "system_check",
+      "url": "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/system-check.html",
+      "status": 200,
+      "final_url": "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/system-check.html",
+      "markers": [
+        "DPRO"
+      ],
+      "matched": [
+        "DPRO"
+      ],
+      "pass": true
+    },
+    {
+      "name": "flyer_pdf",
+      "url": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/flyer-clinic-shuttle.pdf",
+      "status": 200,
+      "final_url": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/flyer-clinic-shuttle.pdf",
+      "bytes": 2927097,
+      "content_sha256": "6a9b2ffc8506d206c0408b8d3d0f94c1bedc5d624105348bf704a7e955b7d822",
+      "pass": true
+    },
+    {
+      "name": "operation_pdf",
+      "url": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/assets/clinic-shuttle-next/DPRO_CLINIC_SHUTTLE_OPERATION_EXPERIENCE_SHEET_V1.0.pdf",
+      "status": 200,
+      "final_url": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/assets/clinic-shuttle-next/DPRO_CLINIC_SHUTTLE_OPERATION_EXPERIENCE_SHEET_V1.0.pdf",
+      "bytes": 1327442,
+      "content_sha256": "1496e151b6a98547ec1e3fb05cbcdeadffb08b9b219017e1f4991ee74895b1c2",
+      "pass": true
+    },
+    {
+      "name": "quick_pdf",
+      "url": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/DPRO_TUTORIAL_CLINIC_SHUTTLE_QUICK_START_V1.0.pdf",
+      "status": 200,
+      "final_url": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/DPRO_TUTORIAL_CLINIC_SHUTTLE_QUICK_START_V1.0.pdf",
+      "bytes": 1360869,
+      "content_sha256": "85dfa06dfad989e12b1d111035317eccaa3f2c8fa80943763880a4bfa5644479",
+      "pass": true
+    },
+    {
+      "name": "detailed_pdf",
+      "url": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/DPRO_TUTORIAL_CLINIC_SHUTTLE_DETAILED_MANUAL_V1.0.pdf",
+      "status": 200,
+      "final_url": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/DPRO_TUTORIAL_CLINIC_SHUTTLE_DETAILED_MANUAL_V1.0.pdf",
+      "bytes": 1909385,
+      "content_sha256": "61e5eb9fa56adc21c2e9e61c4cea6afe7187e7c55c416a206a2a9ac5c7633252",
+      "pass": true
+    }
+  ]
+}

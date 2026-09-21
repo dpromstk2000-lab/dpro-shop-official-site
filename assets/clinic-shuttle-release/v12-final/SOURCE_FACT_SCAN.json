@@ -1,0 +1,31 @@
+{
+  "pass": true,
+  "checks": {
+    "identity_all": true,
+    "price_official": true,
+    "price_product": true,
+    "price_lp": true,
+    "price_flyer": true,
+    "line_separate": true,
+    "scope_official": true,
+    "scope_product": true,
+    "scope_lp": true,
+    "roles_official": true,
+    "roles_product": true,
+    "seo_official": true,
+    "seo_product": true,
+    "sitemap_official": true,
+    "sitemap_product": true,
+    "product_catalog_registry": true,
+    "404_not_stale": true,
+    "flyer_master": true,
+    "hero_media": true,
+    "operation_roles": true,
+    "quick_master": true,
+    "detail_master": true
+  },
+  "stale": {
+    "official": [],
+    "product": []
+  }
+}

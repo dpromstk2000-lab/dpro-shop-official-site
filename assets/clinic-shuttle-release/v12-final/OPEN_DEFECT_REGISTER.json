@@ -1,0 +1,98 @@
+{
+  "schema_version": "DPRO-PRODUCT-RELEASE-OPEN-DEFECT-REGISTER-R1",
+  "pass": true,
+  "audit_integration": {
+    "prior_audit_defects": "DEF-001..DEF-016",
+    "status": "requirements absorbed into MASTER V1.2 and final gates"
+  },
+  "defects": [
+    {
+      "id": "DEF-016",
+      "severity": "high",
+      "title": "OFFICIAL stale product count",
+      "status": "CLOSED"
+    },
+    {
+      "id": "DEF-017",
+      "severity": "high",
+      "title": "PRODUCT semantic product count",
+      "status": "CLOSED"
+    },
+    {
+      "id": "DEF-018",
+      "severity": "high",
+      "title": "PRODUCT public old count references",
+      "status": "CLOSED"
+    },
+    {
+      "id": "DEF-019",
+      "severity": "high",
+      "title": "OFFICIAL public old count references",
+      "status": "CLOSED"
+    },
+    {
+      "id": "DEF-020",
+      "severity": "high",
+      "title": "Flyer mobile horizontal overflow",
+      "status": "CLOSED"
+    },
+    {
+      "id": "DEF-021",
+      "severity": "high",
+      "title": "Quick Start V1.2 QR/current-screen coverage",
+      "status": "CLOSED"
+    },
+    {
+      "id": "DEF-022",
+      "severity": "high",
+      "title": "Detailed Manual V1.2 screenshot/QR/support coverage",
+      "status": "CLOSED"
+    },
+    {
+      "id": "HA-01",
+      "severity": "medium",
+      "title": "OFFICIAL duplicate section",
+      "status": "CLOSED"
+    },
+    {
+      "id": "HA-02",
+      "severity": "medium",
+      "title": "OFFICIAL excessive vertical spacing",
+      "status": "CLOSED"
+    },
+    {
+      "id": "HA-03",
+      "severity": "medium",
+      "title": "OFFICIAL information density",
+      "status": "CLOSED"
+    },
+    {
+      "id": "HA-04",
+      "severity": "medium",
+      "title": "PRODUCT explanation duplication",
+      "status": "CLOSED"
+    },
+    {
+      "id": "HA-05",
+      "severity": "medium",
+      "title": "PRODUCT LIVE DEMO blank waiting box",
+      "status": "CLOSED"
+    },
+    {
+      "id": "HA-06",
+      "severity": "medium",
+      "title": "Cross-surface role separation",
+      "status": "CLOSED"
+    },
+    {
+      "id": "HA-07",
+      "severity": "high",
+      "title": "OFFICIAL duplicate footer",
+      "status": "CLOSED"
+    }
+  ],
+  "open_blocker": 0,
+  "open_high": 0,
+  "open_medium": 0,
+  "exceptions": []
+}

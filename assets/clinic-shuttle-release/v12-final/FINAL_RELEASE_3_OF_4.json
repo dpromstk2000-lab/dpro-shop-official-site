@@ -1,0 +1,426 @@
+{
+  "stage": "FINAL RELEASE 3/4",
+  "pass": true,
+  "visual": {
+    "schema_version": "DPRO-WEB-VISUAL-QA-R1",
+    "pass": true,
+    "widths": [
+      375,
+      390,
+      430,
+      768,
+      1280,
+      1440
+    ],
+    "surfaces": {
+      "official": {
+        "375": {
+          "pass": true,
+          "hidden": 0,
+          "brokenImages": 0,
+          "horizontalOverflow": false,
+          "consoleErrors": []
+        },
+        "390": {
+          "pass": true,
+          "hidden": 0,
+          "brokenImages": 0,
+          "horizontalOverflow": false,
+          "consoleErrors": []
+        },
+        "430": {
+          "pass": true,
+          "hidden": 0,
+          "brokenImages": 0,
+          "horizontalOverflow": false,
+          "consoleErrors": []
+        },
+        "768": {
+          "pass": true,
+          "hidden": 0,
+          "brokenImages": 0,
+          "horizontalOverflow": false,
+          "consoleErrors": []
+        },
+        "1280": {
+          "pass": true,
+          "hidden": 0,
+          "brokenImages": 0,
+          "horizontalOverflow": false,
+          "consoleErrors": []
+        },
+        "1440": {
+          "pass": true,
+          "hidden": 0,
+          "brokenImages": 0,
+          "horizontalOverflow": false,
+          "consoleErrors": [
+            "Loading the image 'https://www.googletagmanager.com/a?id=G-YPN3998BHG&v=3&t=t&pid=1643153656&gtm=45je69h0h2v9101889557za200zd9101889557xf1&cv=1&rv=69h0&tc=16&x=2&tag_exp=115616985~115938465~115938469~118897920~118897930~120213116~120385423~120469145~120469153&es=1&e=gtm.init&eid=2&u=AAAAAAAAAAAAAACA&h=Ag&tr=1ogtautoevents.1ogt1pdatav2.1ccdgafirst.1setproductsettings.1ccdgaregscope.1ccdemdownload.1ccdemform.1ccdemoutboundclick.1ccdempageview.1ccdemscroll.1ccdemsitesearch.1ccdemvideo.1ccdconversionmarking.1ccdgalast&ti=2ogtautoevents.2ogt1pdatav2.2ccdgafirst.2setproductsettings.2ccdgaregscope.2ccdemdownload.2ccdemform.2ccdemoutboundclick.2ccdempageview.2ccdemscroll.2ccdemsitesearch.2ccdemvideo.2ccdconversionmarking.2ccdgalast&z=0' violates the following Content Security Policy directive: \"img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.google.com https://*.google.com https://www.google.co.jp https://*.google.co.jp https://stats.g.doubleclick.net https://*.doubleclick.net\". The action has been blocked.",
+            "Loading the image 'https://www.googletagmanager.com/a?id=G-YPN3998BHG&v=3&t=t&pid=1643153656&gtm=45je69h0h2v9101889557za200zd9101889557xf1&cv=1&rv=69h0&tc=16&x=2&tag_exp=115616985~115938465~115938469~118897920~118897930~120213116~120385423~120469145~120469153&es=1&e=gtm.js&eid=3&u=AAAAAAAAAAAAAACA&h=Ag&tr=1gct&ti=2gct&z=0' violates the following Content Security Policy directive: \"img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.google.com https://*.google.com https://www.google.co.jp https://*.google.co.jp https://stats.g.doubleclick.net https://*.doubleclick.net\". The action has been blocked.",
+            "Loading the image 'https://www.googletagmanager.com/a?id=G-YPN3998BHG&v=3&t=t&pid=1643153656&gtm=45je69h0h2v9101889557za200zd9101889557xf1&cv=1&rv=69h0&tc=16&x=2&tag_exp=115616985~115938465~115938469~118897920~118897930~120213116~120385423~120469145~120469153&es=1&e=gtag.config&eid=11&u=AAAAAAAAAAAAACCA&h=Ag&epr=1G.2G&z=0' violates the following Content Security Policy directive: \"img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.google.com https://*.google.com https://www.google.co.jp https://*.google.co.jp https://stats.g.doubleclick.net https://*.doubleclick.net\". The action has been blocked.",
+            "Loading the image 'https://www.googletagmanager.com/a?id=G-YPN3998BHG&v=3&t=t&pid=1643153656&gtm=45je69h0h2v9101889557za200zd9101889557xf1&cv=1&rv=69h0&tc=16&x=2&tag_exp=115616985~115938465~115938469~118897920~118897930~120213116~120385423~120469145~120469153&es=1&e=gtm.dom&eid=12&u=AAAAAAAAAAAAACCA&h=Ag&z=0' violates the following Content Security Policy directive: \"img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.google.com https://*.google.com https://www.google.co.jp https://*.google.co.jp https://stats.g.doubleclick.net https://*.doubleclick.net\". The action has been blocked.",
+            "Loading the image 'https://www.googletagmanager.com/a?id=G-YPN3998BHG&v=3&t=t&pid=1643153656&gtm=45je69h0h2v9101889557za200zd9101889557xf1&cv=1&rv=69h0&tc=16&x=2&tag_exp=115616985~115938465~115938469~118897920~118897930~120213116~120385423~120469145~120469153&e=gtm.init&eid=2&u=AAAAAAAAAAAAACCA&h=Ag&tr=5ogtautoevents.5ogt1pdatav2.5ccdgafirst.5setproductsettings.5ccdgaregscope.5ccdemdownload.5ccdemform.5ccdemoutboundclick.5ccdempageview.5ccdemscroll.5ccdemsitesearch.5ccdemvideo.5ccdconversionmarking.5ccdgalast&ti=2ogtautoevents.2ogt1pdatav2.2ccdgafirst.2setproductsettings.2ccdgaregscope.2ccdemdownload.2ccdemform.2ccdemoutboundclick.2ccdempageview.2ccdemscroll.2ccdemsitesearch.2ccdemvideo.2ccdconversionmarking.2ccdgalast&z=0' violates the following Content Security Policy directive: \"img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.google.com https://*.google.com https://www.google.co.jp https://*.google.co.jp https://stats.g.doubleclick.net https://*.doubleclick.net\". The action has been blocked.",
+            "Loading the image 'https://www.googletagmanager.com/a?id=G-YPN3998BHG&v=3&t=t&pid=1643153656&gtm=45je69h0h2v9101889557za200zd9101889557xf1&cv=1&rv=69h0&tc=16&x=2&tag_exp=115616985~115938465~115938469~118897920~118897930~120213116~120385423~120469145~120469153&es=1&e=*&eid=14&u=AgAAAAAAAAAAACCA&h=Ag&epr=1G.2G&z=0' violates the following Content Security Policy directive: \"img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.google.com https://*.google.com https://www.google.co.jp https://*.google.co.jp https://stats.g.doubleclick.net https://*.doubleclick.net\". The action has been blocked."
+          ]
+        }
+      },
+      "product": {
+        "375": {
+          "pass": true,
+          "hidden": 0,
+          "brokenImages": 0,
+          "horizontalOverflow": false,
+          "consoleErrors": []
+        },
+        "390": {
+          "pass": true,
+          "hidden": 0,
+          "brokenImages": 0,
+          "horizontalOverflow": false,
+          "consoleErrors": []
+        },
+        "430": {
+          "pass": true,
+          "hidden": 0,
+          "brokenImages": 0,
+          "horizontalOverflow": false,
+          "consoleErrors": []
+        },
+        "768": {
+          "pass": true,
+          "hidden": 0,
+          "brokenImages": 0,
+          "horizontalOverflow": false,
+          "consoleErrors": []
+        },
+        "1280": {
+          "pass": true,
+          "hidden": 0,
+          "brokenImages": 0,
+          "horizontalOverflow": false,
+          "consoleErrors": []
+        },
+        "1440": {
+          "pass": true,
+          "hidden": 0,
+          "brokenImages": 0,
+          "horizontalOverflow": false,
+          "consoleErrors": []
+        }
+      },
+      "lp": {
+        "375": {
+          "pass": true,
+          "hidden": 0,
+          "brokenImages": 0,
+          "horizontalOverflow": false,
+          "consoleErrors": []
+        },
+        "390": {
+          "pass": true,
+          "hidden": 0,
+          "brokenImages": 0,
+          "horizontalOverflow": false,
+          "consoleErrors": []
+        },
+        "430": {
+          "pass": true,
+          "hidden": 0,
+          "brokenImages": 0,
+          "horizontalOverflow": false,
+          "consoleErrors": []
+        },
+        "768": {
+          "pass": true,
+          "hidden": 0,
+          "brokenImages": 0,
+          "horizontalOverflow": false,
+          "consoleErrors": []
+        },
+        "1280": {
+          "pass": true,
+          "hidden": 0,
+          "brokenImages": 0,
+          "horizontalOverflow": false,
+          "consoleErrors": []
+        },
+        "1440": {
+          "pass": true,
+          "hidden": 0,
+          "brokenImages": 0,
+          "horizontalOverflow": false,
+          "consoleErrors": []
+        }
+      }
+    }
+  },
+  "printPdfQr": {
+    "schema_version": "DPRO-FINAL-PDF-QR-QA-R1",
+    "pass": true,
+    "documents": [
+      {
+        "name": "flyer",
+        "url": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/flyer-clinic-shuttle.pdf",
+        "final_url": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/flyer-clinic-shuttle.pdf",
+        "pass": true,
+        "pages": 1,
+        "a4Portrait": true,
+        "bboxOutOfPage": 0,
+        "renderDpi": 300,
+        "bytes": 2927097,
+        "sha256": "6a9b2ffc8506d206c0408b8d3d0f94c1bedc5d624105348bf704a7e955b7d822",
+        "decodedQr": [
+          "https://dpro-shop.com/",
+          "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/",
+          "https://lin.ee/YxJGXV6D"
+        ],
+        "expectedQr": [
+          "https://dpro-shop.com/",
+          "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/",
+          "https://lin.ee/YxJGXV6D"
+        ],
+        "embeddedImages": 4,
+        "pageEvidence": [
+          {
+            "page": 1,
+            "nonwhitePixels": 3612293,
+            "qr": [
+              "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/",
+              "https://lin.ee/YxJGXV6D",
+              "https://dpro-shop.com/"
+            ],
+            "bboxOutOfPage": 0
+          }
+        ]
+      },
+      {
+        "name": "operation",
+        "url": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/assets/clinic-shuttle-next/DPRO_CLINIC_SHUTTLE_OPERATION_EXPERIENCE_SHEET_V1.0.pdf",
+        "final_url": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/assets/clinic-shuttle-next/DPRO_CLINIC_SHUTTLE_OPERATION_EXPERIENCE_SHEET_V1.0.pdf",
+        "pass": true,
+        "pages": 1,
+        "a4Portrait": true,
+        "bboxOutOfPage": 0,
+        "renderDpi": 300,
+        "bytes": 1327442,
+        "sha256": "1496e151b6a98547ec1e3fb05cbcdeadffb08b9b219017e1f4991ee74895b1c2",
+        "decodedQr": [
+          "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/member.html",
+          "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner-ipad.html",
+          "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner.html",
+          "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/staff.html",
+          "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/clinic-shuttle.html",
+          "https://lin.ee/YxJGXV6D"
+        ],
+        "expectedQr": [
+          "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/member.html",
+          "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner-ipad.html",
+          "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner.html",
+          "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/staff.html",
+          "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/clinic-shuttle.html",
+          "https://lin.ee/YxJGXV6D"
+        ],
+        "embeddedImages": 10,
+        "pageEvidence": [
+          {
+            "page": 1,
+            "nonwhitePixels": 5032770,
+            "qr": [
+              "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/clinic-shuttle.html",
+              "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/member.html",
+              "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner.html",
+              "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner-ipad.html",
+              "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/staff.html",
+              "https://lin.ee/YxJGXV6D"
+            ],
+            "bboxOutOfPage": 0
+          }
+        ]
+      },
+      {
+        "name": "quick",
+        "url": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/DPRO_TUTORIAL_CLINIC_SHUTTLE_QUICK_START_V1.0.pdf",
+        "final_url": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/DPRO_TUTORIAL_CLINIC_SHUTTLE_QUICK_START_V1.0.pdf",
+        "pass": true,
+        "pages": 3,
+        "a4Portrait": true,
+        "bboxOutOfPage": 0,
+        "renderDpi": 300,
+        "bytes": 1360869,
+        "sha256": "85dfa06dfad989e12b1d111035317eccaa3f2c8fa80943763880a4bfa5644479",
+        "decodedQr": [
+          "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/",
+          "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/guide-center.html",
+          "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/system-check.html",
+          "https://lin.ee/YxJGXV6D"
+        ],
+        "expectedQr": [
+          "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/",
+          "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/guide-center.html",
+          "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/system-check.html",
+          "https://lin.ee/YxJGXV6D"
+        ],
+        "embeddedImages": 9,
+        "pageEvidence": [
+          {
+            "page": 1,
+            "nonwhitePixels": 1541946,
+            "qr": [
+              "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/guide-center.html",
+              "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/",
+              "https://lin.ee/YxJGXV6D"
+            ],
+            "bboxOutOfPage": 0
+          },
+          {
+            "page": 2,
+            "nonwhitePixels": 816008,
+            "qr": [],
+            "bboxOutOfPage": 0
+          },
+          {
+            "page": 3,
+            "nonwhitePixels": 1283527,
+            "qr": [
+              "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/system-check.html",
+              "https://lin.ee/YxJGXV6D"
+            ],
+            "bboxOutOfPage": 0
+          }
+        ]
+      },
+      {
+        "name": "detailed",
+        "url": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/DPRO_TUTORIAL_CLINIC_SHUTTLE_DETAILED_MANUAL_V1.0.pdf",
+        "final_url": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/DPRO_TUTORIAL_CLINIC_SHUTTLE_DETAILED_MANUAL_V1.0.pdf",
+        "pass": true,
+        "pages": 9,
+        "a4Portrait": true,
+        "bboxOutOfPage": 0,
+        "renderDpi": 300,
+        "bytes": 1909385,
+        "sha256": "61e5eb9fa56adc21c2e9e61c4cea6afe7187e7c55c416a206a2a9ac5c7633252",
+        "decodedQr": [
+          "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/",
+          "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/guide-center.html",
+          "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/member.html",
+          "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner-ipad.html",
+          "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner.html",
+          "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/staff.html",
+          "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/system-check.html",
+          "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/clinic-shuttle.html",
+          "https://lin.ee/YxJGXV6D"
+        ],
+        "expectedQr": [
+          "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/",
+          "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/guide-center.html",
+          "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/member.html",
+          "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner-ipad.html",
+          "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner.html",
+          "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/staff.html",
+          "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/system-check.html",
+          "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/clinic-shuttle.html",
+          "https://lin.ee/YxJGXV6D"
+        ],
+        "embeddedImages": 19,
+        "pageEvidence": [
+          {
+            "page": 1,
+            "nonwhitePixels": 885147,
+            "qr": [
+              "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/",
+              "https://lin.ee/YxJGXV6D"
+            ],
+            "bboxOutOfPage": 0
+          },
+          {
+            "page": 2,
+            "nonwhitePixels": 1256221,
+            "qr": [
+              "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/member.html"
+            ],
+            "bboxOutOfPage": 0
+          },
+          {
+            "page": 3,
+            "nonwhitePixels": 1159421,
+            "qr": [
+              "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner.html"
+            ],
+            "bboxOutOfPage": 0
+          },
+          {
+            "page": 4,
+            "nonwhitePixels": 1552306,
+            "qr": [],
+            "bboxOutOfPage": 0
+          },
+          {
+            "page": 5,
+            "nonwhitePixels": 1206852,
+            "qr": [
+              "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/staff.html"
+            ],
+            "bboxOutOfPage": 0
+          },
+          {
+            "page": 6,
+            "nonwhitePixels": 1217878,
+            "qr": [
+              "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner-ipad.html"
+            ],
+            "bboxOutOfPage": 0
+          },
+          {
+            "page": 7,
+            "nonwhitePixels": 969119,
+            "qr": [],
+            "bboxOutOfPage": 0
+          },
+          {
+            "page": 8,
+            "nonwhitePixels": 474160,
+            "qr": [
+              "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/system-check.html",
+              "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/guide-center.html"
+            ],
+            "bboxOutOfPage": 0
+          },
+          {
+            "page": 9,
+            "nonwhitePixels": 427763,
+            "qr": [
+              "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/clinic-shuttle.html",
+              "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/guide-center.html",
+              "https://lin.ee/YxJGXV6D"
+            ],
+            "bboxOutOfPage": 0
+          }
+        ]
+      }
+    ]
+  },
+  "humanAcceptance": {
+    "schema_version": "DPRO-PRODUCT-RELEASE-HUMAN-ACCEPTANCE-R1",
+    "pass": true,
+    "approver": "DPRO owner",
+    "approved_at": "2026-09-21T09:11:04+00:00",
+    "approval_source": "Explicit 'HUMAN ACCEPTANCE OK' confirmation in ChatGPT before FINAL RELEASE finalizer execution.",
+    "checks": {
+      "official_visual": true,
+      "product_visual": true,
+      "lp_visual": true,
+      "flyer_visual": true,
+      "mobile_readability": true,
+      "japanese_copy_breaks": true,
+      "hero_media_suitability": true,
+      "dpro_series_consistency": true,
+      "five_minute_sales_journey": true
+    },
+    "notes": [
+      "HA-01..HA-06 corrected before approval.",
+      "HA-07 duplicate OFFICIAL footer corrected and public-QA verified before approval.",
+      "SYSTEM FINAL LOCK remained protected throughout human-acceptance fixes."
+    ]
+  }
+}

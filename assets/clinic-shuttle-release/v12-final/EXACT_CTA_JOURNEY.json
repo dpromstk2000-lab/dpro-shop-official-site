@@ -1,0 +1,107 @@
+{
+  "schema_version": "DPRO-EXACT-CTA-JOURNEY-R1",
+  "pass": true,
+  "traces": [
+    {
+      "name": "official_demo",
+      "page": "https://dpro-shop.com/systems/clinic-shuttle",
+      "selector": "#demo a[href=\"https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/member.html\"]",
+      "expected": "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/member.html",
+      "actual": "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/member.html",
+      "pass": true
+    },
+    {
+      "name": "official_line",
+      "page": "https://dpro-shop.com/systems/clinic-shuttle",
+      "selector": "#pricing a[href=\"https://lin.ee/YxJGXV6D\"]",
+      "expected": "https://lin.ee/YxJGXV6D",
+      "actual": "https://lin.ee/YxJGXV6D",
+      "pass": true
+    },
+    {
+      "name": "official_product_handoff",
+      "page": "https://dpro-shop.com/systems/clinic-shuttle",
+      "selector": ".v33sys-experience-bridge a[href=\"https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/clinic-shuttle.html\"]",
+      "expected": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/clinic-shuttle.html",
+      "actual": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/clinic-shuttle.html",
+      "pass": true
+    },
+    {
+      "name": "product_official",
+      "page": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/clinic-shuttle.html",
+      "selector": ".hero a[href=\"https://dpro-shop.com/systems/clinic-shuttle\"]",
+      "expected": "https://dpro-shop.com/systems/clinic-shuttle",
+      "actual": "https://dpro-shop.com/systems/clinic-shuttle",
+      "pass": true
+    },
+    {
+      "name": "product_demo",
+      "page": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/clinic-shuttle.html",
+      "selector": "#live a[href=\"https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/\"]",
+      "expected": "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/",
+      "actual": "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/",
+      "pass": true
+    },
+    {
+      "name": "product_quick",
+      "page": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/clinic-shuttle.html",
+      "selector": "a[href=\"../DPRO_TUTORIAL_CLINIC_SHUTTLE_QUICK_START_V1.0.pdf\"]",
+      "expected": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/DPRO_TUTORIAL_CLINIC_SHUTTLE_QUICK_START_V1.0.pdf",
+      "actual": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/DPRO_TUTORIAL_CLINIC_SHUTTLE_QUICK_START_V1.0.pdf",
+      "pass": true
+    },
+    {
+      "name": "lp_line",
+      "page": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/lp-clinic-shuttle.html",
+      "selector": ".hero a[href=\"https://lin.ee/YxJGXV6D\"]",
+      "expected": "https://lin.ee/YxJGXV6D",
+      "actual": "https://lin.ee/YxJGXV6D",
+      "pass": true
+    },
+    {
+      "name": "lp_demo",
+      "page": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/lp-clinic-shuttle.html",
+      "selector": ".hero a[href=\"https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/\"]",
+      "expected": "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/",
+      "actual": "https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/",
+      "pass": true
+    },
+    {
+      "name": "lp_product",
+      "page": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/lp-clinic-shuttle.html",
+      "selector": "a[href=\"systems/clinic-shuttle.html\"]",
+      "expected": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/clinic-shuttle.html",
+      "actual": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/clinic-shuttle.html",
+      "pass": true
+    },
+    {
+      "name": "lp_official",
+      "page": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/lp-clinic-shuttle.html",
+      "selector": ".final a[href=\"https://dpro-shop.com/systems/clinic-shuttle\"]",
+      "expected": "https://dpro-shop.com/systems/clinic-shuttle",
+      "actual": "https://dpro-shop.com/systems/clinic-shuttle",
+      "pass": true
+    },
+    {
+      "name": "official_catalog_to_detail",
+      "page": "https://dpro-shop.com/systems/",
+      "expected": "https://dpro-shop.com/systems/clinic-shuttle",
+      "matches": [
+        {
+          "text": "医療・ペット\n診療所送迎予約\n\n送迎予約・電話代理登録・配車・乗降・診療後の帰宅便\n\n公式説明を見る →",
+          "href": "https://dpro-shop.com/systems/clinic-shuttle"
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "product_catalog_to_detail",
+      "page": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems.html",
+      "expected": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/clinic-shuttle.html",
+      "card_code": "CLINIC_SHUTTLE",
+      "card_name": "診療所送迎予約",
+      "actual": "https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/clinic-shuttle.html",
+      "pass": true
+    }
+  ]
+}

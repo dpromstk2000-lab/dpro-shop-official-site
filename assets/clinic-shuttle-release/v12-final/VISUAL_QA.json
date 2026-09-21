@@ -1,0 +1,153 @@
+{
+  "schema_version": "DPRO-WEB-VISUAL-QA-R1",
+  "pass": true,
+  "widths": [
+    375,
+    390,
+    430,
+    768,
+    1280,
+    1440
+  ],
+  "surfaces": {
+    "official": {
+      "375": {
+        "pass": true,
+        "hidden": 0,
+        "brokenImages": 0,
+        "horizontalOverflow": false,
+        "consoleErrors": []
+      },
+      "390": {
+        "pass": true,
+        "hidden": 0,
+        "brokenImages": 0,
+        "horizontalOverflow": false,
+        "consoleErrors": []
+      },
+      "430": {
+        "pass": true,
+        "hidden": 0,
+        "brokenImages": 0,
+        "horizontalOverflow": false,
+        "consoleErrors": []
+      },
+      "768": {
+        "pass": true,
+        "hidden": 0,
+        "brokenImages": 0,
+        "horizontalOverflow": false,
+        "consoleErrors": []
+      },
+      "1280": {
+        "pass": true,
+        "hidden": 0,
+        "brokenImages": 0,
+        "horizontalOverflow": false,
+        "consoleErrors": []
+      },
+      "1440": {
+        "pass": true,
+        "hidden": 0,
+        "brokenImages": 0,
+        "horizontalOverflow": false,
+        "consoleErrors": [
+          "Loading the image 'https://www.googletagmanager.com/a?id=G-YPN3998BHG&v=3&t=t&pid=1643153656&gtm=45je69h0h2v9101889557za200zd9101889557xf1&cv=1&rv=69h0&tc=16&x=2&tag_exp=115616985~115938465~115938469~118897920~118897930~120213116~120385423~120469145~120469153&es=1&e=gtm.init&eid=2&u=AAAAAAAAAAAAAACA&h=Ag&tr=1ogtautoevents.1ogt1pdatav2.1ccdgafirst.1setproductsettings.1ccdgaregscope.1ccdemdownload.1ccdemform.1ccdemoutboundclick.1ccdempageview.1ccdemscroll.1ccdemsitesearch.1ccdemvideo.1ccdconversionmarking.1ccdgalast&ti=2ogtautoevents.2ogt1pdatav2.2ccdgafirst.2setproductsettings.2ccdgaregscope.2ccdemdownload.2ccdemform.2ccdemoutboundclick.2ccdempageview.2ccdemscroll.2ccdemsitesearch.2ccdemvideo.2ccdconversionmarking.2ccdgalast&z=0' violates the following Content Security Policy directive: \"img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.google.com https://*.google.com https://www.google.co.jp https://*.google.co.jp https://stats.g.doubleclick.net https://*.doubleclick.net\". The action has been blocked.",
+          "Loading the image 'https://www.googletagmanager.com/a?id=G-YPN3998BHG&v=3&t=t&pid=1643153656&gtm=45je69h0h2v9101889557za200zd9101889557xf1&cv=1&rv=69h0&tc=16&x=2&tag_exp=115616985~115938465~115938469~118897920~118897930~120213116~120385423~120469145~120469153&es=1&e=gtm.js&eid=3&u=AAAAAAAAAAAAAACA&h=Ag&tr=1gct&ti=2gct&z=0' violates the following Content Security Policy directive: \"img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.google.com https://*.google.com https://www.google.co.jp https://*.google.co.jp https://stats.g.doubleclick.net https://*.doubleclick.net\". The action has been blocked.",
+          "Loading the image 'https://www.googletagmanager.com/a?id=G-YPN3998BHG&v=3&t=t&pid=1643153656&gtm=45je69h0h2v9101889557za200zd9101889557xf1&cv=1&rv=69h0&tc=16&x=2&tag_exp=115616985~115938465~115938469~118897920~118897930~120213116~120385423~120469145~120469153&es=1&e=gtag.config&eid=11&u=AAAAAAAAAAAAACCA&h=Ag&epr=1G.2G&z=0' violates the following Content Security Policy directive: \"img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.google.com https://*.google.com https://www.google.co.jp https://*.google.co.jp https://stats.g.doubleclick.net https://*.doubleclick.net\". The action has been blocked.",
+          "Loading the image 'https://www.googletagmanager.com/a?id=G-YPN3998BHG&v=3&t=t&pid=1643153656&gtm=45je69h0h2v9101889557za200zd9101889557xf1&cv=1&rv=69h0&tc=16&x=2&tag_exp=115616985~115938465~115938469~118897920~118897930~120213116~120385423~120469145~120469153&es=1&e=gtm.dom&eid=12&u=AAAAAAAAAAAAACCA&h=Ag&z=0' violates the following Content Security Policy directive: \"img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.google.com https://*.google.com https://www.google.co.jp https://*.google.co.jp https://stats.g.doubleclick.net https://*.doubleclick.net\". The action has been blocked.",
+          "Loading the image 'https://www.googletagmanager.com/a?id=G-YPN3998BHG&v=3&t=t&pid=1643153656&gtm=45je69h0h2v9101889557za200zd9101889557xf1&cv=1&rv=69h0&tc=16&x=2&tag_exp=115616985~115938465~115938469~118897920~118897930~120213116~120385423~120469145~120469153&e=gtm.init&eid=2&u=AAAAAAAAAAAAACCA&h=Ag&tr=5ogtautoevents.5ogt1pdatav2.5ccdgafirst.5setproductsettings.5ccdgaregscope.5ccdemdownload.5ccdemform.5ccdemoutboundclick.5ccdempageview.5ccdemscroll.5ccdemsitesearch.5ccdemvideo.5ccdconversionmarking.5ccdgalast&ti=2ogtautoevents.2ogt1pdatav2.2ccdgafirst.2setproductsettings.2ccdgaregscope.2ccdemdownload.2ccdemform.2ccdemoutboundclick.2ccdempageview.2ccdemscroll.2ccdemsitesearch.2ccdemvideo.2ccdconversionmarking.2ccdgalast&z=0' violates the following Content Security Policy directive: \"img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.google.com https://*.google.com https://www.google.co.jp https://*.google.co.jp https://stats.g.doubleclick.net https://*.doubleclick.net\". The action has been blocked.",
+          "Loading the image 'https://www.googletagmanager.com/a?id=G-YPN3998BHG&v=3&t=t&pid=1643153656&gtm=45je69h0h2v9101889557za200zd9101889557xf1&cv=1&rv=69h0&tc=16&x=2&tag_exp=115616985~115938465~115938469~118897920~118897930~120213116~120385423~120469145~120469153&es=1&e=*&eid=14&u=AgAAAAAAAAAAACCA&h=Ag&epr=1G.2G&z=0' violates the following Content Security Policy directive: \"img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.google.com https://*.google.com https://www.google.co.jp https://*.google.co.jp https://stats.g.doubleclick.net https://*.doubleclick.net\". The action has been blocked."
+        ]
+      }
+    },
+    "product": {
+      "375": {
+        "pass": true,
+        "hidden": 0,
+        "brokenImages": 0,
+        "horizontalOverflow": false,
+        "consoleErrors": []
+      },
+      "390": {
+        "pass": true,
+        "hidden": 0,
+        "brokenImages": 0,
+        "horizontalOverflow": false,
+        "consoleErrors": []
+      },
+      "430": {
+        "pass": true,
+        "hidden": 0,
+        "brokenImages": 0,
+        "horizontalOverflow": false,
+        "consoleErrors": []
+      },
+      "768": {
+        "pass": true,
+        "hidden": 0,
+        "brokenImages": 0,
+        "horizontalOverflow": false,
+        "consoleErrors": []
+      },
+      "1280": {
+        "pass": true,
+        "hidden": 0,
+        "brokenImages": 0,
+        "horizontalOverflow": false,
+        "consoleErrors": []
+      },
+      "1440": {
+        "pass": true,
+        "hidden": 0,
+        "brokenImages": 0,
+        "horizontalOverflow": false,
+        "consoleErrors": []
+      }
+    },
+    "lp": {
+      "375": {
+        "pass": true,
+        "hidden": 0,
+        "brokenImages": 0,
+        "horizontalOverflow": false,
+        "consoleErrors": []
+      },
+      "390": {
+        "pass": true,
+        "hidden": 0,
+        "brokenImages": 0,
+        "horizontalOverflow": false,
+        "consoleErrors": []
+      },
+      "430": {
+        "pass": true,
+        "hidden": 0,
+        "brokenImages": 0,
+        "horizontalOverflow": false,
+        "consoleErrors": []
+      },
+      "768": {
+        "pass": true,
+        "hidden": 0,
+        "brokenImages": 0,
+        "horizontalOverflow": false,
+        "consoleErrors": []
+      },
+      "1280": {
+        "pass": true,
+        "hidden": 0,
+        "brokenImages": 0,
+        "horizontalOverflow": false,
+        "consoleErrors": []
+      },
+      "1440": {
+        "pass": true,
+        "hidden": 0,
+        "brokenImages": 0,
+        "horizontalOverflow": false,
+        "consoleErrors": []
+      }
+    }
+  }
+}
