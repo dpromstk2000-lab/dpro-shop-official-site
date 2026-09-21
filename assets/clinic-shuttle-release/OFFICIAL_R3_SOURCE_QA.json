@@ -1,0 +1,22 @@
+{
+  "stage": "REL-03_OFFICIAL_R3_SOURCE_QA",
+  "pass": true,
+  "screens": {
+    "owner.png": {
+      "bytes": 523176,
+      "sha256": "7e6fd25b5962866254a470995c8be9a7dc871b5142885dcb1b5a853a96001ca5"
+    },
+    "member.png": {
+      "bytes": 148826,
+      "sha256": "3870923e220ceda569365361ccf559f5a1243e35346eca03d542508ca53c9752"
+    },
+    "ipad.png": {
+      "bytes": 446305,
+      "sha256": "07b6a5359817e86770907ae44b743049102e9dae967d8233bb7f12bee33d6d9a"
+    },
+    "staff.png": {
+      "bytes": 365053,
+      "sha256": "7cb3672a77f842a9c6cf6af1cc7f03a80ca7c9181deafcdbf60eb931c52e08b5"
+    }
+  }
+}
