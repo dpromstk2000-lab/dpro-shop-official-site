@@ -1,0 +1,8 @@
+{
+  "stage": "R5_VISIBILITY_HOTFIX_SOURCE",
+  "pass": true,
+  "cause": "styles.css hides .js .reveal but systems.js has no reveal activation for this page",
+  "fix": "clinic-shuttle scoped reveal fail-safe: opacity 1 / transform none / transition none",
+  "systemFinalLock": "3fc09f4b5c6781d6038dc280de5c58752ce60b51",
+  "productHead": "7bfb6ae44e53aeb470664aeec2991752ae5c3cbc"
+}

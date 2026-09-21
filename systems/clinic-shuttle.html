@@ -41,6 +41,15 @@
 .clinic-docs a{display:block;padding:18px;border-radius:16px;background:#fff;border:1px solid #dce5ea;text-decoration:none;color:#102033;font-weight:900}
 @media(max-width:820px){.clinic-real,.clinic-scope{grid-template-columns:1fr}.clinic-screen-grid{grid-template-columns:1fr 1fr}.clinic-docs{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.clinic-screen-grid,.clinic-docs{grid-template-columns:1fr}}
+
+/* DPRO CLINIC SHUTTLE R5 — visibility fail-safe.
+   This page must remain fully readable even when no reveal observer is installed. */
+.clinic-shuttle-product-page .reveal{
+  opacity:1 !important;
+  transform:none !important;
+  transition:none !important;
+}
+
 </style>
 <script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://dpro-shop.com/systems/clinic-shuttle#webpage","url":"https://dpro-shop.com/systems/clinic-shuttle","name":"DPRO 診療所送迎予約｜通院送迎・配車・家族連絡","description":"診療所の通院送迎を、予約・変更・配車・乗降・診療後の帰宅便まで同じ送迎情報でつなぐDPROシステム。","inLanguage":"ja","dateModified":"2026-09-21"},{"@type":"SoftwareApplication","@id":"https://dpro-shop.com/systems/clinic-shuttle#software","name":"DPRO 診療所送迎予約","applicationCategory":"BusinessApplication","operatingSystem":"Web browser / LINE","url":"https://dpro-shop.com/systems/clinic-shuttle","offers":[{"@type":"Offer","name":"DPROシステム構築","price":"33000","priceCurrency":"JPY"},{"@type":"Offer","name":"DPROシステム利用・基本保守","price":"1100","priceCurrency":"JPY"}]}]}</script>
