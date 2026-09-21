@@ -1,0 +1,129 @@
+name: DPRO Clinic Shuttle V1.2 Final Release Lock R2
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/clinic-shuttle-v12-finalizer-r2.yml"
+      - ".github/workflows/clinic-shuttle-v12-finalizer-r2.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: dpro-clinic-shuttle-v12-final-release-lock-r2
+  cancel-in-progress: false
+
+jobs:
+  final-release-lock:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+
+    steps:
+      - name: Checkout OFFICIAL
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 30
+
+      - name: Guard R2 parent and accepted release heads
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          test "$(git rev-parse HEAD^)" = "b03e7ca75dbc3bcfe48e2dbfb6daf7ab98bf3c78" || {
+            echo "OFFICIAL drift before FINALIZER R2"; exit 1;
+          }
+
+          test -f .github/workflows/clinic-shuttle-v12-finalizer-r1.py || {
+            echo "R1 finalizer source missing"; exit 1;
+          }
+
+          SYSTEM_HEAD="$(git ls-remote https://github.com/dpromstk2000-lab/dpro-clinic-shuttle-line.git refs/heads/main | awk '{print $1}')"
+          test "$SYSTEM_HEAD" = "3fc09f4b5c6781d6038dc280de5c58752ce60b51" || {
+            echo "SYSTEM FINAL LOCK drift: $SYSTEM_HEAD"; exit 1;
+          }
+
+          PRODUCT_HEAD="$(git ls-remote https://github.com/dpromstk2000-lab/dpro-line-systems-site.git refs/heads/main | awk '{print $1}')"
+          test "$PRODUCT_HEAD" = "a1fc0ee49518d1deb71990df8a4c31624225ccbe" || {
+            echo "PRODUCT drift after HUMAN ACCEPTANCE: $PRODUCT_HEAD"; exit 1;
+          }
+
+          git fetch origin ff6f4d672fce7c91aac6889e5f0378e7c3c23850 --depth=1
+          git diff --quiet ff6f4d672fce7c91aac6889e5f0378e7c3c23850 HEAD^ -- \
+            systems/clinic-shuttle.html systems/systems.js systems/systems.css 404.html sitemap.xml || {
+              echo "OFFICIAL release-critical drift after HUMAN ACCEPTANCE"; exit 1;
+            }
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install FINAL RELEASE QA
+        run: |
+          python -m pip install --upgrade pip
+          pip install playwright pymupdf numpy opencv-python-headless zxing-cpp pillow
+          python -m playwright install --with-deps chromium
+
+      - name: Patch R1 finalizer to authenticated R2 runtime
+        run: python .github/workflows/clinic-shuttle-v12-finalizer-r2.py
+
+      - name: Checkout PRODUCT at accepted HEAD
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/dpro-line-systems-site
+          git clone --quiet https://github.com/dpromstk2000-lab/dpro-line-systems-site.git /tmp/dpro-line-systems-site
+          cd /tmp/dpro-line-systems-site
+          git checkout --quiet a1fc0ee49518d1deb71990df8a4c31624225ccbe
+          test "$(git rev-parse HEAD)" = "a1fc0ee49518d1deb71990df8a4c31624225ccbe"
+
+      - name: FINAL RELEASE 1 of 4 through 3 of 4
+        run: python /tmp/clinic-shuttle-v12-finalizer-r2-runtime.py audit
+
+      - name: Commit release candidate evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/clinic-shuttle-release/v12-final
+          git commit -m "Record clinic shuttle V1.2 final release candidate evidence"
+          CANDIDATE_HEAD="$(git rev-parse HEAD)"
+          echo "CANDIDATE_HEAD=$CANDIDATE_HEAD" >> "$GITHUB_ENV"
+          git push origin main
+
+      - name: FINAL RELEASE 4 of 4 and authorize PRODUCT RELEASE LOCK
+        run: python /tmp/clinic-shuttle-v12-finalizer-r2-runtime.py finalize_prelock
+
+      - name: Commit PRODUCT RELEASE LOCK and remove one-shot finalizers
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add assets/clinic-shuttle-release/v12-final
+          git rm -f \
+            .github/workflows/clinic-shuttle-v12-finalizer-r1.yml \
+            .github/workflows/clinic-shuttle-v12-finalizer-r1.py \
+            .github/workflows/clinic-shuttle-v12-finalizer-r2.yml \
+            .github/workflows/clinic-shuttle-v12-finalizer-r2.py
+          git commit -m "PRODUCT RELEASE LOCK DPRO clinic shuttle V1.2"
+          LOCK_HEAD="$(git rev-parse HEAD)"
+          echo "LOCK_HEAD=$LOCK_HEAD" >> "$GITHUB_ENV"
+          git push origin main
+
+      - name: Verify post-lock Pages and build RETURN R2 ZIP
+        run: python /tmp/clinic-shuttle-v12-finalizer-r2-runtime.py build_return
+
+      - name: Upload PRODUCT RELEASE COMPLETE RETURN R2
+        uses: actions/upload-artifact@v4
+        with:
+          name: DPRO_CLINIC_SHUTTLE_PRODUCT_RELEASE_COMPLETE_RETURN_R2_V12_20260921
+          path: |
+            /tmp/DPRO_CLINIC_SHUTTLE_PRODUCT_RELEASE_COMPLETE_RETURN_R2_V12_20260921.zip
+            /tmp/clinic-shuttle-return/
+          if-no-files-found: error
+          retention-days: 90
