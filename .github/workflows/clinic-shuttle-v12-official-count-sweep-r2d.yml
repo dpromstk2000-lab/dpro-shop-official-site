@@ -1,0 +1,90 @@
+name: DPRO Clinic Shuttle V1.2 Official Count Sweep R2D
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/clinic-shuttle-v12-official-count-sweep-r2d.yml"
+      - ".github/workflows/clinic-shuttle-v12-official-count-sweep-r2d.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dpro-clinic-shuttle-v12-official-count-sweep-r2d
+  cancel-in-progress: false
+
+jobs:
+  official-count-sweep:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - name: Checkout OFFICIAL
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 8
+
+      - name: Guard OFFICIAL parent and external HEADs
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD^)" = "6a6f20509503570d302712a46def5fbbca9ef314" || {
+            echo "OFFICIAL drift before R2C"; exit 1;
+          }
+          SYSTEM_HEAD="$(git ls-remote https://github.com/dpromstk2000-lab/dpro-clinic-shuttle-line.git refs/heads/main | awk '{print $1}')"
+          test "$SYSTEM_HEAD" = "3fc09f4b5c6781d6038dc280de5c58752ce60b51" || {
+            echo "SYSTEM FINAL LOCK drift: $SYSTEM_HEAD"; exit 1;
+          }
+          PRODUCT_HEAD="$(git ls-remote https://github.com/dpromstk2000-lab/dpro-line-systems-site.git refs/heads/main | awk '{print $1}')"
+          test "$PRODUCT_HEAD" = "3a09e8b8843f105e5ea5833c58fa36b7ba281127" || {
+            echo "PRODUCT drift: $PRODUCT_HEAD"; exit 1;
+          }
+          CONTROL_HEAD="$(git ls-remote https://github.com/dpromstk2000-lab/dpro-shop-control-center.git refs/heads/main | awk '{print $1}')"
+          test -n "$CONTROL_HEAD" || { echo "CONTROL CENTER HEAD unavailable"; exit 1; }
+          echo "CONTROL CENTER observed HEAD: $CONTROL_HEAD (non-blocking unless product-release evidence later proves conflict)"
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Preserve runner
+        run: cp .github/workflows/clinic-shuttle-v12-official-count-sweep-r2d.py /tmp/clinic-shuttle-v12-r2c.py
+
+      - name: Sweep OFFICIAL public count facts to 55
+        run: python /tmp/clinic-shuttle-v12-r2c.py patch
+
+      - name: Commit count sweep and remove stale one-shot workflows
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A -- '*.html' '*.js' '*.css' '*.xml'
+          git rm -f \
+            .github/workflows/clinic-shuttle-v12-brushup-b1-b4-r1.yml \
+            .github/workflows/clinic-shuttle-v12-brushup-b1-b4-r1.py \
+            .github/workflows/clinic-shuttle-v12-brushup-b1-b4-r2.yml \
+            .github/workflows/clinic-shuttle-v12-brushup-b1-b4-r2.py \
+            .github/workflows/clinic-shuttle-v12-brushup-b1-b4-r3.yml \
+            .github/workflows/clinic-shuttle-v12-brushup-b1-b4-r3.py \
+            .github/workflows/clinic-shuttle-v12-official-count-sweep-r2c.yml \
+            .github/workflows/clinic-shuttle-v12-official-count-sweep-r2c.py \
+            .github/workflows/clinic-shuttle-v12-official-count-sweep-r2d.yml \
+            .github/workflows/clinic-shuttle-v12-official-count-sweep-r2d.py
+          git commit -m "Normalize OFFICIAL public count facts to 55"
+          FINAL_HEAD="$(git rev-parse HEAD)"
+          echo "FINAL_OFFICIAL_HEAD=$FINAL_HEAD" >> "$GITHUB_ENV"
+          git push origin main
+
+      - name: Verify OFFICIAL Pages and public 55 facts
+        run: python /tmp/clinic-shuttle-v12-r2c.py publicqa
+
+      - name: Upload R2C evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: clinic-shuttle-v12-official-count-sweep-r2d-evidence
+          path: release-evidence-v12/
+          if-no-files-found: error
+          retention-days: 30
