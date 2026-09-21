@@ -39,6 +39,35 @@
 .clinic-scope .no{background:#fff7f7;border-color:#efcfcf}
 .clinic-docs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
 .clinic-docs a{display:block;padding:18px;border-radius:16px;background:#fff;border:1px solid #dce5ea;text-decoration:none;color:#102033;font-weight:900}
+
+/* CLINIC SHUTTLE HUMAN ACCEPTANCE DENSITY R2 */
+.clinic-shuttle-product-page .section{
+  padding-top:clamp(48px,5.4vw,68px);
+  padding-bottom:clamp(48px,5.4vw,68px);
+}
+.clinic-shuttle-product-page #docs{padding-bottom:38px}
+.clinic-shuttle-product-page #faq{padding-top:38px}
+.clinic-shuttle-product-page .product-live#demo{
+  padding-top:clamp(44px,5vw,62px);
+  padding-bottom:clamp(48px,5vw,66px);
+}
+.clinic-shuttle-product-page .product-section-heading{
+  margin-bottom:clamp(22px,2.8vw,32px);
+}
+.clinic-shuttle-product-page .clinic-docs a{
+  min-height:70px;
+  display:flex;
+  align-items:center;
+}
+@media(max-width:560px){
+  .clinic-shuttle-product-page .section{
+    padding-top:42px;
+    padding-bottom:42px;
+  }
+  .clinic-shuttle-product-page #docs{padding-bottom:30px}
+  .clinic-shuttle-product-page #faq{padding-top:30px}
+}
+
 @media(max-width:820px){.clinic-real,.clinic-scope{grid-template-columns:1fr}.clinic-screen-grid{grid-template-columns:1fr 1fr}.clinic-docs{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.clinic-screen-grid,.clinic-docs{grid-template-columns:1fr}}
 
@@ -77,7 +106,7 @@
 </div>
 <div class="product-hero-stage reveal clinic-real" aria-label="DPRO 診療所送迎予約の実画面">
 <div><div class="product-stage-label"><i></i>DPRO SHOP 製品紹介 / REAL SCREEN</div><img src="../assets/clinic-shuttle-release/screens/owner.png" alt="DPRO 診療所送迎予約 管理・配車PCの実画面"></div>
-<div class="product-stage-tablet"><div class="product-tablet-inner"><small>LIVE DEMO</small><h3>説明画像ではなく、現在の実画面を公開。</h3><p>患者・ご家族、管理・配車PC、iPad、運転員・スタッフの役割別画面を確認できます。</p></div></div>
+
 </div></div></section>
 
 <nav class="product-local-nav" aria-label="ページ内メニュー"><div class="product-local-nav-inner"><a href="#summary" class="is-active">概要</a><a href="#features">主な機能</a><a href="#flow">利用の流れ</a><a href="#roles">画面別</a><a href="#demo">実画面</a><a href="#safety">対象範囲</a><a href="#pricing">料金</a><a href="#docs">資料</a><a href="#faq">FAQ</a></div></nav>
@@ -121,7 +150,7 @@
 </div></div></section>
 
 <section class="section product-live" id="demo"><div class="section-inner">
-<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-light"><span></span>REAL SCREEN DEMO</p><h2>説明画像ではなく、<br>本物の画面を体験。</h2></div><p>公開デモは架空データのみを使用しています。</p></div>
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-light"><span></span>REAL SCREEN DEMO</p><h2>4つの役割画面を、<br>公開デモで確認。</h2></div><p>患者・ご家族、管理・配車PC、iPad、スタッフの現行画面を役割別に開けます。公開デモは架空データのみです。</p></div>
 <div class="product-live-list">
 <article class="product-live-row"><div class="product-live-copy reveal"><span>01 / FAMILY</span><h3>患者・ご家族</h3><p>送迎予定、状況、変更依頼を確認します。</p><div class="product-live-actions"><a class="button button-line" href="https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/member.html" target="_blank" rel="noopener">家族画面を開く</a></div></div></article>
 <article class="product-live-row"><div class="product-live-copy reveal"><span>02 / OWNER</span><h3>管理・配車PC</h3><p>予約、変更依頼、車両、担当、当日運行を確認します。</p><div class="product-live-actions"><a class="button button-line" href="https://dpromstk2000-lab.github.io/dpro-clinic-shuttle-line/owner.html" target="_blank" rel="noopener">管理PCを開く</a></div></div></article>
@@ -144,7 +173,7 @@
 </div></section>
 
 <section class="section" id="docs"><div class="section-inner">
-<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>PRODUCT DOCUMENTS</p><h2>導入前に、<br><em>資料と操作を確認。</em></h2></div><p>PRODUCT SITEにはA4資料、操作体験シート、Quick Start、詳細マニュアルを用意しています。</p></div>
+<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-dark"><span></span>PRODUCT DOCUMENTS</p><h2>導入前の資料を、<br><em>まとめて確認。</em></h2></div><p>A4販売チラシ、操作体験シート、Quick Start、詳細マニュアルをPRODUCT SITEで確認できます。</p></div>
 <div class="clinic-docs">
 <a href="https://dpromstk2000-lab.github.io/dpro-line-systems-site/flyer-clinic-shuttle.pdf" target="_blank" rel="noopener">A4販売チラシ ↗</a>
 <a href="https://dpromstk2000-lab.github.io/dpro-line-systems-site/assets/clinic-shuttle-next/DPRO_CLINIC_SHUTTLE_OPERATION_EXPERIENCE_SHEET_V1.0.pdf" target="_blank" rel="noopener">操作体験シート ↗</a>
@@ -158,12 +187,12 @@
 <div class="product-faq-list">
 <details open><summary>電話で受けた送迎予約も管理できますか？</summary><p>はい。受付側で代理登録し、WEB・LINEからの受付と同じ送迎台帳で確認できます。</p></details>
 <details><summary>診療内容や電子カルテも管理しますか？</summary><p>いいえ。標準範囲は送迎運用です。電子カルテ、診断、検査、薬剤、請求、医療判断は標準範囲外です。</p></details>
-<details><summary>実際の画面を導入前に確認できますか？</summary><p>はい。患者・ご家族、管理・配車PC、iPad、運転員・スタッフの公開LIVE DEMOを確認できます。</p></details>
+
 <details><summary>DPROだけ契約できますか？</summary><p>現在はDPROシステム単体での提供は行っていません。LINE構築・運用契約先向け追加サービスとしてご案内しています。</p></details>
 </div></div></section>
 
 <section class="section product-live"><div class="section-inner"><div class="clinic-real">
-<div class="product-live-copy reveal"><span>PRODUCT 55</span><h2>診療所送迎を、<br>予約から帰宅まで一つに。</h2><p>仕組みと料金はDPRO SHOPで、実画面・資料・操作はPRODUCT SITEで確認できます。</p><div class="product-live-actions"><a class="button button-line" href="https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/clinic-shuttle.html" target="_blank" rel="noopener">PRODUCT SITEで詳しく見る ↗</a><a class="button button-ghost" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで無料相談</a></div></div>
+<div class="product-live-copy reveal"><span>PRODUCT 55</span><h2>現在の送迎運用と、<br>導入後の流れを見比べる。</h2><p>このページでは概要と料金を、PRODUCT SITEでは実画面・資料・操作を確認できます。</p><div class="product-live-actions"><a class="button button-line" href="https://dpromstk2000-lab.github.io/dpro-line-systems-site/systems/clinic-shuttle.html" target="_blank" rel="noopener">PRODUCT SITEで詳しく見る ↗</a><a class="button button-ghost" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで無料相談</a></div></div>
 <img src="../assets/clinic-shuttle-release/screens/ipad.png" alt="DPRO 診療所送迎予約 配車iPadの実画面">
 </div></div></section>
 </main>
