@@ -1,0 +1,148 @@
+name: DPRO GREEN PRODUCT RELEASE V1.2 OFFICIAL APPLY
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/dpro-green-product-release-v1-2-official-apply.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      RELEASE_ID: GREEN-PR-V12-20260925-R1
+      SYSTEM_LOCK_HEAD: 6e359937a28e32380e0c4b2e3cd5ca5fbcbbab59
+      PRODUCT_ASSET_BASE: https://dpromstk2000-lab.github.io/dpro-line-systems-site/assets/green-rental-next/screens
+
+    steps:
+      - name: Checkout OFFICIAL repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Guard SYSTEM FINAL LOCK and OFFICIAL baseline ancestry
+        shell: bash
+        run: |
+          set -euo pipefail
+          remote_system="$(git ls-remote https://github.com/dpromstk2000-lab/dpro-green-rental-line.git refs/heads/main | awk '{print $1}')"
+          test "$remote_system" = "$SYSTEM_LOCK_HEAD"
+          git merge-base --is-ancestor 11b7e6ffba2c079e6e593175b6d7b2f901c89171 HEAD
+          curl -fsSL --retry 5 --retry-delay 3 "https://dpromstk2000-lab.github.io/dpro-line-systems-site/assets/green-rental-next/screens/owner-dashboard.png" -o /tmp/green-owner.png
+          test -s /tmp/green-owner.png
+          echo "SYSTEM FINAL LOCK PROTECTED: $remote_system"
+
+      - name: Apply OFFICIAL V1.2 FACT and CTA contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          path=Path('systems/green-rental.html')
+          s=path.read_text(encoding='utf-8')
+          release='GREEN-PR-V12-20260925-R1'
+          if f'data-release-id="{release}"' not in s:
+              s=s.replace('<body', f'<body data-product-code="GREEN" data-release-id="{release}"',1)
+          s=s.replace('"dateModified":"2026-08-03"','"dateModified":"2026-09-25"')
+
+          replacements={
+            '<a class="nav-cta" href="https://lin.ee/YxJGXV6D"':'<a class="nav-cta" data-product-code="GREEN" data-cta-role="official-nav-line" href="https://lin.ee/YxJGXV6D"',
+            '<button class="green-button green-button-primary" type="button" data-green-demo-src=':'<button class="green-button green-button-primary" data-product-code="GREEN" data-cta-role="official-hero-demo-modal" type="button" data-green-demo-src=',
+            '<a class="green-button green-button-secondary" href="https://dpromstk2000-lab.github.io/dpro-green-rental-line/owner.html?demo=1&view=dashboard&v=GREEN-OFFICIAL-DEMO-R2" target="_blank" rel="noopener" data-demo-link="green-hero">':'<a class="green-button green-button-secondary" data-product-code="GREEN" data-cta-role="official-hero-demo-tab" href="https://dpromstk2000-lab.github.io/dpro-green-rental-line/owner.html?demo=1&view=dashboard&v=GREEN-OFFICIAL-DEMO-R2" target="_blank" rel="noopener" data-demo-link="green-hero">',
+            '<a class="green-button green-button-secondary" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで導入相談</a>':'<a class="green-button green-button-secondary" data-product-code="GREEN" data-cta-role="official-hero-line" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで導入相談</a>',
+            '<a class="green-button green-button-primary" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで無料相談 →</a>':'<a class="green-button green-button-primary" data-product-code="GREEN" data-cta-role="official-final-line" href="https://lin.ee/YxJGXV6D" target="_blank" rel="noopener">LINEで無料相談 →</a>',
+            '<a class="green-button green-button-secondary" href="https://dpromstk2000-lab.github.io/dpro-green-rental-line/owner.html?demo=1&view=dashboard&v=GREEN-OFFICIAL-DEMO-R2" target="_blank" rel="noopener" data-demo-link="green-final">':'<a class="green-button green-button-secondary" data-product-code="GREEN" data-cta-role="official-final-demo" href="https://dpromstk2000-lab.github.io/dpro-green-rental-line/owner.html?demo=1&view=dashboard&v=GREEN-OFFICIAL-DEMO-R2" target="_blank" rel="noopener" data-demo-link="green-final">'
+          }
+          for old,new in replacements.items():
+              if old in s and new not in s:
+                  s=s.replace(old,new,1)
+
+          base='https://dpromstk2000-lab.github.io/dpro-line-systems-site/assets/green-rental-next/screens/'
+          titles={
+            'GREEN管理PCログイン後デモ':('owner-dashboard.png','GREEN 管理PC ダッシュボード実画面'),
+            'GREENお客様マイページログイン後デモ':('member-reports.png','GREEN お客様マイページ実画面'),
+            'GREEN管理iPadログイン後デモ':('owner-ipad.png','GREEN 管理iPad実画面'),
+            '植物・鉢台帳':('owner-assets.png','GREEN 植物・鉢台帳実画面'),
+            '巡回・訪問管理':('owner-visits.png','GREEN 巡回・訪問管理実画面'),
+            'お客様マイページ・作業報告':('member-reports.png','GREEN お客様向け作業報告実画面'),
+            '交換・回収・養生管理':('owner-replacements.png','GREEN 交換・回収・養生管理実画面'),
+            '管理PC・ダッシュボード':('owner-dashboard.png','GREEN 管理PC・ダッシュボード実画面')
+          }
+          def iframe_to_img(m):
+              attrs=m.group(1)
+              tm=re.search(r'title="([^"]+)"',attrs)
+              if not tm or tm.group(1) not in titles:
+                  return m.group(0)
+              title=tm.group(1); fn,alt=titles[title]
+              demo=' data-demo-frame' if 'data-demo-frame' in attrs else ''
+              loading='eager' if 'loading="eager"' in attrs else 'lazy'
+              return f'<img class="green-screen-shot"{demo} src="{base}{fn}" alt="{alt}" loading="{loading}">'
+          s=re.sub(r'<iframe\b([^>]*)></iframe>',iframe_to_img,s,flags=re.I)
+
+          if '.green-screen-shot{' not in s:
+              css='.green-screen-shot{display:block;width:100%;height:100%;object-fit:cover;object-position:top left;background:#f3f7f4}.green-detail-visual>.green-screen-shot{height:auto;min-height:420px;object-fit:cover;object-position:top left}.green-detail-visual.phone>.green-screen-shot{min-height:620px}.green-demo-frame>.green-screen-shot{width:100%;height:100%;object-fit:cover;object-position:top left}\n'
+              s=s.replace('</style>',css+'</style>',1)
+
+          price_note='<div class="green-price-note"><strong>統合運用の月額目安：</strong>LINE運用3,300円＋LINE運用契約店舗向けHP基本保守1,100円＋DPRO利用・基本保守1,100円＝<strong>月額5,500円（税込）</strong>です。各初期制作・構築費は別途です。</div>'
+          if '統合運用の月額目安' not in s:
+              s=s.replace('<div class="green-price-note"><strong>契約条件：</strong>',price_note+'\n<div class="green-price-note"><strong>契約条件：</strong>',1)
+
+          old='if(frame){frame.src=url;frame.title=title}'
+          new="if(frame){const screenBase='https://dpromstk2000-lab.github.io/dpro-line-systems-site/assets/green-rental-next/screens/';const screenFor=(u)=>u.includes('member.html')?'member-reports.png':u.includes('owner-ipad.html')?'owner-ipad.png':u.includes('staff.html')?'staff.png':u.includes('view=assets')?'owner-assets.png':u.includes('view=visits')?'owner-visits.png':u.includes('view=replacements')?'owner-replacements.png':'owner-dashboard.png';if(frame.tagName==='IMG'){frame.src=screenBase+screenFor(url);frame.alt=title+' 実画面'}else{frame.src=url;frame.title=title}}"
+          if old in s:
+              s=s.replace(old,new,1)
+
+          path.write_text(s,encoding='utf-8')
+          PY
+
+      - name: OFFICIAL static QA gates
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          s=Path('systems/green-rental.html').read_text(encoding='utf-8')
+          required=[
+            'GREEN-PR-V12-20260925-R1','data-product-code="GREEN"',
+            'data-cta-role="official-nav-line"','data-cta-role="official-hero-demo-modal"',
+            'data-cta-role="official-hero-line"','data-cta-role="official-final-line"',
+            '33,000','1,100','月額5,500円（税込）',
+            'https://dpro-shop.com/systems/green-rental',
+            'assets/green-rental-next/screens/owner-dashboard.png'
+          ]
+          missing=[x for x in required if x not in s]
+          if missing: raise SystemExit('OFFICIAL QA missing '+repr(missing))
+          if re.search(r'<iframe\b',s,re.I): raise SystemExit('OFFICIAL QA FAIL: initial iframe remains')
+          if '54システム' in s or '54製品' in s: raise SystemExit('OFFICIAL QA FAIL: stale count 54')
+          if '料金、請求、入金、原価、利益、会計は対象外' not in s: raise SystemExit('OFFICIAL QA FAIL: scope-out missing')
+          print('OFFICIAL STATIC QA: PASS')
+          PY
+          git diff --check
+          changed="$(git diff --name-only)"
+          test "$changed" = "systems/green-rental.html"
+
+      - name: Commit OFFICIAL release candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add systems/green-rental.html
+          if git diff --cached --quiet; then
+            echo "No OFFICIAL changes required."
+          else
+            git commit -m "GREEN PRODUCT RELEASE V1.2 official candidate"
+            git push
+          fi
+
+      - name: OFFICIAL apply complete
+        run: |
+          echo "OFFICIAL APPLY: PASS"
+          echo "SYSTEM FINAL LOCK: PROTECTED"
+          echo "NEXT: run HUMAN REVIEW PREP workflow in PRODUCT repository"
