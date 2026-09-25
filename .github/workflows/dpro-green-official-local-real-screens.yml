@@ -1,0 +1,320 @@
+name: DPRO GREEN OFFICIAL LOCAL REAL SCREENS V1.0
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/dpro-green-official-local-real-screens.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  localize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      SYSTEM_LOCK_HEAD: 6e359937a28e32380e0c4b2e3cd5ca5fbcbbab59
+      PRODUCT_SCREEN_BASE: https://dpromstk2000-lab.github.io/dpro-line-systems-site/assets/green-rental-next/screens
+      LOCAL_SCREEN_REVISION: GREEN-SCREEN-R10-LOCAL-R13-20260925
+      OFFICIAL_PUBLICATION_REVISION: GREEN-OFFICIAL-LOCAL-SCREEN-R13-20260925
+      OFFICIAL_URL: https://dpro-shop.com/systems/green-rental
+
+    steps:
+      - name: Checkout OFFICIAL repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Guard SYSTEM FINAL LOCK
+        shell: bash
+        run: |
+          set -euo pipefail
+          system_head="$(git ls-remote https://github.com/dpromstk2000-lab/dpro-green-rental-line.git refs/heads/main | awk '{print $1}')"
+          test "$system_head" = "$SYSTEM_LOCK_HEAD"
+          echo "SYSTEM FINAL LOCK: PASS $system_head"
+
+      - name: Download the seven verified R10 screens into OFFICIAL
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p assets/green-rental-next/screens
+
+          for name in \
+            owner-dashboard.png \
+            owner-assets.png \
+            owner-visits.png \
+            owner-replacements.png \
+            member-reports.png \
+            owner-ipad.png \
+            staff.png
+          do
+            echo "Downloading $name"
+            curl -fsSL --retry 5 --retry-delay 3 \
+              "${PRODUCT_SCREEN_BASE}/${name}?v=GREEN-SCREEN-R10-20260925" \
+              -o "assets/green-rental-next/screens/${name}"
+          done
+
+          python3 - <<'PY'
+          from pathlib import Path
+          import struct, json
+
+          names=[
+              'owner-dashboard.png',
+              'owner-assets.png',
+              'owner-visits.png',
+              'owner-replacements.png',
+              'member-reports.png',
+              'owner-ipad.png',
+              'staff.png',
+          ]
+          evidence={}
+          root=Path('assets/green-rental-next/screens')
+          for name in names:
+              p=root/name
+              b=p.read_bytes()
+              if b[:8] != b'\x89PNG\r\n\x1a\n':
+                  raise SystemExit(f'not PNG: {name}')
+              width,height=struct.unpack('>II',b[16:24])
+              if width < 900 or height < 600 or len(b) < 50000:
+                  raise SystemExit(f'invalid screen {name}: {width}x{height}, {len(b)} bytes')
+              evidence[name]={'width':width,'height':height,'bytes':len(b)}
+          (root/'OFFICIAL_LOCAL_SCREEN_EVIDENCE.json').write_text(
+              json.dumps({
+                  'schema':'DPRO-GREEN-OFFICIAL-LOCAL-SCREEN-EVIDENCE-R1',
+                  'source_revision':'GREEN-SCREEN-R10-20260925',
+                  'pass':True,
+                  'screens':evidence
+              },ensure_ascii=False,indent=2)+'\n',
+              encoding='utf-8'
+          )
+          print(json.dumps(evidence,ensure_ascii=False,indent=2))
+          PY
+
+      - name: Switch OFFICIAL page to same-origin real screens
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          path=Path('systems/green-rental.html')
+          s=path.read_text(encoding='utf-8')
+
+          external='https://dpromstk2000-lab.github.io/dpro-line-systems-site/assets/green-rental-next/screens/'
+          local='/assets/green-rental-next/screens/'
+          rev='GREEN-SCREEN-R10-LOCAL-R13-20260925'
+          marker='GREEN-OFFICIAL-LOCAL-SCREEN-R13-20260925'
+
+          names=[
+              'owner-dashboard.png',
+              'owner-assets.png',
+              'owner-visits.png',
+              'owner-replacements.png',
+              'member-reports.png',
+              'owner-ipad.png',
+              'staff.png',
+          ]
+
+          # Static concrete URLs: external -> same-origin.
+          for name in names:
+              patterns=[
+                  re.escape(external+name)+r'(?:\?v=[A-Za-z0-9._-]+)?',
+                  re.escape(local+name)+r'(?:\?v=[A-Za-z0-9._-]+)?',
+              ]
+              for pat in patterns:
+                  s=re.sub(pat,local+name+'?v='+rev,s)
+
+          # Dynamic demo selector must also use same-origin.
+          s=re.sub(
+              r"const screenBase='[^']*/assets/green-rental-next/screens/';",
+              "const screenBase='/assets/green-rental-next/screens/';",
+              s,
+              count=1
+          )
+          s=re.sub(
+              r"const screenRevision='\?v=[^']+';",
+              "const screenRevision='?v=GREEN-SCREEN-R10-LOCAL-R13-20260925';",
+              s,
+              count=1
+          )
+
+          old_assign="frame.src=screenBase+screenFor(url);"
+          new_assign="frame.src=screenBase+screenFor(url)+screenRevision;"
+          if old_assign in s:
+              s=s.replace(old_assign,new_assign,1)
+          if new_assign not in s:
+              raise SystemExit('dynamic same-origin screen assignment missing')
+
+          # Add publication marker.
+          s=re.sub(r'<!-- GREEN-OFFICIAL-LOCAL-SCREEN-R\d+-20260925 -->\s*','',s)
+          pub=f'<!-- {marker} -->'
+          if pub not in s:
+              m=re.search(r'<body\b[^>]*>',s,re.I)
+              if not m:
+                  raise SystemExit('body tag missing')
+              s=s[:m.end()]+'\n'+pub+s[m.end():]
+
+          # Require all fixed screens used by this page to be same-origin.
+          fixed=[
+              'owner-dashboard.png','owner-assets.png','owner-visits.png',
+              'owner-replacements.png','member-reports.png','owner-ipad.png'
+          ]
+          for name in fixed:
+              if local+name+'?v='+rev not in s:
+                  raise SystemExit(f'local fixed screen missing: {name}')
+
+          if external in s:
+              raise SystemExit('external GREEN screenshot origin still present in OFFICIAL page')
+          if "u.includes('staff.html')?'staff.png'" not in s:
+              raise SystemExit('dynamic staff mapping missing')
+
+          path.write_text(s,encoding='utf-8')
+          PY
+
+          # Restore CSP to the narrower original policy; local screens need only 'self'.
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          p=Path('_headers')
+          s=p.read_text(encoding='utf-8')
+          s=re.sub(
+              r"(img-src\s+)(.*?)(;\s*font-src)",
+              lambda m: m.group(1)+' '.join(
+                  x for x in m.group(2).split()
+                  if x != 'https://dpromstk2000-lab.github.io'
+              )+m.group(3),
+              s,
+              count=1,
+              flags=re.S
+          )
+          p.write_text(s,encoding='utf-8')
+          PY
+
+          git diff -- systems/green-rental.html _headers assets/green-rental-next/screens/
+
+      - name: Verify source before commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import re, json
+
+          s=Path('systems/green-rental.html').read_text(encoding='utf-8')
+          assert 'GREEN-OFFICIAL-LOCAL-SCREEN-R13-20260925' in s
+          assert "const screenBase='/assets/green-rental-next/screens/';" in s
+          assert "const screenRevision='?v=GREEN-SCREEN-R10-LOCAL-R13-20260925';" in s
+          assert 'https://dpromstk2000-lab.github.io/dpro-line-systems-site/assets/green-rental-next/screens/' not in s
+
+          evidence=json.loads(Path('assets/green-rental-next/screens/OFFICIAL_LOCAL_SCREEN_EVIDENCE.json').read_text(encoding='utf-8'))
+          assert evidence['pass'] is True
+          assert len(evidence['screens']) == 7
+
+          h=Path('_headers').read_text(encoding='utf-8')
+          m=re.search(r"img-src\s+(.*?);\s*font-src",h,re.S)
+          assert m
+          vals=m.group(1).split()
+          assert "'self'" in vals
+          assert 'https://dpromstk2000-lab.github.io' not in vals
+
+          print('OFFICIAL SAME-ORIGIN SOURCE QA: PASS')
+          PY
+
+      - name: Commit same-origin real screens
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "DPRO GREEN Product Release"
+          git config user.email "actions@users.noreply.github.com"
+          git add systems/green-rental.html _headers assets/green-rental-next/screens/
+          if git diff --cached --quiet; then
+            echo "Same-origin screen package already current."
+          else
+            git commit -m "GREEN serve verified real screens from official origin"
+            git push origin HEAD:main
+          fi
+
+      - name: Wait for custom-domain R13 publication
+        shell: bash
+        run: |
+          set -euo pipefail
+          ok=0
+          for i in $(seq 1 90); do
+            body="$(curl -fsSL --max-time 20 \
+              -H 'Cache-Control: no-cache' \
+              "${OFFICIAL_URL}?r13=${i}" || true)"
+            if [[ "$body" == *"GREEN-OFFICIAL-LOCAL-SCREEN-R13-20260925"* ]]; then
+              ok=1
+              echo "CUSTOM DOMAIN R13 PUBLICATION: PASS ($i/90)"
+              break
+            fi
+            echo "R13 not public yet ($i/90)"
+            sleep 10
+          done
+          test "$ok" = "1"
+
+      - name: Browser-proof same-origin images actually render
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-audit --no-fund --silent playwright@1.55.0
+          npx playwright install --with-deps chromium >/dev/null
+
+          cat > .dpro-official-local-screen-check.mjs <<'JS'
+          import { chromium } from 'playwright';
+
+          const browser=await chromium.launch({headless:true});
+          const page=await browser.newPage({viewport:{width:1440,height:1100}});
+          const consoleErrors=[];
+          page.on('console',m=>{ if(m.type()==='error') consoleErrors.push(m.text()); });
+
+          const url=process.env.OFFICIAL_URL+'?browserproof=GREEN-R13';
+          const response=await page.goto(url,{waitUntil:'networkidle',timeout:90000});
+          if(!response || !response.ok()) throw new Error(`OFFICIAL HTTP ${response?.status()}`);
+
+          const imgs=await page.locator('img.green-screen-shot').evaluateAll(nodes=>nodes.map(img=>({
+            src:img.currentSrc||img.src,
+            complete:img.complete,
+            naturalWidth:img.naturalWidth,
+            naturalHeight:img.naturalHeight,
+            visible:!!(img.offsetWidth||img.offsetHeight||img.getClientRects().length)
+          })));
+
+          if(imgs.length < 6) throw new Error(`Only ${imgs.length} real-screen images found`);
+
+          const external=imgs.filter(x=>!new URL(x.src).hostname.endsWith('dpro-shop.com'));
+          if(external.length) throw new Error('External screenshot URL remains: '+JSON.stringify(external));
+
+          const bad=imgs.filter(x=>!x.complete || x.naturalWidth<900 || x.naturalHeight<600);
+          if(bad.length) throw new Error('Same-origin screen render failed: '+JSON.stringify(bad));
+
+          const cspErrors=consoleErrors.filter(x=>/refused to load.*image|content security policy|content-security-policy/i.test(x));
+          if(cspErrors.length) throw new Error('CSP errors remain: '+JSON.stringify(cspErrors));
+
+          console.log(JSON.stringify({pass:true,count:imgs.length,images:imgs},null,2));
+          await page.screenshot({path:'official-green-r13-visual-proof.png',fullPage:true});
+          await browser.close();
+          JS
+
+          node .dpro-official-local-screen-check.mjs
+          rm -f .dpro-official-local-screen-check.mjs
+          echo "OFFICIAL SAME-ORIGIN BROWSER QA: PASS"
+
+      - name: Upload R13 visual proof
+        uses: actions/upload-artifact@v4
+        with:
+          name: DPRO_GREEN_OFFICIAL_R13_VISUAL_PROOF
+          path: official-green-r13-visual-proof.png
+          if-no-files-found: error
+
+      - name: Recheck SYSTEM FINAL LOCK
+        shell: bash
+        run: |
+          set -euo pipefail
+          system_head="$(git ls-remote https://github.com/dpromstk2000-lab/dpro-green-rental-line.git refs/heads/main | awk '{print $1}')"
+          test "$system_head" = "$SYSTEM_LOCK_HEAD"
+          echo "SYSTEM FINAL LOCK AFTER SAME-ORIGIN FIX: PASS $system_head"
