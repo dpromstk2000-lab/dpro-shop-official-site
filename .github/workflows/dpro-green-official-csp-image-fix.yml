@@ -1,0 +1,182 @@
+name: DPRO GREEN OFFICIAL CSP IMAGE FIX V1.0
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/dpro-green-official-csp-image-fix.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      SYSTEM_LOCK_HEAD: 6e359937a28e32380e0c4b2e3cd5ca5fbcbbab59
+      IMAGE_ORIGIN: https://dpromstk2000-lab.github.io
+      OFFICIAL_URL: https://dpro-shop.com/systems/green-rental
+      OFFICIAL_REVISION: GREEN-OFFICIAL-SCREEN-R11-20260925
+
+    steps:
+      - name: Checkout OFFICIAL repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Guard SYSTEM FINAL LOCK
+        shell: bash
+        run: |
+          set -euo pipefail
+          system_head="$(git ls-remote https://github.com/dpromstk2000-lab/dpro-green-rental-line.git refs/heads/main | awk '{print $1}')"
+          test "$system_head" = "$SYSTEM_LOCK_HEAD"
+          echo "SYSTEM FINAL LOCK: PASS $system_head"
+
+      - name: Allow exact GREEN screenshot origin in CSP img-src
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          path=Path('_headers')
+          s=path.read_text(encoding='utf-8')
+          host='https://dpromstk2000-lab.github.io'
+
+          m=re.search(r"(img-src\s+)(.*?)(;\s*font-src)",s,re.S)
+          if not m:
+              raise SystemExit('CSP img-src directive not found')
+
+          values=m.group(2).strip().split()
+          if host not in values:
+              values.insert(2 if len(values)>=2 else len(values),host)
+
+          replacement=m.group(1)+' '.join(values)+m.group(3)
+          s=s[:m.start()]+replacement+s[m.end():]
+
+          # Security: allow only the exact required origin, never a wildcard.
+          m2=re.search(r"img-src\s+(.*?);\s*font-src",s,re.S)
+          if not m2:
+              raise SystemExit('updated img-src directive not found')
+          img_values=m2.group(1).split()
+          if host not in img_values:
+              raise SystemExit('required GitHub Pages image origin missing')
+          if '*' in img_values or 'https:' in img_values:
+              raise SystemExit('CSP became too broad')
+
+          path.write_text(s,encoding='utf-8')
+          print('UPDATED img-src:', ' '.join(img_values))
+          PY
+
+          git diff -- _headers
+
+          if git diff --quiet -- _headers; then
+            echo "CSP image origin already allowed."
+          else
+            git config user.name "DPRO GREEN Product Release"
+            git config user.email "actions@users.noreply.github.com"
+            git add _headers
+            git commit -m "GREEN allow real-screen image origin in official CSP"
+            git push origin HEAD:main
+          fi
+
+      - name: Verify source CSP is narrow and correct
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          s=Path('_headers').read_text(encoding='utf-8')
+          m=re.search(r"img-src\s+(.*?);\s*font-src",s,re.S)
+          assert m, 'img-src missing'
+          vals=m.group(1).split()
+          assert 'https://dpromstk2000-lab.github.io' in vals, vals
+          assert '*' not in vals and 'https:' not in vals, vals
+          print('SOURCE CSP QA: PASS')
+          PY
+
+      - name: Wait for Cloudflare custom-domain CSP publication
+        shell: bash
+        run: |
+          set -euo pipefail
+          ok=0
+          for i in $(seq 1 60); do
+            headers="$(curl -sSIL --max-time 20 \
+              -H 'Cache-Control: no-cache' \
+              "${OFFICIAL_URL}?cspcheck=GREEN-R12-${i}" || true)"
+            csp="$(printf '%s\n' "$headers" | tr -d '\r' | grep -i '^content-security-policy:' | tail -1 || true)"
+            echo "CSP CHECK $i/60: ${csp:-NO-CSP}"
+            if printf '%s' "$csp" | grep -Fq "$IMAGE_ORIGIN"; then
+              ok=1
+              break
+            fi
+            sleep 10
+          done
+          test "$ok" = "1"
+          echo "CUSTOM DOMAIN CSP PUBLICATION: PASS"
+
+      - name: Browser-check that OFFICIAL real-screen images actually load
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-audit --no-fund --silent playwright@1.55.0
+          npx playwright install --with-deps chromium >/dev/null
+
+          cat > .dpro-official-image-check.mjs <<'JS'
+          import { chromium } from 'playwright';
+
+          const url=process.env.OFFICIAL_URL+'?visualcheck=GREEN-R12';
+          const browser=await chromium.launch({headless:true});
+          const page=await browser.newPage({viewport:{width:1440,height:1100}});
+          const consoleErrors=[];
+          page.on('console',m=>{ if(m.type()==='error') consoleErrors.push(m.text()); });
+
+          const response=await page.goto(url,{waitUntil:'networkidle',timeout:90000});
+          if(!response || !response.ok()) throw new Error(`OFFICIAL HTTP ${response?.status()}`);
+
+          const marker=await page.locator('body').evaluate(el=>el.outerHTML.includes('GREEN-OFFICIAL-SCREEN-R11-20260925'));
+          if(!marker) throw new Error('OFFICIAL R11 publication marker missing on custom domain');
+
+          const imgs=await page.locator('img.green-screen-shot').evaluateAll(nodes=>nodes.map((img)=>({
+            src:img.currentSrc||img.src,
+            naturalWidth:img.naturalWidth,
+            naturalHeight:img.naturalHeight,
+            complete:img.complete,
+            visible:!!(img.offsetWidth||img.offsetHeight||img.getClientRects().length)
+          })));
+
+          if(imgs.length<6) throw new Error(`Only ${imgs.length} green-screen-shot images found`);
+          const bad=imgs.filter(x=>!x.complete || x.naturalWidth<100 || x.naturalHeight<100);
+          if(bad.length) throw new Error('OFFICIAL real-screen image load failure: '+JSON.stringify(bad));
+
+          const cspErrors=consoleErrors.filter(x=>/content security policy|content-security-policy|refused to load.*image/i.test(x));
+          if(cspErrors.length) throw new Error('CSP image errors remain: '+JSON.stringify(cspErrors));
+
+          console.log(JSON.stringify({pass:true,count:imgs.length,images:imgs},null,2));
+          await page.screenshot({path:'official-green-r12-visual-check.png',fullPage:true});
+          await browser.close();
+          JS
+
+          node .dpro-official-image-check.mjs
+          rm -f .dpro-official-image-check.mjs
+          echo "OFFICIAL REAL-SCREEN BROWSER QA: PASS"
+
+      - name: Upload visual proof
+        uses: actions/upload-artifact@v4
+        with:
+          name: DPRO_GREEN_OFFICIAL_R12_VISUAL_PROOF
+          path: official-green-r12-visual-check.png
+          if-no-files-found: error
+
+      - name: Recheck SYSTEM FINAL LOCK
+        shell: bash
+        run: |
+          set -euo pipefail
+          system_head="$(git ls-remote https://github.com/dpromstk2000-lab/dpro-green-rental-line.git refs/heads/main | awk '{print $1}')"
+          test "$system_head" = "$SYSTEM_LOCK_HEAD"
+          echo "SYSTEM FINAL LOCK AFTER CSP FIX: PASS $system_head"
