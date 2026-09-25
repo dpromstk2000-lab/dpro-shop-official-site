@@ -1,0 +1,216 @@
+name: DPRO GREEN OFFICIAL EAGER REAL SCREENS V1.0
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/dpro-green-official-eager-real-screens.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  eager:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      SYSTEM_LOCK_HEAD: 6e359937a28e32380e0c4b2e3cd5ca5fbcbbab59
+      OFFICIAL_URL: https://dpro-shop.com/systems/green-rental
+      RELEASE_MARKER: GREEN-OFFICIAL-LOCAL-SCREEN-R14-20260925
+
+    steps:
+      - name: Checkout OFFICIAL repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Guard SYSTEM FINAL LOCK
+        shell: bash
+        run: |
+          set -euo pipefail
+          system_head="$(git ls-remote https://github.com/dpromstk2000-lab/dpro-green-rental-line.git refs/heads/main | awk '{print $1}')"
+          test "$system_head" = "$SYSTEM_LOCK_HEAD"
+          echo "SYSTEM FINAL LOCK: PASS $system_head"
+
+      - name: Force GREEN real-screen images to eager load
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          p=Path('systems/green-rental.html')
+          s=p.read_text(encoding='utf-8')
+
+          # Same-origin R13 package must already be present.
+          if '/assets/green-rental-next/screens/' not in s:
+              raise SystemExit('same-origin GREEN screens are not present')
+          if 'https://dpromstk2000-lab.github.io/dpro-line-systems-site/assets/green-rental-next/screens/' in s:
+              raise SystemExit('external screenshot origin unexpectedly remains')
+
+          # Only DPRO GREEN real-screen <img> elements are changed.
+          pattern=r'(<img\b[^>]*class="[^"]*\bgreen-screen-shot\b[^"]*"[^>]*?)\sloading="lazy"([^>]*>)'
+          s,count=re.subn(pattern,r'\1 loading="eager"\2',s)
+          print('lazy -> eager replacements:',count)
+
+          # Dynamic frame already points to same-origin local screens.
+          if "const screenBase='/assets/green-rental-next/screens/';" not in s:
+              raise SystemExit('dynamic local screenBase missing')
+          if "frame.src=screenBase+screenFor(url)+screenRevision;" not in s:
+              raise SystemExit('dynamic local frame assignment missing')
+
+          # Publication marker.
+          s=re.sub(r'<!-- GREEN-OFFICIAL-LOCAL-SCREEN-R14-20260925 -->\s*','',s)
+          marker='<!-- GREEN-OFFICIAL-LOCAL-SCREEN-R14-20260925 -->'
+          if marker not in s:
+              m=re.search(r'<body\b[^>]*>',s,re.I)
+              if not m:
+                  raise SystemExit('body tag missing')
+              s=s[:m.end()]+'\n'+marker+s[m.end():]
+
+          # No GREEN screenshot should remain lazy.
+          tags=re.findall(r'<img\b[^>]*class="[^"]*\bgreen-screen-shot\b[^"]*"[^>]*>',s,re.I)
+          if len(tags) < 6:
+              raise SystemExit(f'only {len(tags)} green-screen-shot tags found')
+          lazy=[t for t in tags if 'loading="lazy"' in t]
+          if lazy:
+              raise SystemExit(f'{len(lazy)} GREEN real-screen tags still lazy')
+
+          p.write_text(s,encoding='utf-8')
+          print('GREEN real-screen tags:',len(tags))
+          PY
+
+          git diff -- systems/green-rental.html
+
+      - name: Verify local files exist before commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import struct
+
+          root=Path('assets/green-rental-next/screens')
+          names=[
+            'owner-dashboard.png',
+            'owner-assets.png',
+            'owner-visits.png',
+            'owner-replacements.png',
+            'member-reports.png',
+            'owner-ipad.png',
+            'staff.png',
+          ]
+          for name in names:
+              p=root/name
+              b=p.read_bytes()
+              assert b[:8] == b'\x89PNG\r\n\x1a\n', name
+              w,h=struct.unpack('>II',b[16:24])
+              assert w>=900 and h>=600 and len(b)>=50000,(name,w,h,len(b))
+          print('LOCAL PNG PACKAGE: PASS')
+          PY
+
+      - name: Commit eager real-screen loading
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "DPRO GREEN Product Release"
+          git config user.email "actions@users.noreply.github.com"
+          git add systems/green-rental.html
+          if git diff --cached --quiet; then
+            echo "GREEN real-screen eager loading already current."
+          else
+            git commit -m "GREEN load official real screens eagerly"
+            git push origin HEAD:main
+          fi
+
+      - name: Wait for R14 custom-domain publication
+        shell: bash
+        run: |
+          set -euo pipefail
+          ok=0
+          for i in $(seq 1 90); do
+            body="$(curl -fsSL --max-time 20 \
+              -H 'Cache-Control: no-cache' \
+              "${OFFICIAL_URL}?r14=${i}" || true)"
+            if [[ "$body" == *"$RELEASE_MARKER"* ]]; then
+              ok=1
+              echo "CUSTOM DOMAIN R14 PUBLICATION: PASS ($i/90)"
+              break
+            fi
+            echo "R14 not public yet ($i/90)"
+            sleep 10
+          done
+          test "$ok" = "1"
+
+      - name: Browser-proof all real screens load without scrolling
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm install --no-audit --no-fund --silent playwright@1.55.0
+          npx playwright install --with-deps chromium >/dev/null
+
+          cat > .dpro-green-r14-browser-proof.mjs <<'JS'
+          import { chromium } from 'playwright';
+
+          const browser=await chromium.launch({headless:true});
+          const page=await browser.newPage({viewport:{width:1440,height:1100}});
+          const errors=[];
+          page.on('console',m=>{ if(m.type()==='error') errors.push(m.text()); });
+
+          const response=await page.goto(
+            process.env.OFFICIAL_URL+'?browserproof=GREEN-R14',
+            {waitUntil:'networkidle',timeout:90000}
+          );
+          if(!response || !response.ok()) throw new Error(`OFFICIAL HTTP ${response?.status()}`);
+
+          await page.waitForFunction(()=>{
+            const imgs=[...document.querySelectorAll('img.green-screen-shot')];
+            return imgs.length>=6 && imgs.every(img=>img.complete && img.naturalWidth>=900 && img.naturalHeight>=600);
+          },null,{timeout:90000});
+
+          const imgs=await page.locator('img.green-screen-shot').evaluateAll(nodes=>nodes.map(img=>({
+            src:img.currentSrc||img.src,
+            loading:img.loading,
+            complete:img.complete,
+            naturalWidth:img.naturalWidth,
+            naturalHeight:img.naturalHeight
+          })));
+
+          const bad=imgs.filter(x=>!x.complete || x.naturalWidth<900 || x.naturalHeight<600);
+          if(bad.length) throw new Error('GREEN real-screen render failure: '+JSON.stringify(bad));
+
+          const lazy=imgs.filter(x=>x.loading==='lazy');
+          if(lazy.length) throw new Error('GREEN real-screen still lazy: '+JSON.stringify(lazy));
+
+          const external=imgs.filter(x=>new URL(x.src).hostname!=='dpro-shop.com');
+          if(external.length) throw new Error('External GREEN screenshot URL remains: '+JSON.stringify(external));
+
+          const csp=errors.filter(x=>/refused to load.*image|content security policy|content-security-policy/i.test(x));
+          if(csp.length) throw new Error('CSP image errors: '+JSON.stringify(csp));
+
+          console.log(JSON.stringify({pass:true,count:imgs.length,images:imgs},null,2));
+          await page.screenshot({path:'official-green-r14-visual-proof.png',fullPage:true});
+          await browser.close();
+          JS
+
+          node .dpro-green-r14-browser-proof.mjs
+          rm -f .dpro-green-r14-browser-proof.mjs
+          echo "OFFICIAL R14 REAL-SCREEN BROWSER QA: PASS"
+
+      - name: Upload R14 visual proof
+        uses: actions/upload-artifact@v4
+        with:
+          name: DPRO_GREEN_OFFICIAL_R14_VISUAL_PROOF
+          path: official-green-r14-visual-proof.png
+          if-no-files-found: error
+
+      - name: Recheck SYSTEM FINAL LOCK
+        shell: bash
+        run: |
+          set -euo pipefail
+          system_head="$(git ls-remote https://github.com/dpromstk2000-lab/dpro-green-rental-line.git refs/heads/main | awk '{print $1}')"
+          test "$system_head" = "$SYSTEM_LOCK_HEAD"
+          echo "SYSTEM FINAL LOCK AFTER R14: PASS $system_head"
