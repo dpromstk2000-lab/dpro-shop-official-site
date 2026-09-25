@@ -1,4 +1,4 @@
-name: DPRO GREEN OFFICIAL SCREEN CACHE BUST V1.0
+name: DPRO GREEN OFFICIAL SCREEN CACHE BUST V1.1
 
 on:
   push:
@@ -49,7 +49,7 @@ jobs:
           official_rev='GREEN-OFFICIAL-SCREEN-R11-20260925'
           base='https://dpromstk2000-lab.github.io/dpro-line-systems-site/assets/green-rental-next/screens/'
 
-          names=[
+          all_names=[
               'owner-dashboard.png',
               'owner-assets.png',
               'owner-visits.png',
@@ -59,13 +59,24 @@ jobs:
               'staff.png',
           ]
 
-          for name in names:
+          static_names=[
+              'owner-dashboard.png',
+              'owner-assets.png',
+              'owner-visits.png',
+              'owner-replacements.png',
+              'member-reports.png',
+              'owner-ipad.png',
+          ]
+
+          # Add/refresh cache-bust anywhere a concrete screen URL is present.
+          for name in all_names:
               s=re.sub(
                   re.escape(base+name)+r'(?:\?v=[A-Za-z0-9._-]+)?',
                   base+name+'?v='+screen_rev,
                   s
               )
 
+          # Dynamic tab switching: staff.png and all other selected screens receive R10 here.
           old_base="const screenBase='https://dpromstk2000-lab.github.io/dpro-line-systems-site/assets/green-rental-next/screens/';"
           new_base="const screenBase='https://dpromstk2000-lab.github.io/dpro-line-systems-site/assets/green-rental-next/screens/';const screenRevision='?v=GREEN-SCREEN-R10-20260925';"
           if old_base in s:
@@ -80,6 +91,7 @@ jobs:
           elif new_assign not in s:
               raise SystemExit('dynamic frame.src assignment not found')
 
+          # OFFICIAL publication marker.
           marker=f'<!-- {official_rev} -->'
           s=re.sub(r'<!-- GREEN-OFFICIAL-SCREEN-R\d+-20260925 -->\s*','',s)
           if marker not in s:
@@ -89,11 +101,15 @@ jobs:
               pos=body_match.end()
               s=s[:pos]+'\n'+marker+s[pos:]
 
-          for name in names:
+          # Fixed images: 6 are expected in HTML.
+          for name in static_names:
               expected=base+name+'?v='+screen_rev
               if expected not in s:
-                  raise SystemExit(f'cache-busted URL missing: {name}')
+                  raise SystemExit(f'cache-busted static URL missing: {name}')
 
+          # staff.png is intentionally dynamic-only.
+          if "u.includes('staff.html')?'staff.png'" not in s:
+              raise SystemExit('dynamic staff screen mapping missing')
           if new_assign not in s:
               raise SystemExit('dynamic cache-bust assignment missing')
           if marker not in s:
@@ -124,19 +140,22 @@ jobs:
           s=Path('systems/green-rental.html').read_text(encoding='utf-8')
           base='https://dpromstk2000-lab.github.io/dpro-line-systems-site/assets/green-rental-next/screens/'
           rev='GREEN-SCREEN-R10-20260925'
-          names=[
+          static_names=[
               'owner-dashboard.png',
               'owner-assets.png',
               'owner-visits.png',
               'owner-replacements.png',
               'member-reports.png',
               'owner-ipad.png',
-              'staff.png',
           ]
-          for name in names:
+          for name in static_names:
               assert base+name+'?v='+rev in s, name
+
+          assert "u.includes('staff.html')?'staff.png'" in s
           assert "screenRevision='?v=GREEN-SCREEN-R10-20260925'" in s
+          assert "frame.src=screenBase+screenFor(url)+screenRevision;" in s
           assert 'GREEN-OFFICIAL-SCREEN-R11-20260925' in s
+
           print('OFFICIAL REAL-SCREEN CACHE-BUST SOURCE QA: PASS')
           PY
 
