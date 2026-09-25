@@ -1,0 +1,42 @@
+{
+  "schema": "DPRO-GREEN-OFFICIAL-LOCAL-SCREEN-EVIDENCE-R1",
+  "source_revision": "GREEN-SCREEN-R10-20260925",
+  "pass": true,
+  "screens": {
+    "owner-dashboard.png": {
+      "width": 1365,
+      "height": 1262,
+      "bytes": 206639
+    },
+    "owner-assets.png": {
+      "width": 1365,
+      "height": 2989,
+      "bytes": 576554
+    },
+    "owner-visits.png": {
+      "width": 1365,
+      "height": 1058,
+      "bytes": 219584
+    },
+    "owner-replacements.png": {
+      "width": 1365,
+      "height": 901,
+      "bytes": 185641
+    },
+    "member-reports.png": {
+      "width": 1365,
+      "height": 900,
+      "bytes": 203517
+    },
+    "owner-ipad.png": {
+      "width": 1365,
+      "height": 900,
+      "bytes": 111891
+    },
+    "staff.png": {
+      "width": 1365,
+      "height": 1079,
+      "bytes": 98813
+    }
+  }
+}
