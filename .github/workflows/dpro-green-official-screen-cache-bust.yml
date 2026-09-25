@@ -1,0 +1,149 @@
+name: DPRO GREEN OFFICIAL SCREEN CACHE BUST V1.0
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/dpro-green-official-screen-cache-bust.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      SYSTEM_LOCK_HEAD: 6e359937a28e32380e0c4b2e3cd5ca5fbcbbab59
+      SCREEN_REVISION: GREEN-SCREEN-R10-20260925
+      OFFICIAL_PUBLICATION_REVISION: GREEN-OFFICIAL-SCREEN-R11-20260925
+
+    steps:
+      - name: Checkout OFFICIAL repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Guard SYSTEM FINAL LOCK
+        shell: bash
+        run: |
+          set -euo pipefail
+          system_head="$(git ls-remote https://github.com/dpromstk2000-lab/dpro-green-rental-line.git refs/heads/main | awk '{print $1}')"
+          test "$system_head" = "$SYSTEM_LOCK_HEAD"
+          echo "SYSTEM FINAL LOCK: PASS $system_head"
+
+      - name: Apply cache-busted loaded real-screen URLs
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          path=Path('systems/green-rental.html')
+          s=path.read_text(encoding='utf-8')
+
+          screen_rev='GREEN-SCREEN-R10-20260925'
+          official_rev='GREEN-OFFICIAL-SCREEN-R11-20260925'
+          base='https://dpromstk2000-lab.github.io/dpro-line-systems-site/assets/green-rental-next/screens/'
+
+          names=[
+              'owner-dashboard.png',
+              'owner-assets.png',
+              'owner-visits.png',
+              'owner-replacements.png',
+              'member-reports.png',
+              'owner-ipad.png',
+              'staff.png',
+          ]
+
+          for name in names:
+              s=re.sub(
+                  re.escape(base+name)+r'(?:\?v=[A-Za-z0-9._-]+)?',
+                  base+name+'?v='+screen_rev,
+                  s
+              )
+
+          old_base="const screenBase='https://dpromstk2000-lab.github.io/dpro-line-systems-site/assets/green-rental-next/screens/';"
+          new_base="const screenBase='https://dpromstk2000-lab.github.io/dpro-line-systems-site/assets/green-rental-next/screens/';const screenRevision='?v=GREEN-SCREEN-R10-20260925';"
+          if old_base in s:
+              s=s.replace(old_base,new_base,1)
+          elif "const screenRevision='?v=GREEN-SCREEN-R10-20260925';" not in s:
+              raise SystemExit('dynamic screenBase block not found')
+
+          old_assign="frame.src=screenBase+screenFor(url);"
+          new_assign="frame.src=screenBase+screenFor(url)+screenRevision;"
+          if old_assign in s:
+              s=s.replace(old_assign,new_assign,1)
+          elif new_assign not in s:
+              raise SystemExit('dynamic frame.src assignment not found')
+
+          marker=f'<!-- {official_rev} -->'
+          s=re.sub(r'<!-- GREEN-OFFICIAL-SCREEN-R\d+-20260925 -->\s*','',s)
+          if marker not in s:
+              body_match=re.search(r'<body\b[^>]*>',s,re.I)
+              if not body_match:
+                  raise SystemExit('body tag not found')
+              pos=body_match.end()
+              s=s[:pos]+'\n'+marker+s[pos:]
+
+          for name in names:
+              expected=base+name+'?v='+screen_rev
+              if expected not in s:
+                  raise SystemExit(f'cache-busted URL missing: {name}')
+
+          if new_assign not in s:
+              raise SystemExit('dynamic cache-bust assignment missing')
+          if marker not in s:
+              raise SystemExit('official publication marker missing')
+
+          path.write_text(s,encoding='utf-8')
+          PY
+
+          git diff -- systems/green-rental.html
+
+          if git diff --quiet -- systems/green-rental.html; then
+            echo "OFFICIAL screen cache-bust already applied."
+          else
+            git config user.name "DPRO GREEN Product Release"
+            git config user.email "actions@users.noreply.github.com"
+            git add systems/green-rental.html
+            git commit -m "GREEN force loaded real screens on official page"
+            git push origin HEAD:main
+          fi
+
+      - name: Verify OFFICIAL source contract
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+
+          s=Path('systems/green-rental.html').read_text(encoding='utf-8')
+          base='https://dpromstk2000-lab.github.io/dpro-line-systems-site/assets/green-rental-next/screens/'
+          rev='GREEN-SCREEN-R10-20260925'
+          names=[
+              'owner-dashboard.png',
+              'owner-assets.png',
+              'owner-visits.png',
+              'owner-replacements.png',
+              'member-reports.png',
+              'owner-ipad.png',
+              'staff.png',
+          ]
+          for name in names:
+              assert base+name+'?v='+rev in s, name
+          assert "screenRevision='?v=GREEN-SCREEN-R10-20260925'" in s
+          assert 'GREEN-OFFICIAL-SCREEN-R11-20260925' in s
+          print('OFFICIAL REAL-SCREEN CACHE-BUST SOURCE QA: PASS')
+          PY
+
+      - name: Recheck SYSTEM FINAL LOCK
+        shell: bash
+        run: |
+          set -euo pipefail
+          system_head="$(git ls-remote https://github.com/dpromstk2000-lab/dpro-green-rental-line.git refs/heads/main | awk '{print $1}')"
+          test "$system_head" = "$SYSTEM_LOCK_HEAD"
+          echo "SYSTEM FINAL LOCK AFTER OFFICIAL UPDATE: PASS $system_head"
