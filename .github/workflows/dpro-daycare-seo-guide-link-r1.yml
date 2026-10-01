@@ -1,0 +1,56 @@
+name: DPRO DAYCARE SEO Guide Link R1
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Add SEO guide route from DAYCARE product page
+        shell: bash
+        env:
+          PATCH_B64: "ZnJvbSBwYXRobGliIGltcG9ydCBQYXRoCnA9UGF0aCgic3lzdGVtcy9kYXlzZXJ2aWNlLmh0bWwiKQpzPXAucmVhZF90ZXh0KGVuY29kaW5nPSJ1dGYtOCIpCm1hcmtlcj0iPCEtLSBEUFJPIERBWUNBUkUgU0VPIEdVSURFIExJTksgUjEgMjAyNjEwMDEgLS0+IgppZiBtYXJrZXIgbm90IGluIHM6CiAgICBhbmNob3I9JzwvZGl2Pjwvc2VjdGlvbj5cblxuPHNlY3Rpb24gY2xhc3M9InNlY3Rpb24gcHJvZHVjdC1tYXAiIGlkPSJzeXN0ZW0tbWFwIj4nCiAgICBibG9jaz0iIiI8L2Rpdj48L3NlY3Rpb24+Cgo8IS0tIERQUk8gREFZQ0FSRSBTRU8gR1VJREUgTElOSyBSMSAyMDI2MTAwMSAtLT4KPHNlY3Rpb24gY2xhc3M9InNlY3Rpb24iIGFyaWEtbGFiZWxsZWRieT0iZGF5Y2FyZS1ndWlkZS10aXRsZSI+CiAgPGRpdiBjbGFzcz0ic2VjdGlvbi1pbm5lciI+CiAgICA8ZGl2IGNsYXNzPSJwcm9kdWN0LXNlY3Rpb24taGVhZGluZyByZXZlYWwiPgogICAgICA8ZGl2PgogICAgICAgIDxwIGNsYXNzPSJleWVicm93IGV5ZWJyb3ctZGFyayI+PHNwYW4+PC9zcGFuPkNBUkUgJmFtcDsgTElORSBHVUlERTwvcD4KICAgICAgICA8aDIgaWQ9ImRheWNhcmUtZ3VpZGUtdGl0bGUiPuWutuaXj+mAo+e1oeODu+e3iuaApemAo+e1oeOBq+OBpOOBhOOBpuOAgTxicj48ZW0+44KC44GG5bCR44GX6Kmz44GX44GP55+l44KK44Gf44GE5pa544G444CCPC9lbT48L2gyPgogICAgICA8L2Rpdj4KICAgICAgPHA+5qyg5bit6YCj57Wh44CB54G95a6z5pmC44Gu57eK5oCl5LiA5paJ6YCj57Wh44CB6YCa5omA44Oq44OP44OT44Oq44Gu5a625peP6YCj57Wh44CB6YCB6L+O6YCj57Wh44Gq44Gp44CB54++5aC044Gu5Zuw44KK44GU44Go5Yil44Gr6Kej6Kqs44GX44Gm44GE44G+44GZ44CCPC9wPgogICAgPC9kaXY+CiAgICA8ZGl2IGNsYXNzPSJwcm9kdWN0LWZpbmFsLWFjdGlvbnMgcmV2ZWFsIj4KICAgICAgPGEgY2xhc3M9ImJ1dHRvbiBidXR0b24tZ2hvc3QiIGhyZWY9Ii4uL3Nlby8iPuS7i+itt+ODu0xJTkXmtLvnlKjjgqzjgqTjg4njgpLopovjgos8L2E+CiAgICAgIDxhIGNsYXNzPSJidXR0b24gYnV0dG9uLWdob3N0IiBocmVmPSIuLi9zZW8vY2FyZWZhY2lsaXR5LWVtZXJnZW5jeS1jb250YWN0Ij7nt4rmgKXkuIDmlonpgKPntaHjga7jgqzjgqTjg4njgpLopovjgos8L2E+CiAgICA8L2Rpdj4KICA8L2Rpdj4KPC9zZWN0aW9uPgoKPHNlY3Rpb24gY2xhc3M9InNlY3Rpb24gcHJvZHVjdC1tYXAiIGlkPSJzeXN0ZW0tbWFwIj4iIiIKICAgIGlmIGFuY2hvciBub3QgaW4gczogcmFpc2UgU3lzdGVtRXhpdCgiYW5jaG9yIG1pc3NpbmciKQogICAgcz1zLnJlcGxhY2UoYW5jaG9yLGJsb2NrLDEpCmZvb3Rlcl9hbmNob3I9JzxkaXY+PHN0cm9uZz5HVUlERTwvc3Ryb25nPjxhIGhyZWY9Ii4uL2Fib3V0Ij5EUFJPIFNIT1DjgavjgaTjgYTjgaY8L2E+JwppZiBmb290ZXJfYW5jaG9yIGluIHM6CiAgICBzdGFydD1zLmluZGV4KGZvb3Rlcl9hbmNob3IpCiAgICBpZiAiLi4vc2VvLyIgbm90IGluIHNbc3RhcnQ6c3RhcnQrNTAwXToKICAgICAgICBzPXMucmVwbGFjZShmb290ZXJfYW5jaG9yLCc8ZGl2PjxzdHJvbmc+R1VJREU8L3N0cm9uZz48YSBocmVmPSIuLi9zZW8vIj7ku4vorbfjg7tMSU5F5rS755So44Ks44Kk44OJPC9hPjxhIGhyZWY9Ii4uL2Fib3V0Ij5EUFJPIFNIT1DjgavjgaTjgYTjgaY8L2E+JywxKQpyZXF1aXJlZD1bbWFya2VyLCdocmVmPSIuLi9zZW8vIicsJ2hyZWY9Ii4uL3Nlby9jYXJlZmFjaWxpdHktZW1lcmdlbmN5LWNvbnRhY3QiJywn5LuL6K2344O7TElORea0u+eUqOOCrOOCpOODieOCkuimi+OCiyddCm1pc3Npbmc9W3ggZm9yIHggaW4gcmVxdWlyZWQgaWYgeCBub3QgaW4gc10KaWYgbWlzc2luZzogcmFpc2UgU3lzdGVtRXhpdCgibWlzc2luZzogIisiLCAiLmpvaW4obWlzc2luZykpCnAud3JpdGVfdGV4dChzLGVuY29kaW5nPSJ1dGYtOCIpCnByaW50KCJQQVRDSD1QQVNTIik="
+        run: |
+          set -euo pipefail
+          python -c 'import os,base64; exec(base64.b64decode(os.environ["PATCH_B64"]).decode("utf-8"))'
+          grep -q 'DPRO DAYCARE SEO GUIDE LINK R1 20261001' systems/dayservice.html
+          grep -q '介護・LINE活用ガイドを見る' systems/dayservice.html
+          grep -q '../seo/carefacility-emergency-contact' systems/dayservice.html
+          echo "STATIC_QA=PASS"
+
+      - name: Commit
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add systems/dayservice.html
+          if git diff --cached --quiet; then
+            echo "No changes."
+          else
+            git commit -m "Add DAYCARE SEO guide route"
+            git push origin HEAD:main
+          fi
+
+      - name: Summary
+        shell: bash
+        run: |
+          {
+            echo "## DPRO DAYCARE SEO Guide Link R1"
+            echo ""
+            echo "- Product page -> SEO guide route: added"
+            echo "- Product page -> emergency contact guide route: added"
+            echo "- Footer guide link: added"
+            echo "- Existing DAYCARE structure and pricing: unchanged"
+          } >> "$GITHUB_STEP_SUMMARY"
