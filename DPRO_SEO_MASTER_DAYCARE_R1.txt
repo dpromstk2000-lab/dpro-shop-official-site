@@ -1,0 +1,22 @@
+DPRO SEO MASTER / DAYCARE R1
+DATE: 2026-10-01
+
+PURPOSE
+- 商品名検索ではなく、現場の悩み・検索意図からDPRO DAYCAREへ流入させる。
+- 商品ページは製品説明、SEOページは疑問への回答に役割分担。
+- 既存介護ソフトを置き換える表現は避け、家族連絡・緊急連絡・現場運用の補完として位置づける。
+
+FIRST 5
+1 dayservice-line-family : デイサービス LINE 家族連絡
+2 carefacility-emergency-contact : 介護施設 緊急 一斉連絡 / 災害 家族連絡
+3 dayservice-absence-line : デイサービス 欠席連絡 LINE
+4 rehab-family-line : 通所リハビリ LINE 家族連絡
+5 dayservice-transport-contact : デイサービス 送迎 連絡 / 送迎管理 違い
+
+RULES
+- 1ページ1検索意図。
+- 独自H1、description、canonical、FAQ構造化データ。
+- 商品ページへ内部リンク。SEOページ同士も相互リンク。
+- sitemap.xmlへ追加。
+- 未実装機能、順位保証、薄い大量ページは禁止。
+- Search Consoleの実データでR2を判断。
