@@ -1,0 +1,172 @@
+name: DPRO GREEN Official Site R56 Brushup
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  brushup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout official site
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Apply GREEN R56 official brushup
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import re
+
+          p = Path("systems/green-rental.html")
+          s = p.read_text(encoding="utf-8")
+
+          old_desc = "観葉植物レンタル事業者向けDPRO グリーンレンタル LINE。写真相談、顧客・拠点、植物・鉢、設置、定期巡回、作業写真、交換、回収・養生・再利用、お客様報告を一つにつなぎます。"
+          new_desc = "観葉植物レンタル事業者向けDPRO GREEN。写真相談、顧客・拠点、植物・鉢図鑑、設置、定期巡回、作業写真、交換・養生までを一つに。公開DEMOでは74植物・22鉢モデル・96図鑑画像を実画面で確認できます。"
+          if old_desc in s:
+              s = s.replace(old_desc, new_desc, 1)
+          elif new_desc not in s:
+              raise SystemExit("official meta description anchor not found")
+
+          s = s.replace('"dateModified":"2026-09-25"', '"dateModified":"2026-10-04"', 1)
+
+          old_hero = "<p>写真相談、顧客・拠点、植物・鉢、設置、定期巡回、作業写真、交換、回収・養生・再利用、お客様報告まで。観葉植物レンタルの日常業務を、同じ顧客・植物・訪問履歴へつなぎます。</p>"
+          new_hero = "<p>写真相談、顧客・拠点、植物・鉢図鑑、設置、定期巡回、作業写真、交換、回収・養生・再利用、お客様報告まで。観葉植物レンタルの日常業務を、同じ顧客・植物・訪問履歴へつなぎます。</p>"
+          if old_hero in s:
+              s = s.replace(old_hero, new_hero, 1)
+
+          old_proof = '<div class="green-proof"><span>植物・鉢・現在地</span><span>担当・訪問順・作業</span><span>公開写真・社内メモ分離</span><span>交換・養生・再利用</span></div>'
+          new_proof = '<div class="green-proof"><span>植物74種</span><span>鉢モデル22種</span><span>図鑑画像96点</span><span>写真差替え・復元</span></div>'
+          if old_proof in s:
+              s = s.replace(old_proof, new_proof, 1)
+
+          s = s.replace("v=GREEN-OFFICIAL-DEMO-R2", "v=GREEN-OFFICIAL-R56")
+
+          old_asset_list = '<li>品種マスターと植物個体を分けて管理</li>'
+          new_asset_list = '<li>品種マスターと植物個体を分けて管理</li><li>公開DEMOは74植物・22鉢モデル・96図鑑画像</li><li>図鑑写真の差替え・復元履歴</li>'
+          if old_asset_list in s and "96図鑑画像" not in s[s.find("PLANT ASSET LEDGER"):]:
+              s = s.replace(old_asset_list, new_asset_list, 1)
+
+          s = s.replace('data-demo-title="植物・鉢台帳"', 'data-demo-title="植物・鉢図鑑・台帳"', 1)
+          s = s.replace('>植物台帳<small>植物・鉢・現在地・移動・棚卸</small></button>',
+                        '>植物・鉢図鑑<small>74植物・22鉢・96画像・現在地</small></button>', 1)
+
+          css_marker = "/* GREEN-R56-FC-COMMON-PROOF */"
+          if css_marker not in s:
+              css = r'''
+          /* GREEN-R56-FC-COMMON-PROOF */
+          .green-r56-proof{background:#fff}
+          .green-r56-shell{padding:clamp(30px,5vw,56px);border:1px solid #cfe1d5;border-radius:30px;background:linear-gradient(145deg,#f8fcf9,#edf7ef);box-shadow:0 24px 70px rgba(7,52,31,.09)}
+          .green-r56-head{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(300px,.92fr);gap:34px;align-items:end}
+          .green-r56-head h2{margin:0;color:var(--ink);font-size:clamp(34px,4.3vw,58px);line-height:1.08;letter-spacing:-.045em}
+          .green-r56-head p:last-child{margin:0;color:var(--muted);line-height:1.9}
+          .green-r56-stats{margin-top:32px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+          .green-r56-stat{padding:24px;border:1px solid #d5e6da;border-radius:20px;background:#fff}
+          .green-r56-stat strong{display:block;color:#145637;font-size:clamp(36px,4.5vw,56px);line-height:1}
+          .green-r56-stat span{display:block;margin-top:8px;color:#527060;font-weight:900}
+          .green-r56-capabilities{margin-top:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+          .green-r56-capability{padding:20px;border-radius:18px;background:#0b3828;color:#fff}
+          .green-r56-capability small{display:block;color:#aee0b7;font-size:10px;font-weight:900;letter-spacing:.12em}
+          .green-r56-capability strong{display:block;margin-top:7px;font-size:17px;line-height:1.45}
+          .green-r56-capability p{margin:8px 0 0;color:rgba(255,255,255,.68);font-size:12px;line-height:1.75}
+          .green-r56-links{margin-top:20px;display:flex;flex-wrap:wrap;gap:10px}
+          .green-r56-link{min-height:46px;padding:0 16px;display:inline-flex;align-items:center;justify-content:center;border:1px solid #98c1a4;border-radius:999px;background:#fff;color:#155c3c;text-decoration:none;font-size:13px;font-weight:900}
+          .green-r56-note{margin:18px 0 0;color:#5a7163;font-size:12px;line-height:1.8}
+          @media(max-width:820px){.green-r56-head{grid-template-columns:1fr}.green-r56-stats,.green-r56-capabilities{grid-template-columns:1fr}.green-r56-link{width:100%}}
+          '''
+              if "</style>" not in s:
+                  raise SystemExit("official style close not found")
+              s = s.replace("</style>", css + "\n</style>", 1)
+
+          section_marker = 'id="fc-common-proof"'
+          if section_marker not in s:
+              anchor = '<section class="green-section green-section-soft">'
+              if anchor not in s:
+                  raise SystemExit("official proof insertion anchor not found")
+              section = r'''<section class="green-section green-r56-proof" id="fc-common-proof">
+          <div class="green-wrap">
+          <div class="green-r56-shell">
+          <div class="green-r56-head">
+          <div><p class="green-eyebrow">FC COMMON PRODUCT PROOF / R56</p><h2>植物・鉢の図鑑から、<br>毎日の巡回まで。</h2></div>
+          <p>特定店舗の情報に依存しないFC共通の公開DEMOとして、植物・鉢マスター、図鑑画像、スタッフ巡回、お客様マイページまで実際の画面で確認できます。</p>
+          </div>
+          <div class="green-r56-stats">
+          <article class="green-r56-stat"><strong>74</strong><span>植物マスター</span></article>
+          <article class="green-r56-stat"><strong>22</strong><span>鉢モデル</span></article>
+          <article class="green-r56-stat"><strong>96</strong><span>図鑑画像</span></article>
+          </div>
+          <div class="green-r56-capabilities">
+          <article class="green-r56-capability"><small>ATLAS</small><strong>写真差替え・復元</strong><p>植物・鉢の図鑑写真を管理側で変更し、必要に応じて前の画像へ戻せます。</p></article>
+          <article class="green-r56-capability"><small>EVERGREEN ROUTE</small><strong>毎日確認できる巡回DEMO</strong><p>スタッフ画面では、その日の巡回・完了・未完了を公開DEMOで確認できます。</p></article>
+          <article class="green-r56-capability"><small>SAFE DEMO</small><strong>本番データと分離</strong><p>公開DEMOは架空データのみを使用し、実在する顧客・店舗データへ接続しません。</p></article>
+          </div>
+          <div class="green-r56-links">
+          <a class="green-r56-link" href="https://dpromstk2000-lab.github.io/dpro-green-rental-line/owner.html?demo=1&view=assets" target="_blank" rel="noopener">植物・鉢台帳を体験 ↗</a>
+          <a class="green-r56-link" href="https://dpromstk2000-lab.github.io/dpro-green-rental-line/staff.html?demo=1" target="_blank" rel="noopener">スタッフ本日の巡回 ↗</a>
+          <a class="green-r56-link" href="https://dpromstk2000-lab.github.io/dpro-green-rental-line/member.html?demo=1" target="_blank" rel="noopener">お客様マイページ ↗</a>
+          <a class="green-r56-link" href="https://dpromstk2000-lab.github.io/dpro-green-rental-line/system-check.html?demo=1" target="_blank" rel="noopener">読み取り専用System Check ↗</a>
+          </div>
+          <p class="green-r56-note">公開DEMOは営業・導入前確認用です。FCごとの本番環境では、店舗情報・LINE・権限・運用条件を契約後に設定します。</p>
+          </div>
+          </div>
+          </section>
+
+          '''
+              s = s.replace(anchor, section + anchor, 1)
+
+          p.write_text(s, encoding="utf-8")
+
+          p = Path("systems/index.html")
+          s = p.read_text(encoding="utf-8")
+          s = s.replace("写真相談・巡回・植物台帳・交換・作業報告", "写真相談・植物／鉢図鑑・巡回・交換・作業報告", 1)
+          s = s.replace('"dateModified":"2026-09-21"', '"dateModified":"2026-10-04"', 1)
+          p.write_text(s, encoding="utf-8")
+
+          p = Path("sitemap.xml")
+          s = p.read_text(encoding="utf-8")
+          s = s.replace(
+              "<url><loc>https://dpro-shop.com/systems/green-rental</loc><lastmod>2026-09-03</lastmod>",
+              "<url><loc>https://dpro-shop.com/systems/green-rental</loc><lastmod>2026-10-04</lastmod>",
+              1
+          )
+          p.write_text(s, encoding="utf-8")
+          PY
+
+      - name: Validate official GREEN R56
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q 'GREEN-R56-FC-COMMON-PROOF' systems/green-rental.html
+          grep -q '植物74種' systems/green-rental.html
+          grep -q '鉢モデル22種' systems/green-rental.html
+          grep -q '図鑑画像96点' systems/green-rental.html
+          grep -q '写真差替え・復元' systems/green-rental.html
+          grep -q 'owner.html?demo=1&view=assets' systems/green-rental.html
+          grep -q 'staff.html?demo=1' systems/green-rental.html
+          grep -q 'member.html?demo=1' systems/green-rental.html
+          grep -q 'system-check.html?demo=1' systems/green-rental.html
+          grep -q '植物／鉢図鑑' systems/index.html
+          grep -q 'green-rental</loc><lastmod>2026-10-04' sitemap.xml
+          ! grep -q 'cl_000001_green' systems/green-rental.html
+          ! grep -q '2011750460-EpN149VY' systems/green-rental.html
+          git diff --check
+          echo "OFFICIAL GREEN R56 PASS"
+
+      - name: Commit official GREEN R56
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "DPRO GREEN R56"
+          git config user.email "actions@users.noreply.github.com"
+          git add systems/green-rental.html systems/index.html sitemap.xml
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "Brush up GREEN official site for R56 FC common demo"
+          git push origin HEAD:main
