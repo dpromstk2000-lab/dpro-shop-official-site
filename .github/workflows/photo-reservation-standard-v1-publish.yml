@@ -1,0 +1,106 @@
+name: Publish DPRO Photo Reservation Standard V1.0
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Convert public photo reservation showcase to DPRO standard
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path("systems/photo-studio.html")
+          if not path.exists():
+              raise SystemExit("ERROR: systems/photo-studio.html not found")
+
+          s = path.read_text(encoding="utf-8")
+
+          replacements = {
+              "<!-- DPRO PHOTO RESERVATION WEB V2.0 -->":
+              "<!-- DPRO PHOTO RESERVATION STANDARD V1.0 -->",
+
+              "<h3>Studio PICTURE向け<br>予約WEB V2.0</h3>":
+              "<h3>DPRO 写真館WEB予約<br>STANDARD V1.0</h3>",
+
+              "既存の写真館向けDPROシステムとは別に、お客様が最初に触れる「予約WEB」の見やすさ・迷いにくさを確認できるブランド提案デモです。":
+              "写真館・フォトスタジオのお客様が最初に触れる「予約WEB」の見やすさ・迷いにくさを確認できるDPRO共通デモです。店舗ごとのブランドや運用に合わせて調整できます。",
+
+              ">V2.0予約WEBを体験する</a>":
+              ">DPRO予約WEBを体験する</a>",
+
+              '<p class="photo-demo-note">Studio PICTURE様向けに作成した提案用DEMOです。実在顧客情報は使用せず、料金・空き枠もデモ表示です。</p>':
+              '<p class="photo-demo-note">DPRO写真館WEB予約の共通DEMOです。実在顧客情報は使用せず、料金・空き枠・写真はサンプル表示です。</p>',
+
+              "STUDIO PICTURE × DPRO / WEB RESERVATION V2.0":
+              "DPRO PHOTO / WEB RESERVATION STANDARD V1.0",
+
+              "DPRO RESERVATION PROPOSAL":
+              "DPRO RESERVATION STANDARD",
+
+              ">Studio PICTURE向け予約WEB V2.0</a>":
+              ">DPRO 写真館WEB予約デモ</a>",
+          }
+
+          missing = [old for old in replacements if old not in s]
+          if missing:
+              raise SystemExit("ERROR: expected text not found: " + repr(missing))
+
+          for old, new in replacements.items():
+              s = s.replace(old, new)
+
+          # Public product page must not expose a specific client name.
+          forbidden = ["Studio PICTURE", "STUDIO PICTURE"]
+          remaining = [x for x in forbidden if x in s]
+          if remaining:
+              raise SystemExit("ERROR: specific client name remains: " + repr(remaining))
+
+          path.write_text(s, encoding="utf-8")
+          print("Converted to DPRO PHOTO RESERVATION STANDARD V1.0")
+          PY
+
+      - name: Validate public standard
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          s = Path("systems/photo-studio.html").read_text(encoding="utf-8")
+          required = [
+              "<!-- DPRO PHOTO RESERVATION STANDARD V1.0 -->",
+              "DPRO 写真館WEB予約<br>STANDARD V1.0",
+              "DPRO予約WEBを体験する",
+              "DPRO 写真館WEB予約デモ",
+              "DPRO PHOTO / WEB RESERVATION STANDARD V1.0",
+              "https://dpromstk2000-lab.github.io/dpro-photo-reservation-demo/",
+          ]
+          missing = [x for x in required if x not in s]
+          forbidden = [x for x in ["Studio PICTURE", "STUDIO PICTURE"] if x in s]
+          if missing:
+              raise SystemExit("ERROR: missing public standard markers: " + repr(missing))
+          if forbidden:
+              raise SystemExit("ERROR: specific store markers remain: " + repr(forbidden))
+          print("Validation OK")
+          PY
+          git diff --check
+
+      - name: Commit public standard
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add systems/photo-studio.html
+          git commit -m "Make photo reservation demo brand-neutral"
+          git push
