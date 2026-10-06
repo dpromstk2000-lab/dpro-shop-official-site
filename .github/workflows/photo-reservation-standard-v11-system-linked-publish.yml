@@ -1,0 +1,116 @@
+name: Publish DPRO Photo Reservation Standard V1.1 System Linked
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Update photo studio product page to V1.1
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path("systems/photo-studio.html")
+          if not path.exists():
+              raise SystemExit("ERROR: systems/photo-studio.html not found")
+
+          s = path.read_text(encoding="utf-8")
+
+          replacements = {
+              "<!-- DPRO PHOTO RESERVATION STANDARD V1.0 -->":
+              "<!-- DPRO PHOTO RESERVATION STANDARD V1.1 SYSTEM LINKED -->",
+
+              "<h3>DPRO 写真館WEB予約<br>STANDARD V1.0</h3>":
+              "<h3>DPRO 写真館WEB予約<br>STANDARD V1.1</h3>",
+
+              "写真館・フォトスタジオのお客様が最初に触れる「予約WEB」の見やすさ・迷いにくさを確認できるDPRO共通デモです。店舗ごとのブランドや運用に合わせて調整できます。":
+              "DPROシステムを共通マスターとして、撮影プラン・料金・予約受付期間・営業時間・定休日・臨時休業をWEB予約へ反映するDPRO共通デモです。LINE公式からも同じ予約導線を利用できます。",
+
+              "<ul><li>撮影メニュー・プラン・料金目安</li><li>最短／土日／月・週・日・一覧カレンダー</li><li>予約変更・キャンセル・LINE相談</li></ul>":
+              "<ul><li>DPRO登録の撮影プラン・料金をWEBへ反映</li><li>定休日・臨時休業・特別営業を予約枠へ反映</li><li>LINE公式＋WEB予約＋DPRO顧客・予約管理を連携</li></ul>",
+
+              ">DPRO予約WEBを体験する</a>":
+              ">SYSTEM LINKED予約WEBを体験する</a>",
+
+              '<p class="photo-demo-note">DPRO写真館WEB予約の共通DEMOです。実在顧客情報は使用せず、料金・空き枠・写真はサンプル表示です。</p>':
+              '<p class="photo-demo-note">一般公開用DPRO共通DEMOです。プラン・料金・予約受付期間・営業カレンダーはDPROデモシステムの公開設定と連携し、予約確定操作は安全のためデモ送信です。</p>',
+
+              "DPRO PHOTO / WEB RESERVATION STANDARD V1.0":
+              "DPRO PHOTO / LINE + WEB + SYSTEM / STANDARD V1.1",
+
+              "<div class=\"photo-reservation-v20-row\"><div><b>七五三・スタンダード</b><small>空いている日時から予約</small></div><em>予約へ</em></div>":
+              "<div class=\"photo-reservation-v20-row\"><div><b>七五三撮影</b><small>DPRO設定：33,000円〜 / 空き枠連携</small></div><em>連携中</em></div>",
+
+              "予約画面単体のUI/UXを、PC・スマートフォンで実際に操作できます。":
+              "DPROシステムの設定がWEB予約へ反映される共通予約UXを、PC・スマートフォンで確認できます。",
+
+              ">DPRO 写真館WEB予約デモ</a>":
+              ">DPRO 写真館WEB予約 SYSTEM LINKED</a>",
+          }
+
+          missing = [old for old in replacements if old not in s]
+          if missing:
+              raise SystemExit("ERROR: expected text not found: " + repr(missing))
+
+          for old, new in replacements.items():
+              s = s.replace(old, new, 1)
+
+          path.write_text(s, encoding="utf-8")
+          print("Updated:", path)
+          PY
+
+      - name: Validate
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          s = Path("systems/photo-studio.html").read_text(encoding="utf-8")
+          required = [
+              "<!-- DPRO PHOTO RESERVATION STANDARD V1.1 SYSTEM LINKED -->",
+              "DPRO 写真館WEB予約<br>STANDARD V1.1",
+              "SYSTEM LINKED予約WEBを体験する",
+              "DPRO PHOTO / LINE + WEB + SYSTEM / STANDARD V1.1",
+              "七五三撮影",
+              "33,000円〜 / 空き枠連携",
+              "DPRO 写真館WEB予約 SYSTEM LINKED",
+              "https://dpromstk2000-lab.github.io/dpro-photo-reservation-demo/",
+          ]
+          missing = [x for x in required if x not in s]
+          forbidden = [
+              "<!-- DPRO PHOTO RESERVATION STANDARD V1.0 -->",
+              "DPRO 写真館WEB予約<br>STANDARD V1.0",
+              "DPRO PHOTO / WEB RESERVATION STANDARD V1.0",
+              "Studio PICTURE",
+              "STUDIO PICTURE",
+          ]
+          remain = [x for x in forbidden if x in s]
+          if missing:
+              raise SystemExit("ERROR: missing V1.1 markers: " + repr(missing))
+          if remain:
+              raise SystemExit("ERROR: old/specific markers remain: " + repr(remain))
+          print("Validation OK")
+          PY
+          git diff --check
+
+      - name: Commit
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add systems/photo-studio.html
+          git commit -m "Publish DPRO photo reservation system-linked V1.1"
+          git push
