@@ -1,0 +1,113 @@
+name: Publish Photo Reservation Demo V2.0
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Patch photo studio product page
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path("systems/photo-studio.html")
+          if not path.exists():
+              raise SystemExit("ERROR: systems/photo-studio.html not found")
+
+          s = path.read_text(encoding="utf-8")
+          marker = "<!-- DPRO PHOTO RESERVATION WEB V2.0 -->"
+          demo_url = "https://dpromstk2000-lab.github.io/dpro-photo-reservation-demo/"
+
+          if marker in s:
+              print("V2.0 reservation showcase is already installed. No change needed.")
+              raise SystemExit(0)
+
+          css_anchor = "</style>"
+          css = r'''
+          /* DPRO PHOTO RESERVATION WEB V2.0 */
+          .photo-reservation-v20-preview{position:relative;min-height:330px;padding:24px;overflow:hidden;background:linear-gradient(145deg,#f6f3eb,#e1dfd5);color:#182019}
+          .photo-reservation-v20-preview:before{content:"";position:absolute;inset:auto -12% -42% 34%;height:78%;border-radius:50%;background:radial-gradient(circle,rgba(122,147,79,.28),rgba(122,147,79,0) 70%)}
+          .photo-reservation-v20-browser{position:relative;max-width:470px;margin:0 auto;border:1px solid #d8ddd3;border-radius:18px;background:#fff;box-shadow:0 22px 54px rgba(21,27,23,.12);overflow:hidden}
+          .photo-reservation-v20-bar{display:flex;align-items:center;gap:6px;padding:10px 12px;border-bottom:1px solid #e6e9e2;background:#fafbf8}.photo-reservation-v20-bar i{width:7px;height:7px;border-radius:50%;background:#cdd3c9}.photo-reservation-v20-bar span{margin-left:5px;color:#6e776e;font-size:.58rem;font-weight:800;letter-spacing:.08em}
+          .photo-reservation-v20-body{padding:19px}.photo-reservation-v20-eyebrow{color:#6f7c60;font-size:.58rem;font-weight:900;letter-spacing:.13em}.photo-reservation-v20-title{margin:5px 0 12px;font-family:Georgia,"Yu Mincho",serif;font-size:1.28rem;line-height:1.25}.photo-reservation-v20-menu{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.photo-reservation-v20-menu span{display:grid;min-height:64px;place-items:end start;padding:8px;border-radius:9px;color:#fff;font-size:.63rem;font-weight:900;background:linear-gradient(145deg,#d8c6ba,#8c7d74)}.photo-reservation-v20-menu span:nth-child(2){background:linear-gradient(145deg,#d3c2c5,#7f6f72)}.photo-reservation-v20-menu span:nth-child(3){background:linear-gradient(145deg,#d9dfd4,#758970)}
+          .photo-reservation-v20-row{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;margin-top:12px;padding:10px 11px;border:1px solid #dfe4dc;border-radius:10px;background:#fbfcf9}.photo-reservation-v20-row b{display:block;font-size:.7rem}.photo-reservation-v20-row small{display:block;color:#758075;font-size:.55rem}.photo-reservation-v20-row em{font-style:normal;padding:6px 8px;border-radius:999px;background:#edf4df;color:#506b30;font-size:.55rem;font-weight:900}
+          .photo-reservation-v20-note{position:relative;margin:12px 0 0;color:#667166;font-size:.72rem;line-height:1.7}
+          @media(max-width:620px){.photo-reservation-v20-preview{min-height:290px;padding:14px}.photo-reservation-v20-body{padding:14px}.photo-reservation-v20-title{font-size:1.08rem}}
+          '''
+          if css_anchor not in s:
+              raise SystemExit("ERROR: closing style tag not found")
+          s = s.replace(css_anchor, css + "\n" + css_anchor, 1)
+
+          demo_anchor = '<article class="product-live-row"><div class="product-live-copy reveal"><span>01 / CUSTOMER BOOKING</span>'
+          if demo_anchor not in s:
+              raise SystemExit("ERROR: customer booking demo anchor not found")
+
+          showcase = f'''{marker}
+          <article class="product-live-row photo-reservation-v20-showcase">
+            <div class="product-live-copy reveal">
+              <span>00 / RESERVATION UX SHOWCASE</span>
+              <h3>Studio PICTURE向け<br>予約WEB V2.0</h3>
+              <p>既存の写真館向けDPROシステムとは別に、お客様が最初に触れる「予約WEB」の見やすさ・迷いにくさを確認できるブランド提案デモです。</p>
+              <ul><li>撮影メニュー・プラン・料金目安</li><li>最短／土日／月・週・日・一覧カレンダー</li><li>予約変更・キャンセル・LINE相談</li></ul>
+              <div class="product-live-actions"><a class="button button-line" href="{demo_url}" target="_blank" rel="noopener" data-demo-link="photo-reservation-v20">V2.0予約WEBを体験する</a></div>
+              <p class="photo-demo-note">Studio PICTURE様向けに作成した提案用DEMOです。実在顧客情報は使用せず、料金・空き枠もデモ表示です。</p>
+            </div>
+            <div class="live-device reveal">
+              <div class="live-window"><div class="live-window-head"><span>STUDIO PICTURE × DPRO / WEB RESERVATION V2.0</span><i></i></div>
+                <div class="photo-reservation-v20-preview"><div class="photo-reservation-v20-browser"><div class="photo-reservation-v20-bar"><i></i><i></i><i></i><span>DPRO RESERVATION PROPOSAL</span></div><div class="photo-reservation-v20-body"><div class="photo-reservation-v20-eyebrow">24H WEB RESERVATION</div><div class="photo-reservation-v20-title">家族の「今」を、<br>迷わず予約へ。</div><div class="photo-reservation-v20-menu"><span>Baby</span><span>七五三</span><span>Family</span></div><div class="photo-reservation-v20-row"><div><b>七五三・スタンダード</b><small>空いている日時から予約</small></div><em>予約へ</em></div></div></div><p class="photo-reservation-v20-note">予約画面単体のUI/UXを、PC・スマートフォンで実際に操作できます。</p></div>
+              </div>
+            </div>
+          </article>
+          '''
+          s = s.replace(demo_anchor, showcase + "\n" + demo_anchor, 1)
+
+          footer_anchor = '<a href="photo-studio">写真館・フォトスタジオ</a>'
+          footer_link = f'{footer_anchor}<a href="{demo_url}" target="_blank" rel="noopener">Studio PICTURE向け予約WEB V2.0</a>'
+          if footer_anchor in s and "Studio PICTURE向け予約WEB V2.0</a>" not in s:
+              s = s.replace(footer_anchor, footer_link, 1)
+
+          path.write_text(s, encoding="utf-8")
+          print("Patched:", path)
+          print("Demo URL:", demo_url)
+          PY
+
+      - name: Validate patch
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          s = Path("systems/photo-studio.html").read_text(encoding="utf-8")
+          required = [
+              "<!-- DPRO PHOTO RESERVATION WEB V2.0 -->",
+              "https://dpromstk2000-lab.github.io/dpro-photo-reservation-demo/",
+              "00 / RESERVATION UX SHOWCASE",
+              "Studio PICTURE向け予約WEB V2.0",
+          ]
+          missing = [x for x in required if x not in s]
+          if missing:
+              raise SystemExit("ERROR: missing markers: " + repr(missing))
+          print("Validation OK")
+          PY
+          git diff --check
+
+      - name: Commit product page update
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add systems/photo-studio.html
+          git commit -m "Add Studio PICTURE reservation WEB V2.0 showcase"
+          git push
