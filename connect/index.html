@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="DPRO CONNECTは、DPROシステムとGoogleカレンダー、Squareなどの外部サービスを安全に連携するための接続基盤です。">
+  <meta name="theme-color" content="#0b5f52">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <link rel="canonical" href="https://dpro-shop.com/connect/">
+  <title>DPRO CONNECT｜外部サービス連携</title>
+  <style>
+    :root{--ink:#0f332e;--muted:#5c716d;--line:#dbe8e5;--bg:#f4f8f7;--brand:#0c6a5b;--card:#fff}
+    *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Segoe UI","Noto Sans JP",sans-serif;background:var(--bg);color:var(--ink);line-height:1.75}
+    a{color:var(--brand);text-underline-offset:3px}.wrap{width:min(1040px,calc(100% - 32px));margin:auto}
+    header{padding:18px 0;background:linear-gradient(135deg,#064f45,#0d7565);color:white}
+    header .row{display:flex;justify-content:space-between;gap:18px;align-items:center}.brand{font-weight:900;letter-spacing:.08em}.brand small{display:block;font-size:11px;opacity:.72}
+    header nav{display:flex;gap:16px;flex-wrap:wrap}header a{color:white;text-decoration:none;font-size:13px;font-weight:700}
+    .hero{padding:72px 0 48px;background:linear-gradient(180deg,#eaf5f2,transparent)}.eyebrow{font-weight:900;letter-spacing:.14em;color:var(--brand);font-size:12px}
+    h1{font-size:clamp(34px,6vw,64px);line-height:1.1;margin:12px 0 20px;letter-spacing:-.03em}h2{font-size:26px;line-height:1.35;margin:0 0 12px}h3{font-size:18px;margin:0 0 8px}
+    .lead{font-size:18px;max-width:760px;color:#34534e}.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}.chip{padding:8px 12px;border-radius:999px;background:white;border:1px solid var(--line);font-weight:800;font-size:12px}
+    main{padding:0 0 64px}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:0 10px 32px rgba(16,70,61,.06)}
+    .section{padding:28px 0}.note{margin-top:16px;padding:18px;border-radius:16px;background:#eef7f5;border:1px solid #cfe4df}.note strong{display:block;margin-bottom:4px}
+    .privacy-box{display:grid;grid-template-columns:1fr 1fr;gap:16px}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}.btn{display:inline-flex;padding:12px 16px;border-radius:12px;background:var(--brand);color:white;text-decoration:none;font-weight:850}.btn.alt{background:white;color:var(--brand);border:1px solid #bfd8d2}
+    footer{padding:28px 0 44px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}.footer-links{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:10px}
+    @media(max-width:760px){.grid,.privacy-box{grid-template-columns:1fr}header .row{align-items:flex-start;flex-direction:column}.hero{padding-top:48px}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="wrap row">
+    <div class="brand">DPRO CONNECT<small>DPRO SHOP / OFFICIAL CONNECT SERVICE</small></div>
+    <nav>
+      <a href="/">DPRO SHOP</a>
+      <a href="/privacy">プライバシー</a>
+      <a href="/terms">利用条件</a>
+      <a href="/contact">お問い合わせ</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">CONNECTED OPERATION</div>
+    <h1>DPROと外部サービスを、<br>安全につなぐ。</h1>
+    <p class="lead">DPRO CONNECTは、DPROシステムとGoogleカレンダーやSquareなどの外部サービスを、利用者自身の承認に基づいて連携するための接続基盤です。</p>
+    <div class="chips">
+      <span class="chip">Google Calendar</span>
+      <span class="chip">Square</span>
+      <span class="chip">OAuth 2.0</span>
+      <span class="chip">暗号化された認証情報</span>
+    </div>
+  </div>
+</section>
+
+<main>
+  <section class="section">
+    <div class="wrap">
+      <div class="grid">
+        <article class="card"><h3>Googleカレンダー連携</h3><p>DPROで登録・変更・取消した予約情報を、接続したGoogleカレンダーへ作成・更新・削除します。</p></article>
+        <article class="card"><h3>Square連携</h3><p>DPROからSquareの安全な決済ページを発行し、事前決済の運用を支援します。カード番号をDPROへ保存しません。</p></article>
+        <article class="card"><h3>利用者が接続を承認</h3><p>外部サービスへの接続はOAuth等の正式な認可画面を通じて、利用者自身が許可した場合にのみ有効になります。</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap card">
+      <h2>Googleユーザーデータの取扱い</h2>
+      <p>DPRO CONNECTがGoogle APIから取得・利用するデータは、Googleカレンダー連携機能を提供するために必要な範囲に限定します。</p>
+      <div class="privacy-box">
+        <div class="note"><strong>アクセス・利用</strong><span>Googleカレンダーの予定を表示・編集できる権限を利用し、DPRO予約に対応する予定の作成、変更、取消を行います。広告配信、ユーザープロファイリング、AIモデル学習の目的には利用しません。</span></div>
+        <div class="note"><strong>保存</strong><span>OAuthアクセストークン・更新トークンはサーバー側の暗号化された秘密情報ストアで管理します。同期管理のため、Google側の予定ID、同期状態、同期日時等を保存する場合があります。</span></div>
+        <div class="note"><strong>共有</strong><span>Googleユーザーデータを販売しません。連携機能の提供に必要なクラウド基盤・委託先を除き、本人の同意なく第三者へ提供しません。</span></div>
+        <div class="note"><strong>取消・削除</strong><span>利用者はGoogleアカウントの接続管理からアクセスを取り消せます。DPRO側に保存された連携情報の削除はDPRO SHOP窓口へご依頼いただけます。</span></div>
+      </div>
+      <p class="note">DPRO CONNECTによるGoogle APIから取得した情報の使用は、Google API Services User Data Policy（Limited Use要件を含む）に従います。</p>
+      <div class="actions">
+        <a class="btn" href="/privacy">プライバシーポリシー</a>
+        <a class="btn alt" href="/terms">サービス利用上の注意事項</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap card">
+      <h2>連携の流れ</h2>
+      <ol>
+        <li>DPRO管理画面で利用したい外部連携を選択します。</li>
+        <li>GoogleやSquareの正式な認可画面で、接続するアカウントと権限を確認します。</li>
+        <li>利用者が許可した後、DPRO側へ接続状態が保存され、必要な機能だけが有効になります。</li>
+        <li>許可は外部サービス側から取り消すことができます。</li>
+      </ol>
+      <p>Googleカレンダー連携では、現在DPROからGoogleカレンダーへ予約情報を同期する運用を標準としています。</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-links"><a href="/">DPRO SHOP</a><a href="/privacy">プライバシー</a><a href="/terms">利用条件</a><a href="/contact">お問い合わせ</a></div>
+    <div>© DPRO SHOP / DPRO CONNECT</div>
+  </div>
+</footer>
+</body>
+</html>
