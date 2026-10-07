@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="referrer" content="no-referrer">
+  <title>DPRO CONNECT | Google連携</title>
+  <style>
+    body{font-family:system-ui,-apple-system,"Segoe UI","Noto Sans JP",sans-serif;margin:0;min-height:100vh;display:grid;place-items:center;background:#f4f8f7;color:#153f37}
+    main{padding:28px;border:1px solid #d8e7e3;border-radius:18px;background:#fff;box-shadow:0 14px 45px rgba(20,70,60,.10);text-align:center}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>DPRO CONNECT</h1>
+    <p>Google連携を処理しています…</p>
+  </main>
+  <script>
+    (function () {
+      var query = location.search;
+      var target = "https://cbknucemarcpbscirzyv.supabase.co/functions/v1/dpro-connect-v1/api/oauth/google/callback";
+      history.replaceState(null, "", location.pathname);
+      location.replace(target + query);
+    })();
+  </script>
+  <noscript>JavaScriptを有効にして、もう一度Google連携を行ってください。</noscript>
+</body>
+</html>
