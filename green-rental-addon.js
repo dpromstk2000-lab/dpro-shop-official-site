@@ -95,7 +95,7 @@
       <div class="sys-product-card-copy">
         <small>GREEN RENTAL &amp; MAINTENANCE</small>
         <h3>DPRO グリーンレンタル LINE<br>観葉植物レンタル</h3>
-        <p>写真相談、顧客・拠点、植物・鉢、設置、定期巡回、作業写真、交換、回収・養生・再利用、お客様報告をつなぎます。</p>
+        <p>写真相談、植物・鉢図鑑、定期巡回、交換・養生に加え、HP・LINE・ブログCMSまでつながるGREEN標準構成です。</p>
         <span class="sys-product-card-link">詳しい機能と実画面を見る <b>→</b></span>
       </div>
     `;
