@@ -1,0 +1,95 @@
+# DPRO TAX R135 — QA only. Never modifies production branch, database, Worker or LINE.
+name: DPRO TAX R135 Official Branded Demo Preflight
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/dpro-tax-r135-official-branded-demo-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  read-only-preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout official website — read-only
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Checkout pinned accepted R133 synthetic demo — read-only
+        uses: actions/checkout@v4
+        with:
+          repository: dpromstk2000-lab/dpro-tax-demo
+          ref: e93f3a1d5bcf1c540b87cc5253b29422e5251e26
+          path: _r135_accepted_demo
+          persist-credentials: false
+      - name: Verify exact current official page and prepare patch artifact (no git changes)
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PYR135'
+          from pathlib import Path
+          import hashlib, html, json, re, shutil, subprocess
+          official=Path('systems/tax-accounting.html')
+          actual=subprocess.check_output(['git','hash-object',str(official)],text=True).strip()
+          expected='1912ba42a1b1f4d8e740b228caa925c7daba5f36'
+          assert actual==expected, f'OFFICIAL_PAGE_DRIFT: expected={expected}, actual={actual}; DO NOT DEPLOY'
+          source=official.read_text(encoding='utf8')
+          source_base='https://dpromstk2000-lab.github.io/dpro-tax-accounting-line-liff/'
+          branded_base='https://dpro-shop.com/systems/tax-demo/'
+          replacements={
+            source_base+'index.html?demo=1&amp;v=TAX-12': branded_base+'R117_DEMO_index.html?demo=1&amp;view=booking',
+            source_base+'member.html?demo=1&amp;line_user_id=demo_tax_line_001&amp;v=TAX-12': branded_base+'R117_DEMO_member.html?demo=1',
+            source_base+'owner.html?demo=1&amp;v=TAX-12': branded_base+'R117_DEMO_owner.html?demo=1',
+            source_base+'owner-ipad.html?demo=1&amp;v=TAX-12': branded_base+'R117_DEMO_owner-ipad.html?demo=1',
+          }
+          counts={}
+          changed=source
+          for old,new in replacements.items():
+            n=changed.count(old)
+            assert n==3, f'EXPECTED_THREE_LINKS_FOR_ROLE, found={n}: {old}'
+            changed=changed.replace(old,new)
+            counts[new]=n
+          # The Cloudflare Pages host currently sends frame-ancestors 'none' and X-Frame-Options: DENY.
+          # Use external same-origin links, NOT a broken iframe embed, without loosening CSP.
+          btn_pattern=r'<button class="button button-line" type="button" data-demo-title="[^"]+" data-demo-url="([^"]+)">([^<]+)</button>'
+          def convert_button(m):
+            assert m.group(1).startswith(branded_base), 'NON_BRANDED_DEMO_BUTTON'
+            return f'<a class="button button-line" href="{m.group(1)}" target="_blank" rel="noopener noreferrer">架空デモを開く</a>'
+          changed,converted=re.subn(btn_pattern,convert_button,changed)
+          assert converted==8, f'EXPECTED_EIGHT_DEMO_LAUNCH_BUTTONS: {converted}'
+          intro='初期表示では外部画面を読み込みません。「この画面を読み込む」を押した時だけ、デモ用iframeを生成します。表示できない場合は別タブで開けます。'
+          assert changed.count(intro)==1, 'DEMO_INTRO_CHANGED'
+          changed=changed.replace(intro,'DPRO SHOP公式サイト内の完全架空デモを別タブで開きます。実際の予約・相談・資料送信は行われず、操作結果はブラウザー内で初期化できます。')
+          old_notice='公開デモは架空の顧問先・案件・資料情報を使用しています。管理コード、APIキー、秘密鍵などの機密情報は、この紹介ページには掲載していません。'
+          assert changed.count(old_notice)==1, 'DEMO_NOTICE_CHANGED'
+          changed=changed.replace(old_notice,'体験デモは完全架空データ専用です。実際の予約・送信・書類アップロード・LINE連携は行いません。管理画面の体験コードは公開デモ専用の「1234」です。実際の個人情報や税務資料は入力しないでください。')
+          assert source_base not in changed, 'LEGACY_GITHUB_DEMO_HOST_REMAINS'
+          assert 'data-demo-url="https://' not in changed, 'UNSAFE_IFRAME_LAUNCH_REMAINS'
+          assert changed.count(branded_base)==12, f'BAD_BRANDED_LINK_COUNT={changed.count(branded_base)}'
+          output=Path('R135_OUTPUT');(output/'systems'/'tax-demo').mkdir(parents=True)
+          (output/'systems'/'tax-accounting.html').write_text(changed,encoding='utf8')
+          demo=Path('_r135_accepted_demo')
+          files=['index.html','R117_DEMO_engine.js','R117_DEMO_ui.js','R117_DEMO_styles.css','R117_DEMO_index.html','R117_DEMO_owner.html','R117_DEMO_member.html','R117_DEMO_owner-ipad.html','R117_DEMO_system-check.html']
+          source_sha={'index.html':'631e29a218585cb61ce7a199cf48b5d179f9da3a','R117_DEMO_engine.js':'ffcf8c50d9675263ecaf7e80c3b4db450d7e57fa','R117_DEMO_ui.js':'0a004785a3670bf6286e38f459a3ccf170c41679','R117_DEMO_styles.css':'7030d8a7b42d08ae6b658e45e5ecf3811c47b6ac','R117_DEMO_index.html':'66c979db6d6011032384509f501026af018c996d','R117_DEMO_owner.html':'7feadc4fdc3f1d46c0ab3a0858d450e2496a77fe','R117_DEMO_member.html':'01936d9bc4721f5af269c209e81033bb42490437','R117_DEMO_owner-ipad.html':'05b07ba4063c3415da52b8be5f1c7fba98a11ea4','R117_DEMO_system-check.html':'c387b0781210d153f0020cfc3c55cb7c7de97320'}
+          for name in files:
+            p=demo/name
+            assert p.is_file(), f'MISSING_SYNTHETIC_DEMO: {name}'
+            obj=subprocess.check_output(['git','hash-object',str(p)],text=True).strip()
+            assert obj==source_sha[name],f'SYNTHETIC_BLOB_DRIFT: {name}, {obj}'
+            shutil.copy2(p,output/'systems'/'tax-demo'/name)
+          check=(output/'systems'/'tax-demo'/'R117_DEMO_index.html').read_text(encoding='utf8')
+          assert "connect-src 'none'" in html.unescape(check), 'DEMO_CSP_MISSING'
+          assert 'demo=1' in changed and 'dpro-shop.com/systems/tax-demo/' in changed
+          report={'status':'PASS','mode':'read_only_no_deployment','official_source_blob':actual,'demo_source_commit':'e93f3a1d5bcf1c540b87cc5253b29422e5251e26','legacy_url_replacements':counts,'links_replaced':sum(counts.values()),'unsafe_iframe_buttons_converted':converted,'pinned_demo_files_verified':len(files),'output_files':1+len(files),'customer_entry_url':'https://dpro-shop.com/systems/tax-accounting','branded_demo_url':'https://dpro-shop.com/systems/tax-demo/','production_changed':False}
+          (output/'R135_READ_ONLY_QA.json').write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding='utf8')
+          print(json.dumps(report,ensure_ascii=False,indent=2))
+          PYR135
+      - name: Save preflight output and ready-to-review files (NOT deployed)
+        uses: actions/upload-artifact@v4
+        with:
+          name: R135-official-demo-review-only
+          path: R135_OUTPUT/
+          retention-days: 14
+          if-no-files-found: error
