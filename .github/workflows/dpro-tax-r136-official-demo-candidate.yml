@@ -1,0 +1,138 @@
+# DPRO TAX R136 — candidate branch only. NEVER push to main in this workflow.
+name: DPRO TAX R136 Official Demo Candidate (Manual, Main Protected)
+'on':
+  workflow_dispatch:
+    inputs:
+      confirmation:
+        description: 'Type PREPARE_R136_TAX_DEMO to create a review-only branch; main will NOT be changed'
+        required: true
+        type: string
+permissions:
+  contents: write  # restricted to creation of the guarded, review-only branch
+  actions: read    # downloads the immutable, successful R135 preflight artifact
+concurrency:
+  group: dpro-tax-r136-candidate
+  cancel-in-progress: false
+jobs:
+  prepare-reviewed-branch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Refuse unexpected confirmation or branch
+        shell: bash
+        env:
+          CONFIRMATION: ${{ inputs.confirmation }}
+        run: |
+          set -euo pipefail
+          test "${{ github.event_name }}" = workflow_dispatch
+          test "${{ github.ref }}" = refs/heads/main
+          test "$CONFIRMATION" = 'PREPARE_R136_TAX_DEMO'
+          echo 'Confirmation accepted; NO production branch changes will occur.'
+      - name: Checkout exact current official website
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 1
+      - name: Download successful, read-only R135 candidate artifact
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p _r136_review
+          gh run download 38137118280 --repo dpromstk2000-lab/dpro-shop-official-site --name R135-official-demo-review-only --dir _r136_review
+      - name: Verify exact SHA, all 10 files, safety policy, and current page
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PYR136'
+          import json, re, subprocess
+          from pathlib import Path
+          from html.parser import HTMLParser
+          root=Path('_r136_review')
+          expected_demo={
+            'index.html':'631e29a218585cb61ce7a199cf48b5d179f9da3a',
+            'R117_DEMO_engine.js':'ffcf8c50d9675263ecaf7e80c3b4db450d7e57fa',
+            'R117_DEMO_ui.js':'0a004785a3670bf6286e38f459a3ccf170c41679',
+            'R117_DEMO_styles.css':'7030d8a7b42d08ae6b658e45e5ecf3811c47b6ac',
+            'R117_DEMO_index.html':'66c979db6d6011032384509f501026af018c996d',
+            'R117_DEMO_owner.html':'7feadc4fdc3f1d46c0ab3a0858d450e2496a77fe',
+            'R117_DEMO_member.html':'01936d9bc4721f5af269c209e81033bb42490437',
+            'R117_DEMO_owner-ipad.html':'05b07ba4063c3415da52b8be5f1c7fba98a11ea4',
+            'R117_DEMO_system-check.html':'c387b0781210d153f0020cfc3c55cb7c7de97320',
+          }
+          blob=lambda p:subprocess.check_output(['git','hash-object',str(p)],text=True).strip()
+          source=Path('systems/tax-accounting.html')
+          assert source.exists() and blob(source)=='1912ba42a1b1f4d8e740b228caa925c7daba5f36','LIVE_PAGE_DRIFT: STOP'
+          assert not Path('systems/tax-demo').exists(),'DEMO_DESTINATION_ALREADY_EXISTS: STOP'
+          report=json.loads((root/'R135_READ_ONLY_QA.json').read_text(encoding='utf8'))
+          assert report['status']=='PASS' and report['mode']=='read_only_no_deployment'
+          assert report['official_source_blob']=='1912ba42a1b1f4d8e740b228caa925c7daba5f36'
+          assert report['demo_source_commit']=='e93f3a1d5bcf1c540b87cc5253b29422e5251e26'
+          assert report['links_replaced']==12 and report['unsafe_iframe_buttons_converted']==8
+          assert report['pinned_demo_files_verified']==9 and report['production_changed'] is False
+          expected_paths={str(root/'R135_READ_ONLY_QA.json'),str(root/'systems/tax-accounting.html')}
+          for n,s in expected_demo.items():
+            p=root/'systems/tax-demo'/n
+            assert p.is_file() and not p.is_symlink(),f'MISSING_OR_SYMLINK: {n}'
+            assert blob(p)==s,f'PINNED_DEMO_HASH_MISMATCH: {n}'
+            expected_paths.add(str(p))
+          actual_paths={str(p) for p in root.rglob('*') if p.is_file()}
+          assert actual_paths==expected_paths, f'UNEXPECTED_ARTIFACT_FILES: {sorted(actual_paths^expected_paths)}'
+          patched=root/'systems/tax-accounting.html'
+          assert blob(patched)=='1af72af25254f2fb985c816a5f1ba34eff912c29','PATCHED_PAGE_HASH_MISMATCH: STOP'
+          content=patched.read_text(encoding='utf8')
+          base='https://dpro-shop.com/systems/tax-demo/'
+          assert content.count(base)==12,'NOT_TWELVE_BRANDED_LINKS'
+          assert 'https://dpromstk2000-lab.github.io/dpro-tax-accounting-line-liff/' not in content
+          assert 'data-demo-url=' not in content and 'data-demo-title=' not in content
+          class Links(HTMLParser):
+            def __init__(self):super().__init__();self.demo=[]
+            def handle_starttag(self,tag,attrs):
+              a=dict(attrs)
+              if tag=='a' and a.get('href','').startswith(base):self.demo.append(a)
+          parser=Links();parser.feed(content)
+          assert len(parser.demo)==12 and all(a.get('target')=='_blank' and 'noopener' in a.get('rel','').split() for a in parser.demo)
+          for n in ['index.html','R117_DEMO_index.html','R117_DEMO_owner.html','R117_DEMO_member.html','R117_DEMO_owner-ipad.html','R117_DEMO_system-check.html']:
+            h=(root/'systems/tax-demo'/n).read_text(encoding='utf8')
+            assert "connect-src 'none'" in h and "form-action 'none'" in h,f'ISOLATION_POLICY_MISSING: {n}'
+          eng=(root/'systems/tax-demo/R117_DEMO_engine.js').read_text(encoding='utf8')
+          ui=(root/'systems/tax-demo/R117_DEMO_ui.js').read_text(encoding='utf8')
+          assert '2027-01-01T00:00:00+09:00' not in eng and '1234' in ui
+          print('R136 VERIFIED: R135 candidate, 10 approved files, pinned SHAs, 12 links, 8 launch actions, CSP no-connect, 1234, original live page unchanged.')
+          PYR136
+      - name: Create EXACTLY 10-file candidate in workspace (NO main push)
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp _r136_review/systems/tax-accounting.html systems/tax-accounting.html
+          cp -a _r136_review/systems/tax-demo systems/tax-demo
+          git add -- systems/tax-accounting.html systems/tax-demo
+          git diff --cached --check
+          python - <<'PYR136'
+          import subprocess
+          expected=['systems/tax-accounting.html']+[f'systems/tax-demo/{n}' for n in ['index.html','R117_DEMO_engine.js','R117_DEMO_ui.js','R117_DEMO_styles.css','R117_DEMO_index.html','R117_DEMO_owner.html','R117_DEMO_member.html','R117_DEMO_owner-ipad.html','R117_DEMO_system-check.html']]
+          changed=subprocess.check_output(['git','diff','--cached','--name-only','-z']).decode().rstrip('\0').split('\0')
+          assert sorted(changed)==sorted(expected),f'GUARD_DENIED_CHANGED_FILES: {changed}'
+          print('GUARDED_CANDIDATE_FILES_OK:',len(changed))
+          PYR136
+      - name: Push only a NEW review branch; NEVER push to main
+        shell: bash
+        run: |
+          set -euo pipefail
+          REVIEW_BRANCH=r136-tax-demo-official-candidate-20261011
+          if git ls-remote --exit-code --heads origin "refs/heads/$REVIEW_BRANCH" >/dev/null 2>&1; then
+            echo 'REVIEW_BRANCH_EXISTS: Do NOT overwrite an existing candidate branch.' >&2
+            exit 1
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'R136 review: branded DPRO TAX synthetic demo (10 reviewed files)'
+          git push origin "HEAD:refs/heads/$REVIEW_BRANCH"
+          {
+            echo '## R136 candidate branch ready — MAIN NOT MODIFIED'
+            echo ''
+            echo 'Exact 10-file candidate; merge only after manually reviewing changes.'
+            echo ''
+            echo "[Review change and create pull request](https://github.com/dpromstk2000-lab/dpro-shop-official-site/compare/main...$REVIEW_BRANCH?expand=1)"
+          } >> "$GITHUB_STEP_SUMMARY"
