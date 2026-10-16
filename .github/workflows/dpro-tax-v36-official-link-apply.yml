@@ -1,0 +1,81 @@
+name: DPRO TAX V3.6 Official Site Link Preview and Publish
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "preview = audit only; publish = update Official TAX product page on main"
+        required: true
+        default: preview
+        type: choice
+        options:
+          - preview
+          - publish
+permissions:
+  contents: write
+jobs:
+  tax-v36-link:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - name: Checkout (main only)
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Check latest PUBLIC V3.6 URL (static only; no secret)
+        run: |
+          echo "Target demo URL: https://dpro-shop.com/systems/tax-demo/v36-public.html"
+          echo "This workflow edits only TAX presentation HTML; no Worker, Supabase, or LINE calls."
+      - name: Verify and stage links
+        env:
+          PUBLISH_MODE: ${{ inputs.mode }}
+        run: |
+          python - "$PUBLISH_MODE" <<'PY'
+          from pathlib import Path
+          import re,sys,difflib,hashlib
+          MODE = sys.argv[1]
+          if MODE not in ('preview','publish'): raise SystemExit('Invalid mode')
+          URL = 'https://dpro-shop.com/systems/tax-demo/v36-public.html'
+          CSS = '<style id="dpro-tax-v36-cta-style">\n.dpro-tax-v36-cta{box-sizing:border-box;max-width:1180px;margin:22px auto;padding:24px;border-radius:18px;border:1px solid #bedae2;background:linear-gradient(125deg,#edfafa,#f6f9ff);color:#142c3f;box-shadow:0 8px 28px rgba(10,39,61,.08);font-family:system-ui,-apple-system,\'Noto Sans JP\',sans-serif}\n.dpro-tax-v36-cta *{box-sizing:border-box}.dpro-tax-v36-cta h2{margin:5px 0 12px;font-size:clamp(21px,2.5vw,28px);line-height:1.4;color:#10304b}.dpro-tax-v36-cta p{margin:10px 0;line-height:1.7;font-size:15px;color:#274557}.dpro-tax-v36-cta ul{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 18px;padding:0;list-style:none}.dpro-tax-v36-cta li{padding:7px 11px;border-radius:10px;background:#fff;border:1px solid #dcecef;font-size:14px}.dpro-tax-v36-cta a{display:inline-block;padding:12px 20px;background:#056a72;color:#fff!important;border-radius:10px;text-decoration:none;font-size:16px;font-weight:800}.dpro-tax-v36-cta a:focus-visible{outline:3px solid #f3a94a;outline-offset:3px}.dpro-tax-v36-cta small{display:block;margin-top:12px;line-height:1.6;color:#42596d;font-size:12px}\n@media(max-width:600px){.dpro-tax-v36-cta{margin:14px 10px;padding:18px}.dpro-tax-v36-cta ul{display:grid;gap:7px}.dpro-tax-v36-cta a{display:block;text-align:center}}\n</style>'
+          CTA = '<aside class="dpro-tax-v36-cta" data-dpro-tax-v36="20261016" aria-label="DPRO TAX 最新管理デモ">\n<p style="margin:0;color:#056a72;font-weight:800;font-size:13px">NEW · DPRO TAX 体験デモ V3.6</p>\n<h2>税理士・会計事務所向け 管理ダッシュボードを体験</h2>\n<p>事務所の顧問先対応をイメージできる3つの優先機能を、PC・タブレット・スマートフォンでお試しいただけます。</p>\n<ul><li>担当者・ノート・アルバム</li><li>次回訪問日・前日通知の文面確認</li><li>必要資料・提出期限・定期通知の文面確認</li></ul>\n<a href="https://dpro-shop.com/systems/tax-demo/v36-public.html" target="_blank" rel="noopener noreferrer">最新V3.6のデモを開く →</a>\n<small>完全架空データ専用・登録不要・管理コードを求められた場合は1234（体験専用）。実際のLINE送信、DB保存、資料アップロード、本人認証はありません。実情報の入力はお控えください。</small>\n</aside>'
+          MARKER = 'data-dpro-tax-v36="20261016"'
+          
+          def replace_or_fail(old,new,what):
+              if old not in new: raise SystemExit('Missing expected anchor: '+what)
+              return new
+          
+          def patch(path,old,new):
+              if MARKER in old:
+                  print('UNCHANGED (already installed):',path)
+                  return
+              if new == old: raise SystemExit('NO DIFF: '+str(path))
+              if len(new) < len(old): raise SystemExit('Unexpected truncation: '+str(path))
+              print('PATCH',str(path),'original',len(old),'bytes','updated',len(new),'bytes','mode',MODE)
+              print('PATCH_SHA256',hashlib.sha256(new.encode('utf-8')).hexdigest())
+              if MODE=='publish': path.write_text(new,encoding='utf-8')
+          
+          p=Path('systems/tax-accounting.html')
+          if not p.is_file(): raise SystemExit('Official TAX page missing')
+          old=p.read_text(encoding='utf-8')
+          if MARKER in old:
+              print('ALREADY_INSTALLED');sys.exit(0)
+          anchor='<section class="section product-live" id="demo">'
+          if old.count(anchor)!=1: raise SystemExit('Unexpected official demo section count: '+str(old.count(anchor)))
+          if '</head>' not in old: raise SystemExit('No head close')
+          new=old.replace('</head>',CSS+'\n</head>',1).replace(anchor,anchor+'\n'+CTA,1)
+          legacy='<a class="button button-ghost" href="#demo">実際の操作デモを見る</a>'
+          if legacy not in new: raise SystemExit('Official hero demo link changed; no write')
+          new=new.replace(legacy,'<a class="button button-ghost" href="'+URL+'" target="_blank" rel="noopener noreferrer">最新V3.6のデモを体験する</a>',1)
+          patch(p,old,new)
+          PY
+      - name: Verify diff and publish (only with explicit publish choice)
+        if: inputs.mode == 'publish'
+        run: |
+          git diff --check
+          git status --short
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add systems/tax-accounting.html
+          if git diff --cached --quiet; then echo "No edits; already published."; exit 0; fi
+          git commit -m "docs: link DPRO TAX V3.6 public safe demo (official)"
+          git push origin HEAD:main
