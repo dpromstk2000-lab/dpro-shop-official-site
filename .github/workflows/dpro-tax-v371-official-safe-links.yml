@@ -1,0 +1,77 @@
+name: DPRO TAX V3.7.1 Official Safe Demo Link Preview and Publish
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'preview = read-only diff check; publish = write only TAX marketing pages'
+        required: true
+        default: preview
+        type: choice
+        options:
+          - preview
+          - publish
+permissions:
+  contents: write
+jobs:
+  safe-tax-demo-links:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout only main
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Verify safe marketing migration without Worker DB or LINE
+        env:
+          PUBLISH_MODE: ${{ inputs.mode }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY_AUDIT'
+          from pathlib import Path
+          import os,hashlib,sys
+          MODE=os.environ.get('PUBLISH_MODE','')
+          if MODE not in ('preview','publish'): raise SystemExit('invalid mode')
+          V36='https://dpro-shop.com/systems/tax-demo/v36-public.html'
+          V371='https://dpro-shop.com/systems/tax-demo/v371-public.html'
+          def sha(data):
+              b=data.encode('utf-8')
+              return hashlib.sha1(b'blob '+str(len(b)).encode()+b'\0'+b).hexdigest()
+          def replace_exact(s,a,b,count,name):
+              n=s.count(a)
+              if n!=count: raise SystemExit('Unexpected '+name+' count '+str(n)+' expected '+str(count))
+              return s.replace(a,b)
+          def present(s):
+              if not V371 in s or 'V3.7.1' not in s: raise SystemExit('New demo link/title missing')
+              if V36 in s or '最新V3.6' in s or 'data-dpro-tax-v36=' in s: raise SystemExit('Old public CTA remains')
+              if 'X-Line-User-Id' in s or 'service_role' in s: pass # Text validation only; no API calls
+          p=Path('systems/tax-accounting.html')
+          expected_sha='bdfed375b5cf0e953ffccb1c33555b54938bfaa7'
+          source=Path('systems/tax-demo/v371-public.html')
+          if not source.is_file(): raise SystemExit('Safe static final V3.7.1 file not found')
+          if sha(source.read_text('utf-8')) != '00e1562d33689e9aa3fadffc02f348717b338169': raise SystemExit('Final V3.7.1 file SHA drift')
+          old=p.read_text('utf-8');current_sha=sha(old)
+          if current_sha!=expected_sha:
+              if V371 in old and V36 not in old: print('ALREADY_PUBLISHED official');sys.exit(0)
+              raise SystemExit('Official page SHA drift; no changes')
+          new=replace_exact(old,V36,V371,2,'official links')
+          new=replace_exact(new,'data-dpro-tax-v36="20261016"','data-dpro-tax-v371="20261017"',1,'official marker')
+          new=replace_exact(new,'V3.6','V3.7.1',3,'official version labels')
+          new=replace_exact(new,'・管理コードを求められた場合は1234（体験専用）','',1,'old demo code disclaimer')
+          present(new)
+          assert 'id="demo"' in new and ('R117' in old)==('R117' in new)
+          print('OFFICIAL_PATCH_READY',{'mode':MODE,'old_sha':current_sha,'new_sha':sha(new),'v371_links':new.count(V371),'changed_chars':len(new)-len(old)})
+          if MODE=='publish': p.write_text(new,encoding='utf-8')
+          PY_AUDIT
+      - name: Commit only allowed TAX marketing pages
+        if: inputs.mode == 'publish'
+        run: |
+          set -euo pipefail
+          git diff --check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add systems/tax-accounting.html
+          if git diff --cached --quiet; then echo 'Already published: no changes'; exit 0; fi
+          git diff --cached --stat
+          git commit -m 'docs(tax): use V3.7.1 isolated public demo; stop linking legacy demo'
+          git push origin HEAD:main
