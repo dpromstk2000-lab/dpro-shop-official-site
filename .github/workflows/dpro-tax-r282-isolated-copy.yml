@@ -1,0 +1,164 @@
+name: DPRO TAX R282 Isolated Marketing Copy Candidate
+
+on:
+  push:
+    branches:
+      - dpro-tax-r282-official-copy-20261018
+    paths:
+      - .github/workflows/dpro-tax-r282-isolated-copy.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: dpro-tax-r282-isolated-copy
+  cancel-in-progress: false
+
+jobs:
+  prepare-isolated-preview:
+    if: github.ref == 'refs/heads/dpro-tax-r282-official-copy-20261018'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout R282 branch (never main)
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Confirm exact isolated branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = "refs/heads/dpro-tax-r282-official-copy-20261018"
+          test "$(git branch --show-current)" = "dpro-tax-r282-official-copy-20261018"
+      - name: Build R282 copy-only HTML and test URLs/scripts
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY_R282'
+          #!/usr/bin/env python3
+          """DPRO TAX R282: safe, isolated, copy-only official-page candidate builder.
+          Does not deploy, connect to Worker/DB/LINE, or update the production file.
+          """
+          import argparse, difflib, hashlib, json, re
+          from collections import Counter
+          from html.parser import HTMLParser
+          from pathlib import Path
+          
+          BASE_BLOB = 'fef60d7750e2b20972fd9cdb2ce391d530e1805e'
+          SOURCE_PATH = 'systems/tax-accounting.html'
+          CANDIDATE_PATH = 'systems/r282-official-site-copy-preview.html'
+          LEGACY_MARKER = 'R117_DEMO_'
+          LATEST = 'v371-public.html'
+          
+          OLD_HEADER = ('<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-light"><span></span>REAL SCREEN DEMO</p>'
+                        '<h2>説明画像ではなく、<br>実際の操作デモ。</h2></div>'
+                        '<p>DPRO SHOP公式サイト内の完全架空デモを別タブで開きます。実際の予約・相談・資料送信は行われず、操作結果はブラウザー内で初期化できます。</p></div>')
+          NEW_HEADER = ('<div class="product-section-heading reveal"><div><p class="eyebrow eyebrow-light"><span></span>ARCHIVED ROLE DEMOS · R117</p>'
+                        '<h2>旧バージョンの<br>画面別参考デモ。</h2></div>'
+                        '<p>ここから下は受付・顧問先・事務所PC・スタッフiPadの旧R117画面別参考デモです。'
+                        '最新の3機能（共有ノート・次回訪問と前日通知・必要資料と期限）を試す場合は、'
+                        'すぐ上の「最新V3.7.1のデモ」をご利用ください。いずれも架空データ専用で、'
+                        '実際の予約・LINE送信・資料アップロードは行いません。</p></div>')
+          OLD_NOTE = '管理画面の体験コードは公開デモ専用の「1234」です。'
+          NEW_NOTE = '旧R117・最新版V3.7.1のいずれも、管理コードの入力を求められた場合は公開デモ専用の「1234」を使用してください。本番の認証情報ではありません。'
+          REPL = [
+              (OLD_HEADER, NEW_HEADER, 1, 'legacy heading and notice'),
+              ('4つの実在画面を掲載しています。', '4つの画面構成例を紹介しています。', 1, 'roles description'),
+              ('架空デモを開く', '旧画面の参考デモを開く', 8, 'old demo CTA label'),
+              ('別タブで体験する', '旧画面を別タブで見る', 4, 'old demo secondary CTA label'),
+              (OLD_NOTE, NEW_NOTE, 1, 'old demo access code hint'),
+          ]
+          
+          class Links(HTMLParser):
+              def __init__(self):
+                  super().__init__(convert_charrefs=True)
+                  self.links = []
+              def handle_starttag(self, tag, attrs):
+                  if tag == 'a':
+                      d = dict(attrs)
+                      self.links.append((d.get('href'), d.get('target'), d.get('rel')))
+          
+          def gitblob(s: str):
+              data = s.encode('utf-8')
+              return hashlib.sha1(b'blob '+str(len(data)).encode('ascii')+b'\0'+data).hexdigest()
+          
+          def html_links(s):
+              obj = Links();obj.feed(s);return obj.links
+          
+          def blocks(s, tag):
+              return re.findall(r'<'+tag+r'\b[^>]*>.*?</'+tag+r'>',s,flags=re.I|re.S)
+          
+          def build(source, verify_sha=True):
+              if verify_sha and gitblob(source)!=BASE_BLOB:
+                  raise ValueError(f'MAIN_BASE_SHA_DRIFT expected={BASE_BLOB} actual={gitblob(source)}')
+              assert source.count(LEGACY_MARKER)==12, 'Legacy link count drift'
+              assert source.count(LATEST)==2, 'V3.7.1 link count drift'
+              candidate = source
+              replaced = {}
+              for old,new,count,name in REPL:
+                  found = candidate.count(old)
+                  if found != count:
+                      raise ValueError(f'Unexpected {name}: found {found}, expected {count}')
+                  candidate = candidate.replace(old,new)
+                  replaced[name] = found
+              if html_links(source) != html_links(candidate):
+                  raise ValueError('HREF/TARGET/REL DRIFT')
+              if candidate.count(LEGACY_MARKER)!=12 or candidate.count(LATEST)!=2:
+                  raise ValueError('Demo link occurrence drift')
+              for block in ['style','script']:
+                  if blocks(source,block) != blocks(candidate,block):
+                      raise ValueError(f'{block} content changed')
+              if source.count('id="demo"') != candidate.count('id="demo"') or source.count('data-dpro-tax-v371="20261017"')!=candidate.count('data-dpro-tax-v371="20261017"'):
+                  raise ValueError('section ids/version marker changed')
+              if source.count('R117_DEMO_') != candidate.count('R117_DEMO_'):
+                  raise ValueError('Old R117 references changed')
+              for phrase in ['実際の個人情報や税務資料は入力しないでください','完全架空データ専用','実情報の入力はお控えください']:
+                  if phrase not in candidate: raise ValueError('Safety notice disappeared: '+phrase)
+              report = {
+                  'release': 'R282', 'mode': 'ISOLATED_COPY_ONLY', 'baseline_git_blob_sha':gitblob(source),
+                  'candidate_git_blob_sha':gitblob(candidate),'source_bytes':len(source.encode('utf-8')),
+                  'candidate_bytes':len(candidate.encode('utf-8')),'replacements':replaced,
+                  'legacy_link_occurrences':candidate.count(LEGACY_MARKER),
+                  'latest_demo_link_occurrences':candidate.count(LATEST),
+                  'all_anchor_hrefs_targets_rels_unchanged': True,
+                  'inline_script_and_styles_unchanged': True,
+                  'main_file_overwritten': False,
+                  'candidate_path':CANDIDATE_PATH,
+                  'live_api_db_line_calls':False,
+                  'qa_scope':'static full HTML diff; browser and published Pages NOT yet tested',
+              }
+              return candidate,report
+          
+          def main():
+              p=argparse.ArgumentParser();p.add_argument('--source', default=SOURCE_PATH);p.add_argument('--output',default=CANDIDATE_PATH);p.add_argument('--report',default='R282_QA_RESULT.json');p.add_argument('--diff',default='R282_DIFF.patch')
+              a=p.parse_args(); s=Path(a.source).read_text('utf-8'); c,rep=build(s)
+              output=Path(a.output);output.parent.mkdir(parents=True,exist_ok=True);output.write_text(c,'utf-8')
+              Path(a.report).write_text(json.dumps(rep,ensure_ascii=False,indent=2)+'\n','utf-8')
+              diff=''.join(difflib.unified_diff(s.splitlines(keepends=True),c.splitlines(keepends=True),fromfile='main/'+SOURCE_PATH,tofile='isolated/'+CANDIDATE_PATH))
+              Path(a.diff).write_text(diff,'utf-8')
+              print('R282_COPY_QA_PASS',json.dumps(rep,ensure_ascii=False))
+          
+          if __name__=='__main__': main()
+          PY_R282
+      - name: Upload QA report and diff as workflow artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dpro-tax-r282-isolated-qa
+          path: |
+            R282_QA_RESULT.json
+            R282_DIFF.patch
+          if-no-files-found: error
+      - name: Commit candidate file only to isolated branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git diff --check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- systems/r282-official-site-copy-preview.html
+          if git diff --cached --quiet; then echo 'Candidate already present. No changes.'; exit 0; fi
+          git diff --cached --name-only | grep -Fx 'systems/r282-official-site-copy-preview.html'
+          test "$(git diff --cached --name-only | wc -l)" -eq 1
+          git diff --cached --check
+          git commit -m 'docs(tax): stage R282 archived demo clarity as isolated HTML'
+          git push origin HEAD:refs/heads/dpro-tax-r282-official-copy-20261018
