@@ -17,3 +17,11 @@ https://:version.dpro-shop-official-site.pages.dev/*
 /system-check*
   X-Robots-Tag: noindex, nofollow, noarchive
   Cache-Control: no-store, max-age=0
+
+# DPRO ORDER | temporary login/read-only staging; security policy scoped to /order/.
+# De-attach earlier wildcard CSP before setting this one to avoid two conflicting policies.
+/order/*
+  ! Content-Security-Policy
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com https://cdn.jsdelivr.net https://raw.githack.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.google.com https://*.google.com https://www.google.co.jp https://*.google.co.jp https://stats.g.doubleclick.net https://*.doubleclick.net; font-src 'self' data:; frame-src 'self' https://dpromstk2000-lab.github.io https://challenges.cloudflare.com; connect-src 'self' https://dpro-order-api.dpromstk2000.workers.dev https://dpro-shukyaku-api.dpromstk2000.workers.dev https://dpro-shop-contact-v1-api.dpromstk2000.workers.dev https://challenges.cloudflare.com https://www.google-analytics.com https://*.google-analytics.com https://analytics.google.com https://*.analytics.google.com https://www.googletagmanager.com https://www.google.com https://*.google.com https://www.google.co.jp https://*.google.co.jp https://stats.g.doubleclick.net https://*.doubleclick.net https://cloudflareinsights.com; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests
+  X-Robots-Tag: noindex, nofollow, noarchive
+  Cache-Control: no-store, max-age=0
