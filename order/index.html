@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#12334c">
+  <title>DPRO ORDER｜受発注管理</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">D</span><span><b>DPRO ORDER</b><small>法人向け受発注</small></span></div>
+      <nav id="nav" aria-label="機能メニュー" hidden>
+        <button data-page="dashboard" class="active">▦　今日の状況</button>
+        <button data-page="queue" id="navQueue">☷　未処理業務</button>
+        <button data-page="orders">▤　注文一覧</button>
+        <button data-page="catalog">▥　商品・契約単価</button>
+        <button data-page="new" id="navNew">⊕　新規発注</button>
+        <button data-page="shipping" id="navShipping">▣　出荷処理</button>
+        <button data-page="settings">⚙　アカウント</button>
+      </nav>
+      <p class="side-foot">DPRO ORDER / 安全確認中<br>本番接続完了まで発注・出荷を停止します。</p>
+    </aside>
+    <section class="workspace">
+      <header class="topbar"><span id="breadcrumb">ログイン</span><span id="userLabel"></span><button id="logout" class="plain" hidden>ログアウト</button></header>
+      <main id="main" tabindex="-1">
+        <section class="login panel">
+          <p class="eyebrow">DPRO SYSTEMS / ORDER</p>
+          <h1>卸売・法人向け受発注</h1>
+          <p>登録された担当者のメールアドレスでログインしてください。</p>
+          <form id="loginForm" class="form-stack">
+            <label>メールアドレス<input name="email" type="email" autocomplete="username" required maxlength="254"></label>
+            <label>パスワード<input name="password" type="password" autocomplete="current-password" required></label>
+            <button type="submit" class="primary">ログイン</button>
+          </form>
+          <p class="note">デモ用管理コード「1234」はログインには使用しません。サーバー上で本人確認と所属確認を行います。</p>
+        </section>
+      </main>
+    </section>
+  </div>
+  <div id="toast" role="status" aria-live="polite" hidden></div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

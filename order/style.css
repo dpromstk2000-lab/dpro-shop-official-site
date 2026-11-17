@@ -1,0 +1,100 @@
+:root { font-family: "Noto Sans JP", "Yu Gothic", Meiryo, sans-serif; color:#12334c; background:#f3f7fb; font-size:16px; }
+* { box-sizing:border-box; } body { margin:0; } button,input,textarea { font:inherit; }
+/* Explicitly honor the hidden attribute even when a navigation layout sets display:grid. */
+[hidden] { display:none !important; }
+button { cursor:pointer; } button:disabled { opacity:.55; cursor:not-allowed; }
+a { color:#006b5a; } :focus-visible { outline:3px solid #27a58e; outline-offset:2px; }
+.layout { display:flex; min-height:100vh; } .sidebar { width:260px; flex:none; background:#12334c; color:white; padding:30px 18px; display:flex; flex-direction:column; }
+.brand { display:flex; gap:13px; align-items:center; padding:0 9px 28px; } .brand b { font-size:22px; display:block; letter-spacing:.04em; } .brand small { color:#b2cada; display:block; margin-top:4px; }
+.brand-mark { background:#087565; padding:12px 17px; border-radius:14px; font-weight:800; font-size:23px; }
+nav { display:grid; gap:6px; } nav button { text-align:left; width:100%; padding:14px; border:0; border-radius:11px; background:transparent; color:#d4e1ed; font-weight:700; }
+nav button.active,nav button:hover { background:#22516b; color:white; } .side-foot { margin:auto 10px 0; font-size:12px; line-height:1.8; color:#a9c3d1; }
+.workspace { flex:1; min-width:0; } .topbar { min-height:72px; background:white; border-bottom:1px solid #dce5ec; display:flex; align-items:center; gap:18px; padding:15px 32px; font-weight:700; }
+#userLabel { margin-left:auto; font-size:14px; color:#547187; font-weight:500; } .plain { background:white; color:#006b5a; border:1px solid #bbd8d2; border-radius:9px; padding:9px 14px; }
+main { max-width:1200px; margin:auto; padding:32px; } h1 { font-size:28px; margin:7px 0 14px; } h2 { font-size:19px; margin:0 0 15px; } h3 { font-size:17px; }
+.lead { margin:0 0 25px; color:#4a6576; line-height:1.8; } .eyebrow { font-size:12px; font-weight:800; letter-spacing:.14em; color:#0b7665; }
+.panel { background:#fff; border:1px solid #dae6ed; border-radius:16px; padding:25px; box-shadow:0 9px 25px #1734480b; }
+.login { max-width:550px; margin:60px auto; padding:35px; }
+.form-stack { display:grid; gap:18px; max-width:530px; margin:25px 0; } label { font-weight:700; display:block; } label input,select,textarea { display:block; width:100%; background:#fff; padding:13px; margin-top:8px; border:1px solid #aec6d3; border-radius:9px; color:#12334c; min-height:47px; }
+.primary,.secondary,.danger { border:0; border-radius:10px; padding:13px 19px; font-weight:800; }
+.primary { background:#006c59; color:white; } .primary:hover { background:#004e42; } .secondary { background:#e7f2f6; color:#13465b; }
+.danger { background:#fcebe7; color:#b03c29; } .note,.small { color:#557183; font-size:13px; line-height:1.8; }
+.notice { border:1px solid #b5dae2; background:#e9f5f8; border-radius:11px; padding:13px 17px; margin:18px 0 23px; line-height:1.75; }
+.metrics { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; margin:22px 0; } .metric { border:1px solid #dce8ed; border-radius:14px; padding:23px; background:white; }
+.metric span { display:block; color:#557182; font-weight:700; font-size:14px; } .metric strong { display:block; font-size:32px; margin-top:10px; }
+.actions { display:flex; flex-wrap:wrap; gap:10px; margin:20px 0; } .table-wrap { overflow-x:auto; } table { width:100%; border-collapse:collapse; min-width:650px; }
+th,td { padding:16px 12px; border-bottom:1px solid #e6eef2; text-align:left; vertical-align:top; } th { font-size:13px; background:#f7fafb; } td small { color:#698193; }
+.status { display:inline-block; border-radius:20px; background:#e4eef5; color:#31536b; font-weight:700; padding:5px 12px; font-size:12px; }
+.status-submitted { background:#fff2d4; color:#875700; } .status-confirmed { background:#e3f5e9; color:#167044; } .status-cancelled { background:#f6e9e9; color:#9b3838; }
+.status-shipped { background:#e6eefb; color:#2352a2; } .row-actions { display:flex; flex-wrap:wrap; gap:7px; margin-top:9px; }
+.row-actions button { padding:7px 11px; border-radius:7px; border:1px solid #c5d9e2; background:#f4fafc; font-size:13px; }
+.two-col { display:grid; grid-template-columns:1.5fr 1fr; gap:18px; } .line { display:flex; justify-content:space-between; gap:20px; padding:12px 0; border-bottom:1px solid #edf1f3; }
+.line:last-child { border-bottom:0; } .line small { color:#688295; display:block; } .total { font-size:21px; font-weight:800; text-align:right; padding:15px 0; }
+.empty { text-align:center; padding:35px; color:#557183; } #toast { position:fixed; bottom:22px; right:22px; border-radius:10px; padding:15px 20px; color:white; background:#087565; max-width:min(440px,90vw); box-shadow:0 10px 30px #0002; }
+#toast.error { background:#b84230; } .helper { color:#8b470d; }
+@media(max-width:850px) { .layout { display:block; } .sidebar { width:100%; padding:16px; } .brand { padding-bottom:12px; } nav { display:flex; gap:6px; overflow-x:auto; } nav button { min-width:max-content; white-space:nowrap; font-size:13px; padding:10px 12px; } .side-foot { display:none; } .topbar { padding:13px 18px; flex-wrap:wrap; } main { padding:17px; } .login { margin:15px auto; padding:22px; } .metrics { grid-template-columns:1fr; } .two-col { grid-template-columns:1fr; } h1 { font-size:24px; } .panel { padding:18px; } }
+
+/* R58N development branch improvements — preserve existing desktop navigation. */
+.qa-ribbon { border: 1px solid #8cb3bf; background: #e8f3f6; color:#15506b; padding:12px 16px; border-radius:11px; margin-bottom:22px; font-size:14px; font-weight:800; }
+.order-tools { display:flex; flex-wrap:wrap; align-items:end; gap:14px; margin-bottom:20px; }
+.order-tools label { flex:1 1 230px; font-size:14px; }
+.order-tools .small { flex:0 1 auto; margin-bottom:11px; }
+.status-partially_shipped { background:#fff1d7; color:#815b00; }
+@media(max-width:550px) { .order-tools { display:grid; grid-template-columns:1fr; } .order-tools .small { margin:0; } }
+
+.order-preview { margin: 0 0 20px; padding: 17px 18px; background: #f3faf8;
+ border: 1px solid #b8ded5; border-radius: 10px; line-height: 1.7; }
+.order-preview ul { margin: 10px 0; padding-left: 24px; }
+.order-preview strong { display: block; font-size: 20px; margin-top: 8px; }
+.order-preview .helper { color: #8b470d; }
+
+.admin-exports { display:flex; flex-wrap:wrap; gap:10px; margin:16px 0 24px; }
+.admin-exports button { min-height:44px; }
+
+/* R58N V1.7 - order detail readability on owner PC and staff mobile */
+.detail-panel .line { flex-wrap:wrap; overflow-wrap:anywhere; }
+.detail-panel table th, .detail-panel table td { text-align:left; vertical-align:top; }
+.detail-panel table small { display:block; color:#536a78; margin-top:4px; overflow-wrap:anywhere; }
+.detail-total { font-size:1.25rem; font-weight:800; text-align:right; margin:20px 0 0; }
+@media(max-width:650px) { .detail-panel { padding:14px; } .detail-total { text-align:left; } }
+
+/* V1.8: seller-admin-only readiness summary, not production certification */
+.setup-readiness { margin-top: 18px; }
+.setup-readiness ul { margin: 12px 0; padding: 0; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; list-style: none; }
+.setup-check { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; border: 1px solid #d7e6eb; border-radius: 9px; padding: 12px; }
+.setup-check b { font-size: 0.76rem; color: #1c5763; background: #e9f5f4; padding: 5px 8px; border-radius: 6px; }
+.setup-check.pending b { color: #80451d; background: #fff0dc; }
+.setup-check span { font-weight: 700; }
+.setup-check small { width: 100%; color: #506778; }
+@media(max-width: 680px) { .setup-readiness ul { grid-template-columns: 1fr; } }
+
+/* V1.8 mobile first fulfillment summary: show every quantity without sideways scrolling. */
+.detail-mobile-list { display: none; }
+@media (max-width: 650px) {
+  .detail-desktop-table { display: none; }
+  .detail-mobile-list { display: grid; gap: 12px; }
+  .detail-mobile-card { border: 1px solid #d6e6eb; border-radius: 10px; padding: 14px; background: #fff; }
+  .detail-mobile-card h3 { font-size: 1rem; margin: 0 0 3px; overflow-wrap: anywhere; }
+  .detail-mobile-card p { margin: 0 0 9px; }
+  .detail-mobile-card .line { padding: 9px 0; gap: 8px; }
+  .detail-mobile-card .line:last-child { border-bottom: none; }
+}
+
+/* V2.8.0 local-only CSV onboarding preflight. */
+.setup-preflight { margin-top:18px; }
+.setup-preflight form { max-width:680px; }
+.setup-preflight input[type="file"] { padding:12px; background:white; }
+.import-preview-result { margin-top:18px; padding:14px; border:1px solid #bed3df; border-radius:10px; background:#f3f8fa; }
+.import-preview-result h3 { margin:0 0 10px; }
+.import-preview-result ul { margin:10px 0; padding-left:23px; }
+
+/* V2.8.4 - operator work queue (read-only summaries for QA). */
+.work-queue-section { margin-top:18px; }
+.work-queue-heading { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+.work-queue-heading h2 { margin:0; }
+@media (max-width:640px) { .work-queue-heading button { width:100%; } }
+
+/* V2.8.5 - admin-only local master consistency review. */
+.master-audit { margin-top:18px; }
+.master-audit-issues { padding-left:24px; margin-top:14px; }
+.master-audit-issues li { padding:4px 0; }
