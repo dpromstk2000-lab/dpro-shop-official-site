@@ -1,0 +1,53 @@
+name: DPRO Construction 59 - Official Catalog Card
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: dpro-construction59-official-catalog
+  cancel-in-progress: false
+jobs:
+  update-catalog:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout existing site
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Add catalog card without editing legacy 55 products
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          path = Path('systems/index.html')
+          detail = Path('systems/construction.html')
+          assert path.is_file(), "Catalog page missing. No changes made."
+          assert detail.is_file(), "#59 detail page missing. No changes made."
+          original = path.read_text(encoding="utf-8")
+          marker = '<section class="sys33-catalog" id="catalog"><div class="sys33-shell">'
+          entry = '\n<!-- DPRO_CONSTRUCTION_59_CATALOG_LINK_START -->\n<div id="dpro-construction-59-entry" style="margin:0 0 44px">\n  <div class="sys33-section-head sys33-section-head--dark">\n    <small>NEW SYSTEM / #59 / COMING SOON</small>\n    <h2>専門工事の現場管理 <span style="font-size:.55em;vertical-align:middle;color:#087e85">公開準備中</span></h2>\n    <p>新規システム「DPRO CONSTRUCTION」。現場一覧・工程進捗・検査・是正を一つに。架空データで基本機能を検証済みです。</p>\n  </div>\n  <div class="sys33-grid">\n    <a class="sys33-card" href="construction.html" aria-label="DPRO CONSTRUCTION 専門工事・現場管理の公式説明を見る">\n      <span class="sys33-card__cat">住宅・不動産 / 専門工事 · #59 · 公開準備中</span>\n      <h3>専門工事・現場管理</h3>\n      <p>現場登録・工期・進捗変更履歴・検査・是正完了。商用本番公開準備中。</p>\n      <span class="sys33-card__more">公式説明を見る <b>→</b></span>\n    </a>\n  </div>\n</div>\n<!-- DPRO_CONSTRUCTION_59_CATALOG_LINK_END -->\n'
+          if 'id="dpro-construction-59-entry"' in original:
+              print("#59 navigation already present; no change required")
+          else:
+              assert original.count(marker) == 1, "Catalog structure changed. Refusing unsafe edit."
+              updated = original.replace(marker, marker + "\n" + entry, 1)
+              assert updated.count('id="dpro-construction-59-entry"') == 1
+              assert updated.count('data-p36-catalog') == original.count('data-p36-catalog')
+              assert updated.count('data-system-category=') == original.count('data-system-category=')
+              assert updated.count('data-p36-system-card') == original.count('data-p36-system-card')
+              path.write_text(updated,encoding="utf-8")
+              print(f"Added #59 catalog card to {path}. Original catalog data untouched.")
+          PY
+      - name: Commit only the updated catalog page
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+              git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+              git add -- systems/index.html
+              if git diff --cached --quiet; then
+                echo "Nothing to commit (already applied)."
+              else
+                git diff --cached --check
+                git commit -m "DPRO #59: add catalog navigation card (prelaunch)"
+                git push origin HEAD:main
+              fi
