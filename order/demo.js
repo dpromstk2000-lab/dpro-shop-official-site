@@ -29,7 +29,7 @@ function initialData(){const seed = {
     {id:'DEMO-1003',buyer:'a',status:'partially_shipped',created:'11/17 10:30',lines:[{product:'p1',qty:5,shipped:2}],note:'分納サンプル'}
   ],nextOrder:1004
 };for(const o of seed.orders)for(const line of o.lines)line.unitPrice=seed.prices[o.buyer][line.product];return seed;}
-let data=initialData(), entered=false, roleKey='buyer_a', page='dashboard', focusedOrder=null, flash='', customerQuery='', selectedBuyer='a', selectedLineBuyer=null;
+let data=initialData(), entered=false, roleKey='seller_admin', page='dashboard', focusedOrder=null, flash='', customerQuery='', selectedBuyer='a', selectedLineBuyer=null;
 const current = ()=>roles[roleKey];
 const isBuyer=()=>current().type==='buyer';
 const isAdmin=()=>current().type==='seller_admin';
@@ -45,22 +45,41 @@ const orderTotal=o=>o.lines.reduce((sum,line)=>sum+line.qty*Number(line.unitPric
 const remaining=o=>o.lines.some(line=>line.qty>line.shipped);
 const statusHTML=s=>`<span class="tag ${esc(s)}">${esc(statuses[s]||s)}</span>`;
 function notify(msg,issue=false){flash=(issue?'⚠ ':'✓ ')+msg;render();}
-function reset(){data=initialData();roleKey='buyer_a';page='dashboard';focusedOrder=null;selectedBuyer='a';selectedLineBuyer=null;customerQuery='';flash='';render();}
-function loginHTML(){return `<section class="panel login"><p class="eyebrow">DPRO ORDER / PUBLIC DEMO</p><h1>受発注システムを体験</h1><p class="lead">メールアドレス・個人情報は不要です。共通コードを入力して、架空の注文を操作できます。</p><div class="note"><b>公開DEMO共通コード：1234</b><br>このコードは本番ログインには利用できません。</div><form id="loginForm"><p><label class="field">DEMOコード<input name="code" type="password" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="1234" required></label></p><button class="btn" type="submit">DEMOを開始する</button></form><div id="feedback" role="status">${esc(flash)}</div><p class="muted">データはこの画面の中だけ。画面を更新すると元に戻ります。</p></section>`;}
-const menuEntries=[['dashboard','今日の状況'],['orders','注文一覧'],['catalog','商品・単価'],['new','新規発注'],['shipping','出荷処理'],['settings','管理台帳'],['customers','取引先・顧客管理'],['company','会社・営業所設定'],['line','LINE連携'],['staff','スタッフ・権限']];
+function reset(){data=initialData();roleKey='seller_admin';page='dashboard';focusedOrder=null;selectedBuyer='a';selectedLineBuyer=null;customerQuery='';flash='';render();}
+function loginHTML(){return `<section class="panel login"><p class="eyebrow">DPRO ORDER / PUBLIC DEMO</p><h1>受発注システムを体験</h1><p class="lead">メールアドレス・個人情報は不要です。卸売管理者から開始し、顧客の発注、営業の承認、出荷までを体験できます。</p><div class="note"><b>公開DEMO共通コード：1234</b><br>このコードは本番ログインには利用できません。</div><form id="loginForm"><p><label class="field">DEMOコード<input name="code" type="password" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="1234" required></label></p><button class="btn" type="submit">DEMOを開始する</button></form><div id="feedback" role="status">${esc(flash)}</div><p class="muted">データはこの画面の中だけ。画面を更新すると元に戻ります。</p></section>`;}
+const menuEntries=[['dashboard','今日の状況'],['guide','導入・顧客への案内'],['orders','注文一覧'],['catalog','商品・単価'],['new','新規発注'],['shipping','出荷処理'],['settings','管理台帳'],['customers','取引先・顧客管理'],['company','会社・営業所設定'],['line','LINE連携'],['staff','スタッフ・権限']];
 function render(){
   $('#menu').hidden=!entered;
   $('#breadcrumb').textContent=entered?'DPRO ORDER｜公開体験DEMO':'公開DEMO';
   if(!entered){$('#topcontrols').innerHTML='';$('#main').innerHTML=loginHTML();return;}
   $('#topcontrols').innerHTML=`<label class="muted" for="roleSelect">画面切替</label><select class="roleSelect" id="roleSelect">${Object.entries(roles).map(([k,r])=>`<option value="${k}" ${roleKey===k?'selected':''}>${esc(r.name)}</option>`).join('')}</select><button class="btn small alt" data-action="reset">最初から</button><button class="btn small alt" data-action="logout">終了</button>`;
-  const allowed=entry=>!((entry==='new'&&!isBuyer())||(entry==='shipping'&&!canShip())||(['settings','customers','company','line','staff'].includes(entry)&&!isAdmin()));
+  const allowed=entry=>!((entry==='new'&&!isBuyer())||(entry==='shipping'&&!canShip())||(['guide','settings','customers','company','line','staff'].includes(entry)&&!isAdmin()));
   if(!allowed(page))page='dashboard';
   $('#menu').innerHTML=menuEntries.filter(([k])=>allowed(k)).map(([k,title])=>`<button data-page="${k}" class="${page===k?'active':''}">${esc(title)}</button>`).join('');
   const intro=`<div class="ribbon"><strong>架空データを使った公開DEMO</strong>　｜　現在の画面：${esc(current().name)}<br>発注・承認・出荷は画面内だけで反映されます。実際の注文、外部通知、保存は一切行いません。</div>`;
-  const pages={dashboard:dashboardHTML,orders:ordersHTML,catalog:catalogHTML,new:newHTML,shipping:shippingHTML,settings:settingsHTML,customers:customersHTML,company:companyHTML,line:lineHTML,staff:staffHTML};
+  const pages={dashboard:dashboardHTML,guide:guideHTML,orders:ordersHTML,catalog:catalogHTML,new:newHTML,shipping:shippingHTML,settings:settingsHTML,customers:customersHTML,company:companyHTML,line:lineHTML,staff:staffHTML};
   $('#main').innerHTML=intro+`<div id="feedback" role="status" aria-live="polite" class="${flash.startsWith('⚠')?'issue':'ok'}">${esc(flash)}</div>`+pages[page]()+`<p class="foot">DPRO ORDER 公開DEMO｜架空データ・本番システム非接続・ブラウザ再読込で初期化</p>`;
 }
-function dashboardHTML(){const o=visibleOrders();let pending=o.filter(x=>x.status==='submitted').length,shipping=o.filter(x=>['confirmed','partially_shipped'].includes(x.status)).length,done=o.filter(x=>x.status==='shipped').length;return `<div class="between"><div><p class="eyebrow">TODAY</p><h1>今日の状況</h1><p class="lead">${esc(current().name)} の体験画面です。</p></div><div class="row">${isBuyer()?'<button class="btn" data-page="new">＋ 新規発注</button>':''}${canShip()?'<button class="btn alt" data-page="shipping">出荷処理</button>':''}<button class="btn alt" data-page="orders">注文一覧</button></div></div><div class="stats"><div class="stat"><span class="muted">表示中の注文</span><strong>${o.length}件</strong></div><div class="stat"><span class="muted">承認待ち</span><strong>${pending}件</strong></div><div class="stat"><span class="muted">出荷対応中</span><strong>${shipping}件</strong></div><div class="stat"><span class="muted">出荷完了</span><strong>${done}件</strong></div></div><section class="panel"><h2>最近の注文</h2>${orderTable(o.slice(-5).reverse())}</section><div class="note">画面右上の「画面切替」で購入者・営業・出荷担当・管理者を切り替えると、注文が同じ架空データのまま連動します。</div>${isAdmin()?`<section class="panel"><h2>管理者の基本業務</h2><div class="row"><button class="btn alt" data-page="customers">取引先・顧客管理</button><button class="btn alt" data-page="company">会社・営業所設定</button><button class="btn alt" data-page="line">LINE連携</button><button class="btn alt" data-page="staff">スタッフ・権限</button></div></section>`:""}`;}
+function dashboardHTML(){const o=visibleOrders();let pending=o.filter(x=>x.status==='submitted').length,shipping=o.filter(x=>['confirmed','partially_shipped'].includes(x.status)).length,done=o.filter(x=>x.status==='shipped').length;return `<div class="between"><div><p class="eyebrow">TODAY</p><h1>今日の状況</h1><p class="lead">${esc(current().name)} の体験画面です。</p></div><div class="row">${isBuyer()?'<button class="btn" data-page="new">＋ 新規発注</button>':''}${canShip()?'<button class="btn alt" data-page="shipping">出荷処理</button>':''}<button class="btn alt" data-page="orders">注文一覧</button></div></div><div class="stats"><div class="stat"><span class="muted">表示中の注文</span><strong>${o.length}件</strong></div><div class="stat"><span class="muted">承認待ち</span><strong>${pending}件</strong></div><div class="stat"><span class="muted">出荷対応中</span><strong>${shipping}件</strong></div><div class="stat"><span class="muted">出荷完了</span><strong>${done}件</strong></div></div><section class="panel"><h2>最近の注文</h2>${orderTable(o.slice(-5).reverse())}</section><div class="note">画面右上の「画面切替」で購入者・営業・出荷担当・管理者を切り替えると、注文が同じ架空データのまま連動します。</div>${isAdmin()?`<section class="panel"><h2>管理者の基本業務</h2><p class="muted">オーナーが顧客を登録し、発注用画面をご案内する運用です。まず導入の流れをご覧ください。</p><div class="row"><button class="btn" data-page="guide">導入・顧客への案内</button><button class="btn alt" data-page="customers">取引先・顧客管理</button><button class="btn alt" data-page="company">会社・営業所設定</button><button class="btn alt" data-page="line">LINE連携</button><button class="btn alt" data-page="staff">スタッフ・権限</button></div></section>`:""}`;}
+function guideHTML(){
+ if(!isAdmin())return '<section class="panel"><p>卸売管理者専用の案内です。</p></section>';
+ const sample=`【公開DEMOのご案内／実注文はできません】\nDPRO ORDERの操作体験用画面をご案内します。\nhttps://dpro-shop.com/order/demo.html\n共通コード：1234\nこのDEMOは架空データのみで、本当の注文・LINE通知は発生しません。\n実運用開始時には、卸売会社が個別のアカウント招待をご案内します。`;
+ return `<p class="eyebrow">OWNER ONBOARDING</p><h1>導入・顧客への案内</h1>
+ <p class="lead">営業先のオーナーに「導入後、どのように取引先が使うか」を説明する体験ページです。</p>
+ <div class="note"><b>公開DEMO専用</b>：ここでは実アカウントを発行しません。招待メール・LINE通知・顧客登録の外部送信はありません。</div>
+ <section class="panel"><h2>オーナーが最初にすること</h2><div class="guide-grid">
+ <article class="guide-step"><span>01 / 会社の準備</span><h3>会社・営業所設定</h3><p>会社名、営業所、発注締切や配送条件を設定します。</p><button class="btn small alt" data-page="company">会社設定を見る</button></article>
+ <article class="guide-step"><span>02 / 取引先を登録</span><h3>顧客・商品・契約単価</h3><p>取引先情報を登録し、取引先ごとに販売条件を確認します。</p><button class="btn small alt" data-page="customers">取引先管理を見る</button></article>
+ <article class="guide-step"><span>03 / 顧客へ案内</span><h3>発注画面と個別ログイン</h3><p>本運用では本人確認済みの顧客へ専用ログインを案内します。DEMOは架空の画面切替です。</p><button class="btn small alt" data-action="guide-buyer">購入者Aの画面を体験</button></article>
+ <article class="guide-step"><span>04 / 日常の業務</span><h3>受注・承認・出荷</h3><p>顧客が発注したら、営業が承認し、出荷担当が分納や出荷完了を記録します。</p><button class="btn small alt" data-page="orders">注文一覧を見る</button></article>
+ </div></section>
+ <section class="panel"><h2>公開DEMOのご案内文（コピー用）</h2><p class="muted">営業先で操作体験を案内するための文章です。<b>実際の取引先を招待する文章ではありません。</b></p>
+ <textarea id="demoInviteText" class="guide-message" readonly aria-label="公開DEMOのご案内文">${esc(sample.replace(/\\n/g,'\n'))}</textarea>
+ <div class="row"><button class="btn small" data-action="guide-copy">案内文をコピー</button><button class="btn small alt" data-action="guide-buyer">購入者Aとして発注を体験</button></div></section>
+ <section class="panel"><h2>LINE公式アカウントとの連携</h2><p>顧客がLINEのメニューから発注画面を開き、注文受付・承認・出荷を通知する運用を目指しています。</p>
+ <div class="note">本DEMOのLINE画面は模擬です。商用本番のLINE本人照合・アカウント招待・実配信は未完成です。実際の顧客を招待する前に検証が必要です。</div>
+ <button class="btn small alt" data-page="line">LINE連携のDEMOを確認</button></section>`;
+}
 function orderTable(orders){if(!orders.length)return '<div class="empty">該当する注文がありません。</div>';
   return `<div class="tablewrap"><table class="table"><thead><tr><th>注文</th><th>取引先</th><th>商品・数量</th><th>状態</th>${canPrice()?'<th>参考金額（税抜）</th>':''}<th>操作</th></tr></thead><tbody>${orders.map(o=>`<tr><td><strong>${esc(o.id)}</strong><br><small>${esc(o.created)}</small></td><td>${esc(buyer(o.buyer).name)}</td><td>${o.lines.map(l=>`${esc(product(l.product).name)} ×${l.qty}<small>（出荷済 ${l.shipped}）</small>`).join('<br>')}</td><td>${statusHTML(o.status)}</td>${canPrice()?`<td>${yen(orderTotal(o))}</td>`:''}<td><div class="actions"><button class="btn small alt" data-action="detail" data-id="${esc(o.id)}">詳細</button>${canApprove()&&o.status==='submitted'?`<button class="btn small" data-action="confirm" data-id="${esc(o.id)}">承認</button>`:''}${(canApprove()||(isBuyer()&&o.buyer===current().buyer))&&o.status==='submitted'?`<button class="btn small bad" data-action="cancel" data-id="${esc(o.id)}">取消</button>`:''}</div></td></tr>`).join('')}</tbody></table></div>`;
 }
@@ -158,8 +177,21 @@ function staffHTML(){
 function requireOrder(id){const o=data.orders.find(x=>x.id===id);if(!o||!visibleOrders().includes(o))throw Error('この注文を操作できません。');return o;}
 function move(pageName){if(!menuEntries.some(e=>e[0]===pageName))return;page=pageName;flash='';focusedOrder=null;render();$('#main').focus();window.scrollTo(0,0);}
 function act(action,id){
- if(action==='logout'){entered=false;roleKey='buyer_a';page='dashboard';data=initialData();selectedBuyer='a';selectedLineBuyer=null;customerQuery='';flash='';render();return;}
+ if(action==='logout'){entered=false;roleKey='seller_admin';page='dashboard';data=initialData();selectedBuyer='a';selectedLineBuyer=null;customerQuery='';flash='';render();return;}
  if(action==='reset'){if(confirm('架空データを最初の状態に戻しますか？'))reset();return;}
+ if(action==='guide-buyer'){
+   if(!isAdmin())throw Error('管理者画面から操作してください。');
+   roleKey='buyer_a';page='dashboard';notify('購入者Aの架空発注画面です。右上から卸売管理者へ戻れます。');return;
+ }
+ if(action==='guide-copy'){
+   if(!isAdmin())throw Error('管理者のみ操作できます。');
+   const draft=document.querySelector('#demoInviteText')?.value || '';
+   if(!draft)throw Error('案内文が見つかりません。');
+   if(navigator.clipboard?.writeText){navigator.clipboard.writeText(draft).then(()=>notify('DEMO専用の案内文をコピーしました。'),()=>notify('コピーできませんでした。案内文を選択してコピーしてください。',true));}
+   else {const el=document.querySelector('#demoInviteText');el?.focus();el?.select();notify('案内文を選択しました。Ctrl+Cでコピーできます。');}
+   return;
+ }
+
  if(action==='close-detail'){focusedOrder=null;render();return;}
  if(action==='customer-select'){
    if(!isAdmin()||!buyer(id))throw Error('対象の取引先がありません。');selectedBuyer=id;page='customers';flash='取引先詳細を開きました。';render();return;
@@ -193,7 +225,7 @@ function onSubmit(e){
  try{
   if(form.id==='loginForm'){
     if(new FormData(form).get('code')!=='1234')throw Error('DEMOコードが違います。1234を入力してください。');
-    entered=true;roleKey='buyer_a';page='dashboard';flash='DEMOを開始しました。右上で担当画面を切り替えられます。';render();return;
+    entered=true;roleKey='seller_admin';page='dashboard';flash='卸売管理者の画面を表示しました。導入・顧客への案内から運用の流れを確認できます。';render();return;
   }
   if(!entered)throw Error('まずDEMOに入ってください。');
   const fd=new FormData(form);
