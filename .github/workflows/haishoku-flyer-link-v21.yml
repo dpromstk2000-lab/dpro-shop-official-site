@@ -1,0 +1,63 @@
+name: HAISHOKU A4 Flyer Link V2.1 (One-time)
+
+on:
+  push:
+    paths:
+      - '.github/workflows/haishoku-flyer-link-v21.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  link-flyer-on-product-page:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out DPRO SHOP official site
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Add A4 flyer links without changing other pages
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('systems/senior-meal-delivery.html')
+          if not p.exists():
+              raise SystemExit('ERROR: product page is missing; no changes applied')
+          content = p.read_text(encoding='utf-8')
+          href = 'https://dpromstk2000-lab.github.io/dpro-senior-meal-delivery-line/flyer.html'
+          if href in content:
+              print('PASS: flyer link already exists, so no change is needed')
+              raise SystemExit(0)
+          link = ('<a class="button button-ghost" href="' + href + '" '
+                  'target="_blank" rel="noopener" '
+                  'aria-label="DPRO高齢者配食のA4営業チラシを別タブで開く">'
+                  '営業チラシを見る・A4印刷</a>')
+          for opening in ('<div class="product-hero-actions">',
+                          '<div class="product-final-actions">'):
+              if content.count(opening) != 1:
+                  raise SystemExit('ERROR: unexpected page structure: ' + opening)
+              start = content.index(opening) + len(opening)
+              end = content.find('</div>', start)
+              if end == -1:
+                  raise SystemExit('ERROR: target section has no closing tag')
+              content = content[:end] + link + content[end:]
+          if content.count(href) != 2:
+              raise SystemExit('ERROR: expected exactly two flyer links')
+          p.write_text(content, encoding='utf-8')
+          print('PASS: added hero and final CTA links to new A4 flyer')
+          PY
+      - name: Commit targeted product-page change
+        shell: bash
+        run: |
+          git diff --check
+          if git diff --quiet -- systems/senior-meal-delivery.html; then
+            echo 'No updates required'
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- systems/senior-meal-delivery.html
+          git commit -m 'HAISHOKU: link verified A4 flyer V2.1 from product page'
+          git push origin HEAD:main
