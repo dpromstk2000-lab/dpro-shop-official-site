@@ -2,7 +2,7 @@ import { ORDER_API_BASE, ORDER_QA_WRITE_TEST_MODE, ORDER_PRODUCTION_LIVE } from 
 
 // Auth tokens intentionally live only in this page's JavaScript memory.
 const state = { accessToken: "", expiresAt: 0, authEpoch: 0, busyTicket: 0, scope: null, catalog: [], orders: [],
-  adminSetup: null, importPreview: null, page: "dashboard", activeOrderId: null, busy: false, draftKey: "", draftPayload: null,
+  adminSetup: null, importPreview: null, standard: {crm:null,company:null,line:null}, selectedCrmBuyer:null, page: "dashboard", activeOrderId: null, busy: false, draftKey: "", draftPayload: null,
   shipKeys: new Map(), shipPayloads: new Map() };
 const main = document.querySelector("#main");
 const nav = document.querySelector("#nav");
@@ -54,7 +54,7 @@ function showLogin() {
   state.authEpoch++;
   // A logout must never leave the new login screen locked behind old traffic.
   state.busyTicket++; state.busy = false;
-  state.accessToken = ""; state.scope = null; state.catalog = []; state.orders = []; state.adminSetup=null; state.importPreview=null;
+  state.accessToken = ""; state.scope = null; state.catalog = []; state.orders = []; state.adminSetup=null; state.importPreview=null; state.standard={crm:null,company:null,line:null};
   state.draftKey = ""; state.draftPayload = null; state.activeOrderId = null;
   state.shipKeys.clear(); state.shipPayloads.clear();
   state.expiresAt = 0; currentOrderFilter = "all"; currentOrderQuery = ""; nav.hidden = true;
@@ -612,11 +612,66 @@ function settingsPage() {
     <div class="line"><b>権限</b><span>${h(state.scope.role)}</span></div>
     <p class="note">パスワードやトークンはPCへ永続保存しません。</p></section>` + setupReadinessHtml(setup) + masterAuditHtml(setup) + importPreviewHtml() + selections + overview;
 }
+
+// DPRO ORDER STANDARD V3.1: CRM, owner settings and LINE status. No new auth or direct DB calls.
+const STANDARD_PAGES = Object.freeze({crm:'/api/crm',company:'/api/company',line:'/api/line/status'});
+async function loadStandardPage(name){
+ if(state.scope?.role!=='seller_admin'||!Object.hasOwn(STANDARD_PAGES,name))throw new Error('管理者権限が必要です。');
+ const data=await api(STANDARD_PAGES[name]);
+ if(!state.scope || state.scope.role!=='seller_admin')return;
+ state.standard[name]=data;
+}
+const eInput=(name,value,max=120,type='text')=>`<input name="${name}" value="${h(value||'')}" maxlength="${max}" type="${type}">`;
+const standardLoading=title=>pageTitle('DPRO STANDARD',title,'DPRO標準の管理機能です。')+
+ '<section class="panel"><p>サーバーの設定を確認しています。追加APIが未反映の場合は、DEMOをご利用ください。</p><button class="secondary" type="button" data-action="standard-refresh">再読み込み</button></section>';
+function crmPage(){
+ if(state.scope?.role!=='seller_admin')return pageTitle('ACCESS','権限がありません','この機能は管理者専用です。');
+ const a=state.standard.crm?.buyers;
+ if(!Array.isArray(a))return standardLoading('取引先・顧客管理');
+ const b=a.find(x=>x.id===state.selectedCrmBuyer)||a[0];
+ return pageTitle('CUSTOMERS','取引先・顧客管理','会社・担当者・連絡先・メモと発注履歴を、卸売会社ごとに管理します。')+
+ `<section class="panel"><h2>取引先一覧（${a.length}件）</h2><div class="table-wrap"><table><thead><tr><th>会社・コード</th><th>担当者・電話</th><th>累計注文</th><th>LINE</th><th>編集</th></tr></thead><tbody>
+ ${a.map(x=>`<tr><td><b>${h(x.name)}</b><small><br>${h(x.code)}</small></td><td>${h(x.contact||'―')}<small><br>${h(x.phone||'―')}</small></td><td>${h(x.orderCount||0)}件</td><td>${x.lineLinked?'紐付け済み':'未紐付け'}</td><td><button class="secondary" type="button" data-action="standard-select-buyer" data-id="${h(x.id)}">詳細・編集</button></td></tr>`).join('')||'<tr><td colspan="5">取引先はまだありません</td></tr>'}</tbody></table></div></section>`+
+ (b?`<section class="panel"><h2>${h(b.name)}｜連絡先・メモ</h2><form id="standardCrmForm" data-id="${h(b.id)}" class="form-stack">
+ <div class="two-col"><label>担当者名${eInput('contact',b.contact,100)}</label><label>電話番号${eInput('phone',b.phone,32)}</label><label>郵便番号${eInput('postal',b.postal,20)}</label><label>メールアドレス${eInput('email',b.email,254,'email')}</label></div>
+ <label>住所${eInput('address',b.address,240)}</label><label>メモ<textarea name="note" maxlength="1500" rows="3">${h(b.note||'')}</textarea></label>
+ <button class="secondary" type="submit" ${READ_ONLY_QA?'disabled':''}>${READ_ONLY_QA?'現在は保存停止中':'この顧客情報を保存'}</button></form>
+ <p class="note">注文履歴 ${h(b.orderCount||0)}件　/　最新発注 ${h(b.lastOrderAt?formatDate(b.lastOrderAt):'なし')}。顧客の詳細は他社から閲覧できません。</p></section>`:'')+
+ '<section class="panel"><p>新規取引先の基本登録は従来の「アカウント → 導入設定」から行います。登録後にこの画面で詳細を入力できます。</p></section>';
+}
+function companyPage(){
+ if(state.scope?.role!=='seller_admin')return pageTitle('ACCESS','権限がありません','この機能は管理者専用です。');
+ const c=state.standard.company;if(!c)return standardLoading('会社・営業所設定');
+ return pageTitle('OWNER SETTINGS','会社・営業所設定','会社の連絡先・締切・配送運用を登録します。')+
+ `<section class="panel"><h2>${h(c.companyName)}｜基本設定</h2><form id="standardCompanyForm" class="form-stack">
+ <div class="two-col"><label>営業所名${eInput('branch',c.branch,100)}</label><label>電話番号${eInput('phone',c.phone,32)}</label><label>郵便番号${eInput('postal',c.postal,20)}</label><label>発注締切${eInput('cutoff',c.cutoff||'15:00',5,'time')}</label></div>
+ <label>住所${eInput('address',c.address,240)}</label><label>配送・営業曜日${eInput('delivery',c.delivery,150)}</label>
+ <label>運用メモ<textarea rows="2" name="note" maxlength="500">${h(c.note||'')}</textarea></label>
+ <h3>通知方針（配信の実行はLINE接続完了後）</h3>
+ <div class="actions"><label><input name="noticeOrder" type="checkbox" ${c.noticeOrder?'checked':''}>注文受付</label><label><input name="noticeApproval" type="checkbox" ${c.noticeApproval?'checked':''}>承認</label><label><input name="noticeShipment" type="checkbox" ${c.noticeShipment?'checked':''}>出荷</label></div>
+ <button class="secondary" type="submit" ${READ_ONLY_QA?'disabled':''}>${READ_ONLY_QA?'本番設定の保存は停止中':'会社設定を保存'}</button></form>
+ <p class="note">本番ロックが有効な間は入力内容を保存しません。スタッフの認証・会社別権限は別途管理します。</p></section>`;
+}
+function lineStatusPage(){
+ if(state.scope?.role!=='seller_admin')return pageTitle('ACCESS','権限がありません','この機能は管理者専用です。');
+ const l=state.standard.line;if(!l)return standardLoading('公式LINE連携');
+ return pageTitle('LINE OFFICIAL','公式LINE連携','注文受付・承認・出荷通知の準備状況を確認します。')+
+ `<section class="panel"><h2>接続状況：${h(l.status||'unconfigured')}</h2>
+ <p class="note"><b>現在、LINEメッセージは送信していません。</b>　${h(l.message||'実配信は停止しています。')}</p>
+ <div class="metrics"><div class="metric"><span>紐付け済み取引先</span><strong>${h(l.lineLinkedBuyers||0)}</strong></div><div class="metric"><span>通知キュー</span><strong>${h(l.queuedEvents||0)}</strong></div><div class="metric"><span>配信状態</span><strong>${l.deliveryEnabled?'要監査':'OFF'}</strong></div></div>
+ <h3>正式連携時に必要な確認</h3><p>LINE公式アカウントと署名付きWebhook、取引先との本人確認付き紐付け、送信テスト、送信失敗時の再送管理を検査してから接続します。</p></section>`;
+}
+function staffStandardPage(){
+ if(state.scope?.role!=='seller_admin')return pageTitle('ACCESS','権限がありません','この機能は管理者専用です。');
+ return pageTitle('STAFF / ROLES','スタッフ・権限','認証済みユーザーだけが会社別所属で利用できる権限です。')+
+ `<section class="panel"><table><thead><tr><th>役割</th><th>担当範囲</th></tr></thead><tbody><tr><td>seller_admin</td><td>取引先・商品・価格・在庫・会社設定</td></tr><tr><td>seller_sales</td><td>注文承認・取消</td></tr><tr><td>seller_shipper</td><td>出荷・分納。価格は非表示</td></tr><tr><td>buyer</td><td>所属する取引先自身の注文</td></tr></tbody></table>
+ <p class="note">スタッフ追加や権限変更は、本人認証と会社別隔離を守る導入手続きで行います。ここではパスワードの表示・一括権限付与はできません。</p></section>`;
+}
 function render() {
   if (!state.scope) return showLogin();
   const pages = { dashboard: dashboard, queue: workQueuePage, orders: ordersPage, catalog: catalogPage,
-    new: newOrderPage, shipping: shippingPage, settings: settingsPage, detail: orderDetailPage };
-  const names = { dashboard: "今日の状況", queue: "未処理業務", orders: "注文一覧", catalog: "商品・契約単価", new: "新規発注", shipping: "出荷処理", settings: "アカウント", detail: "注文詳細" };
+    new: newOrderPage, shipping: shippingPage, settings: settingsPage, crm:crmPage, company:companyPage, line:lineStatusPage, staff:staffStandardPage, detail: orderDetailPage };
+  const names = { dashboard: "今日の状況", queue: "未処理業務", orders: "注文一覧", catalog: "商品・契約単価", new: "新規発注", shipping: "出荷処理", settings: "アカウント", crm:"取引先・顧客管理",company:"会社・営業所設定",line:"公式LINE連携",staff:"スタッフ・権限",detail: "注文詳細" };
   document.querySelector("#breadcrumb").textContent = READ_ONLY_QA ? `${noticeMode()}｜${names[state.page]}` : names[state.page];
   document.querySelector("#userLabel").textContent = isBuyer() ? state.scope.buyerName : state.scope.supplierName;
   document.querySelector("#logout").hidden = false;
@@ -624,6 +679,7 @@ function render() {
   document.querySelector("#navNew").hidden = !isBuyer() || READ_ONLY_QA;
   document.querySelector("#navShipping").hidden = !canShip() || READ_ONLY_QA;
   document.querySelector("#navQueue").hidden = isBuyer();
+  nav.querySelectorAll("button[data-standard]").forEach(b=>b.hidden=state.scope?.role!=="seller_admin");
   nav.querySelectorAll("button[data-page]").forEach(b => b.classList.toggle("active", b.dataset.page === state.page));
   main.innerHTML = `${READ_ONLY_QA ? `<div class="qa-ribbon" role="status">${h(noticeMode())} — 書き込み停止中</div>` : IS_R58N_QA ? `<div class="qa-ribbon" role="status">${h(noticeMode())} — 架空データのみ</div>` : ""}${pages[state.page]()}`;
 }
@@ -649,6 +705,27 @@ async function busyAction(doWork) {
 }
 
 document.addEventListener("submit", event => {
+  if (["standardCrmForm","standardCompanyForm"].includes(event.target.id)) {
+    event.preventDefault(); const form=event.target;
+    busyAction(async()=>{
+      if(state.scope?.role!=="seller_admin")throw new Error("管理者権限が必要です。");
+      if(READ_ONLY_QA)throw new Error("本番の書き込みを停止しています。");
+      const f=new FormData(form);
+      if(form.id==="standardCrmForm"){
+        await api("/api/admin/crm","POST",{buyerId:form.dataset.id,
+          contact:f.get("contact"),phone:f.get("phone"),postal:f.get("postal"),address:f.get("address"),
+          email:f.get("email"),note:f.get("note")});
+        await loadStandardPage("crm");
+      } else {
+        await api("/api/admin/company","POST",{
+          branch:f.get("branch"),phone:f.get("phone"),postal:f.get("postal"),address:f.get("address"),
+          cutoff:f.get("cutoff"),delivery:f.get("delivery"),note:f.get("note"),
+          noticeOrder:f.has("noticeOrder"),noticeApproval:f.has("noticeApproval"),noticeShipment:f.has("noticeShipment")});
+        await loadStandardPage("company");
+      }
+      render();notice("設定を保存しました。");
+    });return;
+  }
   if (!["loginForm", "orderForm"].includes(event.target.id) &&
       !event.target.classList.contains("shipmentForm") && !event.target.classList.contains("adminForm") &&
       event.target.id !== "importPreviewForm") return;
@@ -794,11 +871,30 @@ document.addEventListener("click", event => {
   if (event.target.closest("#logout")) { showLogin(); notice("ログアウトしました。"); return; }
   const pageButton = event.target.closest("[data-page]");
   if (pageButton && state.scope) {
-    state.page = pageButton.dataset.page; render(); main.focus(); window.scrollTo(0,0); return;
+    const next=pageButton.dataset.page;
+    if ([...Object.keys(STANDARD_PAGES),'staff'].includes(next)) {
+      if(state.scope.role!=="seller_admin") {notice("管理者権限が必要です。",true);return;}
+      state.page=next;render(); main.focus(); window.scrollTo(0,0);
+      if(Object.hasOwn(STANDARD_PAGES,next)) busyAction(async()=>{
+        await loadStandardPage(next);render();
+      });
+      return;
+    }
+    state.page = next; render(); main.focus(); window.scrollTo(0,0); return;
   }
   const action = event.target.closest("[data-action]");
   if (!action || !state.scope) return;
   busyAction(async () => {
+    if (action.dataset.action === "standard-refresh"){
+      if(state.scope?.role!=="seller_admin"||!Object.hasOwn(STANDARD_PAGES,state.page))throw new Error("管理者権限が必要です。");
+      await loadStandardPage(state.page);render();return;
+    }
+    if (action.dataset.action === "standard-select-buyer"){
+      if(state.scope?.role!=="seller_admin"||state.page!=="crm")throw new Error("管理者権限が必要です。");
+      const id=action.dataset.id;
+      if(!(state.standard.crm?.buyers||[]).some(x=>x.id===id))throw new Error("取引先を確認してください。");
+      state.selectedCrmBuyer=id;render();return;
+    }
     if (action.dataset.action === "reset-draft" && isBuyer() && state.page === "new") {
       if (!confirm("前回の発注が受け付け済みの可能性があります。注文一覧で確認しましたか？別の送信番号で新たに作成します。")) return;
       state.draftKey = crypto.randomUUID(); state.draftPayload = null;
