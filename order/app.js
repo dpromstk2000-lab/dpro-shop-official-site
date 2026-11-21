@@ -2,7 +2,7 @@ import { ORDER_API_BASE, ORDER_QA_WRITE_TEST_MODE, ORDER_PRODUCTION_LIVE } from 
 
 // Auth tokens intentionally live only in this page's JavaScript memory.
 const state = { accessToken: "", expiresAt: 0, authEpoch: 0, busyTicket: 0, scope: null, catalog: [], orders: [],
-  adminSetup: null, importPreview: null, standard: {crm:null,company:null,line:null}, selectedCrmBuyer:null, page: "dashboard", activeOrderId: null, busy: false, draftKey: "", draftPayload: null,
+  adminSetup: null, importPreview: null, standard: {crm:null,company:null,line:null}, selectedCrmBuyer:null, selectedOnboardingBuyer:null, page: "dashboard", activeOrderId: null, busy: false, draftKey: "", draftPayload: null,
   shipKeys: new Map(), shipPayloads: new Map() };
 const main = document.querySelector("#main");
 const nav = document.querySelector("#nav");
@@ -54,7 +54,7 @@ function showLogin() {
   state.authEpoch++;
   // A logout must never leave the new login screen locked behind old traffic.
   state.busyTicket++; state.busy = false;
-  state.accessToken = ""; state.scope = null; state.catalog = []; state.orders = []; state.adminSetup=null; state.importPreview=null; state.standard={crm:null,company:null,line:null};
+  state.accessToken = ""; state.scope = null; state.catalog = []; state.orders = []; state.adminSetup=null; state.importPreview=null; state.standard={crm:null,company:null,line:null}; state.selectedOnboardingBuyer=null;
   state.draftKey = ""; state.draftPayload = null; state.activeOrderId = null;
   state.shipKeys.clear(); state.shipPayloads.clear();
   state.expiresAt = 0; currentOrderFilter = "all"; currentOrderQuery = ""; nav.hidden = true;
@@ -639,6 +639,53 @@ function crmPage(){
  <p class="note">注文履歴 ${h(b.orderCount||0)}件　/　最新発注 ${h(b.lastOrderAt?formatDate(b.lastOrderAt):'なし')}。顧客の詳細は他社から閲覧できません。</p></section>`:'')+
  '<section class="panel"><p>新規取引先の基本登録は従来の「アカウント → 導入設定」から行います。登録後にこの画面で詳細を入力できます。</p></section>';
 }
+// OWNER ONLY: Customer onboarding preflight, not account issuance.
+// Never call Supabase Auth or persist invite links from this screen.
+function customerOnboardingMessage(buyer) {
+  return `【DPRO ORDER 公開DEMOのご案内／実注文はできません】\n${String(buyer?.name || 'お取引先')} ご担当者様\n\nDPRO ORDERの操作体験画面をご案内します。\nURL：https://dpro-shop.com/order/demo.html\n共通DEMOコード：1234\n\n架空データのみの体験です。実際の注文・保存・LINE通知は発生しません。\n正式な個別ログイン案内は、商用運用の安全確認完了後に別途お送りします。\n※この案内文は正式なアカウント招待ではありません。`;
+}
+function onboardingPage(){
+  if(state.scope?.role!=='seller_admin')return pageTitle('ACCESS','権限がありません','卸売管理者専用の画面です。');
+  const buyers=state.standard.crm?.buyers;
+  if(!Array.isArray(buyers)) return standardLoading('取引先の利用開始準備');
+  const setup=state.adminSetup;
+  const emailOk=x=>typeof x?.email==='string' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(x.email);
+  const contactReady=buyers.filter(x=>emailOk(x)&&String(x.contact||'').trim()).length;
+  const chosen=buyers.find(x=>x.id===state.selectedOnboardingBuyer)||buyers[0];
+  const message=chosen?customerOnboardingMessage(chosen):'';
+  const products=Array.isArray(setup?.products)?setup.products.length:0;
+  const prices=Array.isArray(setup?.prices)?setup.prices.length:0;
+  return pageTitle('OWNER ONBOARDING','取引先の利用開始準備','卸売会社のオーナーが、顧客への利用案内に必要な準備状況を確認します。')+
+  `<div class="notice"><b>本番の招待発行・メール配信・LINE配信はまだ停止中です。</b> この画面で作成できるのは公開DEMOの案内文だけです。正式アカウントは発行しません。</div>
+  <section class="panel"><h2>導入の進み具合</h2>
+  <div class="metrics"><div class="metric"><span>登録取引先</span><strong>${h(buyers.length)}社</strong></div>
+  <div class="metric"><span>連絡先・メール入力済み</span><strong>${h(contactReady)}社</strong></div>
+  <div class="metric"><span>登録商品</span><strong>${h(products)}件</strong></div>
+  <div class="metric"><span>契約単価</span><strong>${h(prices)}件</strong></div></div>
+  <p class="note">これらは登録情報の入力状況です。メールの到達確認や顧客の本人確認、アカウント発行完了を示すものではありません。</p>
+  <div class="actions"><button class="secondary" type="button" data-page="crm">取引先・顧客管理へ</button><button class="secondary" type="button" data-page="settings">商品・契約単価へ</button><button class="secondary" type="button" data-page="company">会社設定へ</button></div></section>
+  <section class="panel"><h2>取引先別・利用開始チェック</h2><div class="table-wrap"><table><thead><tr><th>取引先</th><th>連絡先の入力</th><th>本人確認・招待</th><th>操作</th></tr></thead><tbody>
+  ${buyers.map(b=>`<tr><td><b>${h(b.name)}</b><small><br>${h(b.code||'―')}</small></td>
+    <td>${emailOk(b)&&String(b.contact||'').trim()?'入力済み':'要確認'}</td>
+    <td>未確認（招待発行停止中）</td>
+    <td><button class="secondary" type="button" data-action="onboarding-select-buyer" data-id="${h(b.id)}">準備内容</button></td></tr>`).join('')||'<tr><td colspan="4">取引先が登録されていません</td></tr>'}
+  </tbody></table></div></section>
+  ${chosen?`<section class="panel"><h2>${h(chosen.name)}｜案内準備</h2>
+  <div class="line"><b>担当者</b><span>${h(chosen.contact||'未設定')}</span></div>
+  <div class="line"><b>連絡先メール</b><span>${h(chosen.email||'未設定')}</span></div>
+  <div class="line"><b>電話番号</b><span>${h(chosen.phone||'未設定')}</span></div>
+  <p class="note">登録された連絡先メールと正式ログインのメールは、同一とは限りません。正式招待では本人確認後に照合が必要です。</p>
+  <h3>公開DEMOの案内文（コピー用）</h3>
+  <textarea id="onboardingPreviewText" class="guide-message" rows="9" readonly aria-label="公開DEMOの案内文">${h(message)}</textarea>
+  <div class="actions"><button class="secondary" type="button" data-action="onboarding-copy-demo">DEMO案内文をコピー</button><button class="secondary" type="button" disabled title="正式招待機能は安全確認後に提供">正式招待を発行（未提供）</button></div></section>`:''}
+  <section class="panel"><h2>本番導入までの手順</h2><ol>
+    <li>会社・取引先・商品・契約単価を整える</li>
+    <li>取引先本人と連絡先メールを確認する</li>
+    <li>本人確認付きの正式招待を発行する（現在は未提供）</li>
+    <li>顧客ログイン・会社別隔離・発注から出荷までの安全検査に合格する</li>
+    <li>LINE公式との連携検査後に通知を有効化する</li>
+  </ol><p class="note">実発注や招待発行を行うために本番ロックを解除しないでください。ロック解除は別途承認と受入検査が必要です。</p></section>`;
+}
 function companyPage(){
  if(state.scope?.role!=='seller_admin')return pageTitle('ACCESS','権限がありません','この機能は管理者専用です。');
  const c=state.standard.company;if(!c)return standardLoading('会社・営業所設定');
@@ -670,7 +717,7 @@ function staffStandardPage(){
 function render() {
   if (!state.scope) return showLogin();
   const pages = { dashboard: dashboard, queue: workQueuePage, orders: ordersPage, catalog: catalogPage,
-    new: newOrderPage, shipping: shippingPage, settings: settingsPage, crm:crmPage, company:companyPage, line:lineStatusPage, staff:staffStandardPage, detail: orderDetailPage };
+    new: newOrderPage, shipping: shippingPage, settings: settingsPage, crm:crmPage, company:companyPage, line:lineStatusPage, staff:staffStandardPage, onboarding:onboardingPage, detail: orderDetailPage };
   const names = { dashboard: "今日の状況", queue: "未処理業務", orders: "注文一覧", catalog: "商品・契約単価", new: "新規発注", shipping: "出荷処理", settings: "アカウント", crm:"取引先・顧客管理",company:"会社・営業所設定",line:"公式LINE連携",staff:"スタッフ・権限",detail: "注文詳細" };
   document.querySelector("#breadcrumb").textContent = READ_ONLY_QA ? `${noticeMode()}｜${names[state.page]}` : names[state.page];
   document.querySelector("#userLabel").textContent = isBuyer() ? state.scope.buyerName : state.scope.supplierName;
@@ -872,11 +919,11 @@ document.addEventListener("click", event => {
   const pageButton = event.target.closest("[data-page]");
   if (pageButton && state.scope) {
     const next=pageButton.dataset.page;
-    if ([...Object.keys(STANDARD_PAGES),'staff'].includes(next)) {
+    if ([...Object.keys(STANDARD_PAGES),'staff','onboarding'].includes(next)) {
       if(state.scope.role!=="seller_admin") {notice("管理者権限が必要です。",true);return;}
       state.page=next;render(); main.focus(); window.scrollTo(0,0);
-      if(Object.hasOwn(STANDARD_PAGES,next)) busyAction(async()=>{
-        await loadStandardPage(next);render();
+      if(Object.hasOwn(STANDARD_PAGES,next)||next==='onboarding') busyAction(async()=>{
+        await loadStandardPage(next==='onboarding'?'crm':next);render();
       });
       return;
     }
@@ -888,6 +935,21 @@ document.addEventListener("click", event => {
     if (action.dataset.action === "standard-refresh"){
       if(state.scope?.role!=="seller_admin"||!Object.hasOwn(STANDARD_PAGES,state.page))throw new Error("管理者権限が必要です。");
       await loadStandardPage(state.page);render();return;
+    }
+    if (action.dataset.action === "onboarding-select-buyer") {
+      if(state.scope?.role!=="seller_admin"||state.page!=="onboarding")throw new Error("管理者権限が必要です。");
+      const id=action.dataset.id;
+      if(!(state.standard.crm?.buyers||[]).some(x=>x.id===id))throw new Error("取引先を確認してください。");
+      state.selectedOnboardingBuyer=id;render();return;
+    }
+    if (action.dataset.action === "onboarding-copy-demo") {
+      if(state.scope?.role!=="seller_admin"||state.page!=="onboarding")throw new Error("管理者権限が必要です。");
+      const buyer=(state.standard.crm?.buyers||[]).find(x=>x.id===state.selectedOnboardingBuyer)||state.standard.crm?.buyers?.[0];
+      if(!buyer)throw new Error("取引先を確認してください。");
+      const message=customerOnboardingMessage(buyer);
+      if(!navigator.clipboard?.writeText)throw new Error("ブラウザのコピー機能を利用できません。案内文を選択してコピーしてください。");
+      await navigator.clipboard.writeText(message);
+      notice("公開DEMOの案内文をコピーしました。実顧客への正式招待ではありません。");return;
     }
     if (action.dataset.action === "standard-select-buyer"){
       if(state.scope?.role!=="seller_admin"||state.page!=="crm")throw new Error("管理者権限が必要です。");
