@@ -933,8 +933,9 @@ document.addEventListener("click", event => {
   if (!action || !state.scope) return;
   busyAction(async () => {
     if (action.dataset.action === "standard-refresh"){
-      if(state.scope?.role!=="seller_admin"||!Object.hasOwn(STANDARD_PAGES,state.page))throw new Error("管理者権限が必要です。");
-      await loadStandardPage(state.page);render();return;
+      const reloadPage = state.page==="onboarding" ? "crm" : state.page;
+      if(state.scope?.role!=="seller_admin"||!Object.hasOwn(STANDARD_PAGES,reloadPage))throw new Error("管理者権限が必要です。");
+      await loadStandardPage(reloadPage);render();return;
     }
     if (action.dataset.action === "onboarding-select-buyer") {
       if(state.scope?.role!=="seller_admin"||state.page!=="onboarding")throw new Error("管理者権限が必要です。");
