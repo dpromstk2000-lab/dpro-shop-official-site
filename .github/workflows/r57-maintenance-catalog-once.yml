@@ -1,0 +1,52 @@
+name: DPRO R57 official catalog one-shot apply
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/r57-maintenance-catalog-once.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: r57-official-catalog
+  cancel-in-progress: false
+jobs:
+  install-r57:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Validate R57 pages and inject only the new catalog entry
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs=require('fs');
+          const target="systems/index.html";
+          const marker='<!-- DPRO_ORDER_58_CATALOG_LINK_START -->';
+          const start='<!-- DPRO_MAINTENANCE_57_CATALOG_LINK_START -->';
+          const snippet="<!-- DPRO_MAINTENANCE_57_CATALOG_LINK_START -->\n<div id=\"dpro-maintenance-57-entry\" style=\"margin:0 0 44px\">\n <div class=\"sys33-section-head\"><small>NEW SYSTEM / #57 / PUBLIC DEMO AVAILABLE</small>\n  <h2>DPRO MAINTENANCE｜設備点検・是正管理 <span style=\"font-size:.55em;vertical-align:middle;color:#087e85\">DEMO公開中</span></h2>\n  <p>設備保守会社向け。施設・設備台帳、点検予定と結果、期限超過、是正管理をひとつに。商用本番は準備中です。</p></div>\n <div class=\"sys33-grid\"><a class=\"sys33-card\" href=\"maintenance.html\" aria-label=\"DPRO MAINTENANCE #57 公式説明・公開DEMOへ\">\n  <span class=\"sys33-card__cat\">設備保守・メンテナンス / #57 / コード1234</span>\n  <h3>DPRO MAINTENANCE｜設備点検・是正管理</h3>\n  <p>顧客・施設・設備・担当をまとめ、点検結果と是正対応を追跡するシステム。正式導入は安全検証後。</p><span class=\"sys33-card__more\">公式説明とDEMOを見る <b>→</b></span>\n </a></div>\n</div>\n<!-- DPRO_MAINTENANCE_57_CATALOG_LINK_END -->\n";
+          const original=fs.readFileSync(target,'utf8');
+          if(!original.includes(start)){
+           const hits=original.split(marker).length-1;
+           if(hits!==1)throw Error('Cannot safely patch catalog: ORDER anchor must occur exactly once, got '+hits);
+           fs.writeFileSync(target,original.replace(marker,snippet+marker));
+          }
+          // Keep the existing canonical 55 records and counts unchanged.
+          const fixed=fs.readFileSync(target,'utf8');
+          if(!fixed.includes(start)||!fixed.includes('MAINTENANCE #57'))throw Error('R57 catalog entry missing');
+          const sitemap='sitemap.xml';
+          if(fs.existsSync(sitemap)){
+           let xml=fs.readFileSync(sitemap,'utf8');
+           const add=["https://dpro-shop.com/systems/maintenance.html"].filter(u=>!xml.includes('<loc>'+u+'</loc>'));
+           if(add.length){if(!xml.includes('</urlset>'))throw Error('Sitemap has no closing urlset');xml=xml.replace('</urlset>',add.map(u=>'<url><loc>'+u+'</loc></url>').join('\n')+'\n</urlset>');fs.writeFileSync(sitemap,xml)}
+          }
+          NODE
+      - name: Commit catalog update (idempotent, no application runtime changes)
+        shell: bash
+        run: |
+          git config user.name "dpro-r57-catalog-bot"
+          git config user.email "dpro-r57-catalog-bot@users.noreply.github.com"
+          git add systems/index.html sitemap.xml
+          if git diff --cached --quiet; then echo "Catalog already updated"; exit 0; fi
+          git commit -m "feat(r57): list DPRO MAINTENANCE #57 in official catalog"
+          git push origin HEAD:main
