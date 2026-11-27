@@ -1,0 +1,42 @@
+name: DPRO LANDSCAPE OFFICIAL R1
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/dpro-landscape-official-r1.yml']
+permissions:
+  contents: write
+concurrency:
+  group: landscape-official-r1
+  cancel-in-progress: false
+jobs:
+  repair:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install QA tools
+        run: |
+          python -m pip install beautifulsoup4
+      - name: Patch and verify
+        run: |
+          python - <<'PYCODE'
+          from pathlib import Path
+          from bs4 import BeautifulSoup
+          import json
+          base='https://dpromstk2000-lab.github.io/dpro-landscape-exterior-standard/';p=Path('systems/landscape-exterior.html');s=p.read_text();assert '造園・外構' in s
+          s=s.replace('"'+base+'"','"'+base+'demo-guide.html"').replace(base+'DPRO_LANDSCAPE_EXTERIOR_A4_FLYER_MASTER_V2.0_20260904.pdf',base+'a4-flyer.html')
+          assert base+'demo-guide.html' in s and base+'customer.html' in s and base+'staff.html' in s and base+'owner.html' in s and base+'a4-flyer.html' in s;p.write_text(s);print(json.dumps({'scope':'landscape official only','demo_links':'PASS','flyer_link':'PASS'},ensure_ascii=False))
+
+          PYCODE
+      - name: Commit verified files only
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -- systems/landscape-exterior.html
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'DPRO LANDSCAPE OFFICIAL R1'
+          git push origin HEAD:main
